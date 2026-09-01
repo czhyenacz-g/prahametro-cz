@@ -29,9 +29,16 @@ const data = lineOrderData as LineOrderData;
 // dohledávaná v reálných datech (data/metro-line-order.json), ne
 // natvrdo indexem, ať layout přežije budoucí `npm run data:refresh`
 // i při menších změnách pořadí/vynechaných stanicích.
-const MUSTEK: Point = { x: 400, y: 430 };
-const MUZEUM: Point = { x: 440, y: 470 };
-const FLORENC: Point = { x: 460, y: 380 };
+// Vzdálenosti mezi kotvami zdvojené (+100 %) oproti původnímu trojúhelníku
+// (byl 400,430 / 440,470 / 460,380) — škálováno stejnoměrně od jeho
+// těžiště (433,427), ať si trojúhelník zachová tvar i orientaci. Protože
+// se z těchto tří bodů lineárně odvozuje rozestup VŠECH stanic na dané
+// lince (viz layoutLinePositions níže), zdvojení kotev zdvojí rozestup
+// stanic v celé mapě, nejvýrazněji viditelné právě v nejhustší centrální
+// přestupní oblasti (viz zadání "stanice ve střední části dál od sebe").
+const MUSTEK: Point = { x: 367, y: 433 };
+const MUZEUM: Point = { x: 447, y: 513 };
+const FLORENC: Point = { x: 487, y: 333 };
 
 type AnchorSpec = { stationName: string; point: Point };
 
