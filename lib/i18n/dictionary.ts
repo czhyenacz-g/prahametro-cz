@@ -29,10 +29,10 @@ export type Dictionary = {
   result: {
     entranceLabel: (label: string) => string;
     wheelchair: string;
-    navigate: string;
-    openInOtherMap: string;
-    openInGoogleMaps: string;
-    openInAppleMaps: string;
+    googleMapsLabel: string;
+    mapyComLabel: string;
+    googleMapsAriaLabel: string;
+    mapyComAriaLabel: string;
     disclaimer: string;
   };
   map: {
@@ -89,10 +89,10 @@ const cs: Dictionary = {
   result: {
     entranceLabel: (label) => `Vstup ${label}`,
     wheelchair: "Bezbariérový přístup",
-    navigate: "Navigovat ke vstupu",
-    openInOtherMap: "Otevřít v jiné mapě",
-    openInGoogleMaps: "Otevřít v Google Maps",
-    openInAppleMaps: "Otevřít v Apple Maps",
+    googleMapsLabel: "Google Maps",
+    mapyComLabel: "Mapy.com",
+    googleMapsAriaLabel: "Spustit pěší navigaci v Google Maps",
+    mapyComAriaLabel: "Spustit pěší navigaci v Mapy.com",
     disclaimer: "Vzdušná vzdálenost, orientační — skutečnou trasu ukáže navigace.",
   },
   map: {
@@ -148,10 +148,10 @@ const en: Dictionary = {
   result: {
     entranceLabel: (label) => `Entrance ${label}`,
     wheelchair: "Wheelchair accessible",
-    navigate: "Navigate to entrance",
-    openInOtherMap: "Open in another map",
-    openInGoogleMaps: "Open in Google Maps",
-    openInAppleMaps: "Open in Apple Maps",
+    googleMapsLabel: "Google Maps",
+    mapyComLabel: "Mapy.com",
+    googleMapsAriaLabel: "Start walking navigation in Google Maps",
+    mapyComAriaLabel: "Start walking navigation in Mapy.com",
     disclaimer: "Straight-line distance, approximate — actual route shown by navigation.",
   },
   map: {

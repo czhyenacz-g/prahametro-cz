@@ -72,7 +72,7 @@ export default function FinderSection({ entrances, status, onLocate, onDemoSelec
         )}
 
         {results.map((entrance) => (
-          <EntranceResultCard key={entrance.id} entrance={entrance} distanceMeters={entrance.distanceMeters} />
+          <EntranceResultCard key={entrance.id} entrance={entrance} distanceMeters={entrance.distanceMeters} origin={position} />
         ))}
       </div>
 

@@ -130,7 +130,7 @@ export default function MetroMap({ entrances, position, onRequestLocation }: Met
           {showStationEntrances && stationEntrances.length > 0 && (
             <div className="mt-4 flex flex-col gap-3">
               {stationEntrances.map(({ entrance, distanceMeters }) => (
-                <EntranceResultCard key={entrance.id} entrance={entrance} distanceMeters={distanceMeters} />
+                <EntranceResultCard key={entrance.id} entrance={entrance} distanceMeters={distanceMeters} origin={position} />
               ))}
             </div>
           )}

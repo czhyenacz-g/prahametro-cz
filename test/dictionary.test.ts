@@ -44,3 +44,22 @@ describe("getMainHeading", () => {
     assert.equal(vulgarEn, getDictionary("en").finder.headingVulgar);
   });
 });
+
+describe("navigační tlačítka Google Maps / Mapy.com — přístupné popisky cs/en", () => {
+  test("názvy služeb se nepřekládají", () => {
+    assert.equal(getDictionary("cs").result.googleMapsLabel, "Google Maps");
+    assert.equal(getDictionary("en").result.googleMapsLabel, "Google Maps");
+    assert.equal(getDictionary("cs").result.mapyComLabel, "Mapy.com");
+    assert.equal(getDictionary("en").result.mapyComLabel, "Mapy.com");
+  });
+
+  test("české přístupné popisky", () => {
+    assert.equal(getDictionary("cs").result.googleMapsAriaLabel, "Spustit pěší navigaci v Google Maps");
+    assert.equal(getDictionary("cs").result.mapyComAriaLabel, "Spustit pěší navigaci v Mapy.com");
+  });
+
+  test("anglické přístupné popisky", () => {
+    assert.equal(getDictionary("en").result.googleMapsAriaLabel, "Start walking navigation in Google Maps");
+    assert.equal(getDictionary("en").result.mapyComAriaLabel, "Start walking navigation in Mapy.com");
+  });
+});
