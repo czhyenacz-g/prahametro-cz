@@ -4,6 +4,8 @@
 export type StorageLike = {
   getItem(key: string): string | null;
   setItem(key: string, value: string): void;
+  /** Volitelné, ať staré testovací mocky (jen getItem/setItem) dál typují. */
+  removeItem?(key: string): void;
 };
 
 export function safeGet(storage: StorageLike | null | undefined, key: string): string | null {
@@ -22,6 +24,22 @@ export function safeSet(storage: StorageLike | null | undefined, key: string, va
   } catch {
     // Ignorováno — private mode / zakázaný storage / quota. Appka musí
     // fungovat i bez perzistentního uložení preference.
+  }
+}
+
+/**
+ * Bezpečné odstranění neplatné/zastaralé uložené hodnoty (viz
+ * hooks/useSelectedAd.ts — stará uložená kampaň bez platného odkazu se
+ * takhle uklidí, ať se příště zase nezkouší obnovit). Chybějící
+ * `removeItem` na mocku (viz test/safe-storage.test.ts) se bezpečně
+ * přeskočí, ne spadne.
+ */
+export function safeRemove(storage: StorageLike | null | undefined, key: string): void {
+  if (!storage?.removeItem) return;
+  try {
+    storage.removeItem(key);
+  } catch {
+    // Ignorováno — stejný důvod jako u safeSet.
   }
 }
 

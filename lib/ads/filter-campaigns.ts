@@ -1,4 +1,5 @@
 import type { AdCampaign, Language } from "./types.ts";
+import { hasValidAffiliateUrl } from "./validate-url.ts";
 
 export type AdFilterContext = {
   language: Language;
@@ -43,7 +44,16 @@ function matchesStation(campaign: AdCampaign, stationId: string | null | undefin
   return campaign.stationIds.includes(stationId);
 }
 
-/** Kampaně způsobilé k výběru, v tomto přesném pořadí filtrů (viz zadání). */
+/**
+ * Kampaně způsobilé k výběru, v tomto přesném pořadí filtrů (viz
+ * zadání): zapnutá, jazyk, kompletní texty, platnost data, cílení na
+ * stanici, a nakonec platný https: affiliate odkaz — kampaň bez
+ * platného odkazu (href: null, prázdný/whitespace řetězec, http:,
+ * javascript:, data:, file:, relativní cesta) se NIKDY nesmí dostat do
+ * množiny kandidátů pro vážený výběr (viz lib/ads/weighted-select.ts),
+ * i když zůstává dál v konfiguraci (lib/ads/campaigns.ts) připravená
+ * pro pozdější doplnění.
+ */
 export function filterCampaigns(campaigns: AdCampaign[], ctx: AdFilterContext): AdCampaign[] {
   return campaigns.filter((campaign) => {
     if (!campaign.enabled) return false;
@@ -51,6 +61,7 @@ export function filterCampaigns(campaigns: AdCampaign[], ctx: AdFilterContext): 
     if (!hasRequiredTexts(campaign, ctx.language)) return false;
     if (!isWithinValidity(campaign, ctx.now)) return false;
     if (!matchesStation(campaign, ctx.stationId)) return false;
+    if (!hasValidAffiliateUrl(campaign)) return false;
     return true;
   });
 }

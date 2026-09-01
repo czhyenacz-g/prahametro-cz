@@ -71,12 +71,13 @@ export default function FinderSection({ entrances, status, onLocate, onDemoSelec
         ))}
       </div>
 
-      <div className="mt-6">
-        {/* Neznámá stanice na téhle pozici (výsledky mohou patřit
-            různým stanicím) — jen obecné kampaně bez stationIds, viz
-            komentář v hooks/useSelectedAd.ts. */}
-        <AdCard placement="finder-results" />
-      </div>
+      {/* Neznámá stanice na téhle pozici (výsledky mohou patřit různým
+          stanicím) — jen obecné kampaně bez stationIds, viz komentář v
+          hooks/useSelectedAd.ts. Bez obalového <div> — AdCard.tsx si
+          nese vlastní `mt-6` na kořenové <section>, ať po ní při
+          návratu `null` (žádná způsobilá kampaň, viz zadání) nezůstane
+          žádná prázdná mezera. */}
+      <AdCard placement="finder-results" />
     </section>
   );
 }

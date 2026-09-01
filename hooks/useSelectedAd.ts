@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { campaigns } from "../lib/ads/campaigns.ts";
 import { resolveSelectedAd } from "../lib/ads/select-ad.ts";
 import type { AdCampaign, Language } from "../lib/ads/types.ts";
-import { getBrowserSessionStorage, safeGet, safeSet } from "../lib/storage/safe-storage.ts";
+import { getBrowserSessionStorage, safeGet, safeRemove, safeSet } from "../lib/storage/safe-storage.ts";
 
 function storageKey(language: Language): string {
   return `kdejemetro:selected-ad:${language}`;
@@ -34,8 +34,15 @@ export function useSelectedAd(language: Language, stationId?: string | null): Ad
 
     const selected = resolveSelectedAd(campaigns, storedId, ctx);
 
-    if (selected && selected.id !== storedId) {
-      safeSet(storage, key, selected.id);
+    if (selected) {
+      if (selected.id !== storedId) {
+        safeSet(storage, key, selected.id);
+      }
+    } else if (storedId) {
+      // Uložené ID existovalo, ale žádná způsobilá kampaň (viz
+      // filterCampaigns — třeba bez platného odkazu) mu neodpovídá —
+      // ať se příště znovu nezkouší obnovit stejný neplatný výběr.
+      safeRemove(storage, key);
     }
 
     setAd(selected);

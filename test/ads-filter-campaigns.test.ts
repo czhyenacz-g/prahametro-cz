@@ -5,6 +5,10 @@ import type { AdCampaign } from "../lib/ads/types.ts";
 
 const NOW = new Date("2026-06-15T12:00:00Z");
 
+// Výchozí `href` je platná https: URL — testy filtrování podle jazyka/
+// stavu/platnosti/cílení tak izolovaně testují JEN svůj rozměr, beze
+// změny kvůli nové podmínce na platný affiliate odkaz (viz describe
+// "href / affiliate odkaz" níže, ta testuje href izolovaně).
 function campaign(overrides: Partial<AdCampaign> = {}): AdCampaign {
   return {
     id: "test-campaign",
@@ -13,7 +17,7 @@ function campaign(overrides: Partial<AdCampaign> = {}): AdCampaign {
     title: { cs: "Titulek", en: "Title" },
     description: { cs: "Popis", en: "Description" },
     cta: { cs: "Akce", en: "Action" },
-    href: null,
+    href: "https://example.com/campaign",
     advertiser: null,
     weight: 10,
     ...overrides,
@@ -88,5 +92,55 @@ describe("filterCampaigns — cílení podle stanice", () => {
     const targeted = campaign({ id: "targeted", stationIds: ["U1072S1"] });
     const result = filterCampaigns([targeted], { language: "cs", now: NOW, stationId: null });
     assert.deepEqual(result, []);
+  });
+});
+
+describe("filterCampaigns — platný affiliate odkaz (viz hasValidAffiliateUrl)", () => {
+  test("8. href: null je vyřazeno", () => {
+    const noHref = campaign({ id: "no-href", href: null });
+    assert.deepEqual(filterCampaigns([noHref], { language: "cs", now: NOW }), []);
+  });
+
+  test("9. prázdný řetězec je vyřazen", () => {
+    const emptyHref = campaign({ id: "empty-href", href: "" });
+    assert.deepEqual(filterCampaigns([emptyHref], { language: "cs", now: NOW }), []);
+  });
+
+  test("10. řetězec obsahující pouze mezery je vyřazen", () => {
+    const whitespaceHref = campaign({ id: "whitespace-href", href: "   " });
+    assert.deepEqual(filterCampaigns([whitespaceHref], { language: "cs", now: NOW }), []);
+  });
+
+  test("11. relativní URL je vyřazena", () => {
+    const relativeHref = campaign({ id: "relative-href", href: "/relative/path" });
+    assert.deepEqual(filterCampaigns([relativeHref], { language: "cs", now: NOW }), []);
+  });
+
+  test("12. http: URL je vyřazena", () => {
+    const httpHref = campaign({ id: "http-href", href: "http://example.com" });
+    assert.deepEqual(filterCampaigns([httpHref], { language: "cs", now: NOW }), []);
+  });
+
+  test("13. javascript: URL je vyřazena", () => {
+    const jsHref = campaign({ id: "js-href", href: "javascript:alert(1)" });
+    assert.deepEqual(filterCampaigns([jsHref], { language: "cs", now: NOW }), []);
+  });
+
+  test("14. data: URL je vyřazena", () => {
+    const dataHref = campaign({ id: "data-href", href: "data:text/html,<script>alert(1)</script>" });
+    assert.deepEqual(filterCampaigns([dataHref], { language: "cs", now: NOW }), []);
+  });
+
+  test("file: URL je vyřazena", () => {
+    const fileHref = campaign({ id: "file-href", href: "file:///etc/passwd" });
+    assert.deepEqual(filterCampaigns([fileHref], { language: "cs", now: NOW }), []);
+  });
+
+  test("platná https: URL je zařazena", () => {
+    const validHref = campaign({ id: "valid-href", href: "https://example.com/nabidka" });
+    assert.deepEqual(
+      filterCampaigns([validHref], { language: "cs", now: NOW }).map((c) => c.id),
+      ["valid-href"]
+    );
   });
 });

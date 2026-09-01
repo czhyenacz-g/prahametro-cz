@@ -97,25 +97,57 @@ nemusí (`app/config/site.ts` si `SITE_URL` sám odvodí z
 
 Jednoduchý, rozšiřitelný systém rotovatelných affiliate reklam — jedna
 karta pod výsledky hledání, vybraná podle jazyka a stabilní po zbytek
-návštěvy. **V této iteraci mají všechny kampaně `href: null`** (žádný
-skutečný affiliate odkaz zatím není nasazený).
+návštěvy.
 
+**Aktivní kampaně:** `luggage-en` (Bounce, úschovna zavazadel) a
+`activities-en` (GetYourGuide, výlety a zážitky) — obě mají platný
+`https://` affiliate odkaz, takže rotují v anglické verzi. Zbylé
+kampaně (`pharmacy-cs`, `shopping-cs`, `esim-en`, `transfer-en`) mají
+`href: null` a zůstávají v konfiguraci připravené, ale **nejsou
+způsobilé k výběru** — dokud nemáme český affiliate odkaz, česká verze
+nezobrazuje žádnou reklamu (a mapa se přirozeně posune nahoru, bez
+prázdného místa po reklamní kartě).
+
+- **Kampaň se zobrazí JEN s platným affiliate odkazem.** Způsobilá je
+  kampaň, která je `enabled: true`, odpovídá jazyku, má kompletní texty
+  pro daný jazyk, je v platnosti (`validFrom`/`validTo`), odpovídá
+  případnému cílení na stanici, A MÁ `href` s platnou absolutní
+  `https://` URL (`lib/ads/validate-url.ts` → `hasValidAffiliateUrl`,
+  používá `new URL(...)` + explicitní `protocol === "https:"`).
+  `href: null`, prázdný/whitespace řetězec, `http:`, `javascript:`,
+  `data:`, `file:` i relativní cesta se vždy vyřadí. Kampaň bez
+  platného odkazu se nikdy nevylosuje, nevykreslí ani negeneruje
+  `ad_impression`/`ad_click` — zůstává ale dál v `lib/ads/campaigns.ts`
+  pro pozdější aktivaci.
+- **Váhy se počítají jen mezi způsobilými kampaněmi.** Zápisové váhy
+  v konfiguraci se nepřepočítávají na součet 100 — vážený výběr
+  (`lib/ads/weighted-select.ts`) prostě pracuje se skutečným součtem
+  vah aktuálně způsobilé množiny (např. Bounce 45 + GetYourGuide 30 =
+  75, tedy poměr cca 60 % / 40 %).
 - **Seznam kampaní:** `lib/ads/campaigns.ts` — typovaný podle
   `lib/ads/types.ts` (`AdCampaign`).
 - **Výběrová logika:** `lib/ads/filter-campaigns.ts` (filtrování podle
-  jazyka/platnosti/stanice) + `lib/ads/weighted-select.ts` (vážená
-  rotace) + `lib/ads/select-ad.ts` (spojuje obojí, plus obnovení
-  uložené kampaně ze session). Validace affiliate URL je v
+  jazyka/textů/platnosti/stanice/platného odkazu, v tomto pořadí) +
+  `lib/ads/weighted-select.ts` (vážená rotace nad už vyfiltrovanou
+  způsobilou množinou) + `lib/ads/select-ad.ts` (spojuje obojí, plus
+  obnovení uložené kampaně ze session). Validace affiliate URL je v
   `lib/ads/validate-url.ts`.
-- **Stabilita během návštěvy:** `hooks/useSelectedAd.ts` uloží ID
-  vybrané kampaně do `sessionStorage` pod klíčem
-  `kdejemetro:selected-ad:{jazyk}` — reklama se tak během jedné návštěvy
-  a stejného jazyka nemění, ale při přepnutí jazyka se vybere zvlášť
-  (a návrat k předchozímu jazyku ji obnoví, pokud je pořád platná).
-  Nikdy se tam neukládá poloha ani žádný osobní údaj.
+- **Stabilita během návštěvy a samoopravné sessionStorage:**
+  `hooks/useSelectedAd.ts` uloží ID vybrané kampaně do `sessionStorage`
+  pod klíčem `kdejemetro:selected-ad:{jazyk}` — reklama se tak během
+  jedné návštěvy a stejného jazyka nemění, ale při přepnutí jazyka se
+  vybere zvlášť (a návrat k předchozímu jazyku ji obnoví, pokud je
+  pořád platná/způsobilá). Pokud uložené ID patří kampani, která mezitím
+  přestala být způsobilá (vypnutá, mimo platnost, jiný jazyk, nebo —
+  nejčastější případ — pořád nemá platný `href`), stará hodnota se
+  automaticky zahodí (`safeRemove`, `lib/storage/safe-storage.ts`) a
+  vybere se nová způsobilá kampaň. Do `sessionStorage` se nikdy
+  neukládá poloha, souřadnice ani žádný osobní údaj.
 - **Vykreslení:** `components/ads/AdCard.tsx` (+ `AdIcon.tsx` pro
-  jednoduché emoji ikony podle kategorie) — použito ve
-  `FinderSection.tsx` pod výsledky hledání.
+  lucide-react ikony podle kategorie) — použito ve `FinderSection.tsx`
+  pod výsledky hledání. Bez způsobilé kampaně komponenta vrátí `null`
+  a nezanechá po sobě žádnou mezeru (odsazení `mt-6` je součástí
+  kořenové `<section>` samotné komponenty, ne obalového elementu).
 
 ### Jak přidat novou kampaň
 
@@ -152,15 +184,23 @@ pro daný jazyk vyplněné VŠECHNY texty (`title`, `description`, `cta`).
 Výběr pro češtinu a angličtinu je nezávislý — přepnutí jazyka nikdy
 neovlivní, jaká kampaň byla vybraná pro ten druhý.
 
-### Jak později doplnit affiliate odkaz
+### Jak později doplnit affiliate odkaz (např. aktivovat českou kampaň)
 
 Stačí u dané kampaně vyplnit `href` (musí to být platná absolutní
-`https://` URL — cokoliv jiného, včetně `http://`, se stále zobrazí
-jako neaktivní) a volitelně `advertiser`. Datový model je připravený i
-na budoucí Dognet parametry — celou už hotovou schválenou affiliate
-URL (klidně včetně `d1`/`d2` apod.) prostě vlož do `href` tak, jak je,
-appka do ní nic nevkládá ani nezkracuje. Žádná změna komponenty ani
-výběrové logiky není potřeba:
+`https://` URL — cokoliv jiného, včetně `http://`, se dál bere jako
+"bez odkazu" a kampaň zůstane vyřazená z výběru) a volitelně
+`advertiser`. Jakmile má kampaň platný `https://` odkaz, `filterCampaigns`
+ji automaticky začne nabízet k výběru — žádná změna komponenty ani
+výběrové logiky není potřeba. Stejným způsobem se aktivuje i první
+česká kampaň (`pharmacy-cs` nebo `shopping-cs`) — jakmile má jedna z
+nich platný `href`, česká verze začne zase zobrazovat reklamu.
+
+Affiliate URL se vkládá přesně tak, jak ji partner poskytl — appka ji
+nijak neupravuje, nezkracuje, nepřejmenovává parametry ani nepřidává
+vlastní. Datový model je připravený i na budoucí Dognet parametry —
+celou už hotovou schválenou affiliate URL (klidně včetně `d1`/`d2`
+apod., nebo `partner_id`/`utm_*` jako u GetYourGuide) prostě vlož do
+`href` tak, jak je:
 
 ```ts
 {

@@ -50,7 +50,6 @@ export type Dictionary = {
   };
   ad: {
     label: string;
-    comingSoon: string;
   };
   footer: {
     privacy: string;
@@ -109,7 +108,6 @@ const cs: Dictionary = {
   },
   ad: {
     label: "Reklama",
-    comingSoon: "Nabídku připravujeme",
   },
   footer: {
     privacy: "Polohu zpracovává pouze váš prohlížeč a web ji nikam neodesílá.",
@@ -167,7 +165,6 @@ const en: Dictionary = {
   },
   ad: {
     label: "Advertisement",
-    comingSoon: "Offer coming soon",
   },
   footer: {
     privacy: "Your location is processed only by your browser and is never sent anywhere.",

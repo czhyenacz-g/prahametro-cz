@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { AD_LINK_REL, isValidAffiliateUrl } from "../../lib/ads/validate-url.ts";
+import { AD_LINK_REL, hasValidAffiliateUrl } from "../../lib/ads/validate-url.ts";
 import { emitAdEvent } from "../../lib/ads/events.ts";
 import { useSelectedAd } from "../../hooks/useSelectedAd.ts";
 import { useI18n } from "../i18n/I18nContext.ts";
@@ -16,26 +16,26 @@ export type AdCardProps = {
 
 // Jedna decentní karta, žádný carousel/časovač/animace (viz zadání).
 // `vulgar` z useI18n() se tu záměrně vůbec nečte — text reklamy nesmí
-// jít ovlivnit režimem 18+.
+// jít ovlivnit režimem 18+. `mt-6` je součástí kořenové `<section>`
+// (ne obalového `<div>` v FinderSection.tsx) — když komponenta vrátí
+// `null` (žádná způsobilá kampaň s platným odkazem pro daný jazyk),
+// nesmí po ní zůstat žádná prázdná mezera.
 export default function AdCard({ placement, stationId }: AdCardProps) {
   const { locale, dict } = useI18n();
   const ad = useSelectedAd(locale, stationId);
 
-  const isActive = ad ? isValidAffiliateUrl(ad.href) : false;
-  const hasInvalidHref = Boolean(ad && ad.href !== null && !isActive);
+  // `useSelectedAd`/`resolveSelectedAd` už vybírají jen mezi kampaněmi s
+  // platným https: odkazem (viz lib/ads/filter-campaigns.ts) — tahle
+  // podmínka je obranná pojistka, aby karta bez platného odkazu nikdy
+  // nevznikla, i kdyby se výběrová logika v budoucnu změnila.
+  const isEligible = ad !== null && hasValidAffiliateUrl(ad);
 
   useEffect(() => {
-    if (!ad) return;
+    if (!ad || !isEligible) return;
     emitAdEvent({ type: "ad_impression", campaignId: ad.id, language: locale, placement });
-  }, [ad, locale, placement]);
+  }, [ad, isEligible, locale, placement]);
 
-  useEffect(() => {
-    if (hasInvalidHref && ad && process.env.NODE_ENV === "development") {
-      console.warn(`[ads] Kampaň "${ad.id}" má neplatný affiliate odkaz (očekává se https:) — zobrazuje se jako neaktivní.`);
-    }
-  }, [hasInvalidHref, ad]);
-
-  if (!ad) return null;
+  if (!ad || !isEligible) return null;
 
   const title = ad.title[locale];
   const description = ad.description[locale];
@@ -48,7 +48,7 @@ export default function AdCard({ placement, stationId }: AdCardProps) {
   }
 
   return (
-    <section aria-label={dict.ad.label} className="rounded-2xl border border-ad-purple-200 bg-ad-purple-50 p-4 shadow-sm">
+    <section aria-label={dict.ad.label} className="mt-6 rounded-2xl border border-ad-purple-200 bg-ad-purple-50 p-4 shadow-sm">
       <div className="flex items-start gap-3">
         <AdIcon icon={ad.icon} />
         <div className="min-w-0 flex-1">
@@ -60,24 +60,15 @@ export default function AdCard({ placement, stationId }: AdCardProps) {
           <p className="mt-0.5 text-sm text-gray-600">{description}</p>
 
           <div className="mt-3">
-            {isActive ? (
-              <a
-                href={ad.href!}
-                target="_blank"
-                rel={AD_LINK_REL}
-                onClick={handleClick}
-                className="inline-flex min-h-[44px] items-center rounded-xl bg-ad-purple-700 px-4 text-sm font-semibold text-white transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ad-purple-700"
-              >
-                {cta}
-              </a>
-            ) : (
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex min-h-[44px] cursor-default items-center rounded-xl border border-ad-purple-200 bg-white px-4 text-sm font-semibold text-gray-400">
-                  {cta}
-                </span>
-                <span className="text-xs text-gray-500">{dict.ad.comingSoon}</span>
-              </div>
-            )}
+            <a
+              href={ad.href!}
+              target="_blank"
+              rel={AD_LINK_REL}
+              onClick={handleClick}
+              className="inline-flex min-h-[44px] items-center rounded-xl bg-ad-purple-700 px-4 text-sm font-semibold text-white transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ad-purple-700"
+            >
+              {cta}
+            </a>
           </div>
         </div>
       </div>

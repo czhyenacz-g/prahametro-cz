@@ -1,6 +1,6 @@
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
-import { getBrowserSessionStorage, safeGet, safeSet, type StorageLike } from "../lib/storage/safe-storage.ts";
+import { getBrowserSessionStorage, safeGet, safeRemove, safeSet, type StorageLike } from "../lib/storage/safe-storage.ts";
 
 function throwingStorage(): StorageLike {
   return {
@@ -9,6 +9,9 @@ function throwingStorage(): StorageLike {
     },
     setItem() {
       throw new Error("QuotaExceededError");
+    },
+    removeItem() {
+      throw new Error("SecurityError");
     },
   };
 }
@@ -19,6 +22,9 @@ function memoryStorage(): StorageLike {
     getItem: (key) => map.get(key) ?? null,
     setItem: (key, value) => {
       map.set(key, value);
+    },
+    removeItem: (key) => {
+      map.delete(key);
     },
   };
 }
@@ -58,6 +64,29 @@ describe("safeSet", () => {
     const storage = memoryStorage();
     safeSet(storage, "key", "value");
     assert.equal(safeGet(storage, "key"), "value");
+  });
+});
+
+describe("safeRemove", () => {
+  test("bez storage (null) nic neudělá, nespadne", () => {
+    assert.doesNotThrow(() => safeRemove(null, "x"));
+    assert.doesNotThrow(() => safeRemove(undefined, "x"));
+  });
+
+  test("storage, který při odstranění vyhodí výjimku, se bezpečně ignoruje", () => {
+    assert.doesNotThrow(() => safeRemove(throwingStorage(), "x"));
+  });
+
+  test("mock bez removeItem se bezpečně přeskočí, nespadne", () => {
+    const partial: StorageLike = { getItem: () => null, setItem: () => {} };
+    assert.doesNotThrow(() => safeRemove(partial, "x"));
+  });
+
+  test("28. funkční storage odstraní uloženou hodnotu — starý neplatný výběr reklamy zmizí (viz hooks/useSelectedAd.ts)", () => {
+    const storage = memoryStorage();
+    safeSet(storage, "key", "stale-campaign-id");
+    safeRemove(storage, "key");
+    assert.equal(safeGet(storage, "key"), null);
   });
 });
 

@@ -97,8 +97,8 @@ describe("reklamní štítek — dict.ad", () => {
     assert.equal(getDictionary("en").ad.label, "Advertisement");
   });
 
-  test("text 'nabídku připravujeme' pro neaktivní CTA (cs/en)", () => {
-    assert.equal(getDictionary("cs").ad.comingSoon, "Nabídku připravujeme");
-    assert.equal(getDictionary("en").ad.comingSoon, "Offer coming soon");
+  test("dict.ad už neobsahuje pole comingSoon — kampaň bez odkazu se nikdy nevykresluje jako neaktivní CTA (cs/en)", () => {
+    assert.equal("comingSoon" in getDictionary("cs").ad, false);
+    assert.equal("comingSoon" in getDictionary("en").ad, false);
   });
 });
