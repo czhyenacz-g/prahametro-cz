@@ -14,6 +14,10 @@ export const metadata: Metadata = {
   // vyhodnotí proti `metadataBase` výše, takže je vždy absolutní a vždy
   // ukazuje na SITE_URL, bez ohledu na to, z jakého hostname přišel request.
   alternates: { canonical: "/" },
+  // Ověření webu pro affiliate síť Impact (partner Bounce, viz
+  // lib/ads/campaigns.ts kampaň luggage-en) — jen statický meta tag,
+  // nic runtime.
+  other: { "impact-site-verification": "1b45667d-02de-45c2-a0db-46d0fe01fa08" },
 };
 
 // Vercel Web Analytics — first-party, cookieless, bez osobních
