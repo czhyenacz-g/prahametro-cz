@@ -4,20 +4,20 @@ import { buildWebApplicationJsonLd } from "../../lib/seo/structured-data.ts";
 import { SITE_URL } from "../config/site.ts";
 import HomePage from "../../components/HomePage.tsx";
 
-const seo = getSeoContent("en");
+const seo = getSeoContent("uk");
 
 export const metadata: Metadata = {
   title: seo.title,
   description: seo.description,
   alternates: {
-    canonical: "/en",
+    canonical: "/ua",
     languages: { cs: "/", en: "/en", de: "/de", uk: "/ua", "x-default": "/" },
   },
   openGraph: {
     title: seo.title,
     description: seo.description,
     type: "website",
-    url: "/en",
+    url: "/ua",
     siteName: "KdeJeMetro.cz",
     locale: seo.ogLocale,
   },
@@ -31,9 +31,9 @@ export const metadata: Metadata = {
 
 export default function Page() {
   const jsonLd = buildWebApplicationJsonLd({
-    locale: "en",
+    locale: "uk",
     siteUrl: SITE_URL,
-    path: "/en",
+    path: "/ua",
     name: "KdeJeMetro.cz",
     description: seo.description,
   });
@@ -41,7 +41,7 @@ export default function Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <HomePage locale="en" />
+      <HomePage locale="uk" />
     </>
   );
 }

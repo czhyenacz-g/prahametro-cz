@@ -1,6 +1,6 @@
 "use client";
 
-import LanguageToggle from "./i18n/LanguageToggle.tsx";
+import LanguageMenu from "./i18n/LanguageMenu.tsx";
 import VulgarToggle from "./i18n/VulgarToggle.tsx";
 import { useI18n } from "./i18n/I18nContext.ts";
 import { getSeoContent } from "../lib/seo/content.ts";
@@ -22,7 +22,7 @@ export default function AppHeader() {
       <div className="mx-auto flex w-full max-w-2xl items-center justify-between gap-2">
         <p className="truncate text-lg font-extrabold tracking-tight text-navy-900 sm:text-3xl">KdeJeMetro.cz</p>
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
-          <LanguageToggle />
+          <LanguageMenu />
           <VulgarToggle />
         </div>
       </div>

@@ -21,6 +21,14 @@ export default function NotFound() {
             /{" "}
             <Link href="/en" className="underline hover:text-gray-900">
               KdeJeMetro.cz (EN)
+            </Link>{" "}
+            /{" "}
+            <Link href="/de" className="underline hover:text-gray-900">
+              KdeJeMetro.cz (DE)
+            </Link>{" "}
+            /{" "}
+            <Link href="/ua" className="underline hover:text-gray-900">
+              KdeJeMetro.cz (UA)
             </Link>
           </p>
         </div>

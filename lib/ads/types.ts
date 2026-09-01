@@ -1,8 +1,9 @@
 // Stejná množina hodnot jako Locale (lib/i18n/types.ts) — samostatný
 // typ v doméně reklam, ať je zadání čitelné 1:1 a reklamní systém
 // nezávisí na budoucím rozšíření i18n Locale o jazyky, které reklamy
-// (zatím) nepodporují.
-export type Language = "cs" | "en";
+// (zatím) nepodporují. de/uk zatím nemají vlastní kampaně — viz
+// lib/ads/language-fallback.ts pro deterministický fallback na "en".
+export type Language = "cs" | "en" | "de" | "uk";
 
 // Uzavřená množina ikon pro reklamní kartu (viz zadání redesignu) —
 // úmyslně restriktivní union, ne libovolný název React komponenty.

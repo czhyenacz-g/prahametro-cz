@@ -18,7 +18,7 @@ export type SeoContent = {
   description: string;
   /** Viditelný <h1> stránky. */
   mainHeading: string;
-  ogLocale: "cs_CZ" | "en_US";
+  ogLocale: "cs_CZ" | "en_US" | "de_DE" | "uk_UA";
   intro: {
     id: string;
     heading: string;
@@ -176,7 +176,147 @@ const en: SeoContent = {
   },
 };
 
-export const seoContents: Record<Locale, SeoContent> = { cs, en };
+const de: SeoContent = {
+  title: "Nächster Metroeingang in Prag & Fußweg | KdeJeMetro.cz",
+  description:
+    "Finden Sie den nächsten Eingang zur Prager Metro und öffnen Sie die Fußgängernavigation in Google Maps, Apple Maps oder Mapy.com.",
+  mainHeading: "Finden Sie den nächsten Metroeingang in Prag",
+  ogLocale: "de_DE",
+  intro: {
+    id: "ueber-die-app",
+    heading: "Die Prager Metro auf einen Blick",
+    paragraphs: [
+      "KdeJeMetro.cz hilft Ihnen, den nächsten Eingang zur Prager Metro anhand des Standorts Ihres Geräts zu finden. Die App vergleicht die verfügbaren Eingänge und zeigt deren Entfernung sowie die ungefähre Gehzeit an. Zum gewählten Eingang können Sie die Fußgängernavigation in Google Maps, Apple Maps oder Mapy.com öffnen.",
+      "Die App arbeitet mit einzelnen Eingängen und nicht nur mit der Mitte der Station. Das ist besonders bei großen Umsteigestationen nützlich, wo die einzelnen Ausgänge mitunter recht weit voneinander entfernt liegen.",
+    ],
+  },
+  howItWorks: {
+    id: "so-funktioniert-es",
+    heading: "So funktioniert es",
+    steps: ["Standortzugriff erlauben", "Nächsten Eingang auswählen", "Fußgängernavigation öffnen"],
+    privacyId: "datenschutz",
+    privacyText: "Ihr Standort bleibt auf Ihrem Gerät und wird nicht für Werbezwecke verwendet.",
+  },
+  links: {
+    heading: "Prager Metro entdecken",
+    ariaLabel: "Links zur Prager Metro entdecken",
+    items: [
+      { label: "Nächster Metroeingang in Prag", href: "#naechste-metro" },
+      { label: "Metroplan Prag", href: "#metroplan" },
+      { label: "So finden Sie den nächsten Eingang", href: "#so-funktioniert-es" },
+      { label: "Prager Metro – Linien A, B und C", href: "#metroplan" },
+      { label: "Fußgängernavigation zum Eingang", href: "#so-funktioniert-es" },
+      { label: "Wie die App mit Standortdaten umgeht", href: "#datenschutz" },
+    ],
+  },
+  faq: {
+    id: "haeufige-fragen",
+    heading: "Häufig gestellte Fragen",
+    items: [
+      {
+        question: "Wo ist der nächste Metroeingang in Prag?",
+        answer:
+          "Sobald Sie den Standortzugriff erlauben, zeigt die App sofort die drei nächstgelegenen Eingänge zur Prager Metro, sortiert nach Entfernung von Ihrem Gerät.",
+      },
+      {
+        question: "Zeigt die App einzelne Metroeingänge an?",
+        answer:
+          "Ja. KdeJeMetro.cz arbeitet mit einzelnen Stationseingängen, nicht nur mit der Stationsmitte — bei großen Umsteigestationen finden Sie so den nächstgelegenen von mehreren Ausgängen.",
+      },
+      {
+        question: "Ist die angezeigte Entfernung die tatsächliche Gehstrecke?",
+        answer:
+          "Nein. Die angezeigte Entfernung und die geschätzte Gehzeit werden als Luftlinie berechnet. Die tatsächliche Gehstrecke zeigt erst die Navigation in Google Maps, Apple Maps oder Mapy.com.",
+      },
+      {
+        question: "Speichert KdeJeMetro.cz meinen Standort?",
+        answer: "Nein. Ihr Standort wird nur in Ihrem Browser verarbeitet und nirgendwohin gesendet oder gespeichert.",
+      },
+      {
+        question: "Wie öffne ich die Navigation zum Eingang?",
+        answer:
+          "Tippen Sie bei einem Eingang auf die Schaltfläche Google Maps, Apple Maps oder Mapy.com — die Fußgängernavigation öffnet sich direkt zu den GPS-Koordinaten dieses Eingangs.",
+      },
+      {
+        question: "Hat Brünn eine Metro?",
+        answer:
+          "Nein, Brünn hat keine Metro. Wenn Sie sich in der Nähe von Brünn befinden, macht die App Sie augenzwinkernd darauf aufmerksam und zeigt stattdessen die Entfernung zur nächsten Prager Metrostation.",
+      },
+    ],
+  },
+};
+
+const uk: SeoContent = {
+  title: "Найближчий вхід до метро в Празі | KdeJeMetro.cz",
+  description:
+    "Знайдіть найближчий вхід до празького метро та відкрийте пішохідний маршрут у Google Maps, Apple Maps або Mapy.com.",
+  mainHeading: "Знайдіть найближчий вхід до метро в Празі",
+  ogLocale: "uk_UA",
+  intro: {
+    id: "pro-zastosunok",
+    heading: "Усе необхідне про празьке метро",
+    paragraphs: [
+      "KdeJeMetro.cz допоможе вам знайти найближчий вхід до празького метро на основі місцезнаходження вашого пристрою. Застосунок порівнює доступні входи та показує відстань і орієнтовний час пішої ходьби до кожного з них. До обраного входу можна відкрити пішохідний маршрут у Google Maps, Apple Maps або Mapy.com.",
+      "Застосунок працює з окремими входами, а не лише з центром станції. Це особливо корисно на великих пересадкових станціях, де окремі виходи можуть бути досить далеко один від одного.",
+    ],
+  },
+  howItWorks: {
+    id: "yak-tse-pratsiuie",
+    heading: "Як це працює",
+    steps: ["Дозволити доступ до місцезнаходження", "Обрати найближчий вхід", "Відкрити пішохідний маршрут"],
+    privacyId: "konfidentsiinist",
+    privacyText: "Ваше місцезнаходження залишається на вашому пристрої і не використовується для рекламного таргетингу.",
+  },
+  links: {
+    heading: "Дізнайтеся більше про празьке метро",
+    ariaLabel: "Посилання про празьке метро",
+    items: [
+      { label: "Найближчий вхід до метро в Празі", href: "#znaity-metro" },
+      { label: "Карта метро Праги", href: "#skhema-metro" },
+      { label: "Як знайти найближчий вхід", href: "#yak-tse-pratsiuie" },
+      { label: "Метро Праги — лінії A, B і C", href: "#skhema-metro" },
+      { label: "Пішохідний маршрут до входу", href: "#yak-tse-pratsiuie" },
+      { label: "Як застосунок працює з вашим місцезнаходженням", href: "#konfidentsiinist" },
+    ],
+  },
+  faq: {
+    id: "chasti-zapytannia",
+    heading: "Часті запитання",
+    items: [
+      {
+        question: "Де найближчий вхід до метро в Празі?",
+        answer:
+          "Щойно ви дозволите доступ до місцезнаходження, застосунок одразу покаже три найближчі входи до празького метро, відсортовані за відстанню від вашого пристрою.",
+      },
+      {
+        question: "Чи показує застосунок окремі входи до метро?",
+        answer:
+          "Так. KdeJeMetro.cz працює з окремими входами до станцій, а не лише з центром станції — тож на великих пересадкових станціях ви знайдете найближчий із кількох виходів.",
+      },
+      {
+        question: "Чи є вказана відстань пішим маршрутом?",
+        answer:
+          "Ні. Показана відстань і орієнтовний час ходьби розраховані по прямій лінії. Фактичний піший маршрут покаже лише навігація в Google Maps, Apple Maps або Mapy.com.",
+      },
+      {
+        question: "Чи зберігає KdeJeMetro.cz моє місцезнаходження?",
+        answer: "Ні. Ваше місцезнаходження обробляється лише у вашому браузері і нікуди не надсилається та не зберігається.",
+      },
+      {
+        question: "Як відкрити навігацію до входу?",
+        answer:
+          "Натисніть біля потрібного входу кнопку Google Maps, Apple Maps або Mapy.com — відкриється пішохідний маршрут прямо до GPS-координат цього входу.",
+      },
+      {
+        question: "Чи є метро в Брно?",
+        answer:
+          "Ні, у Брно немає метро. Якщо ви перебуваєте поблизу Брно, застосунок жартівливо повідомить вам про це і натомість покаже відстань до найближчої станції празького метро.",
+      },
+    ],
+  },
+};
+
+export const seoContents: Record<Locale, SeoContent> = { cs, en, de, uk };
 
 export function getSeoContent(locale: Locale): SeoContent {
   return seoContents[locale];

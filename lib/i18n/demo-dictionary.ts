@@ -10,4 +10,6 @@ import type { Locale } from "./types.ts";
 export const demoHeading: Record<Locale, string> = {
   cs: "Demo poloha (jen dev)",
   en: "Demo location (dev only)",
+  de: "Demo-Standort (nur Entwicklung)",
+  uk: "Демоположення (лише розробка)",
 };

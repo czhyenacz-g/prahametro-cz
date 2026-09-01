@@ -1,6 +1,9 @@
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
-import { getDictionary, getMainHeading } from "../lib/i18n/dictionary.ts";
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { getDictionary, getMainHeading, dictionaries } from "../lib/i18n/dictionary.ts";
+import { LOCALES } from "../lib/i18n/types.ts";
 
 describe("getDictionary", () => {
   test("čeština má správné klíčové texty", () => {
@@ -186,3 +189,171 @@ describe("dict.departures — panel odjezdů (cs/en, viz zadání bod 11)", () =
     }
   });
 });
+
+describe("TypeScript vynucuje kompletnost — všechny 4 jazyky mají Dictionary (rozšíření o de/uk)", () => {
+  test("dictionaries obsahuje přesně cs/en/de/uk, žádný jazyk nechybí ani nepřebývá", () => {
+    assert.deepEqual(Object.keys(dictionaries).sort(), [...LOCALES].sort());
+  });
+});
+
+describe("německá jazyková verze (de) — klíčové texty přesně podle zadání", () => {
+  test("hlavička a hlavní nadpis", () => {
+    const dict = getDictionary("de");
+    assert.equal(dict.header.subtitle, "Finden Sie den nächsten Eingang und lassen Sie sich zu Fuß dorthin navigieren.");
+    assert.equal(dict.finder.heading, "Wo ist die nächste Metro?");
+    assert.equal(dict.finder.headingVulgar, "Wo ist die verdammte Metro?!!");
+    assert.equal(dict.finder.privacyNote, "Ihr Standort bleibt ausschließlich auf Ihrem Gerät.");
+  });
+
+  test("přístupné popisky vulgárního přepínače používají konzistentně vykání (Sie)", () => {
+    const dict = getDictionary("de");
+    assert.match(dict.header.vulgarAriaLabelOn, /\bSie\b|Derben Modus/);
+    assert.match(dict.header.vulgarAriaLabelOff, /\bSie\b|Derben Modus/);
+    for (const text of [dict.header.vulgarAriaLabelOn, dict.header.vulgarAriaLabelOff, dict.finder.privacyNote]) {
+      assert.doesNotMatch(text, /\bdu\b|\bdein\b|\bdeine\b/i);
+    }
+  });
+
+  test("navigační tlačítka — názvy služeb se nepřekládají, aria-labely v němčině", () => {
+    const dict = getDictionary("de");
+    assert.equal(dict.result.googleMapsLabel, "Google Maps");
+    assert.equal(dict.result.appleMapsLabel, "Apple Maps");
+    assert.equal(dict.result.mapyComLabel, "Mapy.com");
+    assert.equal(dict.result.googleMapsAriaLabel, "Fußgängernavigation in Google Maps starten");
+    assert.equal(dict.result.appleMapsAriaLabel, "Fußgängernavigation in Apple Maps starten");
+    assert.equal(dict.result.mapyComAriaLabel, "Fußgängernavigation in Mapy.com starten");
+  });
+
+  test("outsidePrague — obecná a brněnská hláška", () => {
+    const dict = getDictionary("de");
+    assert.equal(dict.outsidePrague.title, "Hier fährt die Prager Metro wirklich nicht mehr.");
+    assert.equal(
+      dict.outsidePrague.body("Muzeum", "30 km"),
+      "Der nächste Eingang befindet sich an der Station Muzeum, ungefähr 30 km Luftlinie entfernt."
+    );
+    assert.equal(dict.outsidePrague.brnoTitle, "Nein, Brno hat wirklich keine Metro!");
+    assert.notEqual(dict.outsidePrague.title, dict.outsidePrague.brnoTitle);
+  });
+
+  test("reklamní štítek 'Werbung'", () => {
+    assert.equal(getDictionary("de").ad.label, "Werbung");
+  });
+
+  test("panel odjezdů", () => {
+    const d = getDictionary("de").departures;
+    assert.equal(d.buttonLabel, "Abfahrten");
+    assert.equal(d.nextHeading, "Nächste planmäßige Abfahrten");
+    assert.equal(d.lastHeading, "Letzte planmäßige Metro");
+    assert.equal(d.towards("Zličín"), "Richtung Zličín");
+    assert.equal(d.lineLabel, "Linie");
+    assert.equal(d.checkInPidLitacka, "In PID Lítačka prüfen");
+    assert.equal(d.staleTitle, "Der Fahrplan ist möglicherweise nicht aktuell.");
+  });
+
+  test("mapa metra — nadpis a instrukce", () => {
+    const map = getDictionary("de").map;
+    assert.equal(map.heading, "Metroplan");
+    assert.match(map.subtitle, /[Zz]oom/);
+  });
+
+  test("žádný viditelný český nebo anglický text neproniká do němčiny (namátkové porovnání s cs/en)", () => {
+    const de = getDictionary("de");
+    const cs = getDictionary("cs");
+    const en = getDictionary("en");
+    assert.notEqual(de.header.subtitle, cs.header.subtitle);
+    assert.notEqual(de.header.subtitle, en.header.subtitle);
+    assert.notEqual(de.finder.heading, cs.finder.heading);
+    assert.notEqual(de.finder.heading, en.finder.heading);
+  });
+});
+
+describe("ukrajinská jazyková verze (uk, URL /ua) — klíčové texty přesně podle zadání", () => {
+  test("hlavička a hlavní nadpis", () => {
+    const dict = getDictionary("uk");
+    assert.equal(dict.header.subtitle, "Знайдіть найближчий вхід і відкрийте пішохідний маршрут до нього.");
+    assert.equal(dict.finder.heading, "Де найближче метро?");
+    assert.equal(dict.finder.headingVulgar, "Де це довбане метро?!!");
+    assert.equal(dict.finder.privacyNote, "Дані про ваше місцезнаходження залишаються лише на вашому пристрої.");
+  });
+
+  test("přístupné popisky vulgárního přepínače", () => {
+    const dict = getDictionary("uk");
+    assert.equal(dict.header.vulgarAriaLabelOn, "Вимкнути грубий режим");
+    assert.equal(dict.header.vulgarAriaLabelOff, "Увімкнути грубий режим");
+  });
+
+  test("navigační tlačítka — názvy služeb se nepřekládají, aria-labely v ukrajinštině", () => {
+    const dict = getDictionary("uk");
+    assert.equal(dict.result.googleMapsLabel, "Google Maps");
+    assert.equal(dict.result.appleMapsLabel, "Apple Maps");
+    assert.equal(dict.result.mapyComLabel, "Mapy.com");
+    assert.match(dict.result.googleMapsAriaLabel, /Google Maps/);
+    assert.match(dict.result.appleMapsAriaLabel, /Apple Maps/);
+    assert.match(dict.result.mapyComAriaLabel, /Mapy\.com/);
+  });
+
+  test("outsidePrague — obecná a brněnská hláška", () => {
+    const dict = getDictionary("uk");
+    assert.equal(dict.outsidePrague.title, "Сюди празьке метро справді не їздить.");
+    assert.equal(dict.outsidePrague.brnoTitle, "Ні, у Брно справді немає метро!");
+    assert.notEqual(dict.outsidePrague.title, dict.outsidePrague.brnoTitle);
+  });
+
+  test("reklamní štítek 'Реклама'", () => {
+    assert.equal(getDictionary("uk").ad.label, "Реклама");
+  });
+
+  test("panel odjezdů", () => {
+    const d = getDictionary("uk").departures;
+    assert.equal(d.buttonLabel, "Відправлення");
+    assert.equal(d.towards("Zličín"), "у напрямку Zličín");
+    assert.equal(d.lineLabel, "Лінія");
+    assert.equal(d.checkInPidLitacka, "Перевірити в PID Lítačka");
+  });
+
+  test("mapa metra — nadpis", () => {
+    assert.equal(getDictionary("uk").map.heading, "Схема метро");
+  });
+
+  test("žádné ruské varianty místo ukrajinských (namátková kontrola typických rusismů)", () => {
+    const uk = getDictionary("uk");
+    const allText = JSON.stringify(uk);
+    // Ruské tvary, které se v ukrajinském textu objevit nesmí (např. "где"
+    // místo "де", azbukou psané "ы" — v ukrajinské abecedě neexistuje).
+    assert.doesNotMatch(allText, /[ыъэё]/);
+  });
+
+  test("žádný viditelný český nebo anglický text neproniká do ukrajinštiny", () => {
+    const uk = getDictionary("uk");
+    const cs = getDictionary("cs");
+    const en = getDictionary("en");
+    assert.notEqual(uk.header.subtitle, cs.header.subtitle);
+    assert.notEqual(uk.header.subtitle, en.header.subtitle);
+  });
+});
+
+describe("18+ (vulgární) stav je nezávislý na jazyce — sdílený localStorage klíč napříč všemi 4 jazyky", () => {
+  test("VULGAR_STORAGE_KEY je jediná globální konstanta, ne odvozená od locale", () => {
+    const source = readFileSourceForVulgarKey();
+    assert.match(source, /VULGAR_STORAGE_KEY = "kdejemetro_vulgar"/);
+    assert.doesNotMatch(source, /VULGAR_STORAGE_KEY.*\$\{.*locale/);
+  });
+
+  test("getMainHeading vrací nevulgární variantu pro de/uk, když je 18+ vypnuté", () => {
+    assert.equal(getMainHeading("de", false), "Wo ist die nächste Metro?");
+    assert.equal(getMainHeading("uk", false), "Де найближче метро?");
+  });
+
+  test("getMainHeading vrací vulgární variantu pro de/uk, když je 18+ zapnuté, a liší se od nevulgární", () => {
+    const deVulgar = getMainHeading("de", true);
+    const ukVulgar = getMainHeading("uk", true);
+    assert.equal(deVulgar, "Wo ist die verdammte Metro?!!");
+    assert.equal(ukVulgar, "Де це довбане метро?!!");
+    assert.notEqual(deVulgar, getMainHeading("de", false));
+    assert.notEqual(ukVulgar, getMainHeading("uk", false));
+  });
+});
+
+function readFileSourceForVulgarKey(): string {
+  return readFileSync(fileURLToPath(new URL("../lib/i18n/types.ts", import.meta.url)), "utf-8");
+}

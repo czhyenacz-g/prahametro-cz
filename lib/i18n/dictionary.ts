@@ -13,6 +13,8 @@ export type Dictionary = {
     subtitle: string;
     vulgarAriaLabelOn: string;
     vulgarAriaLabelOff: string;
+    /** Accessible name tlačítka jazykového menu (components/i18n/LanguageMenu.tsx) — v AKTUÁLNÍM jazyce, na rozdíl od nativních názvů cílových jazyků v samotném menu (ty jsou vždy ve svém vlastním jazyce, viz LanguageMenu.tsx). */
+    languageMenuLabel: string;
   };
   finder: {
     /** Stabilní id kořenové <section> pro kotvu z tematického rozcestníku (viz lib/seo/content.ts) — nezávislé na dynamickém (18+) obsahu aria-labelu. */
@@ -95,6 +97,7 @@ export type Dictionary = {
 const cs: Dictionary = {
   header: {
     subtitle: "Najdi nejbližší vstup a nech se k němu navigovat.",
+    languageMenuLabel: "Vybrat jazyk",
     vulgarAriaLabelOn: "Vypnout vulgární režim",
     vulgarAriaLabelOff: "Zapnout vulgární režim",
   },
@@ -176,6 +179,7 @@ const cs: Dictionary = {
 const en: Dictionary = {
   header: {
     subtitle: "Find the nearest entrance and navigate to it.",
+    languageMenuLabel: "Choose language",
     vulgarAriaLabelOn: "Disable crude mode",
     vulgarAriaLabelOff: "Enable crude mode",
   },
@@ -253,7 +257,171 @@ const en: Dictionary = {
   },
 };
 
-export const dictionaries: Record<Locale, Dictionary> = { cs, en };
+const de: Dictionary = {
+  header: {
+    subtitle: "Finden Sie den nächsten Eingang und lassen Sie sich zu Fuß dorthin navigieren.",
+    languageMenuLabel: "Sprache auswählen",
+    vulgarAriaLabelOn: "Derben Modus deaktivieren",
+    vulgarAriaLabelOff: "Derben Modus aktivieren",
+  },
+  finder: {
+    sectionId: "naechste-metro",
+    heading: "Wo ist die nächste Metro?",
+    headingVulgar: "Wo ist die verdammte Metro?!!",
+    ctaLocating: "Standort wird ermittelt…",
+    privacyNote: "Ihr Standort bleibt ausschließlich auf Ihrem Gerät.",
+    status: {
+      denied:
+        "Der Zugriff auf den Standort wurde verweigert. Aktivieren Sie ihn in den Browsereinstellungen (meist das Schloss-/Standortsymbol neben der Adressleiste) und versuchen Sie es erneut.",
+      unavailable: "Ihr Standort konnte nicht ermittelt werden. Prüfen Sie, ob GPS/Standort aktiviert ist, und versuchen Sie es erneut.",
+      timeout: "Die Standortermittlung hat zu lange gedauert. Bitte versuchen Sie es erneut.",
+      unsupported: "Dieser Browser unterstützt keine Standortbestimmung.",
+    },
+  },
+  outsidePrague: {
+    title: "Hier fährt die Prager Metro wirklich nicht mehr.",
+    body: (stationName, distance) => `Der nächste Eingang befindet sich an der Station ${stationName}, ungefähr ${distance} Luftlinie entfernt.`,
+    brnoTitle: "Nein, Brno hat wirklich keine Metro!",
+    brnoBody: (stationName, distance) => `Die nächste Prager Metrostation ist ${stationName}, ungefähr ${distance} Luftlinie entfernt.`,
+  },
+  result: {
+    entranceLabel: (label) => `Eingang ${label}`,
+    wheelchair: "Barrierefrei zugänglich",
+    googleMapsLabel: "Google Maps",
+    appleMapsLabel: "Apple Maps",
+    mapyComLabel: "Mapy.com",
+    googleMapsAriaLabel: "Fußgängernavigation in Google Maps starten",
+    appleMapsAriaLabel: "Fußgängernavigation in Apple Maps starten",
+    mapyComAriaLabel: "Fußgängernavigation in Mapy.com starten",
+    disclaimer: "Luftlinie, ungefähr — die tatsächliche Route zeigt die Navigation.",
+  },
+  map: {
+    sectionId: "metroplan",
+    heading: "Metroplan",
+    subtitle: "Zoomen Sie in die Karte, verschieben Sie sie und tippen Sie auf eine Station, um Details anzuzeigen.",
+    zoomIn: "Vergrößern",
+    zoomOut: "Verkleinern",
+    resetView: "Ansicht zurücksetzen",
+    ariaLabel: "Schematischer Plan der Prager Metro, Linien A, B und C",
+    stationAriaLabel: (name, lines) => `Station ${name}, Linie ${lines}`,
+    closeSheet: "Schließen",
+    findEntrances: "Eingänge dieser Station anzeigen",
+    needLocation: "Um die Eingänge nach Entfernung zu sortieren, ermitteln Sie zuerst Ihren Standort.",
+    getLocation: "Standort ermitteln",
+  },
+  ad: {
+    label: "Werbung",
+  },
+  departures: {
+    buttonLabel: "Abfahrten",
+    buttonAriaLabel: (stationName) => `Abfahrten ab Station ${stationName}`,
+    dialogCloseLabel: "Abfahrten schließen",
+    nextHeading: "Nächste planmäßige Abfahrten",
+    lastHeading: "Letzte planmäßige Metro",
+    towards: (station) => `Richtung ${station}`,
+    lineLabel: "Linie",
+    directionGroupLabel: "Richtung",
+    sourceLabel: "PID-Fahrplan",
+    updatedLabel: "aktualisiert",
+    checkInPidLitacka: "In PID Lítačka prüfen",
+    loading: "Abfahrten werden geladen…",
+    errorTitle: "Die Abfahrten konnten derzeit nicht geladen werden.",
+    errorBody: "Bitte überprüfen Sie Ihre Verbindung in der App PID Lítačka.",
+    staleTitle: "Der Fahrplan ist möglicherweise nicht aktuell.",
+    staleBody: "Bitte überprüfen Sie die letzte Verbindung in PID Lítačka.",
+    noDeparturesForSelection: "Für diese Linie und Richtung gibt es momentan keine Abfahrten.",
+  },
+  footer: {
+    privacy: "Ihr Standort wird ausschließlich in Ihrem Browser verarbeitet und von dieser Website nicht übertragen.",
+    dataLabel: "Verkehrsdaten:",
+    licenseWord: "Lizenz",
+    disclaimer: "Inoffizielles Projekt, nicht mit DPP oder PID verbunden.",
+  },
+};
+
+const uk: Dictionary = {
+  header: {
+    subtitle: "Знайдіть найближчий вхід і відкрийте пішохідний маршрут до нього.",
+    languageMenuLabel: "Вибрати мову",
+    vulgarAriaLabelOn: "Вимкнути грубий режим",
+    vulgarAriaLabelOff: "Увімкнути грубий режим",
+  },
+  finder: {
+    sectionId: "znaity-metro",
+    heading: "Де найближче метро?",
+    headingVulgar: "Де це довбане метро?!!",
+    ctaLocating: "Визначення місцезнаходження…",
+    privacyNote: "Дані про ваше місцезнаходження залишаються лише на вашому пристрої.",
+    status: {
+      denied:
+        "Доступ до місцезнаходження заборонено. Дозвольте його в налаштуваннях браузера (зазвичай іконка замка/локації біля адресного рядка) і спробуйте ще раз.",
+      unavailable: "Не вдалося визначити місцезнаходження. Перевірте, чи увімкнено GPS/локацію, і спробуйте ще раз.",
+      timeout: "Визначення місцезнаходження тривало надто довго. Спробуйте, будь ласка, ще раз.",
+      unsupported: "Цей браузер не підтримує геолокацію.",
+    },
+  },
+  outsidePrague: {
+    title: "Сюди празьке метро справді не їздить.",
+    body: (stationName, distance) => `Найближчий вхід розташований біля станції ${stationName}, приблизно за ${distance} по прямій.`,
+    brnoTitle: "Ні, у Брно справді немає метро!",
+    brnoBody: (stationName, distance) => `Найближча станція празького метро — ${stationName}, приблизно за ${distance} по прямій.`,
+  },
+  result: {
+    entranceLabel: (label) => `Вхід ${label}`,
+    wheelchair: "Безбар'єрний доступ",
+    googleMapsLabel: "Google Maps",
+    appleMapsLabel: "Apple Maps",
+    mapyComLabel: "Mapy.com",
+    googleMapsAriaLabel: "Відкрити пішохідний маршрут у Google Maps",
+    appleMapsAriaLabel: "Відкрити пішохідний маршрут в Apple Maps",
+    mapyComAriaLabel: "Відкрити пішохідний маршрут у Mapy.com",
+    disclaimer: "Відстань по прямій, орієнтовно — фактичний маршрут покаже навігація.",
+  },
+  map: {
+    sectionId: "skhema-metro",
+    heading: "Схема метро",
+    subtitle: "Збільшуйте й пересувайте схему та натисніть на станцію, щоб переглянути деталі.",
+    zoomIn: "Збільшити",
+    zoomOut: "Зменшити",
+    resetView: "Скинути перегляд",
+    ariaLabel: "Схематична карта празького метро, лінії A, B і C",
+    stationAriaLabel: (name, lines) => `Станція ${name}, лінія ${lines}`,
+    closeSheet: "Закрити",
+    findEntrances: "Знайти входи цієї станції",
+    needLocation: "Щоб відсортувати входи за відстанню, спершу визначте своє місцезнаходження.",
+    getLocation: "Визначити місцезнаходження",
+  },
+  ad: {
+    label: "Реклама",
+  },
+  departures: {
+    buttonLabel: "Відправлення",
+    buttonAriaLabel: (stationName) => `Відправлення зі станції ${stationName}`,
+    dialogCloseLabel: "Закрити інформацію про відправлення",
+    nextHeading: "Найближчі заплановані відправлення",
+    lastHeading: "Останній запланований поїзд метро",
+    towards: (station) => `у напрямку ${station}`,
+    lineLabel: "Лінія",
+    directionGroupLabel: "Напрямок",
+    sourceLabel: "Розклад PID",
+    updatedLabel: "оновлено",
+    checkInPidLitacka: "Перевірити в PID Lítačka",
+    loading: "Завантаження відправлень…",
+    errorTitle: "Наразі не вдалося завантажити дані про відправлення.",
+    errorBody: "Перевірте актуальне сполучення в застосунку PID Lítačka.",
+    staleTitle: "Розклад може бути неактуальним.",
+    staleBody: "Перевірте останній рейс у PID Lítačka.",
+    noDeparturesForSelection: "Для цієї лінії та напрямку зараз немає відправлень.",
+  },
+  footer: {
+    privacy: "Дані про ваше місцезнаходження обробляються лише у вашому браузері й не передаються цим сайтом.",
+    dataLabel: "Транспортні дані:",
+    licenseWord: "ліцензія",
+    disclaimer: "Неофіційний проєкт, не пов’язаний із DPP або PID.",
+  },
+};
+
+export const dictionaries: Record<Locale, Dictionary> = { cs, en, de, uk };
 
 export function getDictionary(locale: Locale): Dictionary {
   return dictionaries[locale];

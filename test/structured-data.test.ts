@@ -52,6 +52,30 @@ describe("buildWebApplicationJsonLd — 19. správný jazyk a URL", () => {
     const jsonLd = buildWebApplicationJsonLd({ locale: "cs", siteUrl: "https://kdejemetro.cz", path: "/", name: "KdeJeMetro.cz", description: "popis" });
     assert.equal(jsonLd["@context"], "https://schema.org");
   });
+
+  test("německá stránka: inLanguage de, absolutní URL /de", () => {
+    const jsonLd = buildWebApplicationJsonLd({
+      locale: "de",
+      siteUrl: "https://kdejemetro.cz",
+      path: "/de",
+      name: "KdeJeMetro.cz",
+      description: "Beschreibung",
+    });
+    assert.equal(jsonLd.inLanguage, "de");
+    assert.equal(jsonLd.url, "https://kdejemetro.cz/de");
+  });
+
+  test("ukrajinská stránka: inLanguage uk (ne ua), absolutní URL /ua", () => {
+    const jsonLd = buildWebApplicationJsonLd({
+      locale: "uk",
+      siteUrl: "https://kdejemetro.cz",
+      path: "/ua",
+      name: "KdeJeMetro.cz",
+      description: "опис",
+    });
+    assert.equal(jsonLd.inLanguage, "uk");
+    assert.equal(jsonLd.url, "https://kdejemetro.cz/ua");
+  });
 });
 
 describe("buildFaqPageJsonLd — 19. přesně odpovídá viditelnému FAQ", () => {
@@ -78,5 +102,19 @@ describe("buildFaqPageJsonLd — 19. přesně odpovídá viditelnému FAQ", () =
 
   test("prázdné pole -> prázdné mainEntity, nespadne", () => {
     assert.deepEqual(buildFaqPageJsonLd([]).mainEntity, []);
+  });
+
+  test("de: stejný počet otázek jako viditelné FAQ, stejné texty", () => {
+    const faqItems = getSeoContent("de").faq.items;
+    const jsonLd = buildFaqPageJsonLd(faqItems);
+    assert.equal(jsonLd.mainEntity.length, faqItems.length);
+    assert.equal(jsonLd.mainEntity[0].name, faqItems[0].question);
+  });
+
+  test("uk: stejný počet otázek jako viditelné FAQ, stejné texty", () => {
+    const faqItems = getSeoContent("uk").faq.items;
+    const jsonLd = buildFaqPageJsonLd(faqItems);
+    assert.equal(jsonLd.mainEntity.length, faqItems.length);
+    assert.equal(jsonLd.mainEntity[0].name, faqItems[0].question);
   });
 });

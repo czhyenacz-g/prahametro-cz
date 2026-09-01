@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: seo.description,
   alternates: {
     canonical: "/",
-    languages: { cs: "/", en: "/en", "x-default": "/" },
+    languages: { cs: "/", en: "/en", de: "/de", uk: "/ua", "x-default": "/" },
   },
   openGraph: {
     title: seo.title,
