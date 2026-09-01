@@ -36,3 +36,11 @@ export type AdCampaign = {
 export type AdEvent =
   | { type: "ad_impression"; campaignId: string; language: Language; placement: string }
   | { type: "ad_click"; campaignId: string; language: Language; placement: string };
+
+// Výsledek výběru reklamy (viz hooks/useSelectedAd.ts) — tři stavy, ne
+// jen `AdCampaign | null`, aby "výběr ještě neproběhl na klientovi"
+// (pending) šlo rozlišit od "proběhl a žádná způsobilá kampaň není"
+// (empty). Rozdíl je důležitý pro český fallback (viz
+// components/ads/AdSlot.tsx, NamedayGreeting.tsx) — bez něj by mohlo
+// na okamžik probliknout přání a hned zmizet pod reklamou.
+export type AdResolutionState = { status: "pending" } | { status: "selected"; campaign: AdCampaign } | { status: "empty" };

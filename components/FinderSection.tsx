@@ -11,7 +11,7 @@ import type { MetroEntrance } from "../lib/metro/types.ts";
 import { useI18n } from "./i18n/I18nContext.ts";
 import DemoLocationPicker from "./DemoLocationPicker.tsx";
 import EntranceResultCard from "./EntranceResultCard.tsx";
-import AdCard from "./ads/AdCard.tsx";
+import AdSlot from "./ads/AdSlot.tsx";
 import OutsidePragueNotice from "./OutsidePragueNotice.tsx";
 
 const OUTSIDE_PRAGUE_THRESHOLD_M = 25_000;
@@ -73,11 +73,12 @@ export default function FinderSection({ entrances, status, onLocate, onDemoSelec
 
       {/* Neznámá stanice na téhle pozici (výsledky mohou patřit různým
           stanicím) — jen obecné kampaně bez stationIds, viz komentář v
-          hooks/useSelectedAd.ts. Bez obalového <div> — AdCard.tsx si
-          nese vlastní `mt-6` na kořenové <section>, ať po ní při
-          návratu `null` (žádná způsobilá kampaň, viz zadání) nezůstane
+          hooks/useSelectedAd.ts. Bez obalového <div> — AdCard.tsx i
+          NamedayGreeting.tsx si nesou vlastní `mt-6` na svém kořenovém
+          elementu, ať po nich při návratu `null` (žádná způsobilá
+          kampaň a jiný jazyk než čeština, viz AdSlot.tsx) nezůstane
           žádná prázdná mezera. */}
-      <AdCard placement="finder-results" />
+      <AdSlot placement="finder-results" />
     </section>
   );
 }

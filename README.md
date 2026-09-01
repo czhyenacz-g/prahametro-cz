@@ -26,6 +26,9 @@ a jedna nenápadná reklamní pozice (zatím jen placeholder).
   jedné stanice poblíž.
 - Jednoduchý, rozšiřitelný systém rotovatelných affiliate reklam pod
   výsledky hledání — viz sekce [Reklamy](#reklamy) níže.
+- Když pro češtinu zrovna není žádná způsobilá reklama, appka místo ní
+  ukáže české přání se jmeninami (ne reklamu) — viz [České přání se
+  jmeninami](#české-přání-se-jmeninami) níže.
 
 ## Co MVP záměrně NEumí
 
@@ -143,11 +146,61 @@ prázdného místa po reklamní kartě).
   automaticky zahodí (`safeRemove`, `lib/storage/safe-storage.ts`) a
   vybere se nová způsobilá kampaň. Do `sessionStorage` se nikdy
   neukládá poloha, souřadnice ani žádný osobní údaj.
-- **Vykreslení:** `components/ads/AdCard.tsx` (+ `AdIcon.tsx` pro
-  lucide-react ikony podle kategorie) — použito ve `FinderSection.tsx`
-  pod výsledky hledání. Bez způsobilé kampaně komponenta vrátí `null`
-  a nezanechá po sobě žádnou mezeru (odsazení `mt-6` je součástí
-  kořenové `<section>` samotné komponenty, ne obalového elementu).
+- **Vykreslení:** `components/ads/AdSlot.tsx` je jediné místo (použité
+  ve `FinderSection.tsx` pod výsledky hledání), které rozhoduje mezi
+  reklamou a fallbackem — rozhodovací logika je čistá testovatelná
+  funkce `lib/ads/resolve-slot-content.ts`. Samotná reklamní karta
+  (`components/ads/AdCard.tsx` + `AdIcon.tsx` pro lucide-react ikony
+  podle kategorie) dostává už vybranou kampaň jako prop a žádnou
+  výběrovou logiku sama neřeší. Bez způsobilé kampaně a bez českého
+  fallbacku (viz níže) se nevykreslí nic a nezanechá se žádná mezera
+  (odsazení `mt-6` je součástí kořenového elementu každé z karet, ne
+  obalového elementu v `AdSlot.tsx`/`FinderSection.tsx`).
+
+## České přání se jmeninami
+
+Když pro aktuální jazyk (`cs`) neexistuje žádná způsobilá reklama s
+platným `https://` affiliate odkazem, appka pod výsledky hledání
+zobrazí místo reklamy jednoduché přání se jmeninami — **není to
+reklama**: žádný štítek "Reklama", žádné CTA, žádný odkaz, žádný název
+partnera, žádné reklamní tracking. V angličtině se přání nikdy
+nezobrazuje — bez způsobilé anglické reklamy appka pod výsledky
+nezobrazí nic.
+
+- **Rozhodovací logika:** `lib/ads/resolve-slot-content.ts` (čistá
+  funkce, `AdResolutionState` → `pending`/`ad`/`nameday`/`none`) použitá
+  v `components/ads/AdSlot.tsx`. Dokud výběr reklamy na klientovi ještě
+  neproběhl (`pending`), nevykreslí se ani reklama, ani přání — ať
+  jedno neprobliskne pod druhým.
+- **Zdroj dat:** `lib/namedays/czech-namedays.ts` — statická data
+  převzatá z [OzzyCzech/namedays-cs](https://github.com/OzzyCzech/namedays-cs)
+  (soubor `lib/names.json`), licence **MIT** (© Roman Ožana), plný text
+  licence je přímo v hlavičce souboru. Appka žádné externí API pro
+  jmeniny nevolá — data jsou uložená lokálně v repozitáři a načtou se
+  jako běžný TS modul.
+- **Datum:** vždy podle kalendářního dne v `Europe/Prague`
+  (`lib/namedays/get-czech-nameday.ts`, `getPragueCalendarDate` přes
+  `Intl.DateTimeFormat`), ne podle UTC — důležité, protože Vercel běží
+  v UTC a prosté `new Date().getDate()` by kolem půlnoci dávalo špatný
+  den. Když appka zůstane otevřená přes pražskou půlnoc, přání se samo
+  aktualizuje (jeden `setTimeout` naplánovaný přesně na příští pražskou
+  půlnoc, žádný interval tikající každou sekundu/minutu).
+- **Formát věty:** `formatNamedaySentence()` — jedno jméno "Dnes má
+  svátek X.", dvě jména "Dnes mají svátek X a Y.", tři a více
+  "Dnes mají svátek X, Y a Z." (přirozený český výčet, nikdy lomítko).
+  Pro dny bez jména v datech (v civilním kalendáři jde o 5 státních
+  svátků bez jmenin — 1. leden, 1. a 8. květen, 6. červenec, 25.
+  prosinec) bezpečný obecný fallback "Ať se vám dnes daří.".
+- **Jak aktualizovat kalendářní data:** stáhni aktuální
+  `lib/names.json` z [OzzyCzech/namedays-cs](https://github.com/OzzyCzech/namedays-cs)
+  a nahraď obsah `CZECH_NAMEDAYS` v `lib/namedays/czech-namedays.ts` —
+  formát je stejný (`"MM-DD": ["Jméno", ...]`), jen zachovej hlavičku s
+  licencí a zdrojem.
+- **Po aktivaci české reklamy** (viz "Jak později doplnit affiliate
+  odkaz" výše — stačí doplnit `href` u `pharmacy-cs`/`shopping-cs`
+  nebo přidat novou českou kampaň) se přání automaticky přestane
+  zobrazovat, aniž by bylo potřeba cokoliv v `NamedayGreeting.tsx`
+  nebo `AdSlot.tsx` měnit.
 
 ### Jak přidat novou kampaň
 
