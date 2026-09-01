@@ -1,4 +1,5 @@
 import type { GtfsRoute, GtfsStop, GtfsTrip } from "./types.ts";
+import { getMetroRouteLines } from "./metro-routes.ts";
 import { METRO_LINES, type MetroLine } from "../metro/types.ts";
 
 export type GtfsStopTimeWithSequence = { trip_id: string; stop_id: string; stop_sequence: string };
@@ -17,14 +18,7 @@ export function deriveLineOrder(
   stops: GtfsStop[],
   stopTimes: GtfsStopTimeWithSequence[]
 ): Record<MetroLine, string[]> {
-  const metroRouteLines = new Map<string, MetroLine>();
-  for (const route of routes) {
-    if (route.route_type !== "1") continue;
-    const shortName = route.route_short_name.trim().toUpperCase();
-    if ((METRO_LINES as readonly string[]).includes(shortName)) {
-      metroRouteLines.set(route.route_id, shortName as MetroLine);
-    }
-  }
+  const metroRouteLines = getMetroRouteLines(routes);
 
   const tripLines = new Map<string, MetroLine>();
   for (const trip of trips) {

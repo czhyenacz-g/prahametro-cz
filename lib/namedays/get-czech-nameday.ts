@@ -1,30 +1,12 @@
 import { CZECH_NAMEDAYS, type MonthDayKey } from "./czech-namedays.ts";
+import { getMsUntilNextPragueMidnight, getPragueCalendarDate, getPragueOffsetMinutes, type PragueCalendarDate } from "../time/prague-time.ts";
 
-export type PragueCalendarDate = {
-  year: number;
-  month: number;
-  day: number;
-};
-
-/**
- * Kalendářní datum v `Europe/Prague` odvozené z libovolného instantu
- * (viz zadání — Vercel běží v UTC, prosté `date.getDate()` by dalo
- * špatný den kdykoliv je v Praze už jiný kalendářní den než v UTC).
- * `Intl.DateTimeFormat` s `timeZone` řeší DST i přechod přes půlnoc
- * automaticky, bez těžké datumové knihovny.
- */
-export function getPragueCalendarDate(date: Date): PragueCalendarDate {
-  const parts = new Intl.DateTimeFormat("en-CA", {
-    timeZone: "Europe/Prague",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).formatToParts(date);
-
-  const get = (type: "year" | "month" | "day"): number => Number(parts.find((p) => p.type === type)?.value ?? 0);
-
-  return { year: get("year"), month: get("month"), day: get("day") };
-}
+// Europe/Prague převod (datum, DST offset, ms do půlnoci) žije ve
+// sdíleném lib/time/prague-time.ts (používá ho i lib/departures/) —
+// tady se jen re-exportuje pod původními jmény, ať se nemusí měnit
+// stávající importy/testy tohoto modulu.
+export type { PragueCalendarDate };
+export { getMsUntilNextPragueMidnight, getPragueCalendarDate, getPragueOffsetMinutes };
 
 function toMonthDayKey({ month, day }: PragueCalendarDate): MonthDayKey {
   return `${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
@@ -51,48 +33,4 @@ export function formatNamedaySentence(names: string[]): string {
   const allButLast = clean.slice(0, -1).join(", ");
   const last = clean[clean.length - 1];
   return `Dnes mají svátek ${allButLast} a ${last}.`;
-}
-
-/**
- * Kolik minut je `Europe/Prague` před UTC v daném instantu (kladné
- * číslo, CET = 60, CEST = 120) — pomocná funkce pro
- * `getMsUntilNextPragueMidnight`, samostatně testovatelná kolem
- * přechodů letního/zimního času.
- */
-export function getPragueOffsetMinutes(date: Date): number {
-  const parts = new Intl.DateTimeFormat("en-US", {
-    timeZone: "Europe/Prague",
-    hour12: false,
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-  }).formatToParts(date);
-
-  const get = (type: string): number => Number(parts.find((p) => p.type === type)?.value ?? 0);
-  // Intl s hour12:false umí vrátit hodinu "24" pro půlnoc — normalizace na 0.
-  const hour = get("hour") % 24;
-
-  const asIfUtc = Date.UTC(get("year"), get("month") - 1, get("day"), hour, get("minute"), get("second"));
-  return Math.round((asIfUtc - date.getTime()) / 60_000);
-}
-
-/**
- * Milisekund do nejbližší příští půlnoci v `Europe/Prague` od daného
- * okamžiku (viz zadání — aktualizace přání po půlnoci bez ručního
- * refreshe). Naivní odhad ("zítřejší datum, 00:00 UTC") se opraví o
- * pražský offset spočtený PŘÍMO v tom odhadovaném okamžiku — DST
- * přechody v ČR nastávají ve 2:00/3:00 místního času, ne o půlnoci,
- * takže offset zjištěný přesně v cílovém okamžiku je spolehlivý bez
- * nutnosti plné datumové knihovny (viz zadání "neúměrně složité").
- */
-export function getMsUntilNextPragueMidnight(date: Date): number {
-  const { year, month, day } = getPragueCalendarDate(date);
-  const naiveNextMidnightUtc = Date.UTC(year, month - 1, day + 1, 0, 0, 0);
-  const offsetMinutes = getPragueOffsetMinutes(new Date(naiveNextMidnightUtc));
-  const targetUtcMs = naiveNextMidnightUtc - offsetMinutes * 60_000;
-
-  return Math.max(targetUtcMs - date.getTime(), 0);
 }

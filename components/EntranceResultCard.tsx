@@ -6,6 +6,7 @@ import { LINE_BADGE_CLASS } from "../lib/metro/line-colors.ts";
 import { buildAppleMapsWalkingUrl, buildGoogleMapsWalkingUrl, buildMapyComWalkingUrl } from "../lib/metro/navigation-links.ts";
 import type { MetroEntrance } from "../lib/metro/types.ts";
 import { useI18n } from "./i18n/I18nContext.ts";
+import DeparturesButton from "./DeparturesButton.tsx";
 
 export type EntranceResultCardProps = {
   entrance: MetroEntrance;
@@ -59,7 +60,13 @@ export default function EntranceResultCard({ entrance, distanceMeters, origin }:
         <NavigationButton href={mapyUrl} label={dict.result.mapyComLabel} ariaLabel={dict.result.mapyComAriaLabel} variant="mapy" icon={Map} />
       </div>
 
-      <p className="mt-2 text-xs text-gray-400">{dict.result.disclaimer}</p>
+      {/* Pomocný řádek — "Odjezdy" je sekundární akce, vpravo pod
+          trojicí navigačních tlačítek, ať s nimi nesoupeří o místo ani
+          nezabere čtvrtou pozici v jejich řádku (viz zadání). */}
+      <div className="mt-2 flex items-center justify-between gap-2">
+        <p className="min-w-0 flex-1 text-xs text-gray-400">{dict.result.disclaimer}</p>
+        <DeparturesButton stationId={entrance.stationId} stationName={entrance.stationName} />
+      </div>
     </div>
   );
 }

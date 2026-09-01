@@ -32,10 +32,14 @@ a jedna nenápadná reklamní pozice (zatím jen placeholder).
 - Když pro češtinu zrovna není žádná způsobilá reklama, appka místo ní
   ukáže české přání se jmeninami (ne reklamu) — viz [České přání se
   jmeninami](#české-přání-se-jmeninami) níže.
+- Nenápadné tlačítko **Odjezdy** na každé výsledkové kartě — otevře
+  panel s nejbližšími plánovanými odjezdy dané linky/směru a posledním
+  vlakem podle GTFS jízdního řádu, viz [Odjezdy](#odjezdy) níže.
 
 ## Co MVP záměrně NEumí
 
-- Neplánuje trasu/jízdu metrem, nemá jízdní řády ani realtime provoz.
+- Neukazuje polohu vlaků v reálném čase — jen plánované odjezdy podle
+  GTFS jízdního řádu (viz [Odjezdy](#odjezdy)), žádné zpoždění/výluky.
 - Neintegruje žádné placené mapové API — navigace se otevírá externě
   (Google Maps / Apple Maps).
 - Nemá účty, přihlašování, CMS, administraci ani žádný backend za běhu.
@@ -60,18 +64,22 @@ data aktualizovat.
 
 Stáhne oficiální feed `https://data.pid.cz/PID_GTFS.zip`, rozbalí jen
 potřebné CSV soubory (`routes.txt`, `trips.txt`, `stops.txt`,
-`stop_times.txt` — vyžaduje systémový příkaz `unzip`), odvodí skutečné
-vstupy do metra a jejich linky, a zapíše:
+`stop_times.txt`, `calendar.txt`, `calendar_dates.txt` — vyžaduje
+systémový příkaz `unzip`), odvodí skutečné vstupy do metra, jejich
+linky a plánované odjezdy, a zapíše:
 
 - `data/metro-entrances.json` — všechny vstupy (souřadnice, linky,
   bezbariérovost),
 - `data/metro-line-order.json` — reálné pořadí stanic na každé lince
-  (podle `stop_sequence`), ze kterého vychází schematická mapa.
+  (podle `stop_sequence`), ze kterého vychází schematická mapa,
+- `public/data/departures/{stationId}.json` — jeden kompaktní soubor
+  odjezdů na stanici (viz [Odjezdy](#odjezdy) níže).
 
 Import **selže s chybou** (nenulový návratový kód), pokud by výsledek
-byl nápadně malý (méně než 50 stanic nebo 200 vstupů) — ochrana proti
-omylem nasazeným prázdným/změněným datům. Appka za běhu žádné GTFS/ZIP
-nezná, jen tenhle hotový JSON.
+byl nápadně malý (méně než 50 stanic nebo 200 vstupů), nebo pokud by
+některá stanice appky neměla v GTFS odpovídající naplánované odjezdy —
+ochrana proti omylem nasazeným prázdným/změněným/nekonzistentním datům.
+Appka za běhu žádné GTFS/ZIP nezná, jen tyhle hotové JSONy.
 
 ## Zdroj dat a licence
 
@@ -146,6 +154,69 @@ zůstává v `localStorage` a jazyk nijak neovlivňuje).
   neodchází. Kontroluje se AŽ po existující hranici "mimo Prahu" (25 km).
 - **`app/sitemap.ts`** obsahuje obě jazykové URL s obousměrnými
   `alternates.languages`.
+
+## Odjezdy
+
+Malé sekundární tlačítko **Odjezdy** / **Departures** na každé
+výsledkové kartě (v pomocném řádku pod trojicí navigačních tlačítek,
+vedle textu s vysvětlením vzdušné vzdálenosti — nikdy jako čtvrté
+tlačítko v jejich řádku) otevře přístupný panel s plánovanými odjezdy
+podle GTFS jízdního řádu. **Nejde o polohu vlaků v reálném čase.**
+
+- **Zdroj dat:** stejný oficiální PID GTFS feed jako vstupy do metra
+  (`https://data.pid.cz/PID_GTFS.zip`), navíc `trips.txt` (`service_id`,
+  `trip_headsign`, `direction_id`), `stop_times.txt`
+  (`departure_time`, `stop_sequence`), `calendar.txt` a
+  `calendar_dates.txt`.
+- **Propojení appka ↔ GTFS:** stejný `stationId`, jaký už mají vstupy v
+  `data/metro-entrances.json` (GTFS `parent_station`) — žádné párování
+  podle názvu. `scripts/import-pid-gtfs.ts` po vygenerování odjezdů
+  ověří, že KAŽDÁ stanice appky má odpovídající soubor odjezdů
+  (`lib/gtfs/validate-departures-coverage.ts`) — chybějící/nejednoznačná
+  vazba je fatální chyba importu, appka nikdy tiše nezobrazí odjezdy
+  cizí stanice.
+- **Linka a směr:** linka podle stejné `route_type=1` +
+  `route_short_name` identifikace jako u vstupů
+  (`lib/gtfs/metro-routes.ts`, sdílené s importem vstupů). Směr podle
+  GTFS `direction_id` (0/1) — popisek volby směru je nejčastější
+  `trip_headsign` v tom směru, ale každý jednotlivý odjezd si nese
+  VLASTNÍ headsign, takže krátce ukončený spoj (jiná konečná než
+  "hlavní" směr) ukáže svůj skutečný cíl, ne zavádějící společný
+  popisek. Poslední zastávka spoje (GTFS ji vždy vyplní, i když vlak
+  dál nepokračuje) se do odjezdů nepočítá — jinak by se na konečné
+  stanici objevovaly "odjezdy" směrem k ní samé (příjezdy).
+- **Provozní den a čas po půlnoci:** veškeré vyhodnocení v
+  `Europe/Prague` (`lib/time/prague-time.ts`, sdílené se svátkovým
+  přáním). Aktivní `service_id` pro dané datum řeší
+  `lib/departures/service-calendar.ts` přesně podle GTFS sémantiky
+  (`calendar.txt` týdenní vzor, `calendar_dates.txt` výjimky mají vždy
+  přednost). Nejbližší odjezdy (`lib/departures/next-departures.ts`)
+  posuzují aktivní služby DNEŠNÍHO i VČEREJŠÍHO provozního dne — spoj
+  zapsaný v GTFS jako např. `24:35:00` (čas > 24:00:00, spoj přes
+  půlnoc) se tak správně objeví jako dnešní brzké ráno, pokud mu
+  odpovídající služba platila včera.
+- **Poslední odjezd** se pro každou kombinaci stanice/linky/směru/dne
+  počítá zvlášť jako maximum mezi odjezdy AKTIVNÍMI pro daný provozní
+  den (`getLastDeparture`) — nikdy jako pevně uložená hodnota.
+- **Stáří dat:** `lib/departures/freshness.ts` — starší než 3 dny (GTFS
+  kalendáře PID typicky pokrývají jen pár týdnů dopředu) zobrazí
+  upozornění "Jízdní řád nemusí být aktuální." místo tvrzení o
+  posledním vlaku. Selhání načtení po kliknutí zobrazí samostatnou
+  chybovou hlášku — appka nikdy nevymýšlí náhradní časy.
+- **Výkon:** `public/data/departures/{stationId}.json` — jeden kompaktní
+  soubor na stanici (~35–115 kB nekomprimovaně, cca 5–10 kB po gzipu),
+  fetchovaný AŽ při otevření panelu. Homepage/`/en` ho nikdy nestahuje,
+  obě jazykové verze sdílejí stejné soubory (jazykově neutrální data).
+- **Přístupnost:** `hooks/useFocusTrap.ts` — focus trap, zavření
+  klávesou Escape, návrat focusu na tlačítko, které panel otevřelo.
+  `components/DeparturesPanel.tsx` (`role="dialog"`, `aria-modal`,
+  `aria-labelledby`) je na mobilu spodní panel, od `sm:` výš
+  vycentrovaný dialog.
+- **Odkaz "Ověřit v PID Lítačce"** (sekce 10 zadání) se v UI
+  nevykresluje — GTFS feed neobsahuje `stop_url` pro žádnou stanici
+  metra a appka nechtěla vymýšlet neověřenou URL. Text pro budoucí
+  použití zůstává v `lib/i18n/dictionary.ts`
+  (`dict.departures.checkInPidLitacka`).
 
 ## Reklamy
 

@@ -135,3 +135,54 @@ describe("outsidePrague — obecná a brněnská hláška (cs/en)", () => {
     assert.notEqual(en.outsidePrague.title, en.outsidePrague.brnoTitle);
   });
 });
+
+describe("dict.departures — panel odjezdů (cs/en, viz zadání bod 11)", () => {
+  test("10. přesné české texty", () => {
+    const d = getDictionary("cs").departures;
+    assert.equal(d.buttonLabel, "Odjezdy");
+    assert.equal(d.nextHeading, "Nejbližší odjezdy");
+    assert.equal(d.lastHeading, "Poslední metro podle jízdního řádu");
+    assert.equal(d.towards("Zličín"), "směr Zličín");
+    assert.equal(d.lineLabel, "Linka");
+    assert.equal(d.sourceLabel, "Jízdní řád PID");
+    assert.equal(d.updatedLabel, "aktualizováno");
+    assert.equal(d.checkInPidLitacka, "Ověřit v PID Lítačce");
+    assert.equal(d.dialogCloseLabel, "Zavřít odjezdy");
+    assert.equal(d.errorTitle, "Odjezdy se nyní nepodařilo načíst.");
+    assert.equal(d.errorBody, "Ověřte aktuální spojení v aplikaci PID Lítačka.");
+    assert.equal(d.staleTitle, "Jízdní řád nemusí být aktuální.");
+    assert.equal(d.staleBody, "Ověřte poslední spoj v PID Lítačce.");
+  });
+
+  test("10. přesné anglické texty", () => {
+    const d = getDictionary("en").departures;
+    assert.equal(d.buttonLabel, "Departures");
+    assert.equal(d.nextHeading, "Next scheduled departures");
+    assert.equal(d.lastHeading, "Last scheduled metro");
+    assert.equal(d.towards("Zličín"), "towards Zličín");
+    assert.equal(d.lineLabel, "Line");
+    assert.equal(d.sourceLabel, "PID timetable");
+    assert.equal(d.updatedLabel, "updated");
+    assert.equal(d.checkInPidLitacka, "Check in PID Lítačka");
+    assert.equal(d.dialogCloseLabel, "Close departures");
+    assert.equal(d.errorTitle, "Departures could not be loaded right now.");
+    assert.equal(d.errorBody, "Please verify your journey in the PID Lítačka app.");
+    assert.equal(d.staleTitle, "The timetable may be out of date.");
+    assert.equal(d.staleBody, "Please verify the last service in PID Lítačka.");
+  });
+
+  test("směr stanice se nepřekládá — 'towards'/'směr' obalí stejný název stanice beze změny", () => {
+    const stationName = "Nemocnice Motol";
+    assert.match(getDictionary("cs").departures.towards(stationName), new RegExp(stationName));
+    assert.match(getDictionary("en").departures.towards(stationName), new RegExp(stationName));
+  });
+
+  test("žádné tvrzení 'metro (ne)jede' — jen formulace o jízdním řádu", () => {
+    for (const locale of ["cs", "en"] as const) {
+      const d = getDictionary(locale).departures;
+      for (const text of [d.lastHeading, d.staleTitle, d.staleBody, d.errorTitle, d.errorBody]) {
+        assert.doesNotMatch(text, /metro (už |ještě )?(nejede|jede)|metro (isn't|is) running/i);
+      }
+    }
+  });
+});

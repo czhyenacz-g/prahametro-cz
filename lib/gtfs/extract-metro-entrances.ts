@@ -1,5 +1,6 @@
 import type { GtfsRoute, GtfsStop, GtfsStopTime, GtfsTrip } from "./types.ts";
-import { METRO_LINES, type MetroEntrance, type MetroLine } from "../metro/types.ts";
+import { getMetroRouteLines } from "./metro-routes.ts";
+import type { MetroEntrance, MetroLine } from "../metro/types.ts";
 
 const WHEELCHAIR_MAP: Record<string, MetroEntrance["wheelchair"]> = {
   "1": "yes",
@@ -31,14 +32,7 @@ export function extractMetroEntrances(
   stops: GtfsStop[],
   stopTimes: GtfsStopTime[]
 ): MetroEntrance[] {
-  const metroRouteLines = new Map<string, MetroLine>();
-  for (const route of routes) {
-    if (route.route_type !== "1") continue;
-    const shortName = route.route_short_name.trim().toUpperCase();
-    if ((METRO_LINES as readonly string[]).includes(shortName)) {
-      metroRouteLines.set(route.route_id, shortName as MetroLine);
-    }
-  }
+  const metroRouteLines = getMetroRouteLines(routes);
 
   const tripLines = new Map<string, MetroLine>();
   for (const trip of trips) {

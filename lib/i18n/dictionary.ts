@@ -64,6 +64,26 @@ export type Dictionary = {
   ad: {
     label: string;
   };
+  /** Panel "Odjezdy" (viz zadání) — plánované GTFS odjezdy, ne poloha vlaků v reálném čase. */
+  departures: {
+    buttonLabel: string;
+    buttonAriaLabel: (stationName: string) => string;
+    dialogCloseLabel: string;
+    nextHeading: string;
+    lastHeading: string;
+    towards: (station: string) => string;
+    lineLabel: string;
+    directionGroupLabel: string;
+    sourceLabel: string;
+    updatedLabel: string;
+    checkInPidLitacka: string;
+    loading: string;
+    errorTitle: string;
+    errorBody: string;
+    staleTitle: string;
+    staleBody: string;
+    noDeparturesForSelection: string;
+  };
   footer: {
     privacy: string;
     dataLabel: string;
@@ -126,6 +146,25 @@ const cs: Dictionary = {
   ad: {
     label: "Reklama",
   },
+  departures: {
+    buttonLabel: "Odjezdy",
+    buttonAriaLabel: (stationName) => `Odjezdy ze stanice ${stationName}`,
+    dialogCloseLabel: "Zavřít odjezdy",
+    nextHeading: "Nejbližší odjezdy",
+    lastHeading: "Poslední metro podle jízdního řádu",
+    towards: (station) => `směr ${station}`,
+    lineLabel: "Linka",
+    directionGroupLabel: "Směr",
+    sourceLabel: "Jízdní řád PID",
+    updatedLabel: "aktualizováno",
+    checkInPidLitacka: "Ověřit v PID Lítačce",
+    loading: "Načítám odjezdy…",
+    errorTitle: "Odjezdy se nyní nepodařilo načíst.",
+    errorBody: "Ověřte aktuální spojení v aplikaci PID Lítačka.",
+    staleTitle: "Jízdní řád nemusí být aktuální.",
+    staleBody: "Ověřte poslední spoj v PID Lítačce.",
+    noDeparturesForSelection: "Pro tuhle kombinaci linky a směru teď nejsou žádné odjezdy.",
+  },
   footer: {
     privacy: "Polohu zpracovává pouze váš prohlížeč a web ji nikam neodesílá.",
     dataLabel: "Dopravní data:",
@@ -186,6 +225,25 @@ const en: Dictionary = {
   },
   ad: {
     label: "Advertisement",
+  },
+  departures: {
+    buttonLabel: "Departures",
+    buttonAriaLabel: (stationName) => `Departures from ${stationName}`,
+    dialogCloseLabel: "Close departures",
+    nextHeading: "Next scheduled departures",
+    lastHeading: "Last scheduled metro",
+    towards: (station) => `towards ${station}`,
+    lineLabel: "Line",
+    directionGroupLabel: "Direction",
+    sourceLabel: "PID timetable",
+    updatedLabel: "updated",
+    checkInPidLitacka: "Check in PID Lítačka",
+    loading: "Loading departures…",
+    errorTitle: "Departures could not be loaded right now.",
+    errorBody: "Please verify your journey in the PID Lítačka app.",
+    staleTitle: "The timetable may be out of date.",
+    staleBody: "Please verify the last service in PID Lítačka.",
+    noDeparturesForSelection: "There are no departures for this line and direction right now.",
   },
   footer: {
     privacy: "Your location is processed only by your browser and is never sent anywhere.",

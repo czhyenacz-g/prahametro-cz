@@ -9,8 +9,8 @@ const routes: GtfsRoute[] = [
 ];
 
 const trips: GtfsTrip[] = [
-  { trip_id: "tripA1", route_id: "M-A" },
-  { trip_id: "tripBus1", route_id: "BUS1" },
+  { trip_id: "tripA1", route_id: "M-A", service_id: "svc1", trip_headsign: "Stanice B", direction_id: "0" },
+  { trip_id: "tripBus1", route_id: "BUS1", service_id: "svc1", trip_headsign: "Bus", direction_id: "0" },
 ];
 
 const stops: GtfsStop[] = [
