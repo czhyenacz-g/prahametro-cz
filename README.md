@@ -15,9 +15,12 @@ a jedna nenápadná reklamní pozice (zatím jen placeholder).
 - V development režimu jde vyzkoušet bez GPS přes tři demo polohy
   (Václavské náměstí, Anděl, Hlavní nádraží) — v produkčním buildu se
   tahle sekce vůbec nevyrenderuje.
-- Čeština/angličtina — přepínač v hlavičce, volba se ukládá do
-  `localStorage`, výchozí jazyk se odvodí z prohlížeče při první
-  návštěvě (`lib/i18n/`).
+- Čeština/angličtina jako dvě samostatné, serverově vykreslené a
+  indexovatelné URL — `/` (čeština) a `/en` (angličtina), viz sekce
+  [SEO a jazykové URL](#seo-a-jazykové-url) níže. Přepínač v hlavičce
+  je skutečný odkaz mezi oběma routami, žádné klientské přepnutí ani
+  detekce/uložení preferovaného jazyka v `localStorage` — URL je jediný
+  zdroj pravdy.
 - Volitelný "18+" humorný textový režim, který mění jen hlavní hlášku
   (žádný erotický obsah, žádná kontrola věku) — nezávislý na jazyce,
   taky uložený v `localStorage`.
@@ -95,6 +98,54 @@ Vercel přidělí `*.vercel.app` URL — to stačí pro MVP. Vlastní doména se
 připojí později (Project → Settings → Domains), kód se kvůli tomu měnit
 nemusí (`app/config/site.ts` si `SITE_URL` sám odvodí z
 `NEXT_PUBLIC_SITE_URL`/`VERCEL_URL`).
+
+## SEO a jazykové URL
+
+Čeština (`/`) a angličtina (`/en`) jsou dvě samostatné, serverově
+vykreslené a nezávisle indexovatelné routy — ne jedna URL s klientským
+přepínáním jazyka. Jazyk stránky určuje výhradně URL; appka nikdy
+needetekuje jazyk prohlížeče ani needetekuje/nepřepisuje jazyk z
+`localStorage` (jediná výjimka je nezávislý 18+ přepínač, který
+zůstává v `localStorage` a jazyk nijak neovlivňuje).
+
+- **Routy a "multiple root layouts":** `app/(cs)/` (route group, na URL
+  se neprojeví) obsahuje `layout.tsx` (`<html lang="cs">`) a `page.tsx`
+  (route `/`). `app/en/` obsahuje vlastní `layout.tsx`
+  (`<html lang="en">`) a `page.tsx` (route `/en`). Jde o standardní
+  Next.js vzorec "multiple root layouts" — proto už neexistuje jeden
+  sdílený `app/layout.tsx`. `app/not-found.tsx` je fallback pro cestu,
+  která nepatří ani pod jednu z těchto dvou skupin.
+- **Sdílený obsah:** obě routy vykreslují stejnou
+  `components/HomePage.tsx` (Server Component) s `locale` propem —
+  hledání/mapa/reklamy zůstávají shodné, mění se jen jazyk textů
+  (`lib/i18n/dictionary.ts`) a SEO obsah (`lib/seo/content.ts`).
+- **`I18nProvider`** (`components/i18n/I18nProvider.tsx`) dostává
+  `locale` jako povinný prop odvozený serverem — nikdy sám nedetekuje
+  ani neukládá jazyk. `LanguageToggle` je skutečný `next/link` mezi
+  `/` a `/en`, ne klientské přepnutí stavu.
+- **SEO metadata** (title/description/canonical/hreflang/OG/Twitter,
+  `robots: index,follow`) jsou u obou stránek nastavená přímo v
+  `app/(cs)/page.tsx` / `app/en/page.tsx` přes `lib/seo/content.ts`.
+  `alternates.languages` na obou stránkách odkazuje obousměrně na `cs`,
+  `en` i `x-default`. `metadataBase` (v obou `layout.tsx`) je postavené
+  nad `SITE_URL`, takže se canonical/hreflang v preview prostředí nikdy
+  neprosáknou k produkční doméně.
+- **Strukturovaná data:** `WebApplication` JSON-LD (jen ověřitelné
+  údaje — žádné hodnocení, cena, autor) na obou stránkách a `FAQPage`
+  JSON-LD sestavené přímo z pole viditelných FAQ otázek
+  (`lib/seo/structured-data.ts`), takže nikdy neujede od toho, co
+  appka skutečně zobrazuje.
+- **Indexovatelný obsah pod appkou:** `components/seo/SeoContent.tsx`
+  (čistě serverová komponenta, žádné `"use client"`) vykresluje úvod,
+  "Jak to funguje", tematický rozcestník ("Nejčastěji hledané" /
+  "Explore the Prague Metro") a FAQ — vše je součástí prvotního HTML,
+  žádná z těchto sekcí nevyžaduje JavaScript.
+- **Brněnská hláška:** viz `lib/metro/brno.ts` (`isNearBrno`,
+  `classifyOutsidePrague`) — čistě lokální Haversinův výpočet nad
+  existující `haversineDistanceMeters`, žádný geocoding, poloha nikam
+  neodchází. Kontroluje se AŽ po existující hranici "mimo Prahu" (25 km).
+- **`app/sitemap.ts`** obsahuje obě jazykové URL s obousměrnými
+  `alternates.languages`.
 
 ## Reklamy
 

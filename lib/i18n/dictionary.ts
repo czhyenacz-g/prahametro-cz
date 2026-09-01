@@ -2,6 +2,12 @@ import type { Locale } from "./types.ts";
 
 // Jednoduchý typovaný slovník cs/en — žádná těžká i18n knihovna (viz
 // zadání). Názvy stanic se sem NIKDY nedávají, ty se nepřekládají.
+// Delší, převážně serverově vykreslený SEO obsah (úvod, "jak to
+// funguje", rozcestník, FAQ) je záměrně MIMO tenhle slovník — viz
+// lib/seo/content.ts. Ten sem nepatří, protože tenhle Dictionary
+// prochází přes I18nContext do klientského JS bundlu (viz
+// I18nProvider.tsx), zatímco SEO obsah je čistě statický a nikdy
+// interaktivní, není důvod ho tam táhnout s sebou.
 export type Dictionary = {
   header: {
     subtitle: string;
@@ -9,6 +15,8 @@ export type Dictionary = {
     vulgarAriaLabelOff: string;
   };
   finder: {
+    /** Stabilní id kořenové <section> pro kotvu z tematického rozcestníku (viz lib/seo/content.ts) — nezávislé na dynamickém (18+) obsahu aria-labelu. */
+    sectionId: string;
     heading: string;
     headingVulgar: string;
     ctaLocating: string;
@@ -23,6 +31,9 @@ export type Dictionary = {
   outsidePrague: {
     title: string;
     body: (stationName: string, distance: string) => string;
+    /** Hravá varianta pro uživatele max. 30 km vzdušnou čarou od středu Brna (viz lib/metro/brno.ts). */
+    brnoTitle: string;
+    brnoBody: (stationName: string, distance: string) => string;
   };
   result: {
     entranceLabel: (label: string) => string;
@@ -36,6 +47,8 @@ export type Dictionary = {
     disclaimer: string;
   };
   map: {
+    /** Stabilní, jazykově odlišné id nadpisu mapy (cs "mapa-metra" / en "metro-map") — cíl z tematického rozcestníku. */
+    sectionId: string;
     heading: string;
     subtitle: string;
     zoomIn: string;
@@ -66,6 +79,7 @@ const cs: Dictionary = {
     vulgarAriaLabelOff: "Zapnout vulgární režim",
   },
   finder: {
+    sectionId: "najit-metro",
     heading: "Kde je nejbližší metro?",
     headingVulgar: "Kde je to zkurvený metro?!!",
     ctaLocating: "Zjišťuji polohu…",
@@ -79,8 +93,10 @@ const cs: Dictionary = {
     },
   },
   outsidePrague: {
-    title: "Jste pravděpodobně mimo Prahu",
-    body: (stationName, distance) => `Nejbližší vstup je ${stationName}, přibližně ${distance} vzdušnou čarou.`,
+    title: "Tady už pražské metro opravdu nejezdí.",
+    body: (stationName, distance) => `Nejbližší vstup je u stanice ${stationName}, přibližně ${distance} vzdušnou čarou.`,
+    brnoTitle: "Ne, Brno opravdu metro nemá!",
+    brnoBody: (stationName, distance) => `Nejbližší pražské metro je ${stationName}, přibližně ${distance} vzdušnou čarou.`,
   },
   result: {
     entranceLabel: (label) => `Vstup ${label}`,
@@ -94,6 +110,7 @@ const cs: Dictionary = {
     disclaimer: "Vzdušná vzdálenost, orientační — skutečnou trasu ukáže navigace.",
   },
   map: {
+    sectionId: "mapa-metra",
     heading: "Mapa metra",
     subtitle: "Přibliž si mapu, posuň prstem, klepni na stanici pro detail.",
     zoomIn: "Přiblížit",
@@ -124,6 +141,7 @@ const en: Dictionary = {
     vulgarAriaLabelOff: "Enable crude mode",
   },
   finder: {
+    sectionId: "find-entrance",
     heading: "Where is the nearest metro?",
     headingVulgar: "Where's the fucking metro?!",
     ctaLocating: "Locating…",
@@ -136,8 +154,10 @@ const en: Dictionary = {
     },
   },
   outsidePrague: {
-    title: "You are probably outside Prague",
+    title: "The Prague Metro really doesn’t run this far.",
     body: (stationName, distance) => `The nearest entrance is at ${stationName}, approximately ${distance} away as the crow flies.`,
+    brnoTitle: "No, Brno really doesn’t have a metro!",
+    brnoBody: (stationName, distance) => `The nearest Prague Metro entrance is at ${stationName}, approximately ${distance} away as the crow flies.`,
   },
   result: {
     entranceLabel: (label) => `Entrance ${label}`,
@@ -151,6 +171,7 @@ const en: Dictionary = {
     disclaimer: "Straight-line distance, approximate — actual route shown by navigation.",
   },
   map: {
+    sectionId: "metro-map",
     heading: "Metro map",
     subtitle: "Pinch to zoom, drag to pan, tap a station for details.",
     zoomIn: "Zoom in",

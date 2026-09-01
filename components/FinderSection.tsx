@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { LocateFixed } from "lucide-react";
 import { buildDemoPositions } from "../lib/metro/demo-positions.ts";
+import { classifyOutsidePrague } from "../lib/metro/brno.ts";
 import { nearestEntrances, nearestStationEntrances } from "../lib/metro/nearest-entrances.ts";
 import { getMainHeading } from "../lib/i18n/dictionary.ts";
 import { shouldShowDemoControls } from "../lib/env/should-show-demo-controls.ts";
@@ -33,12 +34,18 @@ export default function FinderSection({ entrances, status, onLocate, onDemoSelec
   // jestli je uživatel "mimo Prahu" (viz zadání) — pak se podle toho
   // rozhodne, kterou funkci na finální trojici výsledků použít.
   const closestOverall = position ? nearestEntrances(position, entrances, 1)[0] : null;
-  const isOutsidePrague = closestOverall !== undefined && closestOverall !== null && closestOverall.distanceMeters > OUTSIDE_PRAGUE_THRESHOLD_M;
+  // classifyOutsidePrague (lib/metro/brno.ts) nejdřív respektuje
+  // existující práh "mimo Prahu" a teprve pak zjišťuje Brno (viz
+  // zadání) — čistá, samostatně testovaná funkce.
+  const outsidePragueStatus =
+    position && closestOverall ? classifyOutsidePrague(closestOverall.distanceMeters, position, OUTSIDE_PRAGUE_THRESHOLD_M) : { kind: "in-prague" as const };
+  const isOutsidePrague = outsidePragueStatus.kind === "outside-prague";
+  const isBrno = outsidePragueStatus.kind === "outside-prague" && outsidePragueStatus.isBrno;
 
   const results = position ? (isOutsidePrague ? nearestStationEntrances(position, entrances, 3) : nearestEntrances(position, entrances, 3)) : [];
 
   return (
-    <section aria-label={getMainHeading(locale, vulgar)} className="mx-auto w-full max-w-2xl px-4 py-6 sm:py-8">
+    <section id={dict.finder.sectionId} aria-label={getMainHeading(locale, vulgar)} className="mx-auto w-full max-w-2xl px-4 py-6 sm:py-8">
       <div className="rounded-2xl border border-gray-200 bg-white p-4 text-center shadow-sm sm:p-6">
         {/* Jediné velké tlačítko — heading a CTA byly duplicitní texty
             ("Kde je nejbližší metro?" + "Najít nejbližší metro"), teď je
@@ -63,7 +70,7 @@ export default function FinderSection({ entrances, status, onLocate, onDemoSelec
         <StatusMessage status={status} />
 
         {isOutsidePrague && closestOverall && (
-          <OutsidePragueNotice nearestStationName={closestOverall.stationName} nearestDistanceMeters={closestOverall.distanceMeters} />
+          <OutsidePragueNotice nearestStationName={closestOverall.stationName} nearestDistanceMeters={closestOverall.distanceMeters} isBrno={isBrno} />
         )}
 
         {results.map((entrance) => (

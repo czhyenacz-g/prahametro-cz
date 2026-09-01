@@ -102,3 +102,36 @@ describe("reklamní štítek — dict.ad", () => {
     assert.equal("comingSoon" in getDictionary("en").ad, false);
   });
 });
+
+describe("outsidePrague — obecná a brněnská hláška (cs/en)", () => {
+  test("16. obecná česká hláška mimo Prahu", () => {
+    const dict = getDictionary("cs");
+    assert.equal(dict.outsidePrague.title, "Tady už pražské metro opravdu nejezdí.");
+    assert.equal(dict.outsidePrague.body("Muzeum", "30 km"), "Nejbližší vstup je u stanice Muzeum, přibližně 30 km vzdušnou čarou.");
+  });
+
+  test("16. obecná anglická hláška mimo Prahu", () => {
+    const dict = getDictionary("en");
+    assert.equal(dict.outsidePrague.title, "The Prague Metro really doesn’t run this far.");
+    assert.equal(dict.outsidePrague.body("Museum", "18.6 mi"), "The nearest entrance is at Museum, approximately 18.6 mi away as the crow flies.");
+  });
+
+  test("15. brněnská česká hláška", () => {
+    const dict = getDictionary("cs");
+    assert.equal(dict.outsidePrague.brnoTitle, "Ne, Brno opravdu metro nemá!");
+    assert.equal(dict.outsidePrague.brnoBody("Muzeum", "190 km"), "Nejbližší pražské metro je Muzeum, přibližně 190 km vzdušnou čarou.");
+  });
+
+  test("15. brněnská anglická hláška", () => {
+    const dict = getDictionary("en");
+    assert.equal(dict.outsidePrague.brnoTitle, "No, Brno really doesn’t have a metro!");
+    assert.equal(dict.outsidePrague.brnoBody("Museum", "118 mi"), "The nearest Prague Metro entrance is at Museum, approximately 118 mi away as the crow flies.");
+  });
+
+  test("brněnská a obecná hláška se od sebe liší (jiný text, ne jen jiná data)", () => {
+    const cs = getDictionary("cs");
+    assert.notEqual(cs.outsidePrague.title, cs.outsidePrague.brnoTitle);
+    const en = getDictionary("en");
+    assert.notEqual(en.outsidePrague.title, en.outsidePrague.brnoTitle);
+  });
+});

@@ -5,10 +5,10 @@ import type { Dictionary } from "../../lib/i18n/dictionary.ts";
 import type { Locale } from "../../lib/i18n/types.ts";
 
 export type I18nContextValue = {
+  /** Pevně dané routou (viz app/(cs)/page.tsx a app/en/page.tsx), po celou dobu života stránky neměnné — jazyk se mění navigací na jinou URL, ne klientským přepnutím. */
   locale: Locale;
   dict: Dictionary;
   vulgar: boolean;
-  setLocale: (locale: Locale) => void;
   toggleVulgar: () => void;
 };
 

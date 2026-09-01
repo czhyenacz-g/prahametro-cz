@@ -45,12 +45,14 @@ export default function MetroMap({ entrances, position, onRequestLocation }: Met
     setShowStationEntrances(false);
   }
 
+  const mapHeadingId = `${dict.map.sectionId}-heading`;
+
   return (
-    <section aria-labelledby="map-heading" className="mx-auto w-full max-w-2xl px-4 py-6">
-      <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm sm:p-5">
+    <section aria-labelledby={mapHeadingId} className="mx-auto w-full max-w-2xl px-4 py-6">
+      <div id={dict.map.sectionId} className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm sm:p-5">
         <div className="flex items-center gap-2.5">
           <TrainFront aria-hidden="true" size={26} strokeWidth={2.25} className="shrink-0 text-navy-900" />
-          <h2 id="map-heading" className="text-xl font-bold text-gray-900">
+          <h2 id={mapHeadingId} className="text-xl font-bold text-gray-900">
             {dict.map.heading}
           </h2>
         </div>
