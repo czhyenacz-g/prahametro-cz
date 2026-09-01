@@ -10,7 +10,7 @@ import type { MetroEntrance } from "../lib/metro/types.ts";
 import { useI18n } from "./i18n/I18nContext.ts";
 import DemoLocationPicker from "./DemoLocationPicker.tsx";
 import EntranceResultCard from "./EntranceResultCard.tsx";
-import NativeAdCard from "./NativeAdCard.tsx";
+import AdCard from "./ads/AdCard.tsx";
 import OutsidePragueNotice from "./OutsidePragueNotice.tsx";
 
 const OUTSIDE_PRAGUE_THRESHOLD_M = 25_000;
@@ -77,7 +77,10 @@ export default function FinderSection({ entrances, status, onLocate, onDemoSelec
       </div>
 
       <div className="mt-6">
-        <NativeAdCard />
+        {/* Neznámá stanice na téhle pozici (výsledky mohou patřit
+            různým stanicím) — jen obecné kampaně bez stationIds, viz
+            komentář v hooks/useSelectedAd.ts. */}
+        <AdCard placement="finder-results" />
       </div>
     </section>
   );

@@ -1,0 +1,74 @@
+import type { AdCampaign } from "./types.ts";
+
+// Počáteční kampaně (viz zadání) — VŠECHNY mají `href: null` a
+// `advertiser: null`, dokud nemáme schválený affiliate odkaz konkrétního
+// partnera. Doplnění odkazu = jen změna `href`/`advertiser` tady, žádný
+// zásah do výběrové logiky ani do AdCard.tsx (viz README).
+export const campaigns: AdCampaign[] = [
+  {
+    id: "pharmacy-cs",
+    enabled: true,
+    languages: ["cs"],
+    title: { cs: "Nestíháš do lékárny?" },
+    description: { cs: "Volně prodejné léky, kosmetiku a další produkty objednáš online." },
+    cta: { cs: "Objednat online" },
+    href: null,
+    advertiser: null,
+    weight: 70,
+  },
+  {
+    id: "shopping-cs",
+    enabled: true,
+    languages: ["cs"],
+    title: { cs: "Nestíháš nakoupit?" },
+    description: { cs: "Nech si nákup přivézt až domů." },
+    cta: { cs: "Objednat nákup" },
+    href: null,
+    advertiser: null,
+    weight: 30,
+  },
+  {
+    id: "luggage-en",
+    enabled: true,
+    languages: ["en"],
+    title: { en: "Carrying luggage around Prague?" },
+    description: { en: "Store your bags securely and explore the city hands-free." },
+    cta: { en: "Find luggage storage" },
+    href: null,
+    advertiser: null,
+    weight: 45,
+  },
+  {
+    id: "activities-en",
+    enabled: true,
+    languages: ["en"],
+    title: { en: "Looking for things to do in Prague?" },
+    description: { en: "Discover tours, attractions and experiences around the city." },
+    cta: { en: "Explore Prague" },
+    href: null,
+    advertiser: null,
+    weight: 30,
+  },
+  {
+    id: "esim-en",
+    enabled: true,
+    languages: ["en"],
+    title: { en: "Need mobile data in Prague?" },
+    description: { en: "Get an eSIM online and stay connected during your trip." },
+    cta: { en: "Choose an eSIM" },
+    href: null,
+    advertiser: null,
+    weight: 15,
+  },
+  {
+    id: "transfer-en",
+    enabled: true,
+    languages: ["en"],
+    title: { en: "Need a ride from Prague Airport?" },
+    description: { en: "Book your airport transfer online before you travel." },
+    cta: { en: "Book a transfer" },
+    href: null,
+    advertiser: null,
+    weight: 10,
+  },
+];

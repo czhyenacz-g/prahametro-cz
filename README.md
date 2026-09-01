@@ -24,6 +24,8 @@ a jedna nenápadná reklamní pozice (zatím jen placeholder).
 - Když je uživatel dál než 25 km od nejbližšího vstupu, appka to
   zřetelně označí a ukáže tři nejbližší RŮZNÉ stanice místo tří vstupů
   jedné stanice poblíž.
+- Jednoduchý, rozšiřitelný systém rotovatelných affiliate reklam pod
+  výsledky hledání — viz sekce [Reklamy](#reklamy) níže.
 
 ## Co MVP záměrně NEumí
 
@@ -90,6 +92,95 @@ Vercel přidělí `*.vercel.app` URL — to stačí pro MVP. Vlastní doména se
 připojí později (Project → Settings → Domains), kód se kvůli tomu měnit
 nemusí (`app/config/site.ts` si `SITE_URL` sám odvodí z
 `NEXT_PUBLIC_SITE_URL`/`VERCEL_URL`).
+
+## Reklamy
+
+Jednoduchý, rozšiřitelný systém rotovatelných affiliate reklam — jedna
+karta pod výsledky hledání, vybraná podle jazyka a stabilní po zbytek
+návštěvy. **V této iteraci mají všechny kampaně `href: null`** (žádný
+skutečný affiliate odkaz zatím není nasazený).
+
+- **Seznam kampaní:** `lib/ads/campaigns.ts` — typovaný podle
+  `lib/ads/types.ts` (`AdCampaign`).
+- **Výběrová logika:** `lib/ads/filter-campaigns.ts` (filtrování podle
+  jazyka/platnosti/stanice) + `lib/ads/weighted-select.ts` (vážená
+  rotace) + `lib/ads/select-ad.ts` (spojuje obojí, plus obnovení
+  uložené kampaně ze session). Validace affiliate URL je v
+  `lib/ads/validate-url.ts`.
+- **Stabilita během návštěvy:** `hooks/useSelectedAd.ts` uloží ID
+  vybrané kampaně do `sessionStorage` pod klíčem
+  `kdejemetro:selected-ad:{jazyk}` — reklama se tak během jedné návštěvy
+  a stejného jazyka nemění, ale při přepnutí jazyka se vybere zvlášť
+  (a návrat k předchozímu jazyku ji obnoví, pokud je pořád platná).
+  Nikdy se tam neukládá poloha ani žádný osobní údaj.
+- **Vykreslení:** `components/ads/AdCard.tsx` (+ `AdIcon.tsx` pro
+  jednoduché emoji ikony podle kategorie) — použito ve
+  `FinderSection.tsx` pod výsledky hledání.
+
+### Jak přidat novou kampaň
+
+Přidej objekt typu `AdCampaign` do pole v `lib/ads/campaigns.ts`. `id`
+musí být unikátní a stabilní (mění se podle něj i klíč v
+`sessionStorage`, takže po jeho změně by se aktivní reklama pro
+právě probíhající návštěvy jednou přepočítala). Text (`title`,
+`description`, `cta`) vyplň jen pro jazyky, které kampaň podporuje —
+`languages` musí obsahovat právě ty jazyky, pro které jsou texty
+kompletní.
+
+### Jak nastavit váhu
+
+Pole `weight` — kladné konečné číslo. Vyšší váha = vyšší pravděpodobnost
+výběru relativně k ostatním způsobilým kampaním (kampaň s `weight: 70`
+má mezi kampaněmi s celkovou vahou 100 zhruba 70% šanci). Nula, záporné
+číslo, `NaN` nebo `Infinity` kampaň z výběru úplně vyřadí.
+
+### Jak nastavit datum platnosti
+
+Volitelná pole `validFrom`/`validTo`, formát ISO 8601 (např.
+`"2026-07-01T00:00:00Z"`), porovnávané v UTC. Bez nich kampaň platí
+neomezeně.
+
+### Jak kampaň vypnout
+
+Nastav `enabled: false` — okamžitě se přestane nabízet k výběru, aniž
+by bylo nutné ji mazat (a bez ztráty konfigurace pro pozdější zapnutí).
+
+### Jak funguje výběr podle jazyka
+
+Kampaň se nabízí jen pro jazyky uvedené v `languages` a jen pokud má
+pro daný jazyk vyplněné VŠECHNY texty (`title`, `description`, `cta`).
+Výběr pro češtinu a angličtinu je nezávislý — přepnutí jazyka nikdy
+neovlivní, jaká kampaň byla vybraná pro ten druhý.
+
+### Jak později doplnit affiliate odkaz
+
+Stačí u dané kampaně vyplnit `href` (musí to být platná absolutní
+`https://` URL — cokoliv jiného, včetně `http://`, se stále zobrazí
+jako neaktivní) a volitelně `advertiser`. Datový model je připravený i
+na budoucí Dognet parametry — celou už hotovou schválenou affiliate
+URL (klidně včetně `d1`/`d2` apod.) prostě vlož do `href` tak, jak je,
+appka do ní nic nevkládá ani nezkracuje. Žádná změna komponenty ani
+výběrové logiky není potřeba:
+
+```ts
+{
+  // ...
+  href: "https://schvalena-affiliate-url.example/...",
+  advertiser: "Název schváleného partnera",
+}
+```
+
+(Tohle je jen dokumentační příklad — do žádné skutečné kampaně tuhle
+URL nevkládej.)
+
+### Soukromí
+
+Poloha uživatele ani ID stanice se reklamním partnerům nikdy neposílají
+— appka jen otevře cílovou `href` URL v nové kartě. V `sessionStorage`
+se ukládá výhradně ID vybrané kampaně, nic víc. Systém má připravené
+typy pro budoucí měření (`lib/ads/events.ts`, `AdEvent`), ale v této
+iteraci se žádná reklamní data nikam neodesílají — jen volitelný
+`console.debug` v development režimu.
 
 ## Známá omezení
 

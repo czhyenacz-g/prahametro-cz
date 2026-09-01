@@ -1,6 +1,6 @@
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
-import { safeGet, safeSet, type StorageLike } from "../lib/storage/safe-storage.ts";
+import { getBrowserSessionStorage, safeGet, safeSet, type StorageLike } from "../lib/storage/safe-storage.ts";
 
 function throwingStorage(): StorageLike {
   return {
@@ -58,5 +58,12 @@ describe("safeSet", () => {
     const storage = memoryStorage();
     safeSet(storage, "key", "value");
     assert.equal(safeGet(storage, "key"), "value");
+  });
+});
+
+describe("getBrowserSessionStorage", () => {
+  test("12. mimo prohlížeč (bez window) bezpečně vrátí null, nespadne — reklama pak jen znovu vybere kampaň", () => {
+    assert.doesNotThrow(() => getBrowserSessionStorage());
+    assert.equal(getBrowserSessionStorage(), null);
   });
 });

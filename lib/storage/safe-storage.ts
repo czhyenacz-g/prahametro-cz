@@ -33,3 +33,14 @@ export function getBrowserLocalStorage(): StorageLike | null {
     return null;
   }
 }
+
+/** Stejný bezpečný vzorec jako getBrowserLocalStorage — použito pro
+ * stabilitu vybrané reklamy během jedné návštěvy (viz hooks/useSelectedAd.ts). */
+export function getBrowserSessionStorage(): StorageLike | null {
+  if (typeof window === "undefined") return null;
+  try {
+    return window.sessionStorage;
+  } catch {
+    return null;
+  }
+}

@@ -67,3 +67,18 @@ describe("navigační tlačítka Google Maps / Apple Maps / Mapy.com — příst
     assert.equal(getDictionary("en").result.mapyComAriaLabel, "Start walking navigation in Mapy.com");
   });
 });
+
+describe("reklamní štítek — dict.ad", () => {
+  test("14. český štítek 'Reklama'", () => {
+    assert.equal(getDictionary("cs").ad.label, "Reklama");
+  });
+
+  test("15. anglický štítek 'Advertisement'", () => {
+    assert.equal(getDictionary("en").ad.label, "Advertisement");
+  });
+
+  test("text 'nabídku připravujeme' pro neaktivní CTA (cs/en)", () => {
+    assert.equal(getDictionary("cs").ad.comingSoon, "Nabídku připravujeme");
+    assert.equal(getDictionary("en").ad.comingSoon, "Offer coming soon");
+  });
+});
