@@ -1,3 +1,7 @@
+"use client";
+
+import { useI18n } from "./i18n/I18nContext.ts";
+
 export type NativeAdCardProps = {
   label?: string;
   title?: string;
@@ -6,15 +10,17 @@ export type NativeAdCardProps = {
   image?: string;
 };
 
-const DEFAULT_LABEL = "Reklama";
-const DEFAULT_TITLE = "Prostor pro partnera poblíž metra";
-const DEFAULT_DESCRIPTION = "Zjistit více";
-
 // V MVP jen bezpečný vlastní placeholder — žádný externí reklamní
 // skript (viz zadání). Props jsou navržené tak, aby šlo později napojit
 // přímé kampaně podle nejbližší stanice bez zásahu do stránek, které
-// komponentu používají.
-export default function NativeAdCard({ label = DEFAULT_LABEL, title = DEFAULT_TITLE, description = DEFAULT_DESCRIPTION, href, image }: NativeAdCardProps) {
+// komponentu používají. Defaulty jsou přeložené (viz useI18n), pokud
+// budoucí reálná kampaň žádnou z hodnot nepřebije.
+export default function NativeAdCard({ label, title, description, href, image }: NativeAdCardProps) {
+  const { dict } = useI18n();
+  const resolvedLabel = label ?? dict.ad.label;
+  const resolvedTitle = title ?? dict.ad.title;
+  const resolvedDescription = description ?? dict.ad.cta;
+
   const content = (
     <div className="flex min-h-[92px] items-center gap-4 rounded-2xl border border-dashed border-gray-300 bg-gray-50 p-4">
       {image && (
@@ -22,9 +28,9 @@ export default function NativeAdCard({ label = DEFAULT_LABEL, title = DEFAULT_TI
         <img src={image} alt="" className="h-14 w-14 shrink-0 rounded-lg object-cover" />
       )}
       <div className="min-w-0">
-        <span className="text-[11px] font-semibold uppercase tracking-wide text-gray-400">{label}</span>
-        <p className="mt-0.5 truncate text-sm font-medium text-gray-700">{title}</p>
-        <span className="mt-1 inline-block text-sm font-semibold text-gray-900 underline">{description}</span>
+        <span className="text-xs font-semibold uppercase tracking-wide text-gray-400">{resolvedLabel}</span>
+        <p className="mt-0.5 truncate text-base font-medium text-gray-700">{resolvedTitle}</p>
+        <span className="mt-1 inline-block text-base font-semibold text-gray-900 underline">{resolvedDescription}</span>
       </div>
     </div>
   );

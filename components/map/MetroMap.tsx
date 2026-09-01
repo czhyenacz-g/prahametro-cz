@@ -5,6 +5,7 @@ import { stationLayout, stationNodesById } from "../../lib/map/station-layout.ts
 import { nearestEntrances } from "../../lib/metro/nearest-entrances.ts";
 import type { MetroEntrance } from "../../lib/metro/types.ts";
 import { LINE_BADGE_CLASS } from "../../lib/metro/line-colors.ts";
+import { useI18n } from "../i18n/I18nContext.ts";
 import EntranceResultCard from "../EntranceResultCard.tsx";
 import MetroMapSvg from "./MetroMapSvg.tsx";
 import { useMapZoomPan } from "./useMapZoomPan.ts";
@@ -16,6 +17,7 @@ export type MetroMapProps = {
 };
 
 export default function MetroMap({ entrances, position, onRequestLocation }: MetroMapProps) {
+  const { dict } = useI18n();
   const [selectedStationId, setSelectedStationId] = useState<string | null>(null);
   const [showStationEntrances, setShowStationEntrances] = useState(false);
   const zoomPan = useMapZoomPan(stationLayout.viewBox);
@@ -44,10 +46,10 @@ export default function MetroMap({ entrances, position, onRequestLocation }: Met
 
   return (
     <section aria-labelledby="map-heading" className="mx-auto w-full max-w-2xl px-4 py-6">
-      <h2 id="map-heading" className="text-lg font-semibold text-gray-900">
-        Mapa metra
+      <h2 id="map-heading" className="text-xl font-bold text-gray-900">
+        {dict.map.heading}
       </h2>
-      <p className="mt-1 text-sm text-gray-500">Přibliž si mapu, posuň prstem, klepni na stanici pro detail.</p>
+      <p className="mt-1 text-sm text-gray-600">{dict.map.subtitle}</p>
 
       <div className="relative mt-4">
         <div
@@ -59,17 +61,19 @@ export default function MetroMap({ entrances, position, onRequestLocation }: Met
             currentViewBox={zoomPan.currentViewBox}
             selectedStationId={selectedStationId}
             onSelectStation={selectStation}
+            ariaLabel={dict.map.ariaLabel}
+            getStationAriaLabel={(name, lines) => dict.map.stationAriaLabel(name, lines)}
           />
         </div>
 
         <div className="absolute bottom-3 right-3 flex flex-col gap-2">
-          <MapControlButton label="Přiblížit" onClick={zoomPan.zoomIn}>
+          <MapControlButton label={dict.map.zoomIn} onClick={zoomPan.zoomIn}>
             +
           </MapControlButton>
-          <MapControlButton label="Oddálit" onClick={zoomPan.zoomOut}>
+          <MapControlButton label={dict.map.zoomOut} onClick={zoomPan.zoomOut}>
             −
           </MapControlButton>
-          <MapControlButton label="Obnovit pohled" onClick={zoomPan.resetView} small>
+          <MapControlButton label={dict.map.resetView} onClick={zoomPan.resetView}>
             ⟲
           </MapControlButton>
         </div>
@@ -79,7 +83,7 @@ export default function MetroMap({ entrances, position, onRequestLocation }: Met
         <div role="dialog" aria-labelledby="station-sheet-heading" className="mt-4 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <h3 id="station-sheet-heading" className="text-base font-semibold text-gray-900">
+              <h3 id="station-sheet-heading" className="text-lg font-bold text-gray-900">
                 {selectedNode.name}
               </h3>
               <div className="mt-1.5 flex gap-1.5">
@@ -93,8 +97,8 @@ export default function MetroMap({ entrances, position, onRequestLocation }: Met
             <button
               type="button"
               onClick={closeSheet}
-              aria-label="Zavřít"
-              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-gray-400 hover:bg-gray-100 hover:text-gray-700"
+              aria-label={dict.map.closeSheet}
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-gray-400 hover:bg-gray-100 hover:text-gray-700"
             >
               ✕
             </button>
@@ -104,21 +108,21 @@ export default function MetroMap({ entrances, position, onRequestLocation }: Met
             <button
               type="button"
               onClick={() => setShowStationEntrances(true)}
-              className="mt-3 min-h-[44px] w-full rounded-xl bg-gray-900 px-4 text-sm font-semibold text-white hover:bg-gray-700"
+              className="mt-3 min-h-[48px] w-full rounded-xl bg-gray-900 px-4 text-base font-semibold text-white hover:bg-gray-700"
             >
-              Najít vstupy této stanice
+              {dict.map.findEntrances}
             </button>
           )}
 
           {showStationEntrances && !position && (
-            <div className="mt-3 rounded-xl bg-amber-50 p-3 text-sm text-amber-800">
-              <p>Pro seřazení vstupů podle vzdálenosti nejdřív zjisti svou polohu.</p>
+            <div className="mt-3 rounded-xl border border-amber-400 bg-amber-100 p-3 text-sm font-medium text-amber-900">
+              <p>{dict.map.needLocation}</p>
               <button
                 type="button"
                 onClick={onRequestLocation}
-                className="mt-2 min-h-[40px] rounded-lg bg-amber-500 px-3 text-sm font-semibold text-white hover:bg-amber-600"
+                className="mt-2 min-h-[44px] rounded-lg bg-amber-600 px-3 text-sm font-semibold text-white hover:bg-amber-700"
               >
-                Zjistit polohu
+                {dict.map.getLocation}
               </button>
             </div>
           )}
@@ -136,25 +140,13 @@ export default function MetroMap({ entrances, position, onRequestLocation }: Met
   );
 }
 
-function MapControlButton({
-  children,
-  label,
-  onClick,
-  small,
-}: {
-  children: React.ReactNode;
-  label: string;
-  onClick: () => void;
-  small?: boolean;
-}) {
+function MapControlButton({ children, label, onClick }: { children: React.ReactNode; label: string; onClick: () => void }) {
   return (
     <button
       type="button"
       onClick={onClick}
       aria-label={label}
-      className={`flex items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 ${
-        small ? "h-9 w-9 text-sm" : "h-11 w-11 text-xl font-bold"
-      }`}
+      className="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-xl font-bold text-gray-700 shadow-sm hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900"
     >
       {children}
     </button>

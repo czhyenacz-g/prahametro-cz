@@ -5,8 +5,8 @@ import { SITE_URL } from "./config/site.ts";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "PrahaMetro.cz — nejbližší vstup do metra",
-    template: "%s | PrahaMetro.cz",
+    default: "KdeJeMetro.cz — nejbližší vstup do metra",
+    template: "%s | KdeJeMetro.cz",
   },
   description: "Jedním klepnutím najdi 2–3 nejbližší vstupy do pražského metra a spusť pěší navigaci.",
 };

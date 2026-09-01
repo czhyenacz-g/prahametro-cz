@@ -24,3 +24,36 @@ export function nearestEntrances(
     .sort((a, b) => a.distanceMeters - b.distanceMeters || a.id.localeCompare(b.id))
     .slice(0, limit);
 }
+
+/**
+ * Jako `nearestEntrances`, ale nejdřív pro KAŽDOU stanici vybere jen
+ * její nejbližší vstup, a teprve z těchto "zástupců" vrátí `limit`
+ * nejbližších — použije se, když je uživatel daleko od Prahy (viz
+ * zadání "tři nejbližší RŮZNÉ stanice, ne tři vstupy stejné stanice").
+ */
+export function nearestStationEntrances(
+  position: { lat: number; lon: number },
+  entrances: MetroEntrance[],
+  limit = 3
+): EntranceWithDistance[] {
+  const withDistance = entrances.map((entrance): EntranceWithDistance => ({
+    ...entrance,
+    distanceMeters: haversineDistanceMeters(position, entrance),
+  }));
+
+  const bestPerStation = new Map<string, EntranceWithDistance>();
+  for (const entrance of withDistance) {
+    const current = bestPerStation.get(entrance.stationId);
+    if (
+      !current ||
+      entrance.distanceMeters < current.distanceMeters ||
+      (entrance.distanceMeters === current.distanceMeters && entrance.id.localeCompare(current.id) < 0)
+    ) {
+      bestPerStation.set(entrance.stationId, entrance);
+    }
+  }
+
+  return [...bestPerStation.values()]
+    .sort((a, b) => a.distanceMeters - b.distanceMeters || a.id.localeCompare(b.id))
+    .slice(0, limit);
+}

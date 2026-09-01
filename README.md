@@ -1,4 +1,4 @@
-# PrahaMetro.cz — MVP
+# KdeJeMetro.cz — MVP
 
 Mobilní utilita: jedním klepnutím zjisti 2–3 nejbližší konkrétní vstupy do
 pražského metra a spusť k nim pěší navigaci v Google/Apple Maps. Plus
@@ -15,6 +15,15 @@ a jedna nenápadná reklamní pozice (zatím jen placeholder).
 - V development režimu jde vyzkoušet bez GPS přes tři demo polohy
   (Václavské náměstí, Anděl, Hlavní nádraží) — v produkčním buildu se
   tahle sekce vůbec nevyrenderuje.
+- Čeština/angličtina — přepínač v hlavičce, volba se ukládá do
+  `localStorage`, výchozí jazyk se odvodí z prohlížeče při první
+  návštěvě (`lib/i18n/`).
+- Volitelný "18+" humorný textový režim, který mění jen hlavní hlášku
+  (žádný erotický obsah, žádná kontrola věku) — nezávislý na jazyce,
+  taky uložený v `localStorage`.
+- Když je uživatel dál než 25 km od nejbližšího vstupu, appka to
+  zřetelně označí a ukáže tři nejbližší RŮZNÉ stanice místo tří vstupů
+  jedné stanice poblíž.
 
 ## Co MVP záměrně NEumí
 
