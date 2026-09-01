@@ -1,0 +1,3987 @@
+{
+  "generatedAt": "2026-09-01T05:41:17.060Z",
+  "source": "https://data.pid.cz/PID_GTFS.zip",
+  "stationCount": 57,
+  "entranceCount": 329,
+  "entrances": [
+    {
+      "id": "U1040S1E1",
+      "stationId": "U1040S1",
+      "stationName": "Anděl",
+      "entranceLabel": "E1",
+      "lat": 50.06875,
+      "lon": 14.40336,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U1040S1E2",
+      "stationId": "U1040S1",
+      "stationName": "Anděl",
+      "entranceLabel": "E2",
+      "lat": 50.06822,
+      "lon": 14.40331,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U1040S1E3",
+      "stationId": "U1040S1",
+      "stationName": "Anděl",
+      "entranceLabel": "E3",
+      "lat": 50.06836,
+      "lon": 14.40419,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U1040S1E4",
+      "stationId": "U1040S1",
+      "stationName": "Anděl",
+      "entranceLabel": "E4",
+      "lat": 50.068546,
+      "lon": 14.404131,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U1040S1E5",
+      "stationId": "U1040S1",
+      "stationName": "Anděl",
+      "entranceLabel": "E5",
+      "lat": 50.06866,
+      "lon": 14.404088,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U1040S1E6",
+      "stationId": "U1040S1",
+      "stationName": "Anděl",
+      "entranceLabel": "E6",
+      "lat": 50.07049,
+      "lon": 14.40466,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U1040S1E7",
+      "stationId": "U1040S1",
+      "stationName": "Anděl",
+      "entranceLabel": "E7",
+      "lat": 50.071244,
+      "lon": 14.403917,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U157S1E5",
+      "stationId": "U157S1",
+      "stationName": "Bořislavka",
+      "entranceLabel": "E1",
+      "lat": 50.09838,
+      "lon": 14.36456,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U157S1E6",
+      "stationId": "U157S1",
+      "stationName": "Bořislavka",
+      "entranceLabel": "E2",
+      "lat": 50.09815,
+      "lon": 14.36476,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U157S1E8",
+      "stationId": "U157S1",
+      "stationName": "Bořislavka",
+      "entranceLabel": "E3",
+      "lat": 50.09873,
+      "lon": 14.36452,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U157S1E9",
+      "stationId": "U157S1",
+      "stationName": "Bořislavka",
+      "entranceLabel": "E4",
+      "lat": 50.09863,
+      "lon": 14.36452,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U157S1E10",
+      "stationId": "U157S1",
+      "stationName": "Bořislavka",
+      "entranceLabel": "E5",
+      "lat": 50.09854,
+      "lon": 14.36439,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U157S1E1",
+      "stationId": "U157S1",
+      "stationName": "Bořislavka",
+      "entranceLabel": "E6",
+      "lat": 50.098551,
+      "lon": 14.362198,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U157S1E11",
+      "stationId": "U157S1",
+      "stationName": "Bořislavka",
+      "entranceLabel": "E6",
+      "lat": 50.09853,
+      "lon": 14.36201,
+      "wheelchair": "yes",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U157S1E4",
+      "stationId": "U157S1",
+      "stationName": "Bořislavka",
+      "entranceLabel": "E7",
+      "lat": 50.098189,
+      "lon": 14.362189,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U157S1E12",
+      "stationId": "U157S1",
+      "stationName": "Bořislavka",
+      "entranceLabel": "E8",
+      "lat": 50.098211,
+      "lon": 14.362313,
+      "wheelchair": "yes",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U157S1E3",
+      "stationId": "U157S1",
+      "stationName": "Bořislavka",
+      "entranceLabel": "E8",
+      "lat": 50.0982,
+      "lon": 14.3621,
+      "wheelchair": "yes",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U50S1E3",
+      "stationId": "U50S1",
+      "stationName": "Budějovická",
+      "entranceLabel": "(-)",
+      "lat": 50.04367,
+      "lon": 14.45086,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U50S1E7",
+      "stationId": "U50S1",
+      "stationName": "Budějovická",
+      "entranceLabel": "(BUS Brumlovka)",
+      "lat": 50.04449,
+      "lon": 14.44808,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U50S1E6",
+      "stationId": "U50S1",
+      "stationName": "Budějovická",
+      "entranceLabel": "(BUS Dvorce)",
+      "lat": 50.04476,
+      "lon": 14.44763,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U50S1E1",
+      "stationId": "U50S1",
+      "stationName": "Budějovická",
+      "entranceLabel": "(BUS Pankrác)",
+      "lat": 50.043388,
+      "lon": 14.449824,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U50S1E2",
+      "stationId": "U50S1",
+      "stationName": "Budějovická",
+      "entranceLabel": "(IKEM)",
+      "lat": 50.04319,
+      "lon": 14.45014,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U50S1E11",
+      "stationId": "U50S1",
+      "stationName": "Budějovická",
+      "entranceLabel": "(Lidl)",
+      "lat": 50.04458,
+      "lon": 14.449,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U50S1E5",
+      "stationId": "U50S1",
+      "stationName": "Budějovická",
+      "entranceLabel": "(Pacovská ul.)",
+      "lat": 50.04505,
+      "lon": 14.44777,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U897S1E1",
+      "stationId": "U897S1",
+      "stationName": "Černý Most",
+      "entranceLabel": "(Výtah/Lift)",
+      "lat": 50.108928,
+      "lon": 14.577621,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U897S1E12",
+      "stationId": "U897S1",
+      "stationName": "Černý Most",
+      "entranceLabel": "E1",
+      "lat": 50.108907,
+      "lon": 14.57762,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U897S1E13",
+      "stationId": "U897S1",
+      "stationName": "Černý Most",
+      "entranceLabel": "E1",
+      "lat": 50.108871,
+      "lon": 14.577333,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U897S1E14",
+      "stationId": "U897S1",
+      "stationName": "Černý Most",
+      "entranceLabel": "E1",
+      "lat": 50.108764,
+      "lon": 14.576519,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U897S1E2",
+      "stationId": "U897S1",
+      "stationName": "Černý Most",
+      "entranceLabel": "E2",
+      "lat": 50.109168,
+      "lon": 14.577557,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U897S1E21",
+      "stationId": "U897S1",
+      "stationName": "Černý Most",
+      "entranceLabel": "E2",
+      "lat": 50.109165,
+      "lon": 14.577532,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U897S1E22",
+      "stationId": "U897S1",
+      "stationName": "Černý Most",
+      "entranceLabel": "E2",
+      "lat": 50.109089,
+      "lon": 14.576845,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U897S1E23",
+      "stationId": "U897S1",
+      "stationName": "Černý Most",
+      "entranceLabel": "E2",
+      "lat": 50.10901,
+      "lon": 14.57626,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U510S1E1",
+      "stationId": "U510S1",
+      "stationName": "Českomoravská",
+      "entranceLabel": "E1",
+      "lat": 50.1064,
+      "lon": 14.49299,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U510S1E2",
+      "stationId": "U510S1",
+      "stationName": "Českomoravská",
+      "entranceLabel": "E2",
+      "lat": 50.10658,
+      "lon": 14.49296,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U510S1E3",
+      "stationId": "U510S1",
+      "stationName": "Českomoravská",
+      "entranceLabel": "E3",
+      "lat": 50.106605,
+      "lon": 14.492792,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U321S1E1",
+      "stationId": "U321S1",
+      "stationName": "Dejvická",
+      "entranceLabel": "E1",
+      "lat": 50.100638,
+      "lon": 14.392804,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U321S1E11",
+      "stationId": "U321S1",
+      "stationName": "Dejvická",
+      "entranceLabel": "E1",
+      "lat": 50.100666,
+      "lon": 14.393166,
+      "wheelchair": "yes",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U321S1E2",
+      "stationId": "U321S1",
+      "stationName": "Dejvická",
+      "entranceLabel": "E2",
+      "lat": 50.100702,
+      "lon": 14.392008,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U321S1E3",
+      "stationId": "U321S1",
+      "stationName": "Dejvická",
+      "entranceLabel": "E3",
+      "lat": 50.100416,
+      "lon": 14.391527,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U321S1E4",
+      "stationId": "U321S1",
+      "stationName": "Dejvická",
+      "entranceLabel": "E4",
+      "lat": 50.100332,
+      "lon": 14.391528,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U321S1E5",
+      "stationId": "U321S1",
+      "stationName": "Dejvická",
+      "entranceLabel": "E5",
+      "lat": 50.100215,
+      "lon": 14.391653,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U321S1E51",
+      "stationId": "U321S1",
+      "stationName": "Dejvická",
+      "entranceLabel": "E5",
+      "lat": 50.100166,
+      "lon": 14.392,
+      "wheelchair": "yes",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U321S1E6",
+      "stationId": "U321S1",
+      "stationName": "Dejvická",
+      "entranceLabel": "E6",
+      "lat": 50.100247,
+      "lon": 14.394752,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U321S1E7",
+      "stationId": "U321S1",
+      "stationName": "Dejvická",
+      "entranceLabel": "E7",
+      "lat": 50.100832,
+      "lon": 14.394194,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U1071S1E1",
+      "stationId": "U1071S1",
+      "stationName": "Depo Hostivař",
+      "entranceLabel": "E1",
+      "lat": 50.07572,
+      "lon": 14.51544,
+      "wheelchair": "yes",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U689S1E201",
+      "stationId": "U689S1",
+      "stationName": "Florenc",
+      "entranceLabel": "E1 (B)",
+      "lat": 50.09119,
+      "lon": 14.43947,
+      "wheelchair": "no",
+      "lines": [
+        "B",
+        "C"
+      ]
+    },
+    {
+      "id": "U689S1E301",
+      "stationId": "U689S1",
+      "stationName": "Florenc",
+      "entranceLabel": "E1 (C)",
+      "lat": 50.09108,
+      "lon": 14.43967,
+      "wheelchair": "no",
+      "lines": [
+        "B",
+        "C"
+      ]
+    },
+    {
+      "id": "U689S1E202",
+      "stationId": "U689S1",
+      "stationName": "Florenc",
+      "entranceLabel": "E2 (B)",
+      "lat": 50.09036,
+      "lon": 14.43739,
+      "wheelchair": "yes",
+      "lines": [
+        "B",
+        "C"
+      ]
+    },
+    {
+      "id": "U689S1E302",
+      "stationId": "U689S1",
+      "stationName": "Florenc",
+      "entranceLabel": "E2 (C)",
+      "lat": 50.08959,
+      "lon": 14.4394,
+      "wheelchair": "no",
+      "lines": [
+        "B",
+        "C"
+      ]
+    },
+    {
+      "id": "U689S1E303",
+      "stationId": "U689S1",
+      "stationName": "Florenc",
+      "entranceLabel": "E3",
+      "lat": 50.08987,
+      "lon": 14.43955,
+      "wheelchair": "no",
+      "lines": [
+        "B",
+        "C"
+      ]
+    },
+    {
+      "id": "U689S1E306",
+      "stationId": "U689S1",
+      "stationName": "Florenc",
+      "entranceLabel": "E6",
+      "lat": 50.08964,
+      "lon": 14.4385,
+      "wheelchair": "no",
+      "lines": [
+        "B",
+        "C"
+      ]
+    },
+    {
+      "id": "U286S1E1",
+      "stationId": "U286S1",
+      "stationName": "Háje",
+      "entranceLabel": "E1",
+      "lat": 50.031004,
+      "lon": 14.528674,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U286S1E11",
+      "stationId": "U286S1",
+      "stationName": "Háje",
+      "entranceLabel": "E1",
+      "lat": 50.031082,
+      "lon": 14.528528,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U286S1E2",
+      "stationId": "U286S1",
+      "stationName": "Háje",
+      "entranceLabel": "E2",
+      "lat": 50.030504,
+      "lon": 14.526213,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U286S1E3",
+      "stationId": "U286S1",
+      "stationName": "Háje",
+      "entranceLabel": "E3",
+      "lat": 50.030544,
+      "lon": 14.526713,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U142S1E221",
+      "stationId": "U142S1",
+      "stationName": "Hlavní nádraží",
+      "entranceLabel": "(-)",
+      "lat": 50.083836,
+      "lon": 14.434482,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U142S1E222",
+      "stationId": "U142S1",
+      "stationName": "Hlavní nádraží",
+      "entranceLabel": "(-)",
+      "lat": 50.083899,
+      "lon": 14.434271,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U142S1E311",
+      "stationId": "U142S1",
+      "stationName": "Hlavní nádraží",
+      "entranceLabel": "(-)",
+      "lat": 50.08316,
+      "lon": 14.433989,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U142S1E312",
+      "stationId": "U142S1",
+      "stationName": "Hlavní nádraží",
+      "entranceLabel": "(-)",
+      "lat": 50.083222,
+      "lon": 14.433798,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U142S1E111",
+      "stationId": "U142S1",
+      "stationName": "Hlavní nádraží",
+      "entranceLabel": "E1",
+      "lat": 50.083893,
+      "lon": 14.434489,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U142S1E112",
+      "stationId": "U142S1",
+      "stationName": "Hlavní nádraží",
+      "entranceLabel": "E1",
+      "lat": 50.083938,
+      "lon": 14.434347,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U142S1E211",
+      "stationId": "U142S1",
+      "stationName": "Hlavní nádraží",
+      "entranceLabel": "E2",
+      "lat": 50.083689,
+      "lon": 14.434445,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U142S1E212",
+      "stationId": "U142S1",
+      "stationName": "Hlavní nádraží",
+      "entranceLabel": "E2",
+      "lat": 50.083795,
+      "lon": 14.434138,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U142S1E321",
+      "stationId": "U142S1",
+      "stationName": "Hlavní nádraží",
+      "entranceLabel": "E3",
+      "lat": 50.083273,
+      "lon": 14.434141,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U142S1E322",
+      "stationId": "U142S1",
+      "stationName": "Hlavní nádraží",
+      "entranceLabel": "E3",
+      "lat": 50.083368,
+      "lon": 14.433833,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U135S1E1",
+      "stationId": "U135S1",
+      "stationName": "Hloubětín",
+      "entranceLabel": "E1",
+      "lat": 50.10642,
+      "lon": 14.53724,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U135S1E11",
+      "stationId": "U135S1",
+      "stationName": "Hloubětín",
+      "entranceLabel": "E1",
+      "lat": 50.10645,
+      "lon": 14.53793,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U135S1E2",
+      "stationId": "U135S1",
+      "stationName": "Hloubětín",
+      "entranceLabel": "E2",
+      "lat": 50.10624,
+      "lon": 14.53757,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U135S1E3",
+      "stationId": "U135S1",
+      "stationName": "Hloubětín",
+      "entranceLabel": "E3",
+      "lat": 50.10617,
+      "lon": 14.53761,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U135S1E4",
+      "stationId": "U135S1",
+      "stationName": "Hloubětín",
+      "entranceLabel": "E4",
+      "lat": 50.106,
+      "lon": 14.53742,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U135S1E41",
+      "stationId": "U135S1",
+      "stationName": "Hloubětín",
+      "entranceLabel": "E4",
+      "lat": 50.106,
+      "lon": 14.53778,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U135S1E5",
+      "stationId": "U135S1",
+      "stationName": "Hloubětín",
+      "entranceLabel": "E5",
+      "lat": 50.10669,
+      "lon": 14.53767,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U163S1E5",
+      "stationId": "U163S1",
+      "stationName": "Hradčanská",
+      "entranceLabel": "(Dálková doprava)",
+      "lat": 50.0974,
+      "lon": 14.40396,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U163S1E6",
+      "stationId": "U163S1",
+      "stationName": "Hradčanská",
+      "entranceLabel": "(Letná)",
+      "lat": 50.09751,
+      "lon": 14.40455,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U163S1E8",
+      "stationId": "U163S1",
+      "stationName": "Hradčanská",
+      "entranceLabel": "(Praha-Dejvice)",
+      "lat": 50.09785,
+      "lon": 14.40411,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U163S1E1",
+      "stationId": "U163S1",
+      "stationName": "Hradčanská",
+      "entranceLabel": "(Pražský hrad)",
+      "lat": 50.097,
+      "lon": 14.40442,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U163S1E3",
+      "stationId": "U163S1",
+      "stationName": "Hradčanská",
+      "entranceLabel": "(TRAM Holešovice)",
+      "lat": 50.09712,
+      "lon": 14.40412,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U163S1E4",
+      "stationId": "U163S1",
+      "stationName": "Hradčanská",
+      "entranceLabel": "(TRAM Petřiny)",
+      "lat": 50.09726,
+      "lon": 14.40406,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U163S1E2",
+      "stationId": "U163S1",
+      "stationName": "Hradčanská",
+      "entranceLabel": "(ul. Badeniho)",
+      "lat": 50.097153,
+      "lon": 14.405304,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U163S1E7",
+      "stationId": "U163S1",
+      "stationName": "Hradčanská",
+      "entranceLabel": "(Výtah/Lift)",
+      "lat": 50.0974,
+      "lon": 14.40418,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U1154S1E1",
+      "stationId": "U1154S1",
+      "stationName": "Hůrka",
+      "entranceLabel": "E1",
+      "lat": 50.049986,
+      "lon": 14.341804,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U1154S1E2",
+      "stationId": "U1154S1",
+      "stationName": "Hůrka",
+      "entranceLabel": "E2",
+      "lat": 50.049903,
+      "lon": 14.34149,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U1154S1E3",
+      "stationId": "U1154S1",
+      "stationName": "Hůrka",
+      "entranceLabel": "E3",
+      "lat": 50.049865,
+      "lon": 14.341902,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U52S1E12",
+      "stationId": "U52S1",
+      "stationName": "Chodov",
+      "entranceLabel": "(Obchodní centrum)",
+      "lat": 50.03084,
+      "lon": 14.49121,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U52S1E32",
+      "stationId": "U52S1",
+      "stationName": "Chodov",
+      "entranceLabel": "(Obchodní centrum)",
+      "lat": 50.03143,
+      "lon": 14.49195,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U52S1E31",
+      "stationId": "U52S1",
+      "stationName": "Chodov",
+      "entranceLabel": "(P+R)",
+      "lat": 50.03143,
+      "lon": 14.49202,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U52S1E1",
+      "stationId": "U52S1",
+      "stationName": "Chodov",
+      "entranceLabel": "E1",
+      "lat": 50.03097,
+      "lon": 14.49116,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U52S1E11",
+      "stationId": "U52S1",
+      "stationName": "Chodov",
+      "entranceLabel": "E1",
+      "lat": 50.03081,
+      "lon": 14.49128,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U52S1E2",
+      "stationId": "U52S1",
+      "stationName": "Chodov",
+      "entranceLabel": "E2",
+      "lat": 50.031,
+      "lon": 14.49175,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U52S1E21",
+      "stationId": "U52S1",
+      "stationName": "Chodov",
+      "entranceLabel": "E2",
+      "lat": 50.03106,
+      "lon": 14.49188,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U52S1E3",
+      "stationId": "U52S1",
+      "stationName": "Chodov",
+      "entranceLabel": "E3",
+      "lat": 50.031254,
+      "lon": 14.492256,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U190S1E1",
+      "stationId": "U190S1",
+      "stationName": "I. P. Pavlova",
+      "entranceLabel": "E1",
+      "lat": 50.07534,
+      "lon": 14.430447,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U190S1E2",
+      "stationId": "U190S1",
+      "stationName": "I. P. Pavlova",
+      "entranceLabel": "E2",
+      "lat": 50.07547,
+      "lon": 14.43058,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U190S1E3",
+      "stationId": "U190S1",
+      "stationName": "I. P. Pavlova",
+      "entranceLabel": "E3",
+      "lat": 50.075589,
+      "lon": 14.43052,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U190S1E4",
+      "stationId": "U190S1",
+      "stationName": "I. P. Pavlova",
+      "entranceLabel": "E4",
+      "lat": 50.07536,
+      "lon": 14.42992,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U190S1E5",
+      "stationId": "U190S1",
+      "stationName": "I. P. Pavlova",
+      "entranceLabel": "E5",
+      "lat": 50.074171,
+      "lon": 14.430512,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U655S1E1",
+      "stationId": "U655S1",
+      "stationName": "Invalidovna",
+      "entranceLabel": "E1",
+      "lat": 50.09729,
+      "lon": 14.46453,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U685S1E1",
+      "stationId": "U685S1",
+      "stationName": "Jinonice",
+      "entranceLabel": "E1",
+      "lat": 50.054443,
+      "lon": 14.371025,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U685S1E2",
+      "stationId": "U685S1",
+      "stationName": "Jinonice",
+      "entranceLabel": "E2",
+      "lat": 50.054541,
+      "lon": 14.371048,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U209S1E1",
+      "stationId": "U209S1",
+      "stationName": "Jiřího z Poděbrad",
+      "entranceLabel": "E1",
+      "lat": 50.07767,
+      "lon": 14.44897,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U209S1E2",
+      "stationId": "U209S1",
+      "stationName": "Jiřího z Poděbrad",
+      "entranceLabel": "E2",
+      "lat": 50.077239,
+      "lon": 14.448579,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U209S1E3",
+      "stationId": "U209S1",
+      "stationName": "Jiřího z Poděbrad",
+      "entranceLabel": "E3",
+      "lat": 50.077,
+      "lon": 14.44883,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U209S1E4",
+      "stationId": "U209S1",
+      "stationName": "Jiřího z Poděbrad",
+      "entranceLabel": "E4",
+      "lat": 50.07708,
+      "lon": 14.44925,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U209S1E5",
+      "stationId": "U209S1",
+      "stationName": "Jiřího z Poděbrad",
+      "entranceLabel": "E5",
+      "lat": 50.07728,
+      "lon": 14.4495,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U209S1E6",
+      "stationId": "U209S1",
+      "stationName": "Jiřího z Poděbrad",
+      "entranceLabel": "E6",
+      "lat": 50.077457,
+      "lon": 14.451002,
+      "wheelchair": "yes",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U228S1E4",
+      "stationId": "U228S1",
+      "stationName": "Kačerov",
+      "entranceLabel": "(-)",
+      "lat": 50.041913,
+      "lon": 14.460334,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U228S1E1",
+      "stationId": "U228S1",
+      "stationName": "Kačerov",
+      "entranceLabel": "E1",
+      "lat": 50.041802,
+      "lon": 14.46053,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U228S1E2",
+      "stationId": "U228S1",
+      "stationName": "Kačerov",
+      "entranceLabel": "E2",
+      "lat": 50.041884,
+      "lon": 14.460603,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U228S1E3",
+      "stationId": "U228S1",
+      "stationName": "Kačerov",
+      "entranceLabel": "E3",
+      "lat": 50.041931,
+      "lon": 14.46045,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U237S1E1",
+      "stationId": "U237S1",
+      "stationName": "Karlovo náměstí",
+      "entranceLabel": "E1",
+      "lat": 50.07525,
+      "lon": 14.41877,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U237S1E10",
+      "stationId": "U237S1",
+      "stationName": "Karlovo náměstí",
+      "entranceLabel": "E10",
+      "lat": 50.074585,
+      "lon": 14.417652,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U237S1E2",
+      "stationId": "U237S1",
+      "stationName": "Karlovo náměstí",
+      "entranceLabel": "E2",
+      "lat": 50.07547,
+      "lon": 14.41921,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U237S1E3",
+      "stationId": "U237S1",
+      "stationName": "Karlovo náměstí",
+      "entranceLabel": "E3",
+      "lat": 50.07603,
+      "lon": 14.41953,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U237S1E4",
+      "stationId": "U237S1",
+      "stationName": "Karlovo náměstí",
+      "entranceLabel": "E4",
+      "lat": 50.07604,
+      "lon": 14.41895,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U237S1E5",
+      "stationId": "U237S1",
+      "stationName": "Karlovo náměstí",
+      "entranceLabel": "E5",
+      "lat": 50.07571,
+      "lon": 14.41841,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U237S1E6",
+      "stationId": "U237S1",
+      "stationName": "Karlovo náměstí",
+      "entranceLabel": "E6",
+      "lat": 50.07375,
+      "lon": 14.4152,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U237S1E7",
+      "stationId": "U237S1",
+      "stationName": "Karlovo náměstí",
+      "entranceLabel": "E7",
+      "lat": 50.07333,
+      "lon": 14.41456,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U237S1E8",
+      "stationId": "U237S1",
+      "stationName": "Karlovo náměstí",
+      "entranceLabel": "E8",
+      "lat": 50.07317,
+      "lon": 14.41456,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U237S1E9",
+      "stationId": "U237S1",
+      "stationName": "Karlovo náměstí",
+      "entranceLabel": "E9",
+      "lat": 50.07269,
+      "lon": 14.41514,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U675S1E1",
+      "stationId": "U675S1",
+      "stationName": "Kobylisy",
+      "entranceLabel": "E1",
+      "lat": 50.12411,
+      "lon": 14.452555,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U675S1E2",
+      "stationId": "U675S1",
+      "stationName": "Kobylisy",
+      "entranceLabel": "E2",
+      "lat": 50.12411,
+      "lon": 14.451778,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U675S1E3",
+      "stationId": "U675S1",
+      "stationName": "Kobylisy",
+      "entranceLabel": "E3",
+      "lat": 50.123277,
+      "lon": 14.452305,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U675S1E4",
+      "stationId": "U675S1",
+      "stationName": "Kobylisy",
+      "entranceLabel": "E4",
+      "lat": 50.123443,
+      "lon": 14.452861,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U675S1E5",
+      "stationId": "U675S1",
+      "stationName": "Kobylisy",
+      "entranceLabel": "E5",
+      "lat": 50.123693,
+      "lon": 14.452861,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U675S1E6",
+      "stationId": "U675S1",
+      "stationName": "Kobylisy",
+      "entranceLabel": "E6",
+      "lat": 50.1246,
+      "lon": 14.456088,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U675S1E7",
+      "stationId": "U675S1",
+      "stationName": "Kobylisy",
+      "entranceLabel": "E7",
+      "lat": 50.124662,
+      "lon": 14.455785,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U675S1E8",
+      "stationId": "U675S1",
+      "stationName": "Kobylisy",
+      "entranceLabel": "E8",
+      "lat": 50.125138,
+      "lon": 14.456222,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U675S1E81",
+      "stationId": "U675S1",
+      "stationName": "Kobylisy",
+      "entranceLabel": "E8",
+      "lat": 50.124971,
+      "lon": 14.455694,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U675S1E9",
+      "stationId": "U675S1",
+      "stationName": "Kobylisy",
+      "entranceLabel": "E9",
+      "lat": 50.124416,
+      "lon": 14.455111,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U75S1E1",
+      "stationId": "U75S1",
+      "stationName": "Kolbenova",
+      "entranceLabel": "E1",
+      "lat": 50.11043,
+      "lon": 14.515215,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U758S1E1",
+      "stationId": "U758S1",
+      "stationName": "Křižíkova",
+      "entranceLabel": "E1",
+      "lat": 50.09358,
+      "lon": 14.45178,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U758S1E2",
+      "stationId": "U758S1",
+      "stationName": "Křižíkova",
+      "entranceLabel": "E2",
+      "lat": 50.09366,
+      "lon": 14.45174,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U758S1E3",
+      "stationId": "U758S1",
+      "stationName": "Křižíkova",
+      "entranceLabel": "E3",
+      "lat": 50.09363,
+      "lon": 14.45158,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U78S1E1",
+      "stationId": "U78S1",
+      "stationName": "Ládví",
+      "entranceLabel": "E1",
+      "lat": 50.12619,
+      "lon": 14.46947,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U78S1E2",
+      "stationId": "U78S1",
+      "stationName": "Ládví",
+      "entranceLabel": "E2",
+      "lat": 50.12625,
+      "lon": 14.47033,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U78S1E3",
+      "stationId": "U78S1",
+      "stationName": "Ládví",
+      "entranceLabel": "E3",
+      "lat": 50.12639,
+      "lon": 14.47003,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U78S1E4",
+      "stationId": "U78S1",
+      "stationName": "Ládví",
+      "entranceLabel": "E4",
+      "lat": 50.12647,
+      "lon": 14.47003,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U78S1E6",
+      "stationId": "U78S1",
+      "stationName": "Ládví",
+      "entranceLabel": "E5",
+      "lat": 50.12664,
+      "lon": 14.47022,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U78S1E7",
+      "stationId": "U78S1",
+      "stationName": "Ládví",
+      "entranceLabel": "E6",
+      "lat": 50.126782,
+      "lon": 14.469731,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U78S1E8",
+      "stationId": "U78S1",
+      "stationName": "Ládví",
+      "entranceLabel": "E7",
+      "lat": 50.12661,
+      "lon": 14.46883,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U78S1E5",
+      "stationId": "U78S1",
+      "stationName": "Ládví",
+      "entranceLabel": "E8",
+      "lat": 50.126662,
+      "lon": 14.469894,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U1000S1E1",
+      "stationId": "U1000S1",
+      "stationName": "Letňany",
+      "entranceLabel": "E1",
+      "lat": 50.12486,
+      "lon": 14.51636,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U1000S1E2",
+      "stationId": "U1000S1",
+      "stationName": "Letňany",
+      "entranceLabel": "E2",
+      "lat": 50.12481,
+      "lon": 14.51678,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U1000S1E3",
+      "stationId": "U1000S1",
+      "stationName": "Letňany",
+      "entranceLabel": "E3",
+      "lat": 50.1252,
+      "lon": 14.51687,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U1000S1E4",
+      "stationId": "U1000S1",
+      "stationName": "Letňany",
+      "entranceLabel": "E4",
+      "lat": 50.12531,
+      "lon": 14.51631,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U1000S1E5",
+      "stationId": "U1000S1",
+      "stationName": "Letňany",
+      "entranceLabel": "E5",
+      "lat": 50.12571,
+      "lon": 14.51567,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U1000S1E6",
+      "stationId": "U1000S1",
+      "stationName": "Letňany",
+      "entranceLabel": "E6",
+      "lat": 50.12537,
+      "lon": 14.51577,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U1000S1E7",
+      "stationId": "U1000S1",
+      "stationName": "Letňany",
+      "entranceLabel": "E7",
+      "lat": 50.12516,
+      "lon": 14.51561,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U1000S1E8",
+      "stationId": "U1000S1",
+      "stationName": "Letňany",
+      "entranceLabel": "E8",
+      "lat": 50.12495,
+      "lon": 14.51589,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U1007S1E21",
+      "stationId": "U1007S1",
+      "stationName": "Luka",
+      "entranceLabel": "(-)",
+      "lat": 50.044985,
+      "lon": 14.322784,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U1007S1E4",
+      "stationId": "U1007S1",
+      "stationName": "Luka",
+      "entranceLabel": "(Obchodní centrum)",
+      "lat": 50.045361,
+      "lon": 14.322364,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U1007S1E1",
+      "stationId": "U1007S1",
+      "stationName": "Luka",
+      "entranceLabel": "E1",
+      "lat": 50.04517,
+      "lon": 14.32214,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U1007S1E2",
+      "stationId": "U1007S1",
+      "stationName": "Luka",
+      "entranceLabel": "E2",
+      "lat": 50.045325,
+      "lon": 14.322382,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U1007S1E3",
+      "stationId": "U1007S1",
+      "stationName": "Luka",
+      "entranceLabel": "E3",
+      "lat": 50.045362,
+      "lon": 14.322303,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U258S1E3",
+      "stationId": "U258S1",
+      "stationName": "Lužiny",
+      "entranceLabel": "(Výtah/Lift)",
+      "lat": 50.04458,
+      "lon": 14.33161,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U258S1E1",
+      "stationId": "U258S1",
+      "stationName": "Lužiny",
+      "entranceLabel": "E1",
+      "lat": 50.04453,
+      "lon": 14.33161,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U258S1E2",
+      "stationId": "U258S1",
+      "stationName": "Lužiny",
+      "entranceLabel": "E2",
+      "lat": 50.04469,
+      "lon": 14.33156,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U360S1E1",
+      "stationId": "U360S1",
+      "stationName": "Malostranská",
+      "entranceLabel": "E1",
+      "lat": 50.090805,
+      "lon": 14.409396,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U1072S1E1",
+      "stationId": "U1072S1",
+      "stationName": "Můstek",
+      "entranceLabel": "E1",
+      "lat": 50.08359,
+      "lon": 14.4241,
+      "wheelchair": "yes",
+      "lines": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "U1072S1E110",
+      "stationId": "U1072S1",
+      "stationName": "Můstek",
+      "entranceLabel": "E10",
+      "lat": 50.082024,
+      "lon": 14.425614,
+      "wheelchair": "no",
+      "lines": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "U1072S1E111",
+      "stationId": "U1072S1",
+      "stationName": "Můstek",
+      "entranceLabel": "E11",
+      "lat": 50.08189,
+      "lon": 14.42577,
+      "wheelchair": "no",
+      "lines": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "U1072S1E112",
+      "stationId": "U1072S1",
+      "stationName": "Můstek",
+      "entranceLabel": "E12",
+      "lat": 50.08196,
+      "lon": 14.42622,
+      "wheelchair": "no",
+      "lines": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "U1072S1E113",
+      "stationId": "U1072S1",
+      "stationName": "Můstek",
+      "entranceLabel": "E13",
+      "lat": 50.08208,
+      "lon": 14.42642,
+      "wheelchair": "no",
+      "lines": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "U1072S1E114",
+      "stationId": "U1072S1",
+      "stationName": "Můstek",
+      "entranceLabel": "E14",
+      "lat": 50.08214,
+      "lon": 14.4265,
+      "wheelchair": "no",
+      "lines": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "U1072S1E115",
+      "stationId": "U1072S1",
+      "stationName": "Můstek",
+      "entranceLabel": "E15",
+      "lat": 50.08235,
+      "lon": 14.42656,
+      "wheelchair": "no",
+      "lines": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "U1072S1E116",
+      "stationId": "U1072S1",
+      "stationName": "Můstek",
+      "entranceLabel": "E16",
+      "lat": 50.08267,
+      "lon": 14.42661,
+      "wheelchair": "no",
+      "lines": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "U1072S1E117",
+      "stationId": "U1072S1",
+      "stationName": "Můstek",
+      "entranceLabel": "E17",
+      "lat": 50.08287,
+      "lon": 14.42655,
+      "wheelchair": "no",
+      "lines": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "U1072S1E102",
+      "stationId": "U1072S1",
+      "stationName": "Můstek",
+      "entranceLabel": "E2 (A)",
+      "lat": 50.08388,
+      "lon": 14.42284,
+      "wheelchair": "no",
+      "lines": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "U1072S1E103",
+      "stationId": "U1072S1",
+      "stationName": "Můstek",
+      "entranceLabel": "E3 (A)",
+      "lat": 50.08381,
+      "lon": 14.42303,
+      "wheelchair": "no",
+      "lines": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "U1072S1E203",
+      "stationId": "U1072S1",
+      "stationName": "Můstek",
+      "entranceLabel": "E3 (B)",
+      "lat": 50.08284,
+      "lon": 14.42173,
+      "wheelchair": "no",
+      "lines": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "U1072S1E104",
+      "stationId": "U1072S1",
+      "stationName": "Můstek",
+      "entranceLabel": "E4 (A)",
+      "lat": 50.08382,
+      "lon": 14.42366,
+      "wheelchair": "no",
+      "lines": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "U1072S1E204",
+      "stationId": "U1072S1",
+      "stationName": "Můstek",
+      "entranceLabel": "E4 (B)",
+      "lat": 50.08304,
+      "lon": 14.42244,
+      "wheelchair": "no",
+      "lines": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "U1072S1E107",
+      "stationId": "U1072S1",
+      "stationName": "Můstek",
+      "entranceLabel": "E7",
+      "lat": 50.084596,
+      "lon": 14.423859,
+      "wheelchair": "no",
+      "lines": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "U1072S1E108",
+      "stationId": "U1072S1",
+      "stationName": "Můstek",
+      "entranceLabel": "E8",
+      "lat": 50.084569,
+      "lon": 14.423227,
+      "wheelchair": "no",
+      "lines": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "U1072S1E1081",
+      "stationId": "U1072S1",
+      "stationName": "Můstek",
+      "entranceLabel": "E8",
+      "lat": 50.084473,
+      "lon": 14.423133,
+      "wheelchair": "no",
+      "lines": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "U1072S1E109",
+      "stationId": "U1072S1",
+      "stationName": "Můstek",
+      "entranceLabel": "E9",
+      "lat": 50.082426,
+      "lon": 14.425616,
+      "wheelchair": "no",
+      "lines": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "U400S1E1",
+      "stationId": "U400S1",
+      "stationName": "Muzeum",
+      "entranceLabel": "E1",
+      "lat": 50.07987,
+      "lon": 14.43001,
+      "wheelchair": "no",
+      "lines": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "id": "U400S1E4",
+      "stationId": "U400S1",
+      "stationName": "Muzeum",
+      "entranceLabel": "E2",
+      "lat": 50.07952,
+      "lon": 14.42957,
+      "wheelchair": "no",
+      "lines": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "id": "U400S1E5",
+      "stationId": "U400S1",
+      "stationName": "Muzeum",
+      "entranceLabel": "E3",
+      "lat": 50.07865,
+      "lon": 14.42996,
+      "wheelchair": "no",
+      "lines": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "id": "U400S1E6",
+      "stationId": "U400S1",
+      "stationName": "Muzeum",
+      "entranceLabel": "E4",
+      "lat": 50.07939,
+      "lon": 14.43135,
+      "wheelchair": "no",
+      "lines": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "id": "U400S1E7",
+      "stationId": "U400S1",
+      "stationName": "Muzeum",
+      "entranceLabel": "E5",
+      "lat": 50.07978,
+      "lon": 14.43151,
+      "wheelchair": "no",
+      "lines": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "id": "U400S1E308",
+      "stationId": "U400S1",
+      "stationName": "Muzeum",
+      "entranceLabel": "E6",
+      "lat": 50.08064,
+      "lon": 14.43156,
+      "wheelchair": "yes",
+      "lines": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "id": "U400S1E108",
+      "stationId": "U400S1",
+      "stationName": "Muzeum",
+      "entranceLabel": "E7",
+      "lat": 50.07923,
+      "lon": 14.43202,
+      "wheelchair": "yes",
+      "lines": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "id": "U115S1E1",
+      "stationId": "U115S1",
+      "stationName": "Nádraží Holešovice",
+      "entranceLabel": "E1",
+      "lat": 50.10831,
+      "lon": 14.44042,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U115S1E2",
+      "stationId": "U115S1",
+      "stationName": "Nádraží Holešovice",
+      "entranceLabel": "E2",
+      "lat": 50.10831,
+      "lon": 14.44064,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U115S1E3",
+      "stationId": "U115S1",
+      "stationName": "Nádraží Holešovice",
+      "entranceLabel": "E3",
+      "lat": 50.108409,
+      "lon": 14.440825,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U115S1E4",
+      "stationId": "U115S1",
+      "stationName": "Nádraží Holešovice",
+      "entranceLabel": "E4",
+      "lat": 50.10972,
+      "lon": 14.44047,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U115S1E5",
+      "stationId": "U115S1",
+      "stationName": "Nádraží Holešovice",
+      "entranceLabel": "E5",
+      "lat": 50.109781,
+      "lon": 14.439916,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U115S1E6",
+      "stationId": "U115S1",
+      "stationName": "Nádraží Holešovice",
+      "entranceLabel": "E6",
+      "lat": 50.10964,
+      "lon": 14.43931,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U462S1E2",
+      "stationId": "U462S1",
+      "stationName": "Nádraží Veleslavín",
+      "entranceLabel": "E1",
+      "lat": 50.09614,
+      "lon": 14.34693,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U462S1E3",
+      "stationId": "U462S1",
+      "stationName": "Nádraží Veleslavín",
+      "entranceLabel": "E2",
+      "lat": 50.09598,
+      "lon": 14.34673,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U462S1E4",
+      "stationId": "U462S1",
+      "stationName": "Nádraží Veleslavín",
+      "entranceLabel": "E3",
+      "lat": 50.09585,
+      "lon": 14.34676,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U462S1E5",
+      "stationId": "U462S1",
+      "stationName": "Nádraží Veleslavín",
+      "entranceLabel": "E4",
+      "lat": 50.09563,
+      "lon": 14.34687,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U462S1E6",
+      "stationId": "U462S1",
+      "stationName": "Nádraží Veleslavín",
+      "entranceLabel": "E5",
+      "lat": 50.09536,
+      "lon": 14.34684,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U462S1E7",
+      "stationId": "U462S1",
+      "stationName": "Nádraží Veleslavín",
+      "entranceLabel": "E6",
+      "lat": 50.09568,
+      "lon": 14.3475,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U462S1E1",
+      "stationId": "U462S1",
+      "stationName": "Nádraží Veleslavín",
+      "entranceLabel": "E7",
+      "lat": 50.09563,
+      "lon": 14.34767,
+      "wheelchair": "yes",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U476S1E1",
+      "stationId": "U476S1",
+      "stationName": "Náměstí Míru",
+      "entranceLabel": "E1",
+      "lat": 50.07547,
+      "lon": 14.43789,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U476S1E2",
+      "stationId": "U476S1",
+      "stationName": "Náměstí Míru",
+      "entranceLabel": "E2",
+      "lat": 50.075101,
+      "lon": 14.437368,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U476S1E3",
+      "stationId": "U476S1",
+      "stationName": "Náměstí Míru",
+      "entranceLabel": "E3",
+      "lat": 50.07497,
+      "lon": 14.43767,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U476S1E4",
+      "stationId": "U476S1",
+      "stationName": "Náměstí Míru",
+      "entranceLabel": "E4",
+      "lat": 50.07519,
+      "lon": 14.43792,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U480S1E51",
+      "stationId": "U480S1",
+      "stationName": "Náměstí Republiky",
+      "entranceLabel": "(Obchodní centrum)",
+      "lat": 50.088431,
+      "lon": 14.428974,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U480S1E52",
+      "stationId": "U480S1",
+      "stationName": "Náměstí Republiky",
+      "entranceLabel": "(Obchodní centrum)",
+      "lat": 50.088427,
+      "lon": 14.428601,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U480S1E1",
+      "stationId": "U480S1",
+      "stationName": "Náměstí Republiky",
+      "entranceLabel": "E1",
+      "lat": 50.088185,
+      "lon": 14.432358,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U480S1E2",
+      "stationId": "U480S1",
+      "stationName": "Náměstí Republiky",
+      "entranceLabel": "E2",
+      "lat": 50.088227,
+      "lon": 14.432727,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U480S1E3",
+      "stationId": "U480S1",
+      "stationName": "Náměstí Republiky",
+      "entranceLabel": "E3",
+      "lat": 50.088666,
+      "lon": 14.433,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U480S1E4",
+      "stationId": "U480S1",
+      "stationName": "Náměstí Republiky",
+      "entranceLabel": "E4",
+      "lat": 50.088699,
+      "lon": 14.432331,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U480S1E5",
+      "stationId": "U480S1",
+      "stationName": "Náměstí Republiky",
+      "entranceLabel": "E5",
+      "lat": 50.08853,
+      "lon": 14.42881,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U480S1E6",
+      "stationId": "U480S1",
+      "stationName": "Náměstí Republiky",
+      "entranceLabel": "E6",
+      "lat": 50.088138,
+      "lon": 14.428163,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U480S1E7",
+      "stationId": "U480S1",
+      "stationName": "Náměstí Republiky",
+      "entranceLabel": "E7",
+      "lat": 50.088028,
+      "lon": 14.428805,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U539S1E3",
+      "stationId": "U539S1",
+      "stationName": "Národní třída",
+      "entranceLabel": "(Obchodní centrum)",
+      "lat": 50.08124,
+      "lon": 14.42,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U539S1E1",
+      "stationId": "U539S1",
+      "stationName": "Národní třída",
+      "entranceLabel": "E1",
+      "lat": 50.08121,
+      "lon": 14.4198,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U539S1E2",
+      "stationId": "U539S1",
+      "stationName": "Národní třída",
+      "entranceLabel": "E2",
+      "lat": 50.07944,
+      "lon": 14.420173,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U306S1E1",
+      "stationId": "U306S1",
+      "stationName": "Nemocnice Motol",
+      "entranceLabel": "E1",
+      "lat": 50.07465,
+      "lon": 14.33998,
+      "wheelchair": "yes",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U306S1E2",
+      "stationId": "U306S1",
+      "stationName": "Nemocnice Motol",
+      "entranceLabel": "E2",
+      "lat": 50.07445,
+      "lon": 14.34017,
+      "wheelchair": "yes",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U306S1E3",
+      "stationId": "U306S1",
+      "stationName": "Nemocnice Motol",
+      "entranceLabel": "E3",
+      "lat": 50.07446,
+      "lon": 14.3408,
+      "wheelchair": "yes",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U306S1E4",
+      "stationId": "U306S1",
+      "stationName": "Nemocnice Motol",
+      "entranceLabel": "E4",
+      "lat": 50.07483,
+      "lon": 14.34092,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U306S1E5",
+      "stationId": "U306S1",
+      "stationName": "Nemocnice Motol",
+      "entranceLabel": "E5",
+      "lat": 50.07497,
+      "lon": 14.34077,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U306S1E6",
+      "stationId": "U306S1",
+      "stationName": "Nemocnice Motol",
+      "entranceLabel": "E6",
+      "lat": 50.07507,
+      "lon": 14.34086,
+      "wheelchair": "yes",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U602S1E2",
+      "stationId": "U602S1",
+      "stationName": "Nové Butovice",
+      "entranceLabel": "(Nemocnice Motol)",
+      "lat": 50.05106,
+      "lon": 14.35328,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U602S1E8",
+      "stationId": "U602S1",
+      "stationName": "Nové Butovice",
+      "entranceLabel": "(ul. Petržílkova)",
+      "lat": 50.05086,
+      "lon": 14.351,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U602S1E10",
+      "stationId": "U602S1",
+      "stationName": "Nové Butovice",
+      "entranceLabel": "(ul. Seydlerova)",
+      "lat": 50.05064,
+      "lon": 14.35106,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U602S1E1",
+      "stationId": "U602S1",
+      "stationName": "Nové Butovice",
+      "entranceLabel": "(Velká - Malá Ohrada)",
+      "lat": 50.05081,
+      "lon": 14.35333,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U602S1E6",
+      "stationId": "U602S1",
+      "stationName": "Nové Butovice",
+      "entranceLabel": "(zájezdová doprava)",
+      "lat": 50.05083,
+      "lon": 14.35133,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U106S1E6",
+      "stationId": "U106S1",
+      "stationName": "Opatov",
+      "entranceLabel": "(Starochodovská ul.)",
+      "lat": 50.02767,
+      "lon": 14.50753,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U106S1E1",
+      "stationId": "U106S1",
+      "stationName": "Opatov",
+      "entranceLabel": "E1",
+      "lat": 50.02808,
+      "lon": 14.50828,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U106S1E2",
+      "stationId": "U106S1",
+      "stationName": "Opatov",
+      "entranceLabel": "E2",
+      "lat": 50.02803,
+      "lon": 14.507469,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U106S1E3",
+      "stationId": "U106S1",
+      "stationName": "Opatov",
+      "entranceLabel": "E3",
+      "lat": 50.02739,
+      "lon": 14.50747,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U106S1E4",
+      "stationId": "U106S1",
+      "stationName": "Opatov",
+      "entranceLabel": "E4",
+      "lat": 50.027494,
+      "lon": 14.508428,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U106S1E5",
+      "stationId": "U106S1",
+      "stationName": "Opatov",
+      "entranceLabel": "E5",
+      "lat": 50.02783,
+      "lon": 14.50841,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U529S1E1",
+      "stationId": "U529S1",
+      "stationName": "Palmovka",
+      "entranceLabel": "E1",
+      "lat": 50.10442,
+      "lon": 14.47656,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U529S1E2",
+      "stationId": "U529S1",
+      "stationName": "Palmovka",
+      "entranceLabel": "E2",
+      "lat": 50.104822,
+      "lon": 14.476122,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U529S1E3",
+      "stationId": "U529S1",
+      "stationName": "Palmovka",
+      "entranceLabel": "E3",
+      "lat": 50.10519,
+      "lon": 14.475516,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U529S1E4",
+      "stationId": "U529S1",
+      "stationName": "Palmovka",
+      "entranceLabel": "E4",
+      "lat": 50.104689,
+      "lon": 14.475492,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U529S1E5",
+      "stationId": "U529S1",
+      "stationName": "Palmovka",
+      "entranceLabel": "E5",
+      "lat": 50.10383,
+      "lon": 14.47344,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U529S1E6",
+      "stationId": "U529S1",
+      "stationName": "Palmovka",
+      "entranceLabel": "E6",
+      "lat": 50.10358,
+      "lon": 14.47286,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U529S1E7",
+      "stationId": "U529S1",
+      "stationName": "Palmovka",
+      "entranceLabel": "E7",
+      "lat": 50.10338,
+      "lon": 14.47315,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U529S1E8",
+      "stationId": "U529S1",
+      "stationName": "Palmovka",
+      "entranceLabel": "E8",
+      "lat": 50.10311,
+      "lon": 14.47322,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U529S1E9",
+      "stationId": "U529S1",
+      "stationName": "Palmovka",
+      "entranceLabel": "E9",
+      "lat": 50.10344,
+      "lon": 14.47375,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U385S1E4",
+      "stationId": "U385S1",
+      "stationName": "Pankrác",
+      "entranceLabel": "(Obchodní centrum)",
+      "lat": 50.05089,
+      "lon": 14.43922,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U385S1E1",
+      "stationId": "U385S1",
+      "stationName": "Pankrác",
+      "entranceLabel": "E1",
+      "lat": 50.05099,
+      "lon": 14.4399,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U385S1E5",
+      "stationId": "U385S1",
+      "stationName": "Pankrác",
+      "entranceLabel": "E2",
+      "lat": 50.051137,
+      "lon": 14.440024,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U385S1E6",
+      "stationId": "U385S1",
+      "stationName": "Pankrác",
+      "entranceLabel": "E3",
+      "lat": 50.051182,
+      "lon": 14.440148,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U385S1E2",
+      "stationId": "U385S1",
+      "stationName": "Pankrác",
+      "entranceLabel": "E5",
+      "lat": 50.05136,
+      "lon": 14.43961,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U385S1E3",
+      "stationId": "U385S1",
+      "stationName": "Pankrác",
+      "entranceLabel": "E6",
+      "lat": 50.05059,
+      "lon": 14.43998,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U507S1E2",
+      "stationId": "U507S1",
+      "stationName": "Petřiny",
+      "entranceLabel": "E1",
+      "lat": 50.08787,
+      "lon": 14.34448,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U507S1E3",
+      "stationId": "U507S1",
+      "stationName": "Petřiny",
+      "entranceLabel": "E2",
+      "lat": 50.08638,
+      "lon": 14.34531,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U507S1E4",
+      "stationId": "U507S1",
+      "stationName": "Petřiny",
+      "entranceLabel": "E2",
+      "lat": 50.08654,
+      "lon": 14.34521,
+      "wheelchair": "yes",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U597S1E1",
+      "stationId": "U597S1",
+      "stationName": "Pražského povstání",
+      "entranceLabel": "E1",
+      "lat": 50.05644,
+      "lon": 14.43369,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U597S1E2",
+      "stationId": "U597S1",
+      "stationName": "Pražského povstání",
+      "entranceLabel": "E2",
+      "lat": 50.05602,
+      "lon": 14.43417,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U597S1E3",
+      "stationId": "U597S1",
+      "stationName": "Pražského povstání",
+      "entranceLabel": "E3",
+      "lat": 50.056539,
+      "lon": 14.434172,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U603S1E7",
+      "stationId": "U603S1",
+      "stationName": "Prosek",
+      "entranceLabel": "(Výtah/Lift Háje)",
+      "lat": 50.118994,
+      "lon": 14.498688,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U603S1E6",
+      "stationId": "U603S1",
+      "stationName": "Prosek",
+      "entranceLabel": "(Výtah/Lift Letňany)",
+      "lat": 50.11915,
+      "lon": 14.49898,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U603S1E1",
+      "stationId": "U603S1",
+      "stationName": "Prosek",
+      "entranceLabel": "E1",
+      "lat": 50.11918,
+      "lon": 14.49847,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U603S1E2",
+      "stationId": "U603S1",
+      "stationName": "Prosek",
+      "entranceLabel": "E2",
+      "lat": 50.11898,
+      "lon": 14.49818,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U603S1E21",
+      "stationId": "U603S1",
+      "stationName": "Prosek",
+      "entranceLabel": "E2",
+      "lat": 50.11886,
+      "lon": 14.49833,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U603S1E3",
+      "stationId": "U603S1",
+      "stationName": "Prosek",
+      "entranceLabel": "E3",
+      "lat": 50.11867,
+      "lon": 14.49975,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U603S1E31",
+      "stationId": "U603S1",
+      "stationName": "Prosek",
+      "entranceLabel": "E3",
+      "lat": 50.118584,
+      "lon": 14.499569,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U603S1E4",
+      "stationId": "U603S1",
+      "stationName": "Prosek",
+      "entranceLabel": "E4",
+      "lat": 50.11886,
+      "lon": 14.49944,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U603S1E41",
+      "stationId": "U603S1",
+      "stationName": "Prosek",
+      "entranceLabel": "E4",
+      "lat": 50.118819,
+      "lon": 14.499407,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U603S1E5",
+      "stationId": "U603S1",
+      "stationName": "Prosek",
+      "entranceLabel": "E5",
+      "lat": 50.11933,
+      "lon": 14.49874,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U957S1E1",
+      "stationId": "U957S1",
+      "stationName": "Radlická",
+      "entranceLabel": "E1",
+      "lat": 50.05803,
+      "lon": 14.38886,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U818S1E1",
+      "stationId": "U818S1",
+      "stationName": "Rajská zahrada",
+      "entranceLabel": "E1",
+      "lat": 50.106654,
+      "lon": 14.559922,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U818S1E2",
+      "stationId": "U818S1",
+      "stationName": "Rajská zahrada",
+      "entranceLabel": "E1",
+      "lat": 50.10669,
+      "lon": 14.560131,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U818S1E3",
+      "stationId": "U818S1",
+      "stationName": "Rajská zahrada",
+      "entranceLabel": "E1",
+      "lat": 50.106825,
+      "lon": 14.560959,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U818S1E4",
+      "stationId": "U818S1",
+      "stationName": "Rajská zahrada",
+      "entranceLabel": "E1",
+      "lat": 50.106858,
+      "lon": 14.561152,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U818S1E6",
+      "stationId": "U818S1",
+      "stationName": "Rajská zahrada",
+      "entranceLabel": "E2",
+      "lat": 50.107,
+      "lon": 14.56089,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U818S1E7",
+      "stationId": "U818S1",
+      "stationName": "Rajská zahrada",
+      "entranceLabel": "E2",
+      "lat": 50.10689,
+      "lon": 14.56006,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U818S1E5",
+      "stationId": "U818S1",
+      "stationName": "Rajská zahrada",
+      "entranceLabel": "E3",
+      "lat": 50.10697,
+      "lon": 14.56122,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U601S1E1",
+      "stationId": "U601S1",
+      "stationName": "Roztyly",
+      "entranceLabel": "E1",
+      "lat": 50.03719,
+      "lon": 14.47767,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U601S1E2",
+      "stationId": "U601S1",
+      "stationName": "Roztyly",
+      "entranceLabel": "E2",
+      "lat": 50.037437,
+      "lon": 14.477853,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U953S1E1",
+      "stationId": "U953S1",
+      "stationName": "Skalka",
+      "entranceLabel": "E1",
+      "lat": 50.068168,
+      "lon": 14.507578,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U953S1E11",
+      "stationId": "U953S1",
+      "stationName": "Skalka",
+      "entranceLabel": "E1",
+      "lat": 50.06835,
+      "lon": 14.50765,
+      "wheelchair": "yes",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U953S1E2",
+      "stationId": "U953S1",
+      "stationName": "Skalka",
+      "entranceLabel": "E2",
+      "lat": 50.067927,
+      "lon": 14.507404,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U953S1E3",
+      "stationId": "U953S1",
+      "stationName": "Skalka",
+      "entranceLabel": "E3",
+      "lat": 50.06776,
+      "lon": 14.507942,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U953S1E4",
+      "stationId": "U953S1",
+      "stationName": "Skalka",
+      "entranceLabel": "E4",
+      "lat": 50.068042,
+      "lon": 14.508115,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U953S1E41",
+      "stationId": "U953S1",
+      "stationName": "Skalka",
+      "entranceLabel": "E4",
+      "lat": 50.068008,
+      "lon": 14.508393,
+      "wheelchair": "yes",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U953S1E5",
+      "stationId": "U953S1",
+      "stationName": "Skalka",
+      "entranceLabel": "E5",
+      "lat": 50.068458,
+      "lon": 14.507164,
+      "wheelchair": "yes",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U458S1E6",
+      "stationId": "U458S1",
+      "stationName": "Smíchovské nádraží",
+      "entranceLabel": "(-)",
+      "lat": 50.06177,
+      "lon": 14.4095,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U458S1E9",
+      "stationId": "U458S1",
+      "stationName": "Smíchovské nádraží",
+      "entranceLabel": "(BUS Chuchle)",
+      "lat": 50.06023,
+      "lon": 14.40932,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U458S1E10",
+      "stationId": "U458S1",
+      "stationName": "Smíchovské nádraží",
+      "entranceLabel": "(centrum)",
+      "lat": 50.06092,
+      "lon": 14.40937,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U458S1E5",
+      "stationId": "U458S1",
+      "stationName": "Smíchovské nádraží",
+      "entranceLabel": "(centrum)",
+      "lat": 50.06136,
+      "lon": 14.40931,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U458S1E3",
+      "stationId": "U458S1",
+      "stationName": "Smíchovské nádraží",
+      "entranceLabel": "(Mníšek pod Brby)",
+      "lat": 50.06153,
+      "lon": 14.40886,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U458S1E4",
+      "stationId": "U458S1",
+      "stationName": "Smíchovské nádraží",
+      "entranceLabel": "(Odbavovací hala)",
+      "lat": 50.06136,
+      "lon": 14.40866,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U458S1E7",
+      "stationId": "U458S1",
+      "stationName": "Smíchovské nádraží",
+      "entranceLabel": "(Příjezd vlaků)",
+      "lat": 50.06047,
+      "lon": 14.4087,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U458S1E8",
+      "stationId": "U458S1",
+      "stationName": "Smíchovské nádraží",
+      "entranceLabel": "(Příjezd vlaků)",
+      "lat": 50.06025,
+      "lon": 14.40887,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U458S1E2",
+      "stationId": "U458S1",
+      "stationName": "Smíchovské nádraží",
+      "entranceLabel": "(ul. Nádražní)",
+      "lat": 50.0618,
+      "lon": 14.40882,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U703S1E1",
+      "stationId": "U703S1",
+      "stationName": "Staroměstská",
+      "entranceLabel": "E1",
+      "lat": 50.08861,
+      "lon": 14.41618,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U703S1E2",
+      "stationId": "U703S1",
+      "stationName": "Staroměstská",
+      "entranceLabel": "E2",
+      "lat": 50.088487,
+      "lon": 14.416095,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U703S1E3",
+      "stationId": "U703S1",
+      "stationName": "Staroměstská",
+      "entranceLabel": "E3",
+      "lat": 50.08836,
+      "lon": 14.41674,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U1140S1E6",
+      "stationId": "U1140S1",
+      "stationName": "Stodůlky",
+      "entranceLabel": "E1",
+      "lat": 50.04658,
+      "lon": 14.30507,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U1140S1E1",
+      "stationId": "U1140S1",
+      "stationName": "Stodůlky",
+      "entranceLabel": "E2",
+      "lat": 50.04667,
+      "lon": 14.30747,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U1140S1E2",
+      "stationId": "U1140S1",
+      "stationName": "Stodůlky",
+      "entranceLabel": "E2",
+      "lat": 50.04653,
+      "lon": 14.30756,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U1140S1E3",
+      "stationId": "U1140S1",
+      "stationName": "Stodůlky",
+      "entranceLabel": "E3",
+      "lat": 50.04656,
+      "lon": 14.30806,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U1140S1E4",
+      "stationId": "U1140S1",
+      "stationName": "Stodůlky",
+      "entranceLabel": "E4",
+      "lat": 50.046805,
+      "lon": 14.308083,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U1140S1E5",
+      "stationId": "U1140S1",
+      "stationName": "Stodůlky",
+      "entranceLabel": "E5",
+      "lat": 50.04668,
+      "lon": 14.30645,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U713S1E3",
+      "stationId": "U713S1",
+      "stationName": "Strašnická",
+      "entranceLabel": "(Mrštíkova ul.)",
+      "lat": 50.072867,
+      "lon": 14.491384,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U713S1E1",
+      "stationId": "U713S1",
+      "stationName": "Strašnická",
+      "entranceLabel": "E1",
+      "lat": 50.07268,
+      "lon": 14.49104,
+      "wheelchair": "yes",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U713S1E2",
+      "stationId": "U713S1",
+      "stationName": "Strašnická",
+      "entranceLabel": "E2",
+      "lat": 50.07266,
+      "lon": 14.49127,
+      "wheelchair": "yes",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U332S1E10",
+      "stationId": "U332S1",
+      "stationName": "Střížkov",
+      "entranceLabel": "(BUS Prosek)",
+      "lat": 50.12606,
+      "lon": 14.48894,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U332S1E5",
+      "stationId": "U332S1",
+      "stationName": "Střížkov",
+      "entranceLabel": "(Českolipská ul.)",
+      "lat": 50.12653,
+      "lon": 14.48953,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U332S1E6",
+      "stationId": "U332S1",
+      "stationName": "Střížkov",
+      "entranceLabel": "(Českolipská)",
+      "lat": 50.12672,
+      "lon": 14.48907,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U332S1E1",
+      "stationId": "U332S1",
+      "stationName": "Střížkov",
+      "entranceLabel": "(Ďáblice, Teplická ul.)",
+      "lat": 50.12607,
+      "lon": 14.48938,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U332S1E2",
+      "stationId": "U332S1",
+      "stationName": "Střížkov",
+      "entranceLabel": "(Park Přátelství)",
+      "lat": 50.12582,
+      "lon": 14.49032,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U332S1E3",
+      "stationId": "U332S1",
+      "stationName": "Střížkov",
+      "entranceLabel": "(Park Přátelství)",
+      "lat": 50.12609,
+      "lon": 14.49007,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U332S1E4",
+      "stationId": "U332S1",
+      "stationName": "Střížkov",
+      "entranceLabel": "(Výtah/Lift Park)",
+      "lat": 50.12633,
+      "lon": 14.48983,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U332S1E9",
+      "stationId": "U332S1",
+      "stationName": "Střížkov",
+      "entranceLabel": "(Výtah/Lift)",
+      "lat": 50.12589,
+      "lon": 14.489,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U100S1E1",
+      "stationId": "U100S1",
+      "stationName": "Vltavská",
+      "entranceLabel": "E1",
+      "lat": 50.099249,
+      "lon": 14.438555,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U100S1E2",
+      "stationId": "U100S1",
+      "stationName": "Vltavská",
+      "entranceLabel": "E2",
+      "lat": 50.099189,
+      "lon": 14.438289,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U100S1E3",
+      "stationId": "U100S1",
+      "stationName": "Vltavská",
+      "entranceLabel": "E3",
+      "lat": 50.09906,
+      "lon": 14.43817,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U100S1E4",
+      "stationId": "U100S1",
+      "stationName": "Vltavská",
+      "entranceLabel": "E4",
+      "lat": 50.098918,
+      "lon": 14.438495,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U100S1E41",
+      "stationId": "U100S1",
+      "stationName": "Vltavská",
+      "entranceLabel": "E4",
+      "lat": 50.09895,
+      "lon": 14.43832,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U100S1E5",
+      "stationId": "U100S1",
+      "stationName": "Vltavská",
+      "entranceLabel": "E5",
+      "lat": 50.099015,
+      "lon": 14.438646,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U100S1E6",
+      "stationId": "U100S1",
+      "stationName": "Vltavská",
+      "entranceLabel": "E6",
+      "lat": 50.09949,
+      "lon": 14.43855,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U474S1E22",
+      "stationId": "U474S1",
+      "stationName": "Vysočanská",
+      "entranceLabel": "(Obchodní centrum)",
+      "lat": 50.110534,
+      "lon": 14.501812,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U474S1E1",
+      "stationId": "U474S1",
+      "stationName": "Vysočanská",
+      "entranceLabel": "E1",
+      "lat": 50.110637,
+      "lon": 14.502548,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U474S1E11",
+      "stationId": "U474S1",
+      "stationName": "Vysočanská",
+      "entranceLabel": "E1",
+      "lat": 50.110425,
+      "lon": 14.502345,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U474S1E2",
+      "stationId": "U474S1",
+      "stationName": "Vysočanská",
+      "entranceLabel": "E2",
+      "lat": 50.110345,
+      "lon": 14.501825,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U474S1E21",
+      "stationId": "U474S1",
+      "stationName": "Vysočanská",
+      "entranceLabel": "E2",
+      "lat": 50.110545,
+      "lon": 14.501923,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U474S1E3",
+      "stationId": "U474S1",
+      "stationName": "Vysočanská",
+      "entranceLabel": "E3",
+      "lat": 50.110045,
+      "lon": 14.499129,
+      "wheelchair": "no",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U527S1E1",
+      "stationId": "U527S1",
+      "stationName": "Vyšehrad",
+      "entranceLabel": "E1",
+      "lat": 50.06303,
+      "lon": 14.43072,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U527S1E2",
+      "stationId": "U527S1",
+      "stationName": "Vyšehrad",
+      "entranceLabel": "E2",
+      "lat": 50.06303,
+      "lon": 14.43033,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U1141S1E1",
+      "stationId": "U1141S1",
+      "stationName": "Zličín",
+      "entranceLabel": "E1",
+      "lat": 50.0538,
+      "lon": 14.29061,
+      "wheelchair": "yes",
+      "lines": [
+        "B"
+      ]
+    },
+    {
+      "id": "U921S1E1",
+      "stationId": "U921S1",
+      "stationName": "Želivského",
+      "entranceLabel": "E1",
+      "lat": 50.078711,
+      "lon": 14.474505,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U921S1E2",
+      "stationId": "U921S1",
+      "stationName": "Želivského",
+      "entranceLabel": "E2",
+      "lat": 50.07889,
+      "lon": 14.47433,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U921S1E21",
+      "stationId": "U921S1",
+      "stationName": "Želivského",
+      "entranceLabel": "E2",
+      "lat": 50.07883,
+      "lon": 14.47394,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U921S1E3",
+      "stationId": "U921S1",
+      "stationName": "Želivského",
+      "entranceLabel": "E3",
+      "lat": 50.07861,
+      "lon": 14.47367,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U921S1E4",
+      "stationId": "U921S1",
+      "stationName": "Želivského",
+      "entranceLabel": "E4",
+      "lat": 50.07825,
+      "lon": 14.47358,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U921S1E5",
+      "stationId": "U921S1",
+      "stationName": "Želivského",
+      "entranceLabel": "E5",
+      "lat": 50.07828,
+      "lon": 14.47417,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    },
+    {
+      "id": "U921S1E6",
+      "stationId": "U921S1",
+      "stationName": "Želivského",
+      "entranceLabel": "E6",
+      "lat": 50.07842,
+      "lon": 14.47422,
+      "wheelchair": "no",
+      "lines": [
+        "A"
+      ]
+    }
+  ]
+}

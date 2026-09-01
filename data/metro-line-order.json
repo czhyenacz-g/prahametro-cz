@@ -1,0 +1,252 @@
+{
+  "generatedAt": "2026-09-01T05:41:17.060Z",
+  "lines": {
+    "A": [
+      {
+        "stationId": "U306S1",
+        "stationName": "Nemocnice Motol"
+      },
+      {
+        "stationId": "U507S1",
+        "stationName": "Petřiny"
+      },
+      {
+        "stationId": "U462S1",
+        "stationName": "Nádraží Veleslavín"
+      },
+      {
+        "stationId": "U157S1",
+        "stationName": "Bořislavka"
+      },
+      {
+        "stationId": "U321S1",
+        "stationName": "Dejvická"
+      },
+      {
+        "stationId": "U163S1",
+        "stationName": "Hradčanská"
+      },
+      {
+        "stationId": "U360S1",
+        "stationName": "Malostranská"
+      },
+      {
+        "stationId": "U703S1",
+        "stationName": "Staroměstská"
+      },
+      {
+        "stationId": "U1072S1",
+        "stationName": "Můstek"
+      },
+      {
+        "stationId": "U400S1",
+        "stationName": "Muzeum"
+      },
+      {
+        "stationId": "U476S1",
+        "stationName": "Náměstí Míru"
+      },
+      {
+        "stationId": "U209S1",
+        "stationName": "Jiřího z Poděbrad"
+      },
+      {
+        "stationId": "U921S1",
+        "stationName": "Želivského"
+      },
+      {
+        "stationId": "U713S1",
+        "stationName": "Strašnická"
+      },
+      {
+        "stationId": "U953S1",
+        "stationName": "Skalka"
+      },
+      {
+        "stationId": "U1071S1",
+        "stationName": "Depo Hostivař"
+      }
+    ],
+    "B": [
+      {
+        "stationId": "U1141S1",
+        "stationName": "Zličín"
+      },
+      {
+        "stationId": "U1140S1",
+        "stationName": "Stodůlky"
+      },
+      {
+        "stationId": "U1007S1",
+        "stationName": "Luka"
+      },
+      {
+        "stationId": "U258S1",
+        "stationName": "Lužiny"
+      },
+      {
+        "stationId": "U1154S1",
+        "stationName": "Hůrka"
+      },
+      {
+        "stationId": "U602S1",
+        "stationName": "Nové Butovice"
+      },
+      {
+        "stationId": "U685S1",
+        "stationName": "Jinonice"
+      },
+      {
+        "stationId": "U957S1",
+        "stationName": "Radlická"
+      },
+      {
+        "stationId": "U458S1",
+        "stationName": "Smíchovské nádraží"
+      },
+      {
+        "stationId": "U1040S1",
+        "stationName": "Anděl"
+      },
+      {
+        "stationId": "U237S1",
+        "stationName": "Karlovo náměstí"
+      },
+      {
+        "stationId": "U539S1",
+        "stationName": "Národní třída"
+      },
+      {
+        "stationId": "U1072S1",
+        "stationName": "Můstek"
+      },
+      {
+        "stationId": "U480S1",
+        "stationName": "Náměstí Republiky"
+      },
+      {
+        "stationId": "U689S1",
+        "stationName": "Florenc"
+      },
+      {
+        "stationId": "U758S1",
+        "stationName": "Křižíkova"
+      },
+      {
+        "stationId": "U655S1",
+        "stationName": "Invalidovna"
+      },
+      {
+        "stationId": "U529S1",
+        "stationName": "Palmovka"
+      },
+      {
+        "stationId": "U510S1",
+        "stationName": "Českomoravská"
+      },
+      {
+        "stationId": "U474S1",
+        "stationName": "Vysočanská"
+      },
+      {
+        "stationId": "U75S1",
+        "stationName": "Kolbenova"
+      },
+      {
+        "stationId": "U135S1",
+        "stationName": "Hloubětín"
+      },
+      {
+        "stationId": "U818S1",
+        "stationName": "Rajská zahrada"
+      },
+      {
+        "stationId": "U897S1",
+        "stationName": "Černý Most"
+      }
+    ],
+    "C": [
+      {
+        "stationId": "U286S1",
+        "stationName": "Háje"
+      },
+      {
+        "stationId": "U106S1",
+        "stationName": "Opatov"
+      },
+      {
+        "stationId": "U52S1",
+        "stationName": "Chodov"
+      },
+      {
+        "stationId": "U601S1",
+        "stationName": "Roztyly"
+      },
+      {
+        "stationId": "U228S1",
+        "stationName": "Kačerov"
+      },
+      {
+        "stationId": "U50S1",
+        "stationName": "Budějovická"
+      },
+      {
+        "stationId": "U385S1",
+        "stationName": "Pankrác"
+      },
+      {
+        "stationId": "U597S1",
+        "stationName": "Pražského povstání"
+      },
+      {
+        "stationId": "U527S1",
+        "stationName": "Vyšehrad"
+      },
+      {
+        "stationId": "U190S1",
+        "stationName": "I. P. Pavlova"
+      },
+      {
+        "stationId": "U400S1",
+        "stationName": "Muzeum"
+      },
+      {
+        "stationId": "U142S1",
+        "stationName": "Hlavní nádraží"
+      },
+      {
+        "stationId": "U689S1",
+        "stationName": "Florenc"
+      },
+      {
+        "stationId": "U100S1",
+        "stationName": "Vltavská"
+      },
+      {
+        "stationId": "U115S1",
+        "stationName": "Nádraží Holešovice"
+      },
+      {
+        "stationId": "U675S1",
+        "stationName": "Kobylisy"
+      },
+      {
+        "stationId": "U78S1",
+        "stationName": "Ládví"
+      },
+      {
+        "stationId": "U332S1",
+        "stationName": "Střížkov"
+      },
+      {
+        "stationId": "U603S1",
+        "stationName": "Prosek"
+      },
+      {
+        "stationId": "U1000S1",
+        "stationName": "Letňany"
+      }
+    ],
+    "D": []
+  }
+}
