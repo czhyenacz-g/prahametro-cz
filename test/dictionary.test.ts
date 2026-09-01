@@ -68,6 +68,26 @@ describe("navigační tlačítka Google Maps / Apple Maps / Mapy.com — příst
   });
 });
 
+describe("vizuální redesign — odstranění samostatné ±přesnosti", () => {
+  test("dict.finder.status už neobsahuje pole lowAccuracy (cs/en)", () => {
+    assert.equal("lowAccuracy" in getDictionary("cs").finder.status, false);
+    assert.equal("lowAccuracy" in getDictionary("en").finder.status, false);
+  });
+
+  test("žádný text ve finder.status neobsahuje ±", () => {
+    for (const locale of ["cs", "en"] as const) {
+      for (const text of Object.values(getDictionary(locale).finder.status)) {
+        assert.doesNotMatch(text as string, /±/);
+      }
+    }
+  });
+
+  test("text 'poloha zůstává jen ve vašem zařízení' zůstal zachovaný (cs/en)", () => {
+    assert.equal(getDictionary("cs").finder.privacyNote, "Poloha zůstává jen ve vašem zařízení.");
+    assert.equal(getDictionary("en").finder.privacyNote, "Your location stays only on your device.");
+  });
+});
+
 describe("reklamní štítek — dict.ad", () => {
   test("14. český štítek 'Reklama'", () => {
     assert.equal(getDictionary("cs").ad.label, "Reklama");

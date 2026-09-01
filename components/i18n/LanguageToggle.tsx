@@ -21,7 +21,7 @@ export default function LanguageToggle() {
       onClick={() => setLocale(isCs ? "en" : "cs")}
       aria-label={label}
       title={label}
-      className="flex h-11 min-w-[44px] shrink-0 items-center justify-center rounded-xl border border-gray-200 bg-white px-2.5 text-sm font-bold tracking-wide text-gray-700 shadow-sm transition hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900"
+      className="flex h-11 min-w-[44px] shrink-0 items-center justify-center rounded-xl border border-gray-200 bg-white px-2.5 text-sm font-bold tracking-wide text-navy-700 shadow-sm transition hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-900"
     >
       {targetCode}
     </button>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { LocateFixed } from "lucide-react";
 import { buildDemoPositions } from "../lib/metro/demo-positions.ts";
 import { nearestEntrances, nearestStationEntrances } from "../lib/metro/nearest-entrances.ts";
 import { getMainHeading } from "../lib/i18n/dictionary.ts";
@@ -14,7 +15,6 @@ import AdCard from "./ads/AdCard.tsx";
 import OutsidePragueNotice from "./OutsidePragueNotice.tsx";
 
 const OUTSIDE_PRAGUE_THRESHOLD_M = 25_000;
-const LOW_ACCURACY_THRESHOLD_M = 100;
 
 export type FinderSectionProps = {
   entrances: MetroEntrance[];
@@ -38,8 +38,8 @@ export default function FinderSection({ entrances, status, onLocate, onDemoSelec
   const results = position ? (isOutsidePrague ? nearestStationEntrances(position, entrances, 3) : nearestEntrances(position, entrances, 3)) : [];
 
   return (
-    <section aria-label={getMainHeading(locale, vulgar)} className="mx-auto w-full max-w-2xl px-4 py-8">
-      <div className="rounded-3xl border border-gray-200 bg-white p-6 text-center shadow-sm sm:p-8">
+    <section aria-label={getMainHeading(locale, vulgar)} className="mx-auto w-full max-w-2xl px-4 py-6 sm:py-8">
+      <div className="rounded-2xl border border-gray-200 bg-white p-4 text-center shadow-sm sm:p-6">
         {/* Jediné velké tlačítko — heading a CTA byly duplicitní texty
             ("Kde je nejbližší metro?" + "Najít nejbližší metro"), teď je
             hlaška (i vulgární varianta) přímo labelem tlačítka. */}
@@ -47,9 +47,10 @@ export default function FinderSection({ entrances, status, onLocate, onDemoSelec
           type="button"
           onClick={onLocate}
           disabled={status.kind === "locating"}
-          className="min-h-[72px] w-full rounded-2xl bg-gray-900 px-6 py-4 text-2xl font-extrabold leading-tight text-white transition hover:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 disabled:opacity-60 sm:text-3xl"
+          className="flex min-h-[64px] w-full items-center justify-center gap-3 rounded-2xl bg-navy-900 px-5 py-4 text-xl font-extrabold leading-tight text-white transition hover:bg-navy-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-900 focus-visible:ring-offset-2 disabled:opacity-60 sm:text-2xl"
         >
-          {status.kind === "locating" ? dict.finder.ctaLocating : getMainHeading(locale, vulgar)}
+          <LocateFixed aria-hidden="true" size={28} strokeWidth={2.25} className="shrink-0" />
+          <span>{status.kind === "locating" ? dict.finder.ctaLocating : getMainHeading(locale, vulgar)}</span>
         </button>
         <p className="mt-3 text-sm text-gray-500">{dict.finder.privacyNote}</p>
 
@@ -60,12 +61,6 @@ export default function FinderSection({ entrances, status, onLocate, onDemoSelec
 
       <div aria-live="polite" className="mt-6 flex flex-col gap-3">
         <StatusMessage status={status} />
-
-        {status.kind === "success" && status.accuracyMeters > LOW_ACCURACY_THRESHOLD_M && (
-          <p className="rounded-xl border border-amber-400 bg-amber-100 p-2.5 text-center text-sm font-semibold text-amber-900">
-            {dict.finder.status.lowAccuracy(status.accuracyMeters)}
-          </p>
-        )}
 
         {isOutsidePrague && closestOverall && (
           <OutsidePragueNotice nearestStationName={closestOverall.stationName} nearestDistanceMeters={closestOverall.distanceMeters} />

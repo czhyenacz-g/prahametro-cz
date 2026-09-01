@@ -48,13 +48,13 @@ export default function AdCard({ placement, stationId }: AdCardProps) {
   }
 
   return (
-    <section aria-label={dict.ad.label} className="rounded-2xl border border-dashed border-gray-300 bg-gray-50 p-4">
+    <section aria-label={dict.ad.label} className="rounded-2xl border border-ad-purple-200 bg-ad-purple-50 p-4 shadow-sm">
       <div className="flex items-start gap-3">
-        <AdIcon campaignId={ad.id} />
+        <AdIcon icon={ad.icon} />
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-1.5">
-            <span className="text-xs font-semibold uppercase tracking-wide text-gray-400">{dict.ad.label}</span>
-            {ad.advertiser && <span className="text-xs text-gray-400">· {ad.advertiser}</span>}
+            <span className="text-xs font-bold uppercase tracking-wide text-ad-purple-700">{dict.ad.label}</span>
+            {ad.advertiser && <span className="text-xs text-ad-purple-700/70">· {ad.advertiser}</span>}
           </div>
           <p className="mt-1 text-base font-semibold text-gray-900">{title}</p>
           <p className="mt-0.5 text-sm text-gray-600">{description}</p>
@@ -66,16 +66,16 @@ export default function AdCard({ placement, stationId }: AdCardProps) {
                 target="_blank"
                 rel={AD_LINK_REL}
                 onClick={handleClick}
-                className="inline-flex min-h-[44px] items-center rounded-xl bg-gray-900 px-4 text-sm font-semibold text-white transition hover:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900"
+                className="inline-flex min-h-[44px] items-center rounded-xl bg-ad-purple-700 px-4 text-sm font-semibold text-white transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ad-purple-700"
               >
                 {cta}
               </a>
             ) : (
               <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex min-h-[44px] cursor-default items-center rounded-xl border border-gray-200 bg-white px-4 text-sm font-semibold text-gray-400">
+                <span className="inline-flex min-h-[44px] cursor-default items-center rounded-xl border border-ad-purple-200 bg-white px-4 text-sm font-semibold text-gray-400">
                   {cta}
                 </span>
-                <span className="text-xs text-gray-400">{dict.ad.comingSoon}</span>
+                <span className="text-xs text-gray-500">{dict.ad.comingSoon}</span>
               </div>
             )}
           </div>

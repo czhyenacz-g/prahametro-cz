@@ -18,7 +18,6 @@ export type Dictionary = {
       unavailable: string;
       timeout: string;
       unsupported: string;
-      lowAccuracy: (accuracyMeters: number) => string;
     };
   };
   outsidePrague: {
@@ -78,7 +77,6 @@ const cs: Dictionary = {
       unavailable: "Polohu se nepodařilo zjistit. Zkontroluj, že máš zapnuté GPS/lokaci, a zkus to znovu.",
       timeout: "Zjišťování polohy trvalo příliš dlouho. Zkus to prosím znovu.",
       unsupported: "Tento prohlížeč geolokaci nepodporuje.",
-      lowAccuracy: (m) => `Poloha je přibližná (±${Math.round(m)} m).`,
     },
   },
   outsidePrague: {
@@ -137,7 +135,6 @@ const en: Dictionary = {
       unavailable: "We couldn't determine your location. Check that GPS/location is turned on and try again.",
       timeout: "Locating took too long. Please try again.",
       unsupported: "This browser doesn't support geolocation.",
-      lowAccuracy: (m) => `Your location is approximate (±${Math.round(m)} m).`,
     },
   },
   outsidePrague: {

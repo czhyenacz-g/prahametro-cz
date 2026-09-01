@@ -14,6 +14,7 @@ export const campaigns: AdCampaign[] = [
     cta: { cs: "Objednat online" },
     href: null,
     advertiser: null,
+    icon: "pharmacy",
     weight: 70,
   },
   {
@@ -25,6 +26,7 @@ export const campaigns: AdCampaign[] = [
     cta: { cs: "Objednat nákup" },
     href: null,
     advertiser: null,
+    icon: "shopping",
     weight: 30,
   },
   {
@@ -36,6 +38,7 @@ export const campaigns: AdCampaign[] = [
     cta: { en: "Find luggage storage" },
     href: null,
     advertiser: null,
+    icon: "luggage",
     weight: 45,
   },
   {
@@ -47,6 +50,7 @@ export const campaigns: AdCampaign[] = [
     cta: { en: "Explore Prague" },
     href: null,
     advertiser: null,
+    icon: "ticket",
     weight: 30,
   },
   {
@@ -58,6 +62,7 @@ export const campaigns: AdCampaign[] = [
     cta: { en: "Choose an eSIM" },
     href: null,
     advertiser: null,
+    icon: "esim",
     weight: 15,
   },
   {
@@ -69,6 +74,7 @@ export const campaigns: AdCampaign[] = [
     cta: { en: "Book a transfer" },
     href: null,
     advertiser: null,
+    icon: "transfer",
     weight: 10,
   },
 ];

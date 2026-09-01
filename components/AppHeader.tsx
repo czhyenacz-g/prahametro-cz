@@ -12,10 +12,10 @@ export default function AppHeader() {
   const { dict } = useI18n();
 
   return (
-    <header className="px-4 pt-6">
-      <div className="mx-auto flex w-full max-w-2xl items-center justify-between gap-3">
-        <h1 className="truncate text-xl font-bold tracking-tight text-gray-900 sm:text-3xl">KdeJeMetro.cz</h1>
-        <div className="flex shrink-0 items-center gap-2">
+    <header className="px-4 pt-5 sm:pt-6">
+      <div className="mx-auto flex w-full max-w-2xl items-center justify-between gap-2">
+        <h1 className="truncate text-lg font-extrabold tracking-tight text-navy-900 sm:text-3xl">KdeJeMetro.cz</h1>
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <LanguageToggle />
           <VulgarToggle />
         </div>
