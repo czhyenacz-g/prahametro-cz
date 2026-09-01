@@ -43,6 +43,25 @@ export function buildGoogleMapsWalkingUrl(origin: Coordinates, destination: Coor
 }
 
 /**
+ * Apple Maps — stejný vzorec jako Google (URL + URLSearchParams,
+ * validované souřadnice, "lat,lon" pořadí). `saddr` = odkud (origin),
+ * `daddr` = kam (konkrétní vstup), `dirflg=w` = pěší trasa.
+ */
+export function buildAppleMapsWalkingUrl(origin: Coordinates, destination: Coordinates): string {
+  assertValidCoordinates(origin, "origin");
+  assertValidCoordinates(destination, "destination");
+
+  const url = new URL("https://maps.apple.com/");
+  url.search = new URLSearchParams({
+    saddr: `${origin.lat},${origin.lon}`,
+    daddr: `${destination.lat},${destination.lon}`,
+    dirflg: "w",
+  }).toString();
+
+  return url.toString();
+}
+
+/**
  * Mapy.com — pořadí souřadnic je OPAČNÉ, "lon,lat" (viz zadání).
  * `routeType=foot_fast` = pěší trasa, `navigate=true` = pokus o rovnou
  * spuštění navigace v podporované mobilní appce, web funguje i bez ní.

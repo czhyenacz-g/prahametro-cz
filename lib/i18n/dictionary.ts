@@ -11,7 +11,6 @@ export type Dictionary = {
   finder: {
     heading: string;
     headingVulgar: string;
-    cta: string;
     ctaLocating: string;
     privacyNote: string;
     status: {
@@ -30,8 +29,10 @@ export type Dictionary = {
     entranceLabel: (label: string) => string;
     wheelchair: string;
     googleMapsLabel: string;
+    appleMapsLabel: string;
     mapyComLabel: string;
     googleMapsAriaLabel: string;
+    appleMapsAriaLabel: string;
     mapyComAriaLabel: string;
     disclaimer: string;
   };
@@ -70,7 +71,6 @@ const cs: Dictionary = {
   finder: {
     heading: "Kde je nejbližší metro?",
     headingVulgar: "Kde je to zkurvený metro?!!",
-    cta: "Najít nejbližší metro",
     ctaLocating: "Zjišťuji polohu…",
     privacyNote: "Poloha zůstává jen ve vašem zařízení.",
     status: {
@@ -90,8 +90,10 @@ const cs: Dictionary = {
     entranceLabel: (label) => `Vstup ${label}`,
     wheelchair: "Bezbariérový přístup",
     googleMapsLabel: "Google Maps",
+    appleMapsLabel: "Apple Maps",
     mapyComLabel: "Mapy.com",
     googleMapsAriaLabel: "Spustit pěší navigaci v Google Maps",
+    appleMapsAriaLabel: "Spustit pěší navigaci v Apple Maps",
     mapyComAriaLabel: "Spustit pěší navigaci v Mapy.com",
     disclaimer: "Vzdušná vzdálenost, orientační — skutečnou trasu ukáže navigace.",
   },
@@ -130,7 +132,6 @@ const en: Dictionary = {
   finder: {
     heading: "Where is the nearest metro?",
     headingVulgar: "Where's the fucking metro?!",
-    cta: "Find nearest metro",
     ctaLocating: "Locating…",
     privacyNote: "Your location stays only on your device.",
     status: {
@@ -149,8 +150,10 @@ const en: Dictionary = {
     entranceLabel: (label) => `Entrance ${label}`,
     wheelchair: "Wheelchair accessible",
     googleMapsLabel: "Google Maps",
+    appleMapsLabel: "Apple Maps",
     mapyComLabel: "Mapy.com",
     googleMapsAriaLabel: "Start walking navigation in Google Maps",
+    appleMapsAriaLabel: "Start walking navigation in Apple Maps",
     mapyComAriaLabel: "Start walking navigation in Mapy.com",
     disclaimer: "Straight-line distance, approximate — actual route shown by navigation.",
   },

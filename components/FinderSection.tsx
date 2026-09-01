@@ -38,18 +38,18 @@ export default function FinderSection({ entrances, status, onLocate, onDemoSelec
   const results = position ? (isOutsidePrague ? nearestStationEntrances(position, entrances, 3) : nearestEntrances(position, entrances, 3)) : [];
 
   return (
-    <section aria-labelledby="finder-heading" className="mx-auto w-full max-w-2xl px-4 py-8">
+    <section aria-label={getMainHeading(locale, vulgar)} className="mx-auto w-full max-w-2xl px-4 py-8">
       <div className="rounded-3xl border border-gray-200 bg-white p-6 text-center shadow-sm sm:p-8">
-        <h2 id="finder-heading" className="text-2xl font-extrabold leading-tight text-gray-900 sm:text-3xl">
-          {getMainHeading(locale, vulgar)}
-        </h2>
+        {/* Jediné velké tlačítko — heading a CTA byly duplicitní texty
+            ("Kde je nejbližší metro?" + "Najít nejbližší metro"), teď je
+            hlaška (i vulgární varianta) přímo labelem tlačítka. */}
         <button
           type="button"
           onClick={onLocate}
           disabled={status.kind === "locating"}
-          className="mt-6 min-h-[56px] w-full rounded-2xl bg-gray-900 px-6 text-lg font-semibold text-white transition hover:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 disabled:opacity-60"
+          className="min-h-[72px] w-full rounded-2xl bg-gray-900 px-6 py-4 text-2xl font-extrabold leading-tight text-white transition hover:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 disabled:opacity-60 sm:text-3xl"
         >
-          {status.kind === "locating" ? dict.finder.ctaLocating : dict.finder.cta}
+          {status.kind === "locating" ? dict.finder.ctaLocating : getMainHeading(locale, vulgar)}
         </button>
         <p className="mt-3 text-sm text-gray-500">{dict.finder.privacyNote}</p>
 

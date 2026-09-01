@@ -1,6 +1,6 @@
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
-import { buildGoogleMapsWalkingUrl, buildMapyComWalkingUrl } from "../lib/metro/navigation-links.ts";
+import { buildAppleMapsWalkingUrl, buildGoogleMapsWalkingUrl, buildMapyComWalkingUrl } from "../lib/metro/navigation-links.ts";
 
 const origin = { lat: 50.083, lon: 14.421 };
 // "Konkrétní vstup do metra", NE střed stanice — ověřeno testem "navigace
@@ -30,6 +30,36 @@ describe("buildGoogleMapsWalkingUrl", () => {
   test("obsahuje travelmode=walking", () => {
     const url = new URL(buildGoogleMapsWalkingUrl(origin, entrance));
     assert.equal(url.searchParams.get("travelmode"), "walking");
+  });
+});
+
+describe("buildAppleMapsWalkingUrl", () => {
+  test("správná Apple Maps URL (base path)", () => {
+    const url = new URL(buildAppleMapsWalkingUrl(origin, entrance));
+    assert.equal(url.origin, "https://maps.apple.com");
+  });
+
+  test("pořadí souřadnic je lat,lon", () => {
+    const url = new URL(buildAppleMapsWalkingUrl(origin, entrance));
+    assert.equal(url.searchParams.get("saddr"), `${origin.lat},${origin.lon}`);
+    assert.equal(url.searchParams.get("daddr"), `${entrance.lat},${entrance.lon}`);
+  });
+
+  test("origin uživatele je předán jako saddr, vstup jako daddr", () => {
+    const url = new URL(buildAppleMapsWalkingUrl(origin, entrance));
+    assert.equal(url.searchParams.get("saddr"), "50.083,14.421");
+    assert.equal(url.searchParams.get("daddr"), "50.0835,14.425");
+  });
+
+  test("obsahuje dirflg=w (pěší trasa)", () => {
+    const url = new URL(buildAppleMapsWalkingUrl(origin, entrance));
+    assert.equal(url.searchParams.get("dirflg"), "w");
+  });
+
+  test("NaN/Infinity/mimo rozsah se odmítnou stejně jako u ostatních služeb", () => {
+    assert.throws(() => buildAppleMapsWalkingUrl({ lat: NaN, lon: 14 }, entrance), RangeError);
+    assert.throws(() => buildAppleMapsWalkingUrl(origin, { lat: Infinity, lon: 14 }), RangeError);
+    assert.throws(() => buildAppleMapsWalkingUrl({ lat: 90.0001, lon: 14 }, entrance), RangeError);
   });
 });
 
@@ -81,6 +111,7 @@ describe("validace souřadnic (obě funkce)", () => {
       { lat: -90, lon: 180 },
     ]) {
       assert.doesNotThrow(() => buildGoogleMapsWalkingUrl(point, entrance));
+      assert.doesNotThrow(() => buildAppleMapsWalkingUrl(point, entrance));
       assert.doesNotThrow(() => buildMapyComWalkingUrl(point, entrance));
     }
   });

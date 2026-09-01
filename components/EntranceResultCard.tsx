@@ -2,7 +2,7 @@
 
 import { formatDistance, formatWalkingTime } from "../lib/metro/format-distance.ts";
 import { LINE_BADGE_CLASS } from "../lib/metro/line-colors.ts";
-import { buildGoogleMapsWalkingUrl, buildMapyComWalkingUrl } from "../lib/metro/navigation-links.ts";
+import { buildAppleMapsWalkingUrl, buildGoogleMapsWalkingUrl, buildMapyComWalkingUrl } from "../lib/metro/navigation-links.ts";
 import type { MetroEntrance } from "../lib/metro/types.ts";
 import { useI18n } from "./i18n/I18nContext.ts";
 
@@ -20,6 +20,7 @@ export default function EntranceResultCard({ entrance, distanceMeters, origin }:
   // Navigace vždy na přesné GPS souřadnice KONKRÉTNÍHO vstupu (entrance),
   // nikdy na střed stanice — entrance už tyhle souřadnice nese přímo.
   const googleUrl = origin ? buildGoogleMapsWalkingUrl(origin, entrance) : null;
+  const appleUrl = origin ? buildAppleMapsWalkingUrl(origin, entrance) : null;
   const mapyUrl = origin ? buildMapyComWalkingUrl(origin, entrance) : null;
 
   return (
@@ -52,8 +53,9 @@ export default function EntranceResultCard({ entrance, distanceMeters, origin }:
       </div>
 
       <div className="mt-3 flex flex-wrap gap-2">
-        <NavigationButton href={googleUrl} label={dict.result.googleMapsLabel} ariaLabel={dict.result.googleMapsAriaLabel} />
-        <NavigationButton href={mapyUrl} label={dict.result.mapyComLabel} ariaLabel={dict.result.mapyComAriaLabel} />
+        <NavigationButton href={googleUrl} label={dict.result.googleMapsLabel} ariaLabel={dict.result.googleMapsAriaLabel} variant="google" />
+        <NavigationButton href={appleUrl} label={dict.result.appleMapsLabel} ariaLabel={dict.result.appleMapsAriaLabel} variant="apple" />
+        <NavigationButton href={mapyUrl} label={dict.result.mapyComLabel} ariaLabel={dict.result.mapyComAriaLabel} variant="mapy" />
       </div>
 
       <p className="mt-2 text-xs text-gray-400">{dict.result.disclaimer}</p>
@@ -61,28 +63,41 @@ export default function EntranceResultCard({ entrance, distanceMeters, origin }:
   );
 }
 
-function NavigationButton({ href, label, ariaLabel }: { href: string | null; label: string; ariaLabel: string }) {
+type NavigationVariant = "google" | "apple" | "mapy";
+
+// Barevné odlišení podle služby (ne loga — viz zadání) — každá má svou
+// rozpoznatelnou identitu: Google modrá, Apple černobílá minimalistická,
+// Mapy.com zelená (Seznam Mapy).
+const VARIANT_CLASS: Record<NavigationVariant, string> = {
+  google: "border-2 border-[#4285F4] bg-white text-[#4285F4] hover:bg-[#4285F4]/10",
+  apple: "border-2 border-gray-900 bg-gray-900 text-white hover:bg-gray-700",
+  mapy: "border-2 border-emerald-700 bg-emerald-700 text-white hover:bg-emerald-800",
+};
+
+function NavigationButton({
+  href,
+  label,
+  ariaLabel,
+  variant,
+}: {
+  href: string | null;
+  label: string;
+  ariaLabel: string;
+  variant: NavigationVariant;
+}) {
   const baseClass =
-    "flex min-h-[44px] flex-1 basis-[45%] items-center justify-center gap-1.5 rounded-xl px-3 text-base font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900";
+    "flex min-h-[44px] min-w-[92px] flex-1 basis-[30%] items-center justify-center rounded-xl px-2 text-center text-sm font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 sm:text-base";
 
   if (!href) {
     return (
-      <button type="button" disabled aria-label={ariaLabel} className={`${baseClass} cursor-not-allowed border border-gray-200 bg-gray-100 text-gray-400`}>
-        <span aria-hidden="true">📍</span>
+      <button type="button" disabled aria-label={ariaLabel} className={`${baseClass} cursor-not-allowed border-2 border-gray-200 bg-gray-100 text-gray-400`}>
         {label}
       </button>
     );
   }
 
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={ariaLabel}
-      className={`${baseClass} border border-gray-900 bg-gray-900 text-white hover:bg-gray-700`}
-    >
-      <span aria-hidden="true">📍</span>
+    <a href={href} target="_blank" rel="noopener noreferrer" aria-label={ariaLabel} className={`${baseClass} ${VARIANT_CLASS[variant]}`}>
       {label}
     </a>
   );
