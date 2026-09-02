@@ -14,8 +14,6 @@ export type NightDictionary = {
   subtitle: string;
   privacyNote: string;
   backToMetroLink: string;
-  themeToggleToNight: string;
-  themeToggleToLight: string;
   outsidePrague: string;
   noNightServiceTonight: string;
   duringDayNotice: string;
@@ -31,8 +29,6 @@ const cs: NightDictionary = {
   subtitle: "Najdi nejbližší noční tramvaj nebo autobus a nech se k ní navigovat.",
   privacyNote: "Poloha zůstává jen ve vašem zařízení.",
   backToMetroLink: "Najít nejbližší metro",
-  themeToggleToNight: "Zapnout noční vzhled",
-  themeToggleToLight: "Zapnout světlý vzhled",
   outsidePrague: "Tady už pražská noční doprava opravdu nejezdí.",
   noNightServiceTonight: "Pro tuhle noc se v okolí nepodařilo najít žádný platný noční spoj.",
   duringDayNotice: "Zobrazené spoje patří nadcházející noci.",
@@ -48,8 +44,6 @@ const en: NightDictionary = {
   subtitle: "Find the nearest night tram or bus and get walking directions to it.",
   privacyNote: "Your location stays only on your device.",
   backToMetroLink: "Find the nearest metro",
-  themeToggleToNight: "Switch to night theme",
-  themeToggleToLight: "Switch to light theme",
   outsidePrague: "Prague night transport really doesn't reach this far.",
   noNightServiceTonight: "No valid night service could be found nearby for this night.",
   duringDayNotice: "The departures shown belong to the upcoming night.",
@@ -65,8 +59,6 @@ const de: NightDictionary = {
   subtitle: "Finden Sie die nächste Nachttram oder den nächsten Nachtbus und lassen Sie sich zu Fuß dorthin navigieren.",
   privacyNote: "Ihr Standort bleibt ausschließlich auf Ihrem Gerät.",
   backToMetroLink: "Nächste Metro finden",
-  themeToggleToNight: "Nachtansicht aktivieren",
-  themeToggleToLight: "Helle Ansicht aktivieren",
   outsidePrague: "Hier fährt der Prager Nachtverkehr wirklich nicht mehr.",
   noNightServiceTonight: "Für diese Nacht konnte in der Nähe keine gültige Nachtverbindung gefunden werden.",
   duringDayNotice: "Die angezeigten Abfahrten gehören zur kommenden Nacht.",
@@ -82,8 +74,6 @@ const uk: NightDictionary = {
   subtitle: "Знайдіть найближчий нічний трамвай або автобус і відкрийте до нього пішохідний маршрут.",
   privacyNote: "Дані про ваше місцезнаходження залишаються лише на вашому пристрої.",
   backToMetroLink: "Знайти найближче метро",
-  themeToggleToNight: "Увімкнути нічний вигляд",
-  themeToggleToLight: "Увімкнути світлий вигляд",
   outsidePrague: "Сюди празький нічний транспорт справді не їздить.",
   noNightServiceTonight: "На цю ніч поблизу не вдалося знайти жодного дійсного нічного сполучення.",
   duringDayNotice: "Показані відправлення належать до найближчої ночі.",

@@ -4,6 +4,8 @@ import LanguageMenu from "./i18n/LanguageMenu.tsx";
 import VulgarToggle from "./i18n/VulgarToggle.tsx";
 import { useI18n } from "./i18n/I18nContext.ts";
 import { getSeoContent } from "../lib/seo/content.ts";
+import { NIGHT_LOCALE_TO_ROUTE } from "../lib/i18n/night-routes.ts";
+import HeaderModeSwitchLink from "./HeaderModeSwitchLink.tsx";
 
 // Značka "KdeJeMetro.cz" se NEPŘEKLÁDÁ (je to název domény) — jen
 // podtitulek a popisky tlačítek jsou jazykově závislé. Na 320px se
@@ -24,6 +26,7 @@ export default function AppHeader() {
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <LanguageMenu />
           <VulgarToggle />
+          <HeaderModeSwitchLink href={NIGHT_LOCALE_TO_ROUTE[locale]} label={dict.footer.nightTransportLink} direction="to-night" />
         </div>
       </div>
       <h1 className="mx-auto mt-2 max-w-2xl text-center text-sm text-gray-600 sm:text-base">{seo.mainHeading}</h1>
