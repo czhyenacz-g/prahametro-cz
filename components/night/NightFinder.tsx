@@ -9,7 +9,7 @@ import { getTargetNightWindow } from "../../lib/night-transport/target-night.ts"
 import { selectNearestStopGroups, pickNavigationPlatform } from "../../lib/night-transport/select-results.ts";
 import { getMergedUpcomingDepartures, type MergedNightDeparture } from "../../lib/night-transport/merge-departures.ts";
 import { groupIdToFileName } from "../../lib/night-transport/stop-groups.ts";
-import { getNightDictionary } from "../../lib/i18n/night-dictionary.ts";
+import { getNightCta, getNightDictionary } from "../../lib/i18n/night-dictionary.ts";
 import type { NightStopDetail, NightTransportIndex } from "../../lib/night-transport/types.ts";
 import { useI18n } from "../i18n/I18nContext.ts";
 import AdSlot from "../ads/AdSlot.tsx";
@@ -36,8 +36,9 @@ type FinderState =
   | { kind: "results"; cards: ResolvedCard[] };
 
 export default function NightFinder() {
-  const { locale, dict } = useI18n();
+  const { locale, dict, vulgar } = useI18n();
   const nightDict = getNightDictionary(locale);
+  const nightCta = getNightCta(locale, vulgar);
   const { status, locate } = useGeolocation();
   const [finderState, setFinderState] = useState<FinderState>({ kind: "idle" });
   const [isStale, setIsStale] = useState(false);
@@ -119,7 +120,7 @@ export default function NightFinder() {
   }, [status]);
 
   return (
-    <section aria-label={nightDict.cta} className="mx-auto w-full max-w-2xl px-4 py-6 sm:py-8">
+    <section aria-label={nightCta} className="mx-auto w-full max-w-2xl px-4 py-6 sm:py-8">
       <div className="rounded-2xl border border-gray-200 bg-white p-4 text-center shadow-sm dark:border-slate-700 dark:bg-slate-900 sm:p-6">
         <button
           type="button"
@@ -128,7 +129,7 @@ export default function NightFinder() {
           className="flex min-h-[64px] w-full items-center justify-center gap-3 rounded-2xl bg-navy-900 px-5 py-4 text-xl font-extrabold leading-tight text-white transition hover:bg-navy-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-900 focus-visible:ring-offset-2 disabled:opacity-60 dark:bg-white dark:text-navy-900 dark:hover:bg-slate-200 dark:focus-visible:ring-white sm:text-2xl"
         >
           <LocateFixed aria-hidden="true" size={28} strokeWidth={2.25} className="shrink-0" />
-          <span>{status.kind === "locating" ? dict.finder.ctaLocating : nightDict.cta}</span>
+          <span>{status.kind === "locating" ? dict.finder.ctaLocating : nightCta}</span>
         </button>
         <p className="mt-3 text-sm text-gray-500 dark:text-slate-400">{nightDict.privacyNote}</p>
       </div>

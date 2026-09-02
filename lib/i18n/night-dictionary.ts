@@ -11,6 +11,8 @@ import type { Locale } from "./types.ts";
 // Dictionary NEEXISTUJÍ.
 export type NightDictionary = {
   cta: string;
+  /** Vulgární varianta `cta` — mění se JEN tenhle jeden text, stejný vzorec jako dict.finder.headingVulgar na homepage (viz lib/i18n/dictionary.ts getMainHeading). */
+  ctaVulgar: string;
   subtitle: string;
   privacyNote: string;
   backToMetroLink: string;
@@ -26,6 +28,7 @@ export type NightDictionary = {
 
 const cs: NightDictionary = {
   cta: "Kde je nejbližší noční spoj?",
+  ctaVulgar: "Kde je ten zasranej noční spoj?!!",
   subtitle: "Najdi nejbližší noční tramvaj nebo autobus a nech se k ní navigovat.",
   privacyNote: "Poloha zůstává jen ve vašem zařízení.",
   backToMetroLink: "Najít nejbližší metro",
@@ -41,6 +44,7 @@ const cs: NightDictionary = {
 
 const en: NightDictionary = {
   cta: "Find the nearest night transport",
+  ctaVulgar: "Where's the fucking night bus?!",
   subtitle: "Find the nearest night tram or bus and get walking directions to it.",
   privacyNote: "Your location stays only on your device.",
   backToMetroLink: "Find the nearest metro",
@@ -56,6 +60,7 @@ const en: NightDictionary = {
 
 const de: NightDictionary = {
   cta: "Nächste Nachtverbindung finden",
+  ctaVulgar: "Wo ist die verdammte Nachtverbindung?!!",
   subtitle: "Finden Sie die nächste Nachttram oder den nächsten Nachtbus und lassen Sie sich zu Fuß dorthin navigieren.",
   privacyNote: "Ihr Standort bleibt ausschließlich auf Ihrem Gerät.",
   backToMetroLink: "Nächste Metro finden",
@@ -71,6 +76,7 @@ const de: NightDictionary = {
 
 const uk: NightDictionary = {
   cta: "Знайти найближчий нічний транспорт",
+  ctaVulgar: "Де цей довбаний нічний транспорт?!!",
   subtitle: "Знайдіть найближчий нічний трамвай або автобус і відкрийте до нього пішохідний маршрут.",
   privacyNote: "Дані про ваше місцезнаходження залишаються лише на вашому пристрої.",
   backToMetroLink: "Знайти найближче метро",
@@ -88,4 +94,10 @@ const nightDictionaries: Record<Locale, NightDictionary> = { cs, en, de, uk };
 
 export function getNightDictionary(locale: Locale): NightDictionary {
   return nightDictionaries[locale];
+}
+
+/** Hlavní CTA noční stránky — vulgar mode mění JEN tenhle jeden text, stejný vzorec jako getMainHeading() na homepage (viz lib/i18n/dictionary.ts). */
+export function getNightCta(locale: Locale, vulgar: boolean): string {
+  const dict = getNightDictionary(locale);
+  return vulgar ? dict.ctaVulgar : dict.cta;
 }
