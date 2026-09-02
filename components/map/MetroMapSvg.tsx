@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import { estimateTextWidth } from "../../lib/map/estimate-text-width.ts";
 import { stationLayout, stationNodesById } from "../../lib/map/station-layout.ts";
 import { LINE_HEX } from "../../lib/metro/line-colors.ts";
 
@@ -12,19 +12,23 @@ export type MetroMapSvgProps = {
   onSelectStation: (stationId: string) => void;
   ariaLabel: string;
   getStationAriaLabel: (stationName: string, lines: string) => string;
-  /** Tři nejbližší RŮZNÉ stanice — jen podtržení textu jména, nic jiného (viz zadání). */
+  /** Tři nejbližší RŮZNÉ stanice — jen podtržení jména, nic jiného (viz zadání). */
   highlightedStationIds: ReadonlySet<string>;
 };
 
-// Výrazné podtržení jména nejbližší stanice (viz zadání — "mnohem víc
-// výrazněji" než dřívější jemná varianta). Tloušťka teď záměrně
-// konkuruje trati (TRACK_WIDTH), ať je na první pohled jasné, které
-// stanice jsou nejblíž. Hodnoty odpovídají fontSize={20} níže.
-const HIGHLIGHT_TEXT_DECORATION_STYLE: CSSProperties = {
-  textDecorationLine: "underline",
-  textDecorationThickness: "4px",
-  textUnderlineOffset: "4px",
-};
+// Podtržení jména nejbližší stanice je kreslené jako vlastní <line>, NE
+// přes CSS text-decoration na <text> — SVG <text> kombinuje decoration
+// line se stroke/paintOrder nastaveným na halo efekt (bílý obrys textu
+// kvůli čitelnosti nad tratí), takže tenká/středně silná decoration
+// linka v praxi zaniká v tom samém bílém obtahu a je skoro neviditelná
+// (ověřeno — zesílení CSS podtržení na <text> samo o sobě nepomohlo).
+// Samostatná <line> se svou vlastní barvou/tloušťkou tímhle efektem
+// vůbec neprochází. Modrá je záměrně mimo paletu čtyř linek (A zelená,
+// B zlatá, C červená, D fialová), ať podtržení nikdy nepůsobí jako
+// barva linky.
+const HIGHLIGHT_UNDERLINE_COLOR = "#2563EB";
+const HIGHLIGHT_UNDERLINE_THICKNESS = 4;
+const HIGHLIGHT_UNDERLINE_OFFSET = 6;
 
 // Čistě prezentační SVG vrstva — žádný vlastní React stav (ten drží
 // MetroMap.tsx / useMapZoomPan.ts), jen vykreslení podle dodaného
@@ -102,14 +106,22 @@ export default function MetroMapSvg({
               fontWeight={isInterchange ? 700 : 500}
               fill="#1f2937"
               pointerEvents="none"
-              style={
-                isHighlighted
-                  ? { paintOrder: "stroke", stroke: "white", strokeWidth: 5, ...HIGHLIGHT_TEXT_DECORATION_STYLE }
-                  : { paintOrder: "stroke", stroke: "white", strokeWidth: 5 }
-              }
+              style={{ paintOrder: "stroke", stroke: "white", strokeWidth: 5 }}
             >
               {node.name}
             </text>
+            {isHighlighted && (
+              <line
+                x1={node.x + radius + 6}
+                y1={node.y + 5 + HIGHLIGHT_UNDERLINE_OFFSET}
+                x2={node.x + radius + 6 + estimateTextWidth(node.name, isInterchange)}
+                y2={node.y + 5 + HIGHLIGHT_UNDERLINE_OFFSET}
+                stroke={HIGHLIGHT_UNDERLINE_COLOR}
+                strokeWidth={HIGHLIGHT_UNDERLINE_THICKNESS}
+                strokeLinecap="round"
+                pointerEvents="none"
+              />
+            )}
           </g>
         );
       })}

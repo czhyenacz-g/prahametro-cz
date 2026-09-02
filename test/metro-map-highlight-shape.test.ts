@@ -5,36 +5,38 @@ import { fileURLToPath } from "node:url";
 
 // .tsx komponenty se nedají v tomto projektu přímo importovat do testů
 // (viz test/i18n-routing-shape.test.ts pro vysvětlení a stejný vzorec) —
-// vizuální požadavky (podtržení jen na textu, ne na kroužku/trati/kliku)
-// se ověřují nad zdrojovým textem.
+// vizuální požadavky (podtržení jen u vybraných stanic, ne na
+// kroužku/trati/kliku) se ověřují nad zdrojovým textem.
 function readSource(relativePath: string): string {
   return readFileSync(fileURLToPath(new URL(`../${relativePath}`, import.meta.url)), "utf-8");
 }
 
-describe("10./11. MetroMapSvg — podtržení jen u vybraných stanic, jen na <text>", () => {
+describe("10./11. MetroMapSvg — podtržení jen u vybraných stanic, vlastní <line> (ne CSS text-decoration)", () => {
   const source = readSource("components/map/MetroMapSvg.tsx");
 
-  test("styl podtržení se aplikuje podmíněně podle highlightedStationIds.has(node.id)", () => {
-    assert.match(source, /highlightedStationIds\.has\(node\.id\)/);
+  // CSS text-decoration na SVG <text> se v kombinaci s halo obtahem
+  // (paintOrder/stroke pro čitelnost nad tratí) v praxi ztrácí — proto
+  // se podtržení kreslí jako samostatná <line>, viz komentář v
+  // MetroMapSvg.tsx. Tenhle test hlídá, že se tahle regrese nevrátí.
+  test("podtržení se vykresluje jako vlastní <line>, ne přes CSS text-decoration", () => {
+    assert.doesNotMatch(source, /textDecoration/);
+    assert.match(source, /<line/);
   });
 
-  test("konstanta s textDecorationLine/Thickness/UnderlineOffset existuje a je použitá jen v rámci <text>", () => {
-    assert.match(source, /textDecorationLine:\s*"underline"/);
-    assert.match(source, /textDecorationThickness/);
-    assert.match(source, /textUnderlineOffset/);
+  test("<line> se vykresluje podmíněně podle isHighlighted (highlightedStationIds.has(node.id))", () => {
+    assert.match(source, /const isHighlighted = highlightedStationIds\.has\(node\.id\)/);
+    assert.match(source, /\{isHighlighted && \(\s*<line/);
+  });
 
-    const textBlockMatch = source.match(/<text[\s\S]*?<\/text>/);
-    assert.ok(textBlockMatch, "chybí <text> blok pro jméno stanice");
-    assert.match(textBlockMatch![0], /HIGHLIGHT_TEXT_DECORATION_STYLE/);
+  test("podtržení má vlastní barvu mimo paletu čtyř linek metra (LINE_HEX)", () => {
+    const lineHexValues = ["#1E8E3E", "#F4B400", "#D93025", "#6B4FBB"];
+    const underlineColorMatch = /HIGHLIGHT_UNDERLINE_COLOR = "(#[0-9A-Fa-f]{6})"/.exec(source);
+    assert.ok(underlineColorMatch, "nenalezena konstanta HIGHLIGHT_UNDERLINE_COLOR");
+    assert.ok(!lineHexValues.includes(underlineColorMatch![1].toUpperCase()));
+  });
 
-    const circleBlocks = source.match(/<circle[\s\S]*?\/>/g) ?? [];
-    for (const block of circleBlocks) {
-      assert.doesNotMatch(block, /textDecoration|HIGHLIGHT_TEXT_DECORATION_STYLE/);
-    }
-    const polylineBlocks = source.match(/<polyline[\s\S]*?\/>/g) ?? [];
-    for (const block of polylineBlocks) {
-      assert.doesNotMatch(block, /textDecoration|HIGHLIGHT_TEXT_DECORATION_STYLE/);
-    }
+  test("podtržení má tloušťku nezávislou na halo stroku textu (vlastní strokeWidth, ne 5)", () => {
+    assert.match(source, /HIGHLIGHT_UNDERLINE_THICKNESS = \d+/);
   });
 
   test("nepřidává nové ikony/pulzování/animaci/legendu (žádné nové importy z lucide-react ani CSS animace)", () => {
@@ -42,7 +44,7 @@ describe("10./11. MetroMapSvg — podtržení jen u vybraných stanic, jen na <t
     assert.doesNotMatch(source, /animate-|@keyframes|transition/);
   });
 
-  test("nepřidává barevné kruhy ani špendlíky (žádný nový <circle>/<path> jen pro zvýraznění)", () => {
+  test("nepřidává barevné kruhy ani špendlíky (žádný nový <circle> jen pro zvýraznění)", () => {
     const circleCount = (source.match(/<circle/g) ?? []).length;
     // Beze změny oproti původním dvěma kroužkům na stanici (klikací plocha + viditelný kroužek).
     assert.equal(circleCount, 2);
@@ -51,6 +53,13 @@ describe("10./11. MetroMapSvg — podtržení jen u vybraných stanic, jen na <t
   test("nezvětšuje layout — pozice textu (x/y) zůstává beze změny podle radius/node souřadnic", () => {
     assert.match(source, /x=\{node\.x \+ radius \+ 6\}/);
     assert.match(source, /y=\{node\.y \+ 5\}/);
+  });
+
+  test("<line> je pointerEvents=\"none\" (nic neblokuje klik na stanici)", () => {
+    // \b hlídá, ať se nechytí "<polyline" ani zmínka "<line>" v komentáři výše.
+    const lineBlockMatch = source.match(/<line\s+x1=[\s\S]*?\/>/);
+    assert.ok(lineBlockMatch, "nenalezen <line> element s atributem x1");
+    assert.match(lineBlockMatch![0], /pointerEvents="none"/);
   });
 });
 
