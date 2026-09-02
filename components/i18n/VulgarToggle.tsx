@@ -19,7 +19,7 @@ export default function VulgarToggle() {
       className={`flex h-11 min-w-[44px] shrink-0 items-center justify-center rounded-full border px-2 text-sm font-extrabold shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-900 ${
         vulgar
           ? "motion-safe:animate-[vulgar-pop_420ms_ease-out] border-red-600 bg-red-600 text-white"
-          : "border-gray-200 bg-white text-gray-500 hover:bg-gray-50"
+          : "border-gray-200 bg-white text-gray-500 hover:bg-gray-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
       }`}
     >
       18+

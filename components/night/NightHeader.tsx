@@ -1,6 +1,7 @@
 "use client";
 
 import LanguageMenu from "../i18n/LanguageMenu.tsx";
+import VulgarToggle from "../i18n/VulgarToggle.tsx";
 import { useI18n } from "../i18n/I18nContext.ts";
 import { getNightDictionary } from "../../lib/i18n/night-dictionary.ts";
 import { NIGHT_LOCALE_TO_ROUTE } from "../../lib/i18n/night-routes.ts";
@@ -14,10 +15,10 @@ export type NightHeaderProps = {
 
 /**
  * Hlavička noční stránky — brand + jazykové menu (routuje na noční
- * varianty, viz NIGHT_LOCALE_TO_ROUTE) + přepínač vzhledu, pak H1 se
- * SEO nadpisem (zadání bod 17) a krátký podtitulek. Analogie
- * components/AppHeader.tsx, ale BEZ VulgarToggle (zadání bod 9 "18+
- * režim na noční stránku nepřidávej").
+ * varianty, viz NIGHT_LOCALE_TO_ROUTE) + 18+ přepínač (sdílený stav s
+ * homepage, viz I18nProvider) + přepínač vzhledu, pak H1 se SEO
+ * nadpisem (zadání bod 17) a krátký podtitulek. Analogie
+ * components/AppHeader.tsx.
  */
 export default function NightHeader({ mainHeading, theme, onToggleTheme }: NightHeaderProps) {
   const { locale } = useI18n();
@@ -29,6 +30,7 @@ export default function NightHeader({ mainHeading, theme, onToggleTheme }: Night
         <p className="truncate text-lg font-extrabold tracking-tight text-navy-900 dark:text-white sm:text-3xl">KdeJeMetro.cz</p>
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <LanguageMenu routeMap={NIGHT_LOCALE_TO_ROUTE} />
+          <VulgarToggle />
           <NightThemeToggle theme={theme} onToggle={onToggleTheme} toNightLabel={nightDict.themeToggleToNight} toLightLabel={nightDict.themeToggleToLight} />
         </div>
       </div>
