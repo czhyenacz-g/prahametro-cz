@@ -24,8 +24,12 @@ export default function HomePage({ locale }: { locale: Locale }) {
             viz oprava zpětné vazby "prázdná oblast hlavičky/hero") —
             začíná přesně na horní hraně <main>, tedy o sekci níž než
             hlavička. Karty (bg-white) uvnitř ji místy překryjí, to je
-            u obrázku na pozadí čekané chování. */}
-        <main className="bg-[url('/hero-metro.webp')] bg-top bg-no-repeat bg-[length:100%_auto]">
+            u obrázku na pozadí čekané chování. Od `md:` výš je pozadí
+            `fixed` (obsah přes něj při scrollování "pluje") — na mobilu
+            (hlavně iOS Safari) má `background-attachment: fixed`
+            dlouhodobě problémy s výkonem/renderováním, proto tam
+            zůstává výchozí `bg-scroll`. */}
+        <main className="bg-[url('/hero-metro.webp')] bg-top bg-no-repeat bg-[length:100%_auto] md:bg-fixed">
           <HomeClient entrances={metroEntrances.entrances} />
           <SeoContent locale={locale} />
         </main>
