@@ -20,7 +20,12 @@ export default function HomePage({ locale }: { locale: Locale }) {
     <I18nProvider locale={locale}>
       <div className="flex min-h-screen flex-col bg-gray-50">
         <AppHeader />
-        <main>
+        {/* Ilustrace jako pozadí obsahu POD hlavičkou (ne banner nad ní,
+            viz oprava zpětné vazby "prázdná oblast hlavičky/hero") —
+            začíná přesně na horní hraně <main>, tedy o sekci níž než
+            hlavička. Karty (bg-white) uvnitř ji místy překryjí, to je
+            u obrázku na pozadí čekané chování. */}
+        <main className="bg-[url('/hero-metro.webp')] bg-top bg-no-repeat bg-[length:100%_auto]">
           <HomeClient entrances={metroEntrances.entrances} />
           <SeoContent locale={locale} />
         </main>

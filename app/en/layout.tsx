@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import "../globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SITE_URL } from "../config/site.ts";
@@ -16,12 +15,6 @@ export default function EnRootLayout({ children }: Readonly<{ children: React.Re
   return (
     <html lang="en">
       <body className="bg-gray-50 text-gray-900 antialiased">
-        {/* Banner v normálním toku dokumentu (ne pozadí <body>) — jako
-            pozadí by ho hustý obsah hned pod hlavičkou (CTA karta bez
-            mezery) prakticky celý zakryl, viz oprava hlášené chyby
-            "není vidět pozadí". Čistě dekorativní, bez ořezu (w-full
-            h-auto zachová poměr stran 1774:887). */}
-        <Image src="/hero-metro.webp" alt="" width={1774} height={887} priority className="h-auto w-full" />
         {children}
         <Analytics />
       </body>
