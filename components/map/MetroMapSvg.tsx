@@ -16,13 +16,14 @@ export type MetroMapSvgProps = {
   highlightedStationIds: ReadonlySet<string>;
 };
 
-// Jemné podtržení jména nejbližší stanice (viz zadání) — o něco jemnější
-// než tloušťka trati/přestupního kroužku, ať nepůsobí výrazněji než
-// linka nebo přestupní stanice. Hodnoty odpovídají fontSize={20} níže.
+// Výrazné podtržení jména nejbližší stanice (viz zadání — "mnohem víc
+// výrazněji" než dřívější jemná varianta). Tloušťka teď záměrně
+// konkuruje trati (TRACK_WIDTH), ať je na první pohled jasné, které
+// stanice jsou nejblíž. Hodnoty odpovídají fontSize={20} níže.
 const HIGHLIGHT_TEXT_DECORATION_STYLE: CSSProperties = {
   textDecorationLine: "underline",
-  textDecorationThickness: "1.5px",
-  textUnderlineOffset: "3px",
+  textDecorationThickness: "4px",
+  textUnderlineOffset: "4px",
 };
 
 // Čistě prezentační SVG vrstva — žádný vlastní React stav (ten drží
