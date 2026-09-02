@@ -91,6 +91,8 @@ export type Dictionary = {
     dataLabel: string;
     licenseWord: string;
     disclaimer: string;
+    /** Nenápadný odkaz na noční sekci v patičce (zadání bod 3) — cíl viz lib/i18n/night-routes.ts, ne tenhle slovník. */
+    nightTransportLink: string;
   };
 };
 
@@ -173,6 +175,7 @@ const cs: Dictionary = {
     dataLabel: "Dopravní data:",
     licenseWord: "licence",
     disclaimer: "Neoficiální projekt, nesouvisí s DPP ani PID.",
+    nightTransportLink: "Noční MHD",
   },
 };
 
@@ -254,6 +257,7 @@ const en: Dictionary = {
     dataLabel: "Transit data:",
     licenseWord: "license",
     disclaimer: "Unofficial project, not affiliated with DPP or PID.",
+    nightTransportLink: "Night transport",
   },
 };
 
@@ -336,6 +340,7 @@ const de: Dictionary = {
     dataLabel: "Verkehrsdaten:",
     licenseWord: "Lizenz",
     disclaimer: "Inoffizielles Projekt, nicht mit DPP oder PID verbunden.",
+    nightTransportLink: "Nachtverkehr",
   },
 };
 
@@ -418,6 +423,7 @@ const uk: Dictionary = {
     dataLabel: "Транспортні дані:",
     licenseWord: "ліцензія",
     disclaimer: "Неофіційний проєкт, не пов’язаний із DPP або PID.",
+    nightTransportLink: "Нічний транспорт",
   },
 };
 

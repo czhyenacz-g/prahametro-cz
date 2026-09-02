@@ -114,23 +114,27 @@ describe("DeparturesPanel.tsx — přístupnost (viz zadání bod 3/13)", () => 
   });
 });
 
-describe("11. tři navigační tlačítka zůstávají beze změny (EntranceResultCard.tsx)", () => {
+describe("11. tři navigační tlačítka zůstávají beze změny (sdíleno přes components/MapNavigationButtons.tsx, viz i noční sekce)", () => {
   const source = readSource("components/EntranceResultCard.tsx");
+  const sharedSource = readSource("components/MapNavigationButtons.tsx");
 
-  test("přesně tři <NavigationButton>, stále v grid-cols-3 řádku", () => {
-    const matches = source.match(/<NavigationButton/g) ?? [];
-    assert.equal(matches.length, 3);
-    assert.match(source, /grid grid-cols-3/);
+  test("EntranceResultCard vykresluje trojici tlačítek přes sdílenou komponentu, ne vlastní kopii", () => {
+    assert.match(source, /<MapNavigationButtons/);
+    assert.doesNotMatch(source, /<NavigationButton/);
   });
 
-  test("Odjezdy tlačítko NENÍ součástí grid-cols-3 řádku ani čtvrtým NavigationButton", () => {
-    const gridRowMatch = source.match(/<div className="mt-3 grid grid-cols-3[^]*?<\/div>/);
-    assert.ok(gridRowMatch);
-    assert.doesNotMatch(gridRowMatch![0], /DeparturesButton/);
+  test("sdílená komponenta má přesně tři <NavigationButton>, v grid-cols-3 řádku", () => {
+    const matches = sharedSource.match(/<NavigationButton/g) ?? [];
+    assert.equal(matches.length, 3);
+    assert.match(sharedSource, /grid grid-cols-3/);
+  });
+
+  test("Odjezdy tlačítko NENÍ součástí sdílené trojice (MapNavigationButtons o DeparturesButton vůbec neví)", () => {
+    assert.doesNotMatch(sharedSource, /DeparturesButton/);
   });
 
   test("DeparturesButton se vykresluje v samostatném pomocném řádku pod navigačními tlačítky", () => {
-    const navIndex = source.indexOf("grid grid-cols-3");
+    const navIndex = source.indexOf("<MapNavigationButtons");
     const departuresIndex = source.indexOf("<DeparturesButton");
     assert.ok(navIndex >= 0 && departuresIndex > navIndex);
   });

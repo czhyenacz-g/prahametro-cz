@@ -1,56 +1,9 @@
 import type { GtfsCalendar, GtfsCalendarDate, GtfsRoute, GtfsStop, GtfsStopTimeWithDeparture, GtfsTrip } from "./types.ts";
 import { getMetroRouteLines } from "./metro-routes.ts";
-import type { CalendarDefinition, DepartureRow, DirectionGroup, LineGroup, StationDeparturesFile } from "../departures/types.ts";
+import { parseGtfsTimeToSeconds } from "./parse-gtfs-time.ts";
+import { buildCalendarDefinitions } from "../departures/build-calendar-definitions.ts";
+import type { DepartureRow, DirectionGroup, LineGroup, StationDeparturesFile } from "../departures/types.ts";
 import type { MetroLine } from "../metro/types.ts";
-
-/** "HH:MM:SS" (H může přesáhnout 24, viz GTFS spec) -> sekund od půlnoci. Neplatný vstup -> null, ať se řádek bezpečně přeskočí, ne spadne. */
-function parseGtfsTimeToSeconds(value: string): number | null {
-  const match = /^(\d{1,3}):(\d{2}):(\d{2})$/.exec(value.trim());
-  if (!match) return null;
-  const [, h, m, s] = match;
-  const seconds = Number(h) * 3600 + Number(m) * 60 + Number(s);
-  return Number.isFinite(seconds) ? seconds : null;
-}
-
-const WEEKDAY_COLUMNS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"] as const;
-
-function buildCalendarDefinitions(calendars: GtfsCalendar[], calendarDates: GtfsCalendarDate[], usedServiceIds: ReadonlySet<string>): CalendarDefinition[] {
-  const byServiceId = new Map<string, CalendarDefinition>();
-
-  for (const row of calendars) {
-    if (!usedServiceIds.has(row.service_id)) continue;
-    const weekdays = WEEKDAY_COLUMNS.map((col) => row[col] === "1") as CalendarDefinition["weekdays"];
-    byServiceId.set(row.service_id, {
-      serviceId: row.service_id,
-      weekdays,
-      startDate: row.start_date,
-      endDate: row.end_date,
-      addedDates: [],
-      removedDates: [],
-    });
-  }
-
-  // Service_id používaný metrem, ale BEZ řádku v calendar.txt (celá
-  // definice jen přes calendar_dates) — platný GTFS vzor, doplní se
-  // "prázdný" týdenní kalendář, který exceptions níže doplní.
-  function ensure(serviceId: string): CalendarDefinition {
-    let def = byServiceId.get(serviceId);
-    if (!def) {
-      def = { serviceId, weekdays: [false, false, false, false, false, false, false], startDate: "00000000", endDate: "99999999", addedDates: [], removedDates: [] };
-      byServiceId.set(serviceId, def);
-    }
-    return def;
-  }
-
-  for (const row of calendarDates) {
-    if (!usedServiceIds.has(row.service_id)) continue;
-    const def = ensure(row.service_id);
-    if (row.exception_type === "1") def.addedDates.push(row.date);
-    else if (row.exception_type === "2") def.removedDates.push(row.date);
-  }
-
-  return [...byServiceId.values()];
-}
 
 /**
  * Čistá funkce bez I/O — ze syrových GTFS tabulek postaví kompaktní

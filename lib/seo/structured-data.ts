@@ -48,6 +48,21 @@ export type FaqPageJsonLd = {
  * data tak nikdy neujedou od toho, co uživatel skutečně vidí (viz
  * zadání "musí přesně odpovídat viditelnému FAQ").
  */
+export type BreadcrumbListJsonLd = {
+  "@context": "https://schema.org";
+  "@type": "BreadcrumbList";
+  itemListElement: { "@type": "ListItem"; position: number; name: string; item: string }[];
+};
+
+/** Homepage -> noční sekce (zadání bod 20) — vždy jen ověřitelné, existující stránky/absolutní URL, žádné vymyšlené úrovně. */
+export function buildBreadcrumbListJsonLd(items: readonly { name: string; path: string }[], siteUrl: string): BreadcrumbListJsonLd {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({ "@type": "ListItem", position: index + 1, name: item.name, item: new URL(item.path, siteUrl).toString() })),
+  };
+}
+
 export function buildFaqPageJsonLd(items: readonly FaqItem[]): FaqPageJsonLd {
   return {
     "@context": "https://schema.org",

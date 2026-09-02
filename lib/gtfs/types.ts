@@ -2,7 +2,25 @@
 // (ne celý GTFS spec). Vše je string, protože tak přichází z CSV;
 // typová konverze (čísla, enumy) se dělá až v extract-metro-entrances.ts
 // / build-departures.ts.
-export type GtfsRoute = { route_id: string; route_short_name: string; route_type: string };
+/**
+ * `is_night`/`is_regional`/`is_substitute_transport`/`route_color`/
+ * `route_text_color` jsou skutečné sloupce reálného PID GTFS feedu
+ * (ověřeno na živých datech, `routes.txt`) — používá je
+ * lib/night-transport/night-routes.ts pro rozpoznání nočních linek, viz
+ * tam podrobný komentář proč (autoritativní PID příznak, ne hádání
+ * podle čísla).
+ */
+export type GtfsRoute = {
+  route_id: string;
+  route_short_name: string;
+  route_type: string;
+  /** Volitelné — existující metro kód (extract-metro-entrances.ts/metro-routes.ts) tyhle sloupce nepotřebuje a testovací fixtures je nemusí nastavovat. */
+  is_night?: string;
+  is_regional?: string;
+  is_substitute_transport?: string;
+  route_color?: string;
+  route_text_color?: string;
+};
 export type GtfsTrip = { trip_id: string; route_id: string; service_id: string; trip_headsign: string; direction_id: string };
 export type GtfsStopTime = { trip_id: string; stop_id: string };
 export type GtfsStop = {
@@ -13,6 +31,17 @@ export type GtfsStop = {
   location_type: string;
   parent_station: string;
   wheelchair_boarding: string;
+  /**
+   * PID "uzel" — stabilní seskupovací ID fyzických nástupišť SDÍLENÉ
+   * napříč tramvajovými/autobusovými zastávkami BEZ `parent_station`
+   * (ověřeno na živých datech, např. "Lazarská" má 4 nástupiště se
+   * stejným `asw_node_id`, ale prázdným `parent_station`) — viz
+   * lib/night-transport/stop-groups.ts a zadání bod 7 "pokud PID
+   * používá jiný stabilní vztah, respektuj ho".
+   */
+  asw_node_id?: string;
+  /** Kód nástupiště v rámci zastávky (např. "A", "1") — jen zobrazovací, viz zadání bod 7 "zachovej konkrétní nástupiště". */
+  platform_code?: string;
 };
 
 /**

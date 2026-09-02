@@ -29,7 +29,17 @@ const HTML_LANG: Record<Locale, string> = { cs: "cs", en: "en", de: "de", uk: "u
  * — server ani první klientský render je neznají, takže hydratace
  * nemůže nesouhlasit (viz zadání "no hydration mismatch").
  */
-export default function LanguageMenu() {
+export type LanguageMenuProps = {
+  /**
+   * Locale -> cílová URL. Výchozí `localeToRoute` (homepage) — noční
+   * stránky předávají `NIGHT_LOCALE_TO_ROUTE` (lib/i18n/night-routes.ts),
+   * ať přepnutí jazyka zůstane uvnitř noční sekce, ne na homepage (viz
+   * zadání bod 18).
+   */
+  routeMap?: Record<Locale, string>;
+};
+
+export default function LanguageMenu({ routeMap = localeToRoute }: LanguageMenuProps) {
   const { locale, dict } = useI18n();
   const [open, setOpen] = useState(false);
   const [suffix, setSuffix] = useState("");
@@ -81,7 +91,7 @@ export default function LanguageMenu() {
           return (
             <a
               key={targetLocale}
-              href={localeToRoute[targetLocale] + suffix}
+              href={routeMap[targetLocale] + suffix}
               hrefLang={HTML_LANG[targetLocale]}
               aria-current={isCurrent ? "page" : undefined}
               onClick={() => setOpen(false)}

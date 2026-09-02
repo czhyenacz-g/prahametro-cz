@@ -1,6 +1,11 @@
 import type { Config } from "tailwindcss";
 
 export default {
+  // "class" místo výchozího "media" (zadání bod 13 — přepínač noční
+  // sekce musí umět přebít systémové nastavení, ne se jen řídit
+  // prefers-color-scheme). Žádná komponenta homepage `dark:` třídu
+  // nepoužívá, takže jde o čistě aditivní změnu bez dopadu na homepage.
+  darkMode: "class",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",

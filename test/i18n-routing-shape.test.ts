@@ -22,9 +22,10 @@ describe("8. jazykové menu je postavené na skutečných odkazech, ne klientsk�
     assert.doesNotMatch(source, /setLocale/);
   });
 
-  test("href staví na localeToRoute pro všechny 4 jazyky (lib/i18n/types.ts), ne na natvrdo vypsaných cestách", () => {
+  test("href staví na routeMap (výchozí localeToRoute z lib/i18n/types.ts) pro všechny 4 jazyky, ne na natvrdo vypsaných cestách", () => {
     assert.match(source, /from "\.\.\/\.\.\/lib\/i18n\/types\.ts"/);
-    assert.match(source, /localeToRoute\[/);
+    assert.match(source, /routeMap = localeToRoute/); // homepage volání <LanguageMenu \/> beze změny zachovává původní cíle
+    assert.match(source, /routeMap\[/);
     assert.match(source, /LOCALES\.map/);
   });
 

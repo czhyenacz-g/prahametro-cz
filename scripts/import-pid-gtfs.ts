@@ -6,6 +6,7 @@
 // NENÍ součástí `next build` — appka za běhu žádné GTFS/zip/CSV nezná,
 // jen hotové JSONy (viz zadání "bez backendu za běhu").
 import { execFileSync } from "node:child_process";
+import { gzipSync } from "node:zlib";
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -17,6 +18,9 @@ import { buildDepartures } from "../lib/gtfs/build-departures.ts";
 import { findMissingStationCoverage } from "../lib/gtfs/validate-departures-coverage.ts";
 import type { GtfsCalendar, GtfsCalendarDate, GtfsRoute, GtfsStop, GtfsStopTimeWithDeparture, GtfsTrip } from "../lib/gtfs/types.ts";
 import { METRO_LINES } from "../lib/metro/types.ts";
+import { getNightCandidateTripIds } from "../lib/night-transport/night-routes.ts";
+import { buildNightDataset } from "../lib/night-transport/build-night-dataset.ts";
+import { groupIdToFileName } from "../lib/night-transport/stop-groups.ts";
 
 const GTFS_ZIP_URL = "https://data.pid.cz/PID_GTFS.zip";
 const MIN_STATIONS = 50;
@@ -79,11 +83,19 @@ async function main() {
       fail("V GTFS feedu nebyl nalezen žádný spoj s route_type=1 (metro) — feed může mít jiný formát.");
     }
 
+    // Předfiltr nočních "kandidátů" (jen z routes.txt/trips.txt, bez
+    // stop_times) — viz lib/night-transport/night-routes.ts. Ověření,
+    // že kandidát má SKUTEČNÝ noční spoj, proběhne až po streamu níž
+    // (buildNightDataset), stejně jako klasifikace metra.
+    const nightCandidateTripIds = getNightCandidateTripIds(routes, trips);
+
     // Jeden průchod stop_times.txt (přes 100 MB) pro VŠECHNY potřeby
-    // najednou (pořadí stanic i odjezdy) — dva samostatné streamy by
-    // soubor četly zbytečně dvakrát.
-    console.log(`Streamuji stop_times.txt (metro spojů: ${metroTripIds.size}) …`);
+    // najednou (pořadí stanic i odjezdy metra, i noční doprava) — další
+    // samostatný stream by soubor četl zbytečně znovu (viz zadání bod 6
+    // "jeden průchod").
+    console.log(`Streamuji stop_times.txt (metro spojů: ${metroTripIds.size}, noční kandidáti: ${nightCandidateTripIds.size}) …`);
     const metroStopTimes: (GtfsStopTimeWithSequence & GtfsStopTimeWithDeparture)[] = [];
+    const nightStopTimes: GtfsStopTimeWithDeparture[] = [];
     let totalRows = 0;
 
     await streamCsvColumns(
@@ -94,10 +106,15 @@ async function main() {
         if (metroTripIds.has(row.trip_id)) {
           metroStopTimes.push(row);
         }
+        if (nightCandidateTripIds.has(row.trip_id)) {
+          nightStopTimes.push(row);
+        }
       }
     );
 
-    console.log(`Projito ${totalRows.toLocaleString("cs-CZ")} řádků stop_times.txt, z toho metro: ${metroStopTimes.length.toLocaleString("cs-CZ")}.`);
+    console.log(
+      `Projito ${totalRows.toLocaleString("cs-CZ")} řádků stop_times.txt, z toho metro: ${metroStopTimes.length.toLocaleString("cs-CZ")}, noční kandidáti: ${nightStopTimes.length.toLocaleString("cs-CZ")}.`
+    );
 
     const entrances = extractMetroEntrances(routes, trips, stops, metroStopTimes);
     const stationCount = countUniqueStations(entrances);
@@ -188,6 +205,92 @@ async function main() {
       `Zapsáno ${departuresFiles.size} souborů odjezdů do public/data/departures/ ` +
         `(celkem ${totalDepartureRows.toLocaleString("cs-CZ")} odjezdů, ${(totalBytes / 1024).toFixed(0)} kB, ` +
         `průměr ${(totalBytes / departuresFiles.size / 1024).toFixed(1)} kB/stanice).`
+    );
+
+    // --- Noční doprava (viz zadání "vytvoř samostatnou funkční sekci
+    // pro noční veřejnou dopravu") — STEJNÉ syrové GTFS tabulky, žádný
+    // další soubor, žádný druhý běh importu. ---
+    console.log("Sestavuji noční dopravu (tramvaje/autobusy) …");
+
+    const feedStartDate = calendars.reduce((min, c) => (c.start_date < min ? c.start_date : min), calendars[0].start_date);
+    const feedEndDate = calendars.reduce((max, c) => (c.end_date > max ? c.end_date : max), calendars[0].end_date);
+
+    const { index: nightIndex, stopDetails: nightStopDetails, warnings: nightWarnings } = buildNightDataset(
+      routes,
+      trips,
+      stops,
+      nightStopTimes,
+      calendars,
+      calendarDates,
+      { generatedAt, source: GTFS_ZIP_URL, feedStartDate, feedEndDate }
+    );
+
+    if (nightWarnings.length > 0) {
+      console.log(`Noční doprava — ${nightWarnings.length} varování:`);
+      for (const warning of nightWarnings) {
+        console.log(`  - ${JSON.stringify(warning)}`);
+      }
+    }
+
+    // Kontrolovaná chyba jen při SYSTEMATICKÉM problému (zadání bod 5 —
+    // "nevyřazuj celý import kvůli chybě jednoho spoje"), ne kvůli
+    // jednotlivým varováním výše.
+    if (nightIndex.lines.length === 0) {
+      fail("V GTFS feedu nebyla nalezena ŽÁDNÁ noční linka (is_night=1) — feed může mít jiný formát nebo příznak chybí. Import se PŘERUŠIL.");
+    }
+    if (nightIndex.stopGroups.length === 0) {
+      fail("Noční linky byly nalezeny, ale žádná zastávková skupina nemá platné souřadnice/spoje — import se PŘERUŠIL.");
+    }
+
+    const tramLines = nightIndex.lines.filter((l) => l.category === "tram");
+    const urbanBusLines = nightIndex.lines.filter((l) => l.category === "urban-bus");
+    const regionalBusLines = nightIndex.lines.filter((l) => l.category === "regional-bus");
+    const totalPlatforms = new Set([...nightStopDetails.values()].flatMap((d) => d.platforms.map((p) => p.id))).size;
+
+    console.log(
+      `Noční doprava: ${tramLines.length} tramvajových linek (${tramLines.map((l) => l.shortName).join(", ")}), ` +
+        `${urbanBusLines.length} městských nočních autobusů (${urbanBusLines.map((l) => l.shortName).join(", ")}), ` +
+        `${regionalBusLines.length} příměstských nočních autobusů (${regionalBusLines.map((l) => l.shortName).join(", ")}).`
+    );
+    console.log(`Noční doprava: ${nightIndex.stopGroups.length} zastávkových skupin, ${totalPlatforms} fyzických nástupišť.`);
+    console.log(`Noční doprava: linka 918 ${urbanBusLines.some((l) => l.shortName === "918") ? "nalezena" : "NENALEZENA"}.`);
+    console.log(
+      `Noční doprava: letištní linky ${nightIndex.airportLines.length > 0 ? nightIndex.airportLines.join(", ") : "NENALEZENY (žádná noční linka neobsluhuje zastávku s 'Letiště' v názvu)"}.`
+    );
+    console.log(`Noční doprava: kalendáře platné ${feedStartDate}–${feedEndDate}.`);
+
+    const nightDir = join(import.meta.dirname, "..", "public", "data", "night-transport");
+    const nightStopsDir = join(nightDir, "stops");
+    rmSync(nightDir, { recursive: true, force: true });
+    mkdirSync(nightStopsDir, { recursive: true });
+
+    const indexJson = JSON.stringify(nightIndex);
+    writeFileSync(join(nightDir, "index.json"), indexJson, "utf-8");
+
+    let nightDetailBytes = 0;
+    let nightDetailGzipBytes = 0;
+    for (const [groupId, detail] of nightStopDetails) {
+      const fileName = groupIdToFileName(groupId);
+      if (!fileName) {
+        fail(`ID noční zastávkové skupiny "${groupId}" obsahuje znaky nevhodné pro název souboru — import se PŘERUŠIL.`);
+      }
+      const json = JSON.stringify(detail);
+      writeFileSync(join(nightStopsDir, `${fileName}.json`), json, "utf-8");
+      nightDetailBytes += Buffer.byteLength(json, "utf-8");
+      nightDetailGzipBytes += gzipSync(json).byteLength;
+    }
+
+    const indexBytes = Buffer.byteLength(indexJson, "utf-8");
+    const indexGzipBytes = gzipSync(indexJson).byteLength;
+    const totalNightDepartureRows = [...nightStopDetails.values()].reduce(
+      (sum, d) => sum + d.routes.reduce((s2, r) => s2 + r.directions.reduce((s3, dir) => s3 + dir.departures.length, 0), 0),
+      0
+    );
+
+    console.log(
+      `Zapsáno public/data/night-transport/index.json (${(indexBytes / 1024).toFixed(1)} kB, gzip ${(indexGzipBytes / 1024).toFixed(1)} kB) ` +
+        `+ ${nightStopDetails.size} souborů detailu zastávek (celkem ${(nightDetailBytes / 1024).toFixed(0)} kB, gzip ${(nightDetailGzipBytes / 1024).toFixed(0)} kB; ` +
+        `${totalNightDepartureRows.toLocaleString("cs-CZ")} nočních odjezdů).`
     );
   } finally {
     rmSync(tmpDir, { recursive: true, force: true });
