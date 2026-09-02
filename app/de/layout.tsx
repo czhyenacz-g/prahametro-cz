@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function DeRootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="de">
-      <body className="bg-gray-50 text-gray-900 antialiased">
+      <body className="bg-gray-50 bg-[url('/hero-metro.webp')] bg-top bg-no-repeat bg-[length:100%_auto] text-gray-900 antialiased">
         {children}
         <Analytics />
       </body>
