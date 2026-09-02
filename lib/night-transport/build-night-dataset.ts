@@ -4,6 +4,7 @@ import { buildCalendarDefinitions } from "../departures/build-calendar-definitio
 import type { DepartureRow } from "../departures/types.ts";
 import { classifyNightRoutes, type NightRouteWarning } from "./night-routes.ts";
 import { getStopGroupKey } from "./stop-groups.ts";
+import { isAirportStopGroup } from "./airport-stops.ts";
 import type { NightLineSummary, NightPlatform, NightRouteAtStop, NightStopDetail, NightStopGroup, NightTransportIndex } from "./types.ts";
 
 export type NightDatasetWarning =
@@ -17,13 +18,6 @@ export type NightDatasetResult = {
   stopDetails: Map<string, NightStopDetail>;
   warnings: NightDatasetWarning[];
 };
-
-// Jen kmen "letišt" (bez koncovky) — čeština skloňuje "Letiště"/"K
-// Letišti"/"Letištěm" atd., přesná shoda na "letiště" by přišla o
-// nominativní tvary v názvech typu "K Letišti" (ověřeno na reálném
-// feedu — noční linka 910 aktuálně obsluhuje zastávku "K Letišti", ne
-// "Letiště" samotné).
-const AIRPORT_NAME_PATTERN = /letišt/i;
 
 /**
  * Čistá funkce bez I/O — analogie lib/gtfs/build-departures.ts, ale pro
@@ -193,7 +187,7 @@ export function buildNightDataset(
 
       routesAtStop.push({ ...nightRoute, directions });
 
-      if (AIRPORT_NAME_PATTERN.test(group.name)) airportGroupLines.add(nightRoute.shortName);
+      if (isAirportStopGroup(groupId, group.name)) airportGroupLines.add(nightRoute.shortName);
     }
 
     routesAtStop.sort((a, b) => a.shortName.localeCompare(b.shortName, undefined, { numeric: true }));

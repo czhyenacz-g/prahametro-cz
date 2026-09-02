@@ -21,6 +21,7 @@ import { METRO_LINES } from "../lib/metro/types.ts";
 import { getNightCandidateTripIds } from "../lib/night-transport/night-routes.ts";
 import { buildNightDataset } from "../lib/night-transport/build-night-dataset.ts";
 import { groupIdToFileName } from "../lib/night-transport/stop-groups.ts";
+import { buildAirportRouteReport } from "../lib/night-transport/airport-stops.ts";
 
 const GTFS_ZIP_URL = "https://data.pid.cz/PID_GTFS.zip";
 const MIN_STATIONS = 50;
@@ -254,9 +255,22 @@ async function main() {
     );
     console.log(`Noční doprava: ${nightIndex.stopGroups.length} zastávkových skupin, ${totalPlatforms} fyzických nástupišť.`);
     console.log(`Noční doprava: linka 918 ${urbanBusLines.some((l) => l.shortName === "918") ? "nalezena" : "NENALEZENA"}.`);
-    console.log(
-      `Noční doprava: letištní linky ${nightIndex.airportLines.length > 0 ? nightIndex.airportLines.join(", ") : "NENALEZENY (žádná noční linka neobsluhuje zastávku s 'Letiště' v názvu)"}.`
-    );
+
+    // Auditní výstup "linka -> jaké letištní zastávky skutečně
+    // obsluhuje" (viz zadání bod 3) — postavený nad hotovým
+    // nightStopDetails, ne nad natvrdo očekávaným seznamem, takže vždy
+    // odpovídá aktuálním datům. Rozpoznání samotné (lib/night-transport/
+    // airport-stops.ts) je primárně podle stabilních PID uzlů, ne podle
+    // čísla linky ani textu "Letiště"/"K Letišti" v názvu.
+    const airportReport = buildAirportRouteReport(nightStopDetails);
+    if (airportReport.length > 0) {
+      console.log("Letištní noční linky:");
+      for (const entry of airportReport) {
+        console.log(`  ${entry.line} — ${entry.stopNames.join(", ")}`);
+      }
+    } else {
+      console.log("Letištní noční linky: NENALEZENY (žádná noční linka aktuálně neobsluhuje žádný ze známých letištních uzlů).");
+    }
     console.log(`Noční doprava: kalendáře platné ${feedStartDate}–${feedEndDate}.`);
 
     const nightDir = join(import.meta.dirname, "..", "public", "data", "night-transport");

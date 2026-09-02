@@ -1,0 +1,81 @@
+name: Denní aktualizace PID GTFS dat
+
+# Cron GitHub Actions vždy běží v UTC, nepřepíná se podle letního/
+# zimního času. "30 2 * * *" = 02:30 UTC = 03:30 pražského času v ZIMĚ
+# (CET, UTC+1) / 04:30 v LÉTĚ (CEST, UTC+2). Záměrně beze automatického
+# přepínání pásma — jde o nenáročnou noční aktualizaci dat, hodinový
+# posun 2x ročně nevadí (zadání bod 4 "není nutné komplikovat workflow").
+on:
+  schedule:
+    - cron: "30 2 * * *"
+  # Ruční spuštění pro ověření/vynucenou aktualizaci mimo rozvrh.
+  workflow_dispatch: {}
+
+# Nejmenší potřebné oprávnění — jen zápis obsahu repozitáře pro commit
+# vygenerovaných dat (zadání bod 4). Repozitář může mít výchozí
+# oprávnění GITHUB_TOKEN nastavené na "read" (Settings → Actions →
+# General → Workflow permissions) — tenhle blok ho pro tenhle jeden
+# workflow explicitně rozšiřuje, nic jiného není potřeba měnit.
+permissions:
+  contents: write
+
+# Trigger je jen `schedule`/`workflow_dispatch`, NIKDY `push` — commit,
+# který tenhle workflow sám vytvoří, ho tedy nemůže znovu spustit a
+# nehrozí nekonečná smyčka (zadání bod 4 "zabraň nekonečné smyčce").
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Nastavit Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Instalovat závislosti
+        run: npm ci
+
+      # Import má vlastní validaci a při systematické chybě (chybějící
+      # data, nápadně málo stanic/vstupů, chybějící pokrytí odjezdů…)
+      # sám skončí s nenulovým exit kódem (viz scripts/import-pid-gtfs.ts
+      # fail()) — tenhle krok tak zároveň slouží jako "validace" ze
+      # zadání bodu 4/5, žádný samostatný script pro ni v projektu není.
+      - name: Stáhnout a naimportovat aktuální PID GTFS
+        run: npm run data:refresh
+
+      - name: Testy
+        run: npm test
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Produkční build
+        run: npm run build
+
+      # Commit a push AŽ po úspěšném importu, testech, lintu, typechecku
+      # i buildu výše — pokud cokoliv z toho selže, GitHub Actions job
+      # skončí chybou dřív, než se sem vůbec dostane, a produkce zůstává
+      # na posledních platných commitnutých datech (zadání bod 5).
+      - name: Commitnout a pushnout data, jen pokud se skutečně změnila
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Jen skutečné výstupy scripts/import-pid-gtfs.ts — žádné jiné
+          # soubory (zadání bod 4 "commit musí obsahovat pouze soubory,
+          # které jsou legitimním výstupem GTFS importu").
+          git add data/metro-entrances.json data/metro-line-order.json public/data/departures public/data/night-transport
+
+          if git diff --cached --quiet; then
+            echo "GTFS data se od posledního importu nezměnila, nic se necommituje."
+            exit 0
+          fi
+
+          git commit -m "chore: denní aktualizace PID GTFS dat"
+          git push
