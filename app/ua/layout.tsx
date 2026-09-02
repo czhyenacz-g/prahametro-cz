@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import "../globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SITE_URL } from "../config/site.ts";
@@ -15,7 +16,13 @@ export const metadata: Metadata = {
 export default function UaRootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="uk">
-      <body className="bg-gray-50 bg-[url('/hero-metro.webp')] bg-top bg-no-repeat bg-[length:100%_auto] text-gray-900 antialiased">
+      <body className="bg-gray-50 text-gray-900 antialiased">
+        {/* Banner v normálním toku dokumentu (ne pozadí <body>) — jako
+            pozadí by ho hustý obsah hned pod hlavičkou (CTA karta bez
+            mezery) prakticky celý zakryl, viz oprava hlášené chyby
+            "není vidět pozadí". Čistě dekorativní, bez ořezu (w-full
+            h-auto zachová poměr stran 1774:887). */}
+        <Image src="/hero-metro.webp" alt="" width={1774} height={887} priority className="h-auto w-full" />
         {children}
         <Analytics />
       </body>

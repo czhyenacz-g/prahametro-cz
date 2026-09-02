@@ -18,7 +18,7 @@ export default function AppHeader() {
   const seo = getSeoContent(locale);
 
   return (
-    <header className="bg-white/90 px-4 pt-5 backdrop-blur-sm sm:pt-6">
+    <header className="px-4 pt-5 sm:pt-6">
       <div className="mx-auto flex w-full max-w-2xl items-center justify-between gap-2">
         <p className="truncate text-lg font-extrabold tracking-tight text-navy-900 sm:text-3xl">KdeJeMetro.cz</p>
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">

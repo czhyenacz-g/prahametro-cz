@@ -6,7 +6,7 @@ export default function AppFooter() {
   const { dict } = useI18n();
 
   return (
-    <footer className="mt-auto border-t border-gray-200 bg-white px-4 py-6 text-center text-xs text-gray-500 sm:text-sm">
+    <footer className="mt-auto border-t border-gray-200 px-4 py-6 text-center text-xs text-gray-500 sm:text-sm">
       <p>{dict.footer.privacy}</p>
       <p className="mt-2">
         {dict.footer.dataLabel}{" "}
