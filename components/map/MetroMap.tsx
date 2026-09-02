@@ -15,9 +15,11 @@ export type MetroMapProps = {
   entrances: MetroEntrance[];
   position: { lat: number; lon: number } | null;
   onRequestLocation: () => void;
+  /** Tři nejbližší RŮZNÉ stanice k jemnému podtržení názvu (viz zadání) — čistě prezentační, nemění výběr/logiku detailu stanice. */
+  highlightedStationIds: ReadonlySet<string>;
 };
 
-export default function MetroMap({ entrances, position, onRequestLocation }: MetroMapProps) {
+export default function MetroMap({ entrances, position, onRequestLocation, highlightedStationIds }: MetroMapProps) {
   const { dict } = useI18n();
   const [selectedStationId, setSelectedStationId] = useState<string | null>(null);
   const [showStationEntrances, setShowStationEntrances] = useState(false);
@@ -70,6 +72,7 @@ export default function MetroMap({ entrances, position, onRequestLocation }: Met
               onSelectStation={selectStation}
               ariaLabel={dict.map.ariaLabel}
               getStationAriaLabel={(name, lines) => dict.map.stationAriaLabel(name, lines)}
+              highlightedStationIds={highlightedStationIds}
             />
           </div>
 

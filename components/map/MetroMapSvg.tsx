@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { stationLayout, stationNodesById } from "../../lib/map/station-layout.ts";
 import { LINE_HEX } from "../../lib/metro/line-colors.ts";
 
@@ -11,6 +12,17 @@ export type MetroMapSvgProps = {
   onSelectStation: (stationId: string) => void;
   ariaLabel: string;
   getStationAriaLabel: (stationName: string, lines: string) => string;
+  /** Tři nejbližší RŮZNÉ stanice — jen podtržení textu jména, nic jiného (viz zadání). */
+  highlightedStationIds: ReadonlySet<string>;
+};
+
+// Jemné podtržení jména nejbližší stanice (viz zadání) — o něco jemnější
+// než tloušťka trati/přestupního kroužku, ať nepůsobí výrazněji než
+// linka nebo přestupní stanice. Hodnoty odpovídají fontSize={20} níže.
+const HIGHLIGHT_TEXT_DECORATION_STYLE: CSSProperties = {
+  textDecorationLine: "underline",
+  textDecorationThickness: "1.5px",
+  textUnderlineOffset: "3px",
 };
 
 // Čistě prezentační SVG vrstva — žádný vlastní React stav (ten drží
@@ -19,7 +31,14 @@ export type MetroMapSvgProps = {
 // převzatá mapa/PNG/PDF DPP. Přeložené popisky přicházejí jako props
 // (žádná i18n závislost přímo tady, viz zadání "žádný nový design
 // systém" — komponenta zůstává čistě prezentační).
-export default function MetroMapSvg({ currentViewBox, selectedStationId, onSelectStation, ariaLabel, getStationAriaLabel }: MetroMapSvgProps) {
+export default function MetroMapSvg({
+  currentViewBox,
+  selectedStationId,
+  onSelectStation,
+  ariaLabel,
+  getStationAriaLabel,
+  highlightedStationIds,
+}: MetroMapSvgProps) {
   return (
     <svg viewBox={currentViewBox} className="h-full w-full touch-none select-none" role="img" aria-label={ariaLabel}>
       {stationLayout.tracks.map((track) => {
@@ -44,6 +63,7 @@ export default function MetroMapSvg({ currentViewBox, selectedStationId, onSelec
       {stationLayout.nodes.map((node) => {
         const isInterchange = node.lines.length > 1;
         const isSelected = node.id === selectedStationId;
+        const isHighlighted = highlightedStationIds.has(node.id);
         const radius = isInterchange ? INTERCHANGE_RADIUS : STATION_RADIUS;
 
         return (
@@ -81,7 +101,11 @@ export default function MetroMapSvg({ currentViewBox, selectedStationId, onSelec
               fontWeight={isInterchange ? 700 : 500}
               fill="#1f2937"
               pointerEvents="none"
-              style={{ paintOrder: "stroke", stroke: "white", strokeWidth: 5 }}
+              style={
+                isHighlighted
+                  ? { paintOrder: "stroke", stroke: "white", strokeWidth: 5, ...HIGHLIGHT_TEXT_DECORATION_STYLE }
+                  : { paintOrder: "stroke", stroke: "white", strokeWidth: 5 }
+              }
             >
               {node.name}
             </text>
