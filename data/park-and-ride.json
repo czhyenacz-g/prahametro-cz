@@ -1,0 +1,283 @@
+{
+  "generatedAt": "2026-09-03T09:01:12.409Z",
+  "source": "Golemio v3 Parking API (https://api.golemio.cz), primární zdroj tsk-offstreet",
+  "totalFetched": 23,
+  "skippedInvalid": 0,
+  "matchedToMetro": 16,
+  "parkAndRides": [
+    {
+      "id": "tsk-offstreet-ae77736b-399d-462e-901d-bf91ef7ab96c",
+      "name": "P+R Skalka 2",
+      "address": "Přetlucká, 10000 Praha Strašnice, Česko",
+      "coordinates": {
+        "lat": 50.0703598,
+        "lon": 14.511567450000001
+      },
+      "entranceCoordinates": null,
+      "capacity": 78,
+      "priceLabel": "50 Kč / 24 hodin",
+      "reservationPossible": false,
+      "sourceUrl": "https://parking.praha.eu/cs/moznosti-parkovani-v-praze/pr-park-ride/",
+      "metroStationId": "U953S1",
+      "metroDistanceMeters": 346.0040791996137
+    },
+    {
+      "id": "tsk-offstreet-eef53536-16f5-4772-b28e-466e9d4fa6c1",
+      "name": "P+R Zličín 2",
+      "address": "Řevnická, 15521 Praha Praha 17, Česko",
+      "coordinates": {
+        "lat": 50.0531564,
+        "lon": 14.2912561
+      },
+      "entranceCoordinates": null,
+      "capacity": 66,
+      "priceLabel": "50 Kč / 24 hodin",
+      "reservationPossible": false,
+      "sourceUrl": "https://parking.praha.eu/cs/moznosti-parkovani-v-praze/pr-park-ride/",
+      "metroStationId": "U1141S1",
+      "metroDistanceMeters": 85.14334410463738
+    },
+    {
+      "id": "tsk-offstreet-ff998b13-61fa-4f1a-8fbf-798dd8676de3",
+      "name": "P+R Letňany",
+      "address": "Letňany, 191 00 Letňany, Česko",
+      "coordinates": {
+        "lat": 50.1257755,
+        "lon": 14.514721
+      },
+      "entranceCoordinates": {
+        "lat": 50.125179,
+        "lon": 14.51489
+      },
+      "capacity": 679,
+      "priceLabel": "50 Kč / 24 hodin",
+      "reservationPossible": false,
+      "sourceUrl": "https://parking.praha.eu/cs/moznosti-parkovani-v-praze/pr-park-ride/",
+      "metroStationId": "U1000S1",
+      "metroDistanceMeters": 68.042863570969
+    },
+    {
+      "id": "tsk-offstreet-f01831c1-415d-463d-b51f-1a91ba7bd4ed",
+      "name": "P+R Opatov",
+      "address": "Nad Opatovem, 14900 Praha Chodov, Česko",
+      "coordinates": {
+        "lat": 50.02661865,
+        "lon": 14.509139900000001
+      },
+      "entranceCoordinates": null,
+      "capacity": 111,
+      "priceLabel": "50 Kč / 24 hodin",
+      "reservationPossible": false,
+      "sourceUrl": "https://parking.praha.eu/cs/moznosti-parkovani-v-praze/pr-park-ride/",
+      "metroStationId": "U106S1",
+      "metroDistanceMeters": 109.81872231809709
+    },
+    {
+      "id": "tsk-offstreet-f589ef8e-1209-4793-87ba-7e405839f506",
+      "name": "P+R Kongresové centrum Praha",
+      "address": "140 23 Nusle, Česko",
+      "coordinates": {
+        "lat": 50.0611876,
+        "lon": 14.429287949999999
+      },
+      "entranceCoordinates": {
+        "lat": 50.061018,
+        "lon": 14.428561
+      },
+      "capacity": 251,
+      "priceLabel": "100 Kč / 24 hodin",
+      "reservationPossible": false,
+      "sourceUrl": "https://parking.praha.eu/cs/moznosti-parkovani-v-praze/pr-park-ride/",
+      "metroStationId": "U527S1",
+      "metroDistanceMeters": 217.9515122490421
+    },
+    {
+      "id": "tsk-offstreet-0a25bd51-0851-4766-b884-e5bf8cf0aac7",
+      "name": "P+R Zličín 1",
+      "address": "Zličín, 155 21 Zličín, Česko",
+      "coordinates": {
+        "lat": 50.054593600000004,
+        "lon": 14.28979395
+      },
+      "entranceCoordinates": null,
+      "capacity": 88,
+      "priceLabel": "50 Kč / 24 hodin",
+      "reservationPossible": false,
+      "sourceUrl": "https://parking.praha.eu/cs/moznosti-parkovani-v-praze/pr-park-ride/",
+      "metroStationId": "U1141S1",
+      "metroDistanceMeters": 105.7422296457959
+    },
+    {
+      "id": "tsk-offstreet-0de6185c-f3a8-4ce6-b684-bdb6d95fe737",
+      "name": "P+R Roztyly",
+      "address": "Tomíčkova, 14800 Praha Chodov, Česko",
+      "coordinates": {
+        "lat": 50.038511,
+        "lon": 14.476998
+      },
+      "entranceCoordinates": {
+        "lat": 50.038511,
+        "lon": 14.476998
+      },
+      "capacity": 100,
+      "priceLabel": null,
+      "reservationPossible": false,
+      "sourceUrl": "https://parking.praha.eu/cs/moznosti-parkovani-v-praze/pr-park-ride/",
+      "metroStationId": "U601S1",
+      "metroDistanceMeters": 134.12896194245153
+    },
+    {
+      "id": "tsk-offstreet-32ae10fd-9167-4edb-b838-0c5c3e2fca11",
+      "name": "P+R Depo Hostivař",
+      "address": "Černokostelecká, 10000 Praha Strašnice, Česko",
+      "coordinates": {
+        "lat": 50.07658415,
+        "lon": 14.518154299999999
+      },
+      "entranceCoordinates": null,
+      "capacity": 110,
+      "priceLabel": "50 Kč / 24 hodin",
+      "reservationPossible": false,
+      "sourceUrl": "https://parking.praha.eu/cs/moznosti-parkovani-v-praze/pr-park-ride/",
+      "metroStationId": "U1071S1",
+      "metroDistanceMeters": 216.2207151976475
+    },
+    {
+      "id": "tsk-offstreet-4145ef72-c325-41c9-8b34-2af23290f942",
+      "name": "P+R Černý most 2",
+      "address": "198 19 Horní Počernice, Česko",
+      "coordinates": {
+        "lat": 50.11035115,
+        "lon": 14.5824074
+      },
+      "entranceCoordinates": null,
+      "capacity": 136,
+      "priceLabel": "50 Kč / 24 hodin",
+      "reservationPossible": false,
+      "sourceUrl": "https://parking.praha.eu/cs/moznosti-parkovani-v-praze/pr-park-ride/",
+      "metroStationId": "U897S1",
+      "metroDistanceMeters": 370.06380892283573
+    },
+    {
+      "id": "tsk-offstreet-46dc7a8d-9e0a-4359-993b-68d16a64de1e",
+      "name": "P+R Chodov",
+      "address": "148 00 Chodov, Česko",
+      "coordinates": {
+        "lat": 50.031831499999996,
+        "lon": 14.4919245
+      },
+      "entranceCoordinates": {
+        "lat": 50.032088,
+        "lon": 14.491964
+      },
+      "capacity": 729,
+      "priceLabel": "50 Kč / 24 hodin",
+      "reservationPossible": false,
+      "sourceUrl": "https://parking.praha.eu/cs/moznosti-parkovani-v-praze/pr-park-ride/",
+      "metroStationId": "U52S1",
+      "metroDistanceMeters": 44.681902234520344
+    },
+    {
+      "id": "tsk-offstreet-50dc39c5-692a-4bfa-bd3d-ca0924e076f9",
+      "name": "P+R Ládví",
+      "address": "Batličkova, 18200 Praha obvod Praha 8, Česko",
+      "coordinates": {
+        "lat": 50.126078,
+        "lon": 14.4716124
+      },
+      "entranceCoordinates": null,
+      "capacity": 85,
+      "priceLabel": "100 Kč / 24 hodin",
+      "reservationPossible": false,
+      "sourceUrl": "https://parking.praha.eu/cs/moznosti-parkovani-v-praze/pr-park-ride/",
+      "metroStationId": "U78S1",
+      "metroDistanceMeters": 93.3976155585374
+    },
+    {
+      "id": "tsk-offstreet-519a4124-9f6c-49c9-89f3-da28b8192ca1",
+      "name": "P+R Rajská zahrada",
+      "address": "Cíglerova, 19800 Praha obvod Praha 9, Česko",
+      "coordinates": {
+        "lat": 50.10700825,
+        "lon": 14.5627085
+      },
+      "entranceCoordinates": null,
+      "capacity": 103,
+      "priceLabel": "50 Kč / 24 hodin",
+      "reservationPossible": false,
+      "sourceUrl": "https://parking.praha.eu/cs/moznosti-parkovani-v-praze/pr-park-ride/",
+      "metroStationId": "U818S1",
+      "metroDistanceMeters": 106.23835071739339
+    },
+    {
+      "id": "tsk-offstreet-52551797-f7f0-44e0-8e06-988c96ab319f",
+      "name": "P+R Skalka 1",
+      "address": "Na Padesátém, 10000 Praha Strašnice, Česko",
+      "coordinates": {
+        "lat": 50.069500500000004,
+        "lon": 14.507757600000001
+      },
+      "entranceCoordinates": null,
+      "capacity": 136,
+      "priceLabel": "100 Kč / 24 hodin",
+      "reservationPossible": false,
+      "sourceUrl": "https://parking.praha.eu/cs/moznosti-parkovani-v-praze/pr-park-ride/",
+      "metroStationId": "U953S1",
+      "metroDistanceMeters": 123.42013909173417
+    },
+    {
+      "id": "tsk-offstreet-58b9c5cc-02e0-468d-b8a6-a3e49a528025",
+      "name": "P+R Nové Butovice",
+      "address": "Petržílkova, 15800 Praha Stodůlky, Česko",
+      "coordinates": {
+        "lat": 50.052085500000004,
+        "lon": 14.349985499999999
+      },
+      "entranceCoordinates": {
+        "lat": 50.052093,
+        "lon": 14.350342
+      },
+      "capacity": 189,
+      "priceLabel": "50 Kč / 24 hodin",
+      "reservationPossible": false,
+      "sourceUrl": "https://parking.praha.eu/cs/moznosti-parkovani-v-praze/pr-park-ride/",
+      "metroStationId": "U602S1",
+      "metroDistanceMeters": 154.3241660137509
+    },
+    {
+      "id": "tsk-offstreet-6b737fe9-6f24-450c-9868-819cb9377ad8",
+      "name": "P+R Garáže Černý Most",
+      "address": "Chlumecká, 198 19 Horní Počernice, Česko",
+      "coordinates": {
+        "lat": 50.109993,
+        "lon": 14.578965499999999
+      },
+      "entranceCoordinates": {
+        "lat": 50.110182,
+        "lon": 14.579402
+      },
+      "capacity": 886,
+      "priceLabel": "50 Kč / 24 hodin",
+      "reservationPossible": false,
+      "sourceUrl": "https://parking.praha.eu/cs/moznosti-parkovani-v-praze/pr-park-ride/",
+      "metroStationId": "U897S1",
+      "metroDistanceMeters": 136.0299807506061
+    },
+    {
+      "id": "tsk-offstreet-8f1abd57-4366-41a3-b800-3604400a1ec0",
+      "name": "P+R Holešovice",
+      "address": "Vrbenského, 170 00 Holešovice, Česko",
+      "coordinates": {
+        "lat": 50.10895155,
+        "lon": 14.441237099999999
+      },
+      "entranceCoordinates": null,
+      "capacity": 76,
+      "priceLabel": "100 Kč / 24 hodin",
+      "reservationPossible": false,
+      "sourceUrl": "https://parking.praha.eu/cs/moznosti-parkovani-v-praze/pr-park-ride/",
+      "metroStationId": "U115S1",
+      "metroDistanceMeters": 67.10607405176873
+    }
+  ]
+}

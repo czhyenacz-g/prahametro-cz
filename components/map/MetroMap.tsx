@@ -17,9 +17,10 @@ export type MetroMapProps = {
   onRequestLocation: () => void;
   /** Tři nejbližší RŮZNÉ stanice k jemnému podtržení názvu (viz zadání) — čistě prezentační, nemění výběr/logiku detailu stanice. */
   highlightedStationIds: ReadonlySet<string>;
+  onOpenParkAndRide: (stationId: string) => void;
 };
 
-export default function MetroMap({ entrances, position, onRequestLocation, highlightedStationIds }: MetroMapProps) {
+export default function MetroMap({ entrances, position, onRequestLocation, highlightedStationIds, onOpenParkAndRide }: MetroMapProps) {
   const { dict } = useI18n();
   const [selectedStationId, setSelectedStationId] = useState<string | null>(null);
   const [showStationEntrances, setShowStationEntrances] = useState(false);
@@ -141,7 +142,7 @@ export default function MetroMap({ entrances, position, onRequestLocation, highl
           {showStationEntrances && stationEntrances.length > 0 && (
             <div className="mt-4 flex flex-col gap-3">
               {stationEntrances.map(({ entrance, distanceMeters }) => (
-                <EntranceResultCard key={entrance.id} entrance={entrance} distanceMeters={distanceMeters} origin={position} />
+                <EntranceResultCard key={entrance.id} entrance={entrance} distanceMeters={distanceMeters} origin={position} onOpenParkAndRide={onOpenParkAndRide} />
               ))}
             </div>
           )}

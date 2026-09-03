@@ -9,7 +9,8 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "test": "node --conditions=react-server --test test/*.test.ts",
-    "data:refresh": "tsx scripts/import-pid-gtfs.ts"
+    "data:refresh": "tsx scripts/import-pid-gtfs.ts",
+    "parking:refresh": "node --env-file-if-exists=.env.local --import tsx scripts/import-park-and-ride.ts"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

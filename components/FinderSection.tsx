@@ -22,9 +22,10 @@ export type FinderSectionProps = {
   status: GeolocationStatus;
   onLocate: () => void;
   onDemoSelect: (lat: number, lon: number) => void;
+  onOpenParkAndRide: (stationId: string) => void;
 };
 
-export default function FinderSection({ entrances, status, onLocate, onDemoSelect }: FinderSectionProps) {
+export default function FinderSection({ entrances, status, onLocate, onDemoSelect, onOpenParkAndRide }: FinderSectionProps) {
   const { locale, vulgar, dict } = useI18n();
   const demoPositions = useMemo(() => buildDemoPositions(entrances), [entrances]);
 
@@ -74,7 +75,7 @@ export default function FinderSection({ entrances, status, onLocate, onDemoSelec
         )}
 
         {results.map((entrance) => (
-          <EntranceResultCard key={entrance.id} entrance={entrance} distanceMeters={entrance.distanceMeters} origin={position} />
+          <EntranceResultCard key={entrance.id} entrance={entrance} distanceMeters={entrance.distanceMeters} origin={position} onOpenParkAndRide={onOpenParkAndRide} />
         ))}
       </div>
 

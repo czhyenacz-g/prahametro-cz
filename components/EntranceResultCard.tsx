@@ -4,10 +4,17 @@ import { Accessibility } from "lucide-react";
 import { formatDistance, formatWalkingTime } from "../lib/metro/format-distance.ts";
 import { LINE_BADGE_CLASS } from "../lib/metro/line-colors.ts";
 import { buildAppleMapsWalkingUrl, buildGoogleMapsWalkingUrl, buildMapyComWalkingUrl } from "../lib/metro/navigation-links.ts";
+import { parkAndRideDataset } from "../lib/parking/load-park-and-ride.ts";
+import { getStationsWithParkAndRide } from "../lib/parking/stations-with-park-and-ride.ts";
 import type { MetroEntrance } from "../lib/metro/types.ts";
 import { useI18n } from "./i18n/I18nContext.ts";
 import DeparturesButton from "./DeparturesButton.tsx";
 import MapNavigationButtons from "./MapNavigationButtons.tsx";
+import ParkAndRideBadge from "./parking/ParkAndRideBadge.tsx";
+
+// Statický snapshot (viz lib/parking/load-park-and-ride.ts) — počítá se
+// jednou při načtení modulu, ne při každém renderu karty.
+const STATIONS_WITH_PARK_AND_RIDE = getStationsWithParkAndRide(parkAndRideDataset);
 
 export type EntranceResultCardProps = {
   entrance: MetroEntrance;
@@ -15,10 +22,13 @@ export type EntranceResultCardProps = {
   distanceMeters: number | null;
   /** Aktuální poloha uživatele — bez ní navigační tlačítka nejsou aktivní (viz zadání). */
   origin: { lat: number; lon: number } | null;
+  /** Volitelné — bez něj (např. detail stanice v mapě) se P+R badge nezobrazí, viz HomeClient.tsx. */
+  onOpenParkAndRide?: (stationId: string) => void;
 };
 
-export default function EntranceResultCard({ entrance, distanceMeters, origin }: EntranceResultCardProps) {
+export default function EntranceResultCard({ entrance, distanceMeters, origin, onOpenParkAndRide }: EntranceResultCardProps) {
   const { dict } = useI18n();
+  const hasParkAndRide = onOpenParkAndRide && STATIONS_WITH_PARK_AND_RIDE.has(entrance.stationId);
 
   // Navigace vždy na přesné GPS souřadnice KONKRÉTNÍHO vstupu (entrance),
   // nikdy na střed stanice — entrance už tyhle souřadnice nese přímo.
@@ -44,6 +54,7 @@ export default function EntranceResultCard({ entrance, distanceMeters, origin }:
                 <Accessibility aria-hidden="true" size={20} strokeWidth={2.25} />
               </span>
             )}
+            {hasParkAndRide && <ParkAndRideBadge stationId={entrance.stationId} stationName={entrance.stationName} onOpen={onOpenParkAndRide!} />}
           </div>
         </div>
 
