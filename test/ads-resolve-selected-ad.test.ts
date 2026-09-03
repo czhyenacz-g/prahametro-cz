@@ -1,7 +1,7 @@
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
 import { resolveSelectedAd } from "../lib/ads/select-ad.ts";
-import { campaigns as realCampaigns } from "../lib/ads/campaigns.ts";
+import { realKdeJeMetroCampaigns as realCampaigns } from "./fixtures/real-kdejemetro-campaigns.ts";
 import type { AdCampaign } from "../lib/ads/types.ts";
 
 const NOW = new Date("2026-06-15T12:00:00Z");
@@ -65,34 +65,37 @@ describe("resolveSelectedAd — stabilita ze sessionStorage", () => {
   });
 });
 
-// Reálná konfigurace (lib/ads/campaigns.ts) po aktivaci Bounce
-// (luggage-en) a GetYourGuide (activities-en) — esim-en/transfer-en
-// zůstávají v poli, ale mají href: null (viz zadání "kampaně bez
-// odkazu zachovej").
+// Reálná konfigurace z Content API (content-api.darbujan.com/admin/
+// promotions, project "kdejemetro", viz test/fixtures/real-kdejemetro-campaigns.ts)
+// po importu Bounce (content-api-luggage-en) a GetYourGuide
+// (content-api-activities-en) — žádné placeholdery bez odkazu se do
+// Content API neimportovaly (viz zadání "neimportuj placeholdery"),
+// proto tenhle blok navíc ověřuje chování pro STARÉ ID uložené v
+// sessionStorage z doby PŘED migrací (appka je bezpečně ignoruje).
 describe("resolveSelectedAd — reálné kampaně, obnova/zneplatnění uloženého výběru (sessionStorage)", () => {
-  test("23. platná uložená kampaň Bounce (luggage-en) se obnoví", () => {
-    const result = resolveSelectedAd(realCampaigns, "luggage-en", { language: "en", now: NOW }, () => 0.99);
-    assert.equal(result?.id, "luggage-en");
+  test("23. platná uložená kampaň Bounce (content-api-luggage-en) se obnoví", () => {
+    const result = resolveSelectedAd(realCampaigns, "content-api-luggage-en", { language: "en", now: NOW }, () => 0.99);
+    assert.equal(result?.id, "content-api-luggage-en");
   });
 
-  test("24. platná uložená kampaň GetYourGuide (activities-en) se obnoví", () => {
-    const result = resolveSelectedAd(realCampaigns, "activities-en", { language: "en", now: NOW }, () => 0.99);
-    assert.equal(result?.id, "activities-en");
+  test("24. platná uložená kampaň GetYourGuide (content-api-activities-en) se obnoví", () => {
+    const result = resolveSelectedAd(realCampaigns, "content-api-activities-en", { language: "en", now: NOW }, () => 0.99);
+    assert.equal(result?.id, "content-api-activities-en");
   });
 
-  test("25. uložená kampaň bez odkazu (esim-en, href: null) se neobnoví — vybere se nová způsobilá", () => {
-    // roll=0 -> první způsobilá anglická kampaň podle pořadí v poli (luggage-en, weight 45 z celkových 75).
+  test("25. staré ID uložené před migrací na Content API (esim-en) se bezpečně ignoruje — vybere se nová způsobilá kampaň", () => {
+    // roll=0 -> první způsobilá anglická kampaň podle pořadí v poli (Bounce, weight 45 z celkových 75).
     const result = resolveSelectedAd(realCampaigns, "esim-en", { language: "en", now: NOW }, () => 0);
     assert.notEqual(result?.id, "esim-en");
-    assert.ok(result?.id === "luggage-en" || result?.id === "activities-en");
+    assert.ok(result?.id === "content-api-luggage-en" || result?.id === "content-api-activities-en");
   });
 
   test("26. neplatný uložený výběr (neexistující ID) vyvolá nový výběr mezi způsobilými kampaněmi", () => {
     const result = resolveSelectedAd(realCampaigns, "nonexistent-id", { language: "en", now: NOW }, () => 0);
-    assert.ok(result?.id === "luggage-en" || result?.id === "activities-en");
+    assert.ok(result?.id === "content-api-luggage-en" || result?.id === "content-api-activities-en");
   });
 
-  test("27. česká verze s neplatným uloženým placeholderem (pharmacy-cs, href: null) nevrátí žádnou kampaň", () => {
+  test("27. česká verze se starým uloženým ID z doby před migrací (pharmacy-cs) nevrátí žádnou kampaň — pro cs dosud žádná neexistuje", () => {
     const result = resolveSelectedAd(realCampaigns, "pharmacy-cs", { language: "cs", now: NOW }, () => 0);
     assert.equal(result, null);
   });

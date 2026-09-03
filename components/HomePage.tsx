@@ -1,3 +1,4 @@
+import { getActivePromotionCampaigns } from "../lib/promotions/get-promotions.ts";
 import { metroEntrances } from "../lib/metro/load-entrances.ts";
 import type { Locale } from "../lib/i18n/types.ts";
 import I18nProvider from "./i18n/I18nProvider.tsx";
@@ -14,8 +15,15 @@ import SeoContent from "./seo/SeoContent.tsx";
  * serverově vykreslená (Next.js Server Components zůstávají server-only
  * i jako children klientské komponenty, pokud je autorem JSX stromu
  * Server Component — což `HomePage` je).
+ *
+ * Reklamy pro placement "finder_results" se stahují TADY, server-side
+ * (Content API token nikdy neopustí server, viz lib/content-api/client.ts) —
+ * `HomeClient`/`FinderSection` dál dostávají už hotové pole jako obyčejná
+ * data, žádný z nich neví, že existuje Content API (viz zadání bod 6/7).
  */
-export default function HomePage({ locale }: { locale: Locale }) {
+export default async function HomePage({ locale }: { locale: Locale }) {
+  const promotionCampaigns = await getActivePromotionCampaigns("finder_results");
+
   return (
     <I18nProvider locale={locale}>
       <div className="flex min-h-screen flex-col bg-gray-50">
@@ -30,7 +38,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
             dlouhodobě problémy s výkonem/renderováním, proto tam
             zůstává výchozí `bg-scroll`. */}
         <main className="bg-[url('/hero-metro.webp')] bg-top bg-no-repeat bg-[length:100%_auto] md:bg-fixed">
-          <HomeClient entrances={metroEntrances.entrances} />
+          <HomeClient entrances={metroEntrances.entrances} promotionCampaigns={promotionCampaigns} />
           <SeoContent locale={locale} />
         </main>
         <AppFooter />

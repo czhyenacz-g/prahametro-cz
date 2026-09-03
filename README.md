@@ -220,64 +220,73 @@ podle GTFS jízdního řádu. **Nejde o polohu vlaků v reálném čase.**
 
 ## Reklamy
 
-Jednoduchý, rozšiřitelný systém rotovatelných affiliate reklam — jedna
-karta pod výsledky hledání, vybraná podle jazyka a stabilní po zbytek
-návštěvy.
+**Reklamy se od 2026-09 spravují výhradně přes
+[content-api.darbujan.com/admin/promotions](https://content-api.darbujan.com/admin/promotions)
+(project "kdejemetro"), NE v tomto repozitáři.** Appka je jen ČTE — žádná
+kampaň se sem nezapisuje natvrdo, přidání/úprava/deaktivace nové reklamy
+nikdy nevyžaduje nový deploy KdeJeMetro.cz. Podrobná architektura
+Content API (Project → Collection → Record, per-projekt tokeny) je
+zdokumentovaná v repozitáři `universal-content-api`
+(`docs/KDEJEMETRO_INTEGRATION.md`).
 
-**Aktivní kampaně:** `luggage-en` (Bounce, úschovna zavazadel) a
-`activities-en` (GetYourGuide, výlety a zážitky) — obě mají platný
-`https://` affiliate odkaz, takže rotují v anglické verzi. Zbylé
-kampaně (`pharmacy-cs`, `shopping-cs`, `esim-en`, `transfer-en`) mají
-`href: null` a zůstávají v konfiguraci připravené, ale **nejsou
-způsobilé k výběru** — dokud nemáme český affiliate odkaz, česká verze
-nezobrazuje žádnou reklamu (a mapa se přirozeně posune nahoru, bez
-prázdného místa po reklamní kartě).
+Appka má dvě reklamní pozice (`finder_results` pod výsledky hledání
+nejbližšího metra, `night_finder_results` pod výsledky noční dopravy) —
+každá se stahuje NEZÁVISLE, výpadek jedné neovlivní druhou.
 
+- **Server-side fetch + cache.** `components/HomePage.tsx` a
+  `components/night/NightPage.tsx` (Server Components) volají
+  `lib/promotions/get-promotions.ts::getActivePromotionCampaigns(placement)`
+  a výsledek posílají dolů jako obyčejnou prop (`HomeClient` →
+  `FinderSection` → `AdSlot`, resp. `NightFinder` → `AdSlot`) — žádná z
+  klientských komponent neví, že Content API existuje, a browser samotné
+  Content API nikdy nevolá přímo. Fetch je cachovaný Next.js
+  `revalidate: 300` (~5 minut) — změna v adminu se tedy neprojeví
+  okamžitě, jen s tímhle zpožděním.
+- **Bezpečný fallback při výpadku.** `getRecords(...).catch(() => [])`
+  — chybějící env proměnné, timeout, HTTP chyba i nevalidní JSON vždy
+  skončí jako prázdné pole, appka nikdy nespadne kvůli reklamě. Prázdné
+  pole se pak chová stejně jako "žádná způsobilá kampaň" (viz České
+  přání se jmeninami níže).
+- **Mapování na doménový typ appky:** `lib/promotions/get-promotions.ts`
+  převádí syrovou odpověď Content API (`UcaRecord`) na existující,
+  beze změny ponechaný typ `AdCampaign` (`lib/ads/types.ts`) — CELÁ
+  výběrová logika (`lib/ads/filter-campaigns.ts`,
+  `lib/ads/weighted-select.ts`, `lib/ads/select-ad.ts`,
+  `lib/ads/language-fallback.ts`, `lib/ads/validate-url.ts`,
+  `lib/ads/resolve-slot-content.ts`) zůstala z dřívějška nezměněná a
+  plně otestovaná — jen dřív dostávala natvrdo zapsané pole
+  (`lib/ads/campaigns.ts`, smazáno), teď dostává pole staené server-side
+  z Content API. `data.locale` (nepovinné pole v adminu) se mapuje na
+  `languages` — bez vyplnění platí kampaň pro všechny 4 jazyky, s
+  vyplněním jen pro ten jeden (s `de`/`uk` fallbackem na `en`, viz níže).
+  `advertiser` a ikona podle kategorie nemají v Content API schématu
+  odpovídající pole (obecné schéma sdílené s HowToFish.cz/Gembl.cz) —
+  karta teď vždy ukazuje obecnou výchozí ikonu bez jména partnera.
 - **Kampaň se zobrazí JEN s platným affiliate odkazem.** Způsobilá je
-  kampaň, která je `enabled: true`, odpovídá jazyku, má kompletní texty
-  pro daný jazyk, je v platnosti (`validFrom`/`validTo`), odpovídá
-  případnému cílení na stanici, A MÁ `href` s platnou absolutní
-  `https://` URL (`lib/ads/validate-url.ts` → `hasValidAffiliateUrl`,
-  používá `new URL(...)` + explicitní `protocol === "https:"`).
-  `href: null`, prázdný/whitespace řetězec, `http:`, `javascript:`,
-  `data:`, `file:` i relativní cesta se vždy vyřadí. Kampaň bez
-  platného odkazu se nikdy nevylosuje, nevykreslí ani negeneruje
-  `ad_impression`/`ad_click` — zůstává ale dál v `lib/ads/campaigns.ts`
-  pro pozdější aktivaci.
-- **Váhy se počítají jen mezi způsobilými kampaněmi.** Zápisové váhy
-  v konfiguraci se nepřepočítávají na součet 100 — vážený výběr
-  (`lib/ads/weighted-select.ts`) prostě pracuje se skutečným součtem
-  vah aktuálně způsobilé množiny (např. Bounce 45 + GetYourGuide 30 =
-  75, tedy poměr cca 60 % / 40 %).
-- **Seznam kampaní:** `lib/ads/campaigns.ts` — typovaný podle
-  `lib/ads/types.ts` (`AdCampaign`).
-- **Výběrová logika:** `lib/ads/filter-campaigns.ts` (filtrování podle
-  jazyka/textů/platnosti/stanice/platného odkazu, v tomto pořadí) +
-  `lib/ads/weighted-select.ts` (vážená rotace nad už vyfiltrovanou
-  způsobilou množinou) + `lib/ads/select-ad.ts` (spojuje obojí, plus
-  obnovení uložené kampaně ze session). Validace affiliate URL je v
-  `lib/ads/validate-url.ts`.
+  kampaň, která je aktivní, odpovídá jazyku, má kompletní texty pro daný
+  jazyk, je v platnosti (`valid_from`/`valid_until` v adminu), A MÁ
+  `href` s platnou absolutní `https://` URL (`lib/ads/validate-url.ts`
+  → `hasValidAffiliateUrl`). `href` prázdné, `http:`, `javascript:`,
+  `data:`, `file:` i relativní cesta se vždy vyřadí.
+- **Váhy se počítají jen mezi způsobilými kampaněmi.** Pole "Váha" v
+  adminu se nepřepočítává na součet 100 — vážený výběr
+  (`lib/ads/weighted-select.ts`) prostě pracuje se skutečným součtem vah
+  aktuálně způsobilé množiny.
 - **Stabilita během návštěvy a samoopravné sessionStorage:**
-  `hooks/useSelectedAd.ts` uloží ID vybrané kampaně do `sessionStorage`
-  pod klíčem `kdejemetro:selected-ad:{jazyk}` — reklama se tak během
-  jedné návštěvy a stejného jazyka nemění, ale při přepnutí jazyka se
-  vybere zvlášť (a návrat k předchozímu jazyku ji obnoví, pokud je
-  pořád platná/způsobilá). Pokud uložené ID patří kampani, která mezitím
-  přestala být způsobilá (vypnutá, mimo platnost, jiný jazyk, nebo —
-  nejčastější případ — pořád nemá platný `href`), stará hodnota se
-  automaticky zahodí (`safeRemove`, `lib/storage/safe-storage.ts`) a
-  vybere se nová způsobilá kampaň. Do `sessionStorage` se nikdy
-  neukládá poloha, souřadnice ani žádný osobní údaj.
-- **Vykreslení:** `components/ads/AdSlot.tsx` je jediné místo (použité
-  ve `FinderSection.tsx` pod výsledky hledání), které rozhoduje mezi
-  reklamou a fallbackem — rozhodovací logika je čistá testovatelná
-  funkce `lib/ads/resolve-slot-content.ts`. Samotná reklamní karta
-  (`components/ads/AdCard.tsx` + `AdIcon.tsx` pro lucide-react ikony
-  podle kategorie) dostává už vybranou kampaň jako prop a žádnou
-  výběrovou logiku sama neřeší. Bez způsobilé kampaně a bez českého
-  fallbacku (viz níže) se nevykreslí nic a nezanechá se žádná mezera
-  (odsazení `mt-6` je součástí kořenového elementu každé z karet, ne
-  obalového elementu v `AdSlot.tsx`/`FinderSection.tsx`).
+  `hooks/useSelectedAd.ts` (beze změny) uloží ID vybrané kampaně do
+  `sessionStorage` pod klíčem `kdejemetro:selected-ad:{jazyk}` — reklama
+  se tak během jedné návštěvy a stejného jazyka nemění. Pokud uložené ID
+  patří kampani, která mezitím přestala existovat/být způsobilá
+  (deaktivovaná v adminu, mimo platnost, jiný jazyk), stará hodnota se
+  automaticky zahodí a vybere se nová způsobilá kampaň. Do
+  `sessionStorage` se nikdy neukládá poloha, souřadnice ani žádný
+  osobní údaj — a poloha uživatele se ani nikdy neposílá Content API.
+- **Vykreslení:** `components/ads/AdSlot.tsx` (beze změny logiky, jen
+  nový povinný `campaigns` prop) rozhoduje mezi reklamou a fallbackem —
+  rozhodovací logika je čistá testovatelná funkce
+  `lib/ads/resolve-slot-content.ts`. Samotná reklamní karta
+  (`components/ads/AdCard.tsx` + `AdIcon.tsx`) dostává už vybranou
+  kampaň jako prop a žádnou výběrovou logiku sama neřeší.
 
 ## České přání se jmeninami
 
@@ -318,84 +327,39 @@ nezobrazí nic.
   a nahraď obsah `CZECH_NAMEDAYS` v `lib/namedays/czech-namedays.ts` —
   formát je stejný (`"MM-DD": ["Jméno", ...]`), jen zachovej hlavičku s
   licencí a zdrojem.
-- **Po aktivaci české reklamy** (viz "Jak později doplnit affiliate
-  odkaz" výše — stačí doplnit `href` u `pharmacy-cs`/`shopping-cs`
-  nebo přidat novou českou kampaň) se přání automaticky přestane
-  zobrazovat, aniž by bylo potřeba cokoliv v `NamedayGreeting.tsx`
-  nebo `AdSlot.tsx` měnit.
+- **Po aktivaci české reklamy** (nová promotion v adminu s `locale: cs`
+  a platným `href`) se přání automaticky přestane zobrazovat, aniž by
+  bylo potřeba cokoliv v `NamedayGreeting.tsx` nebo `AdSlot.tsx` měnit
+  nebo appku znovu nasazovat.
 
-### Jak přidat novou kampaň
+### Jak spravovat reklamy (přidat/upravit/deaktivovat)
 
-Přidej objekt typu `AdCampaign` do pole v `lib/ads/campaigns.ts`. `id`
-musí být unikátní a stabilní (mění se podle něj i klíč v
-`sessionStorage`, takže po jeho změně by se aktivní reklama pro
-právě probíhající návštěvy jednou přepočítala). Text (`title`,
-`description`, `cta`) vyplň jen pro jazyky, které kampaň podporuje —
-`languages` musí obsahovat právě ty jazyky, pro které jsou texty
-kompletní.
-
-### Jak nastavit váhu
-
-Pole `weight` — kladné konečné číslo. Vyšší váha = vyšší pravděpodobnost
-výběru relativně k ostatním způsobilým kampaním (kampaň s `weight: 70`
-má mezi kampaněmi s celkovou vahou 100 zhruba 70% šanci). Nula, záporné
-číslo, `NaN` nebo `Infinity` kampaň z výběru úplně vyřadí.
-
-### Jak nastavit datum platnosti
-
-Volitelná pole `validFrom`/`validTo`, formát ISO 8601 (např.
-`"2026-07-01T00:00:00Z"`), porovnávané v UTC. Bez nich kampaň platí
-neomezeně.
-
-### Jak kampaň vypnout
-
-Nastav `enabled: false` — okamžitě se přestane nabízet k výběru, aniž
-by bylo nutné ji mazat (a bez ztráty konfigurace pro pozdější zapnutí).
-
-### Jak funguje výběr podle jazyka
-
-Kampaň se nabízí jen pro jazyky uvedené v `languages` a jen pokud má
-pro daný jazyk vyplněné VŠECHNY texty (`title`, `description`, `cta`).
-Výběr pro češtinu a angličtinu je nezávislý — přepnutí jazyka nikdy
-neovlivní, jaká kampaň byla vybraná pro ten druhý.
-
-### Jak později doplnit affiliate odkaz (např. aktivovat českou kampaň)
-
-Stačí u dané kampaně vyplnit `href` (musí to být platná absolutní
-`https://` URL — cokoliv jiného, včetně `http://`, se dál bere jako
-"bez odkazu" a kampaň zůstane vyřazená z výběru) a volitelně
-`advertiser`. Jakmile má kampaň platný `https://` odkaz, `filterCampaigns`
-ji automaticky začne nabízet k výběru — žádná změna komponenty ani
-výběrové logiky není potřeba. Stejným způsobem se aktivuje i první
-česká kampaň (`pharmacy-cs` nebo `shopping-cs`) — jakmile má jedna z
-nich platný `href`, česká verze začne zase zobrazovat reklamu.
+Výhradně přes [content-api.darbujan.com/admin/promotions](https://content-api.darbujan.com/admin/promotions)
+— vyfiltruj projekt "KdeJeMetro.cz", zvol umístění ("KdeJeMetro —
+výsledky hledání" / "KdeJeMetro — noční doprava"), vyplň title/text/CTA/
+odkaz/váhu, volitelně jazyk (bez výběru platí pro všechny 4). Nový
+záznam je hned "Aktivní" ve výchozím stavu — appka ho vyzvedne do ~5
+minut (`revalidate: 300`), bez nutnosti nového deploy. Deaktivace =
+přepnutí "Aktivní" na vypnuto (nebo tlačítko "Deaktivovat" v seznamu),
+appka přestane kampaň nabízet ve stejném cache okně.
 
 Affiliate URL se vkládá přesně tak, jak ji partner poskytl — appka ji
 nijak neupravuje, nezkracuje, nepřejmenovává parametry ani nepřidává
 vlastní. Datový model je připravený i na budoucí Dognet parametry —
 celou už hotovou schválenou affiliate URL (klidně včetně `d1`/`d2`
 apod., nebo `partner_id`/`utm_*` jako u GetYourGuide) prostě vlož do
-`href` tak, jak je:
-
-```ts
-{
-  // ...
-  href: "https://schvalena-affiliate-url.example/...",
-  advertiser: "Název schváleného partnera",
-}
-```
-
-(Tohle je jen dokumentační příklad — do žádné skutečné kampaně tuhle
-URL nevkládej.)
+pole "Odkaz (href)" tak, jak je.
 
 ### Soukromí
 
-Poloha uživatele ani ID stanice se reklamním partnerům nikdy neposílají
-— appka jen otevře cílovou `href` URL v nové kartě. V `sessionStorage`
-se ukládá výhradně ID vybrané kampaně, nic víc. Systém má připravené
-typy pro budoucí měření (`lib/ads/events.ts`, `AdEvent`), ale v této
-iteraci se žádná reklamní data nikam neodesílají — jen volitelný
-`console.debug` v development režimu.
+Poloha uživatele ani ID stanice se reklamním partnerům ani Content API
+nikdy neposílají — appka jen otevře cílovou `href` URL v nové kartě.
+V `sessionStorage` se ukládá výhradně ID vybrané kampaně, nic víc.
+Systém má připravené typy pro budoucí měření (`lib/ads/events.ts`,
+`AdEvent`), ale v této iteraci se žádná reklamní data nikam neodesílají
+— jen volitelný `console.debug` v development režimu. Content API token
+je jen server-side (env proměnná `UCA_API_TOKEN`, scope pouze
+`records:read`) a nikdy neopustí server.
 
 ## Známá omezení
 

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useGeolocation } from "../hooks/useGeolocation.ts";
+import type { AdCampaign } from "../lib/ads/types.ts";
 import { computeHighlightedStationIds } from "../lib/metro/highlighted-stations.ts";
 import { emitParkingEvent } from "../lib/parking/events.ts";
 import { parkAndRideDataset } from "../lib/parking/load-park-and-ride.ts";
@@ -16,7 +17,7 @@ import ParkAndRideSection from "./parking/ParkAndRideSection.tsx";
 // stav P+R sekce (otevřeno/zavřeno + která stanice byla vyžádaná přes
 // badge), protože badge žije hluboko ve FinderSection/MetroMap, ale
 // sekce samotná je jejich společný sourozenec pod mapou.
-export default function HomeClient({ entrances }: { entrances: MetroEntrance[] }) {
+export default function HomeClient({ entrances, promotionCampaigns }: { entrances: MetroEntrance[]; promotionCampaigns: AdCampaign[] }) {
   const { status, locate, setDemoPosition } = useGeolocation();
   const position = status.kind === "success" ? { lat: status.lat, lon: status.lon } : null;
 
@@ -39,7 +40,14 @@ export default function HomeClient({ entrances }: { entrances: MetroEntrance[] }
 
   return (
     <>
-      <FinderSection entrances={entrances} status={status} onLocate={locate} onDemoSelect={setDemoPosition} onOpenParkAndRide={openParkAndRideForStation} />
+      <FinderSection
+        entrances={entrances}
+        status={status}
+        onLocate={locate}
+        onDemoSelect={setDemoPosition}
+        onOpenParkAndRide={openParkAndRideForStation}
+        promotionCampaigns={promotionCampaigns}
+      />
       <MetroMap
         entrances={entrances}
         position={position}

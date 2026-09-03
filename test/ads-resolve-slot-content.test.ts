@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { resolveSlotContent } from "../lib/ads/resolve-slot-content.ts";
 import { resolveSelectedAd } from "../lib/ads/select-ad.ts";
 import { filterCampaigns } from "../lib/ads/filter-campaigns.ts";
-import { campaigns as realCampaigns } from "../lib/ads/campaigns.ts";
+import { realKdeJeMetroCampaigns as realCampaigns } from "./fixtures/real-kdejemetro-campaigns.ts";
 import type { AdCampaign, AdResolutionState } from "../lib/ads/types.ts";
 
 const NOW = new Date("2026-06-15T12:00:00Z");
@@ -76,7 +76,7 @@ describe("resolveSlotContent — fallback reklama vs. přání vs. nic", () => {
     const resolution = simulateResolution(realCampaigns, null, { language: "en", now: NOW });
     const content = resolveSlotContent(resolution, "en");
     assert.equal(content.kind, "ad");
-    assert.ok(content.kind === "ad" && (content.campaign.id === "luggage-en" || content.campaign.id === "activities-en"));
+    assert.ok(content.kind === "ad" && (content.campaign.id === "content-api-luggage-en" || content.campaign.id === "content-api-activities-en"));
   });
 
   test("9. stav pending -> nevykreslí se reklama ani přání, bez ohledu na jazyk", () => {
@@ -94,8 +94,8 @@ describe("resolveSlotContent — fallback reklama vs. přání vs. nic", () => {
     assert.equal(after.kind, "ad");
   });
 
-  test("14. starý neplatný výběr ze sessionStorage (kampaň bez odkazu) neblokuje přání ani nový výběr", () => {
-    // pharmacy-cs má v reálné konfiguraci href: null (viz lib/ads/campaigns.ts).
+  test("14. staré ID uložené před migrací na Content API (kampaň, která už neexistuje) neblokuje přání ani nový výběr", () => {
+    // "pharmacy-cs" byla stará lokální kampaň (lib/ads/campaigns.ts, smazáno) — v Content API pro cs zatím žádná neexistuje.
     const resolution = simulateResolution(realCampaigns, "pharmacy-cs", { language: "cs", now: NOW });
     assert.deepEqual(resolveSlotContent(resolution, "cs"), { kind: "nameday" });
   });

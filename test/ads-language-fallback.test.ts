@@ -2,7 +2,7 @@ import { test, describe } from "node:test";
 import assert from "node:assert/strict";
 import { getFallbackLanguage } from "../lib/ads/language-fallback.ts";
 import { selectAd, resolveSelectedAd } from "../lib/ads/select-ad.ts";
-import { campaigns as realCampaigns } from "../lib/ads/campaigns.ts";
+import { realKdeJeMetroCampaigns as realCampaigns } from "./fixtures/real-kdejemetro-campaigns.ts";
 import type { AdCampaign } from "../lib/ads/types.ts";
 
 const NOW = new Date("2026-06-15T12:00:00Z");
@@ -20,16 +20,16 @@ describe("getFallbackLanguage — deterministický jazykový fallback (14./bod 1
 });
 
 describe("selectAd — reálné kampaně: de/uk dostanou anglickou kampaň fallbackem", () => {
-  test("de nemá žádnou vlastní způsobilou kampaň, ale fallback vybere jednu z [luggage-en, activities-en]", () => {
+  test("de nemá žádnou vlastní způsobilou kampaň, ale fallback vybere jednu z [content-api-luggage-en, content-api-activities-en]", () => {
     const picked = selectAd(realCampaigns, { language: "de", now: NOW }, () => 0);
     assert.ok(picked);
-    assert.ok(["luggage-en", "activities-en"].includes(picked!.id));
+    assert.ok(["content-api-luggage-en", "content-api-activities-en"].includes(picked!.id));
   });
 
-  test("uk nemá žádnou vlastní způsobilou kampaň, ale fallback vybere jednu z [luggage-en, activities-en]", () => {
+  test("uk nemá žádnou vlastní způsobilou kampaň, ale fallback vybere jednu z [content-api-luggage-en, content-api-activities-en]", () => {
     const picked = selectAd(realCampaigns, { language: "uk", now: NOW }, () => 0.999999);
     assert.ok(picked);
-    assert.ok(["luggage-en", "activities-en"].includes(picked!.id));
+    assert.ok(["content-api-luggage-en", "content-api-activities-en"].includes(picked!.id));
   });
 
   test("cs zůstává beze změny — žádná způsobilá kampaň, žádný fallback na en reklamu", () => {
@@ -84,13 +84,13 @@ describe("selectAd — syntetické kampaně: lokalizovaná kampaň má přednost
 
 describe("resolveSelectedAd — výběr nesmí poskakovat: kampaň vybraná pro de/uk přes en fallback zůstává 'sticky'", () => {
   test("uložené ID anglické kampaně zůstává platné při přenačtení stránky v němčině", () => {
-    const resolved = resolveSelectedAd(realCampaigns, "luggage-en", { language: "de", now: NOW });
-    assert.equal(resolved?.id, "luggage-en");
+    const resolved = resolveSelectedAd(realCampaigns, "content-api-luggage-en", { language: "de", now: NOW });
+    assert.equal(resolved?.id, "content-api-luggage-en");
   });
 
   test("uložené ID anglické kampaně zůstává platné při přenačtení stránky v ukrajinštině", () => {
-    const resolved = resolveSelectedAd(realCampaigns, "activities-en", { language: "uk", now: NOW });
-    assert.equal(resolved?.id, "activities-en");
+    const resolved = resolveSelectedAd(realCampaigns, "content-api-activities-en", { language: "uk", now: NOW });
+    assert.equal(resolved?.id, "content-api-activities-en");
   });
 
   test("uložené ID kampaně, která už není způsobilá ani přímo ani fallbackem, se ignoruje a provede se nový výběr", () => {

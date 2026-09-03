@@ -3,6 +3,7 @@ import I18nProvider from "../i18n/I18nProvider.tsx";
 import AppFooter from "../AppFooter.tsx";
 import { localeToRoute, type Locale } from "../../lib/i18n/types.ts";
 import { getNightDictionary } from "../../lib/i18n/night-dictionary.ts";
+import { getActivePromotionCampaigns } from "../../lib/promotions/get-promotions.ts";
 import { getNightSeoContent } from "../../lib/seo/night-content.ts";
 import NightThemeShell from "./NightThemeShell.tsx";
 import NightFinder from "./NightFinder.tsx";
@@ -13,16 +14,22 @@ import NightSeoContent from "./NightSeoContent.tsx";
  * Server Component, `locale` je pevně dané routou, přesně jako u
  * components/HomePage.tsx. Nová, samostatná sekce — HomePage.tsx a
  * jeho jednoduchá funkce zůstávají BEZE ZMĚNY (zadání).
+ *
+ * Reklamy pro placement "night_finder_results" se stahují TADY,
+ * server-side — vlastní, nezávislý fetch od HomePage.tsx (viz zadání
+ * "GTFS a P+R musí mít oddělené selhání", stejný princip: výpadek
+ * Content API na jedné stránce nesmí ovlivnit druhou).
  */
-export default function NightPage({ locale }: { locale: Locale }) {
+export default async function NightPage({ locale }: { locale: Locale }) {
   const nightDict = getNightDictionary(locale);
   const seo = getNightSeoContent(locale);
+  const promotionCampaigns = await getActivePromotionCampaigns("night_finder_results");
 
   return (
     <I18nProvider locale={locale}>
       <NightThemeShell mainHeading={seo.mainHeading}>
         <main className="flex-1">
-          <NightFinder />
+          <NightFinder promotionCampaigns={promotionCampaigns} />
           <NightSeoContent locale={locale} />
         </main>
         <AppFooter bottomLink={{ href: localeToRoute[locale], label: nightDict.backToMetroLink, icon: <TrainFront aria-hidden="true" size={14} strokeWidth={2.25} /> }} />

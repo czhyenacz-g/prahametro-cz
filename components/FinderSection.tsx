@@ -7,6 +7,7 @@ import { classifyOutsidePrague } from "../lib/metro/brno.ts";
 import { nearestEntrances, nearestStationEntrances } from "../lib/metro/nearest-entrances.ts";
 import { getMainHeading } from "../lib/i18n/dictionary.ts";
 import { shouldShowDemoControls } from "../lib/env/should-show-demo-controls.ts";
+import type { AdCampaign } from "../lib/ads/types.ts";
 import type { GeolocationStatus } from "../lib/metro/geolocation-state.ts";
 import type { MetroEntrance } from "../lib/metro/types.ts";
 import { useI18n } from "./i18n/I18nContext.ts";
@@ -23,9 +24,11 @@ export type FinderSectionProps = {
   onLocate: () => void;
   onDemoSelect: (lat: number, lon: number) => void;
   onOpenParkAndRide: (stationId: string) => void;
+  /** Server-side staženo v components/HomePage.tsx (viz lib/promotions/get-promotions.ts) — reklamy se spravují jen přes content-api.darbujan.com/admin/promotions. */
+  promotionCampaigns: AdCampaign[];
 };
 
-export default function FinderSection({ entrances, status, onLocate, onDemoSelect, onOpenParkAndRide }: FinderSectionProps) {
+export default function FinderSection({ entrances, status, onLocate, onDemoSelect, onOpenParkAndRide, promotionCampaigns }: FinderSectionProps) {
   const { locale, vulgar, dict } = useI18n();
   const demoPositions = useMemo(() => buildDemoPositions(entrances), [entrances]);
 
@@ -86,7 +89,7 @@ export default function FinderSection({ entrances, status, onLocate, onDemoSelec
           elementu, ať po nich při návratu `null` (žádná způsobilá
           kampaň a jiný jazyk než čeština, viz AdSlot.tsx) nezůstane
           žádná prázdná mezera. */}
-      <AdSlot placement="finder-results" />
+      <AdSlot campaigns={promotionCampaigns} placement="finder-results" />
     </section>
   );
 }

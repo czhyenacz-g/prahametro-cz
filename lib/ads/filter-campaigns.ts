@@ -51,8 +51,9 @@ function matchesStation(campaign: AdCampaign, stationId: string | null | undefin
  * platného odkazu (href: null, prázdný/whitespace řetězec, http:,
  * javascript:, data:, file:, relativní cesta) se NIKDY nesmí dostat do
  * množiny kandidátů pro vážený výběr (viz lib/ads/weighted-select.ts),
- * i když zůstává dál v konfiguraci (lib/ads/campaigns.ts) připravená
- * pro pozdější doplnění.
+ * i když ji Content API dál vrací jako existující promotion (reklamy se
+ * dnes spravují přes content-api.darbujan.com/admin/promotions, viz
+ * lib/promotions/get-promotions.ts) — správce jen ještě nedoplnil odkaz.
  */
 export function filterCampaigns(campaigns: AdCampaign[], ctx: AdFilterContext): AdCampaign[] {
   return campaigns.filter((campaign) => {

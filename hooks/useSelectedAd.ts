@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { campaigns } from "../lib/ads/campaigns.ts";
 import { resolveSelectedAd } from "../lib/ads/select-ad.ts";
-import type { AdResolutionState, Language } from "../lib/ads/types.ts";
+import type { AdCampaign, AdResolutionState, Language } from "../lib/ads/types.ts";
 import { getBrowserSessionStorage, safeGet, safeRemove, safeSet } from "../lib/storage/safe-storage.ts";
 
 function storageKey(language: Language): string {
@@ -26,8 +25,15 @@ function storageKey(language: Language): string {
  * se proto nabízí jen obecné kampaně bez `stationIds` (viz
  * lib/ads/filter-campaigns.ts). Budoucí umístění vázané na jednu
  * konkrétní stanici může `stationId` předat.
+ *
+ * `campaigns` přichází zvenčí (server-side fetch z Content API přes
+ * lib/promotions/get-promotions.ts, viz components/ads/AdSlot.tsx) —
+ * dřív se tu importovalo natvrdo zapsané pole `lib/ads/campaigns.ts`,
+ * teď je appka nepotřebuje znát: dostane jen už staženou/mapovanou
+ * množinu kandidátů jako obyčejná data, výběrová logika níž (stejná
+ * jako dřív) o zdroji dat nic neví.
  */
-export function useSelectedAd(language: Language, stationId?: string | null): AdResolutionState {
+export function useSelectedAd(campaigns: AdCampaign[], language: Language, stationId?: string | null): AdResolutionState {
   const [state, setState] = useState<AdResolutionState>({ status: "pending" });
 
   useEffect(() => {
@@ -52,7 +58,7 @@ export function useSelectedAd(language: Language, stationId?: string | null): Ad
       }
       setState({ status: "empty" });
     }
-  }, [language, stationId]);
+  }, [campaigns, language, stationId]);
 
   return state;
 }

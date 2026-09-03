@@ -1,6 +1,6 @@
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
-import { campaigns } from "../lib/ads/campaigns.ts";
+import { realKdeJeMetroCampaigns as campaigns } from "./fixtures/real-kdejemetro-campaigns.ts";
 import { filterCampaigns } from "../lib/ads/filter-campaigns.ts";
 
 // Žádná funkce v lib/ads/ přijímá "vulgar" jako parametr — texty kampaně

@@ -10,6 +10,7 @@ import { selectNearestStopGroups, pickNavigationPlatform } from "../../lib/night
 import { getMergedUpcomingDepartures, type MergedNightDeparture } from "../../lib/night-transport/merge-departures.ts";
 import { groupIdToFileName } from "../../lib/night-transport/stop-groups.ts";
 import { getNightCta, getNightDictionary } from "../../lib/i18n/night-dictionary.ts";
+import type { AdCampaign } from "../../lib/ads/types.ts";
 import type { NightStopDetail, NightTransportIndex } from "../../lib/night-transport/types.ts";
 import { useI18n } from "../i18n/I18nContext.ts";
 import AdSlot from "../ads/AdSlot.tsx";
@@ -35,7 +36,12 @@ type FinderState =
   | { kind: "no-service" }
   | { kind: "results"; cards: ResolvedCard[] };
 
-export default function NightFinder() {
+export type NightFinderProps = {
+  /** Server-side staženo v components/night/NightPage.tsx (viz lib/promotions/get-promotions.ts) — reklamy se spravují jen přes content-api.darbujan.com/admin/promotions. */
+  promotionCampaigns: AdCampaign[];
+};
+
+export default function NightFinder({ promotionCampaigns }: NightFinderProps) {
   const { locale, dict, vulgar } = useI18n();
   const nightDict = getNightDictionary(locale);
   const nightCta = getNightCta(locale, vulgar);
@@ -199,7 +205,7 @@ export default function NightFinder() {
         )}
       </div>
 
-      <AdSlot placement="night-finder-results" />
+      <AdSlot campaigns={promotionCampaigns} placement="night-finder-results" />
     </section>
   );
 }
