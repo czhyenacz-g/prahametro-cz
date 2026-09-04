@@ -9,7 +9,8 @@ import type { Locale } from "../i18n/types.ts";
 // klientský JavaScript").
 
 export type SeoLink = { label: string; href: string };
-export type FaqItem = { question: string; answer: string };
+/** `link` je nepovinný a NENÍ interní kotva jako `SeoLink` v `links.items` výš — používá se jen pro FAQ položky odkazující na sesterský web mimo tuhle appku (viz faq.items "Kde je nejbližší hospoda?"), proto se otevírá v nové kartě. */
+export type FaqItem = { question: string; answer: string; link?: SeoLink };
 
 export type SeoContent = {
   /** <title> */
@@ -106,6 +107,12 @@ const cs: SeoContent = {
         question: "Má Brno metro?",
         answer: "Ne, Brno metro nemá. Pokud jste v okolí Brna, aplikace vás na to hravě upozorní a ukáže vzdálenost k nejbližšímu pražskému metru.",
       },
+      {
+        question: "Kde je nejbližší hospoda?",
+        answer:
+          "To KdeJeMetro.cz neřeší — na to slouží sesterská aplikace KdeJeHospoda.cz, která stejným způsobem podle vaší polohy najde tři nejbližší hospody, bary nebo zahrádky.",
+        link: { label: "KdeJeHospoda.cz", href: "https://kdejehospoda.cz" },
+      },
     ],
   },
 };
@@ -171,6 +178,12 @@ const en: SeoContent = {
       {
         question: "Does Brno have a metro?",
         answer: "No, Brno doesn't have a metro. If you're near Brno, the app will playfully let you know and show the distance to the nearest Prague Metro instead.",
+      },
+      {
+        question: "Where is the nearest pub?",
+        answer:
+          "That's not something KdeJeMetro.cz covers — for that, use our sister app KdeJeHospoda.cz, which finds the three nearest pubs, bars or beer gardens based on your location the same way.",
+        link: { label: "KdeJeHospoda.cz", href: "https://kdejehospoda.cz" },
       },
     ],
   },
@@ -242,6 +255,12 @@ const de: SeoContent = {
         answer:
           "Nein, Brünn hat keine Metro. Wenn Sie sich in der Nähe von Brünn befinden, macht die App Sie augenzwinkernd darauf aufmerksam und zeigt stattdessen die Entfernung zur nächsten Prager Metrostation.",
       },
+      {
+        question: "Wo ist die nächste Kneipe?",
+        answer:
+          "Das deckt KdeJeMetro.cz leider nicht ab — dafür gibt es die Schwester-App KdeJeHospoda.cz, die auf die gleiche Weise anhand Ihres Standorts die drei nächsten Kneipen, Bars oder Biergärten findet.",
+        link: { label: "KdeJeHospoda.cz", href: "https://kdejehospoda.cz" },
+      },
     ],
   },
 };
@@ -311,6 +330,12 @@ const uk: SeoContent = {
         question: "Чи є метро в Брно?",
         answer:
           "Ні, у Брно немає метро. Якщо ви перебуваєте поблизу Брно, застосунок жартівливо повідомить вам про це і натомість покаже відстань до найближчої станції празького метро.",
+      },
+      {
+        question: "Де найближчий паб?",
+        answer:
+          "На жаль, KdeJeMetro.cz цим не займається — для цього є споріднений застосунок KdeJeHospoda.cz, який так само за вашим місцезнаходженням знаходить три найближчі паби, бари чи пивні сади.",
+        link: { label: "KdeJeHospoda.cz", href: "https://kdejehospoda.cz" },
       },
     ],
   },

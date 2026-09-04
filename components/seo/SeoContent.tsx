@@ -77,6 +77,17 @@ export default function SeoContent({ locale }: { locale: Locale }) {
                 {item.question}
               </summary>
               <p className="mt-2 text-sm leading-relaxed text-gray-700 sm:text-base">{item.answer}</p>
+              {/* Odkaz na sesterský web mimo appku (viz lib/seo/content.ts FaqItem.link) — jen u FAQ položek, které ho mají, nová karta, `answer` už jméno webu zmiňuje i jako prostý text. */}
+              {item.link && (
+                <a
+                  href={item.link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-flex min-h-[36px] items-center text-sm font-semibold text-navy-700 underline underline-offset-2 hover:text-navy-900"
+                >
+                  {item.link.label}
+                </a>
+              )}
             </details>
           ))}
         </div>

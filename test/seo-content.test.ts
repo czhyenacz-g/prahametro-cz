@@ -125,12 +125,20 @@ describe("německá SEO stránka (/de) — title/description/hlavní nadpis/ogLo
     assert.equal(seo.howItWorks.privacyText, "Ihr Standort bleibt auf Ihrem Gerät und wird nicht für Werbezwecke verwendet.");
   });
 
-  test("6 FAQ otázek, včetně dotazu na Brno se stejným významem jako český FAQ", () => {
+  test("7 FAQ otázek, včetně dotazu na Brno se stejným významem jako český FAQ", () => {
     const items = getSeoContent("de").faq.items;
-    assert.equal(items.length, 6);
+    assert.equal(items.length, 7);
     const brno = items.find((i) => /Brünn/.test(i.question));
     assert.ok(brno, "chybí otázka na Brno/Brünn");
     assert.match(brno!.answer, /keine Metro/);
+  });
+
+  test("otázka na hospodu odkazuje na KdeJeHospoda.cz", () => {
+    const items = getSeoContent("de").faq.items;
+    const pub = items.find((i) => /Kneipe/.test(i.question));
+    assert.ok(pub, "chybí otázka na Kneipe/hospodu");
+    assert.equal(pub!.link?.href, "https://kdejehospoda.cz");
+    assert.match(pub!.answer, /KdeJeHospoda\.cz/);
   });
 
   test("žádná otázka/odpověď není prázdná", () => {
@@ -159,12 +167,20 @@ describe("ukrajinská SEO stránka (/ua, locale uk) — title/description/hlavn�
     assert.equal(seo.ogLocale, "uk_UA");
   });
 
-  test("6 FAQ otázek, včetně dotazu na Brno se stejným významem jako český FAQ", () => {
+  test("7 FAQ otázek, včetně dotazu na Brno se stejným významem jako český FAQ", () => {
     const items = getSeoContent("uk").faq.items;
-    assert.equal(items.length, 6);
+    assert.equal(items.length, 7);
     const brno = items.find((i) => /Брно/.test(i.question));
     assert.ok(brno, "chybí otázka na Brno");
     assert.match(brno!.answer, /немає метро/);
+  });
+
+  test("otázka na hospodu odkazuje na KdeJeHospoda.cz", () => {
+    const items = getSeoContent("uk").faq.items;
+    const pub = items.find((i) => /паб/.test(i.question));
+    assert.ok(pub, "chybí otázka na паб/hospodu");
+    assert.equal(pub!.link?.href, "https://kdejehospoda.cz");
+    assert.match(pub!.answer, /KdeJeHospoda\.cz/);
   });
 
   test("žádná otázka/odpověď není prázdná", () => {
@@ -182,13 +198,25 @@ describe("ukrajinská SEO stránka (/ua, locale uk) — title/description/hlavn�
 });
 
 describe("FAQ obsah (8.)", () => {
-  test("cs i en mají přesně 6 otázek, včetně otázky na Brno", () => {
+  test("cs i en mají přesně 7 otázek, včetně otázky na Brno", () => {
     const cs = getSeoContent("cs").faq.items;
     const en = getSeoContent("en").faq.items;
-    assert.equal(cs.length, 6);
-    assert.equal(en.length, 6);
+    assert.equal(cs.length, 7);
+    assert.equal(en.length, 7);
     assert.ok(cs.some((i) => i.question === "Má Brno metro?"));
     assert.ok(en.some((i) => i.question === "Does Brno have a metro?"));
+  });
+
+  test("cs i en mají otázku na nejbližší hospodu s odkazem na KdeJeHospoda.cz", () => {
+    const cs = getSeoContent("cs").faq.items.find((i) => i.question === "Kde je nejbližší hospoda?");
+    const en = getSeoContent("en").faq.items.find((i) => i.question === "Where is the nearest pub?");
+    assert.ok(cs, "chybí česká otázka na hospodu");
+    assert.ok(en, "chybí anglická otázka na hospodu");
+    assert.equal(cs!.link?.href, "https://kdejehospoda.cz");
+    assert.equal(en!.link?.href, "https://kdejehospoda.cz");
+    assert.equal(cs!.link?.label, "KdeJeHospoda.cz");
+    assert.match(cs!.answer, /KdeJeHospoda\.cz/);
+    assert.match(en!.answer, /KdeJeHospoda\.cz/);
   });
 
   test("odpověď na vzdálenost jasně rozlišuje vzdušnou čáru od skutečné trasy (cs/en)", () => {
