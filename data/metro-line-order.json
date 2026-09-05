@@ -1,70 +1,70 @@
 {
-  "generatedAt": "2026-09-04T07:24:09.918Z",
+  "generatedAt": "2026-09-05T07:00:10.760Z",
   "lines": {
     "A": [
       {
-        "stationId": "U306S1",
-        "stationName": "Nemocnice Motol"
-      },
-      {
-        "stationId": "U507S1",
-        "stationName": "Petřiny"
-      },
-      {
-        "stationId": "U462S1",
-        "stationName": "Nádraží Veleslavín"
-      },
-      {
-        "stationId": "U157S1",
-        "stationName": "Bořislavka"
-      },
-      {
-        "stationId": "U321S1",
-        "stationName": "Dejvická"
-      },
-      {
-        "stationId": "U163S1",
-        "stationName": "Hradčanská"
-      },
-      {
-        "stationId": "U360S1",
-        "stationName": "Malostranská"
-      },
-      {
-        "stationId": "U703S1",
-        "stationName": "Staroměstská"
-      },
-      {
-        "stationId": "U1072S1",
-        "stationName": "Můstek"
-      },
-      {
-        "stationId": "U400S1",
-        "stationName": "Muzeum"
-      },
-      {
-        "stationId": "U476S1",
-        "stationName": "Náměstí Míru"
-      },
-      {
-        "stationId": "U209S1",
-        "stationName": "Jiřího z Poděbrad"
-      },
-      {
-        "stationId": "U921S1",
-        "stationName": "Želivského"
-      },
-      {
-        "stationId": "U713S1",
-        "stationName": "Strašnická"
+        "stationId": "U1071S1",
+        "stationName": "Depo Hostivař"
       },
       {
         "stationId": "U953S1",
         "stationName": "Skalka"
       },
       {
-        "stationId": "U1071S1",
-        "stationName": "Depo Hostivař"
+        "stationId": "U713S1",
+        "stationName": "Strašnická"
+      },
+      {
+        "stationId": "U921S1",
+        "stationName": "Želivského"
+      },
+      {
+        "stationId": "U209S1",
+        "stationName": "Jiřího z Poděbrad"
+      },
+      {
+        "stationId": "U476S1",
+        "stationName": "Náměstí Míru"
+      },
+      {
+        "stationId": "U400S1",
+        "stationName": "Muzeum"
+      },
+      {
+        "stationId": "U1072S1",
+        "stationName": "Můstek"
+      },
+      {
+        "stationId": "U703S1",
+        "stationName": "Staroměstská"
+      },
+      {
+        "stationId": "U360S1",
+        "stationName": "Malostranská"
+      },
+      {
+        "stationId": "U163S1",
+        "stationName": "Hradčanská"
+      },
+      {
+        "stationId": "U321S1",
+        "stationName": "Dejvická"
+      },
+      {
+        "stationId": "U157S1",
+        "stationName": "Bořislavka"
+      },
+      {
+        "stationId": "U462S1",
+        "stationName": "Nádraží Veleslavín"
+      },
+      {
+        "stationId": "U507S1",
+        "stationName": "Petřiny"
+      },
+      {
+        "stationId": "U306S1",
+        "stationName": "Nemocnice Motol"
       }
     ],
     "B": [
@@ -167,84 +167,84 @@
     ],
     "C": [
       {
-        "stationId": "U286S1",
-        "stationName": "Háje"
-      },
-      {
-        "stationId": "U106S1",
-        "stationName": "Opatov"
-      },
-      {
-        "stationId": "U52S1",
-        "stationName": "Chodov"
-      },
-      {
-        "stationId": "U601S1",
-        "stationName": "Roztyly"
-      },
-      {
-        "stationId": "U228S1",
-        "stationName": "Kačerov"
-      },
-      {
-        "stationId": "U50S1",
-        "stationName": "Budějovická"
-      },
-      {
-        "stationId": "U385S1",
-        "stationName": "Pankrác"
-      },
-      {
-        "stationId": "U597S1",
-        "stationName": "Pražského povstání"
-      },
-      {
-        "stationId": "U527S1",
-        "stationName": "Vyšehrad"
-      },
-      {
-        "stationId": "U190S1",
-        "stationName": "I. P. Pavlova"
-      },
-      {
-        "stationId": "U400S1",
-        "stationName": "Muzeum"
-      },
-      {
-        "stationId": "U142S1",
-        "stationName": "Hlavní nádraží"
-      },
-      {
-        "stationId": "U689S1",
-        "stationName": "Florenc"
-      },
-      {
-        "stationId": "U100S1",
-        "stationName": "Vltavská"
-      },
-      {
-        "stationId": "U115S1",
-        "stationName": "Nádraží Holešovice"
-      },
-      {
-        "stationId": "U675S1",
-        "stationName": "Kobylisy"
-      },
-      {
-        "stationId": "U78S1",
-        "stationName": "Ládví"
-      },
-      {
-        "stationId": "U332S1",
-        "stationName": "Střížkov"
+        "stationId": "U1000S1",
+        "stationName": "Letňany"
       },
       {
         "stationId": "U603S1",
         "stationName": "Prosek"
       },
       {
-        "stationId": "U1000S1",
-        "stationName": "Letňany"
+        "stationId": "U332S1",
+        "stationName": "Střížkov"
+      },
+      {
+        "stationId": "U78S1",
+        "stationName": "Ládví"
+      },
+      {
+        "stationId": "U675S1",
+        "stationName": "Kobylisy"
+      },
+      {
+        "stationId": "U115S1",
+        "stationName": "Nádraží Holešovice"
+      },
+      {
+        "stationId": "U100S1",
+        "stationName": "Vltavská"
+      },
+      {
+        "stationId": "U689S1",
+        "stationName": "Florenc"
+      },
+      {
+        "stationId": "U142S1",
+        "stationName": "Hlavní nádraží"
+      },
+      {
+        "stationId": "U400S1",
+        "stationName": "Muzeum"
+      },
+      {
+        "stationId": "U190S1",
+        "stationName": "I. P. Pavlova"
+      },
+      {
+        "stationId": "U527S1",
+        "stationName": "Vyšehrad"
+      },
+      {
+        "stationId": "U597S1",
+        "stationName": "Pražského povstání"
+      },
+      {
+        "stationId": "U385S1",
+        "stationName": "Pankrác"
+      },
+      {
+        "stationId": "U50S1",
+        "stationName": "Budějovická"
+      },
+      {
+        "stationId": "U228S1",
+        "stationName": "Kačerov"
+      },
+      {
+        "stationId": "U601S1",
+        "stationName": "Roztyly"
+      },
+      {
+        "stationId": "U52S1",
+        "stationName": "Chodov"
+      },
+      {
+        "stationId": "U106S1",
+        "stationName": "Opatov"
+      },
+      {
+        "stationId": "U286S1",
+        "stationName": "Háje"
       }
     ],
     "D": []
