@@ -93,7 +93,7 @@ const cs: SeoContent = {
       {
         question: "Je uvedená vzdálenost pěší trasa?",
         answer:
-          "Ne. Zobrazená vzdálenost i orientační čas chůze jsou počítané vzdušnou čarou. Skutečnou pěší trasu ukáže až navigace v Google Maps, Apple Maps nebo Mapy.com.",
+          "V Praze appka po zjištění polohy nejdřív ukáže vzdálenost vzdušnou čarou a na pozadí ji zpřesní na skutečnou pěší trasu přes Mapy.com. Mimo Prahu, nebo když se zpřesnění nepodaří, zůstává vzdálenost počítaná vzdušnou čarou — appka to u výsledku vždy jasně označí. Přesnou trasu (geometrii) i tak ukáže až navigace v Google Maps, Apple Maps nebo Mapy.com.",
       },
       {
         question: "Ukládá KdeJeMetro.cz moji polohu?",
@@ -165,7 +165,7 @@ const en: SeoContent = {
       {
         question: "Is the displayed distance a walking route?",
         answer:
-          "No. The distance and estimated walking time shown are calculated as the crow flies. The actual walking route only appears once you open directions in Google Maps, Apple Maps or Mapy.com.",
+          "In Prague, the app first shows the distance as the crow flies and then refines it in the background to the actual walking route via Mapy.com. Outside Prague, or if refining isn't possible, the distance stays calculated as the crow flies — the app always clearly labels which one you're seeing. The precise route (geometry) still only appears once you open directions in Google Maps, Apple Maps or Mapy.com.",
       },
       {
         question: "Does KdeJeMetro.cz store my location?",
@@ -239,7 +239,7 @@ const de: SeoContent = {
       {
         question: "Ist die angezeigte Entfernung die tatsächliche Gehstrecke?",
         answer:
-          "Nein. Die angezeigte Entfernung und die geschätzte Gehzeit werden als Luftlinie berechnet. Die tatsächliche Gehstrecke zeigt erst die Navigation in Google Maps, Apple Maps oder Mapy.com.",
+          "In Prag zeigt die App die Entfernung zunächst als Luftlinie an und verfeinert sie anschließend im Hintergrund über Mapy.com zur tatsächlichen Gehstrecke. Außerhalb Prags, oder wenn die Verfeinerung nicht möglich ist, bleibt die Entfernung als Luftlinie berechnet — die App kennzeichnet dies immer eindeutig. Die genaue Route (Geometrie) zeigt weiterhin erst die Navigation in Google Maps, Apple Maps oder Mapy.com.",
       },
       {
         question: "Speichert KdeJeMetro.cz meinen Standort?",
@@ -315,7 +315,7 @@ const uk: SeoContent = {
       {
         question: "Чи є вказана відстань пішим маршрутом?",
         answer:
-          "Ні. Показана відстань і орієнтовний час ходьби розраховані по прямій лінії. Фактичний піший маршрут покаже лише навігація в Google Maps, Apple Maps або Mapy.com.",
+          "У Празі застосунок спочатку показує відстань по прямій, а потім уточнює її на фоні до фактичного пішого маршруту через Mapy.com. За межами Праги, або якщо уточнення не вдається, відстань залишається розрахованою по прямій лінії — застосунок завжди чітко це позначає. Точний маршрут (геометрію) усе одно покаже лише навігація в Google Maps, Apple Maps або Mapy.com.",
       },
       {
         question: "Чи зберігає KdeJeMetro.cz моє місцезнаходження?",
