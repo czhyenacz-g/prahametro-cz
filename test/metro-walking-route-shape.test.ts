@@ -78,11 +78,12 @@ describe("29./30. routovaný výsledek má jiný text a jiný disclaimer než vz
 describe("31. při chybě zůstane původní UI použitelné (žádný throw, žádný celoplošný error stav)", () => {
   const source = readSource("hooks/useMetroFinderResults.ts");
 
-  test("MapyRoutingError se v .catch mění na null (fallback), ne na rethrow", () => {
-    assert.match(source, /if \(error instanceof MapyRoutingError\) return null;/);
+  test("chyba se zachytí v druhém argumentu .then (ne rethrow) a nastaví jen routingFailed/isRefining", () => {
+    assert.match(source, /\(error: unknown\) => \{/);
+    assert.match(source, /setIsRefining\(false\);\s*setRoutingFailed\(true\);/);
   });
 
-  test("selhání se nikdy nepropaguje do React stavu jako 'error' — jen isRefining=false a beze změny routedResults", () => {
+  test("selhání se nikdy nepropaguje do React stavu jako 'error' — jen routingFailed/isRefining, žádný throw dál", () => {
     assert.doesNotMatch(source, /setError|errorState|status: "error"/);
   });
 });
@@ -219,6 +220,9 @@ describe("43./44. přesná poloha se neukládá ani neposílá jinam než na Map
     "lib/routing/mapy-walking-matrix.ts",
     "lib/routing/rank-walking-results.ts",
     "lib/routing/matrix-cache-key.ts",
+    "lib/routing/matrix-result-cache.ts",
+    "lib/routing/in-flight-request-map.ts",
+    "lib/routing/matrix-circuit-breaker.ts",
     "components/FinderSection.tsx",
     "components/HomeClient.tsx",
     "components/EntranceResultCard.tsx",
@@ -244,5 +248,57 @@ describe("43./44. přesná poloha se neukládá ani neposílá jinam než na Map
   test("ParkingEvent (analytika) nemá žádné pole s GPS souřadnicemi", () => {
     const source = readSource("lib/parking/events.ts");
     assert.doesNotMatch(source, /\blat\b|\blon\b|latitude|longitude/i);
+  });
+
+  test("25. WalkingMatrixEvent nemá žádné pole se souřadnicemi, entranceId, URL ani API klíčem", () => {
+    const source = readSource("lib/routing/events.ts");
+    const typeBody = source.slice(source.indexOf("export type WalkingMatrixEvent ="), source.indexOf("export function emitWalkingMatrixEvent"));
+    assert.doesNotMatch(typeBody, /\blat\b|\blon\b|latitude|longitude|entranceId|apiKey|apikey|url/i);
+    // Každá varianta eventu nese jen `type`, žádné další pole s daty.
+    assert.doesNotMatch(typeBody, /\{ type: "walking_matrix_\w+"; \w/);
+  });
+
+  test("25. emitWalkingMatrixEvent volání v hooku nepředávají žádný argument navíc (jen { type: ... })", () => {
+    const hookSource = readSource("hooks/useMetroFinderResults.ts");
+    const calls = [...hookSource.matchAll(/emitWalkingMatrixEvent\(([^)]*)\)/g)].map((m) => m[1]);
+    assert.ok(calls.length >= 4, "očekávány všechny 4 eventy (requested/cache_hit/succeeded/fallback)");
+    for (const call of calls) {
+      assert.match(call, /^\{ type: "walking_matrix_\w+" \}$/);
+    }
+  });
+});
+
+describe("22. fallback notice existuje ve všech 4 jazycích a zobrazuje se jen po skutečně neúspěšném pokusu", () => {
+  test("dict.finder.routingFallbackNotice je vyplněné a jiné pro každý ze 4 jazyků", () => {
+    const values = LOCALES.map((locale) => getDictionary(locale).finder.routingFallbackNotice);
+    assert.ok(values.every((v) => v.length > 0));
+    assert.equal(new Set(values).size, 4);
+  });
+
+  test("FinderSection vykreslí notice podmíněně podle routingFailed, ne podle routingAttempted", () => {
+    const source = readSource("components/FinderSection.tsx");
+    assert.match(source, /\{routingFailed && <p[^>]*>\{dict\.finder\.routingFallbackNotice\}<\/p>\}/);
+  });
+
+  test("notice je JEDNA věta pod celým seznamem výsledků (mimo results.map), ne per-card", () => {
+    const source = readSource("components/FinderSection.tsx");
+    const resultsMapIndex = source.indexOf("results.map(");
+    const noticeIndex = source.indexOf("routingFallbackNotice");
+    assert.ok(resultsMapIndex > 0 && noticeIndex > resultsMapIndex, "notice musí být AŽ PO results.map, ne uvnitř karty");
+  });
+});
+
+describe("hook nastavuje routingFailed jen ve skutečně neúspěšných větvích (breaker/cooldown skip, prázdný ranked, chyba)", () => {
+  const source = readSource("hooks/useMetroFinderResults.ts");
+
+  test("cache hit NIKDY nenastaví routingFailed", () => {
+    const cacheHitBlock = source.slice(source.indexOf("if (cached) {"), source.indexOf("if (cached) {") + 200);
+    assert.doesNotMatch(cacheHitBlock, /setRoutingFailed/);
+  });
+
+  test("chybějící API klíč a mimo Prahu se vrací PŘED jakýmkoli setRoutingFailed(true)", () => {
+    const keyGuardIndex = source.indexOf("if (!apiKey) return;");
+    const firstFailureIndex = source.indexOf("setRoutingFailed(true);");
+    assert.ok(keyGuardIndex > 0 && firstFailureIndex > keyGuardIndex);
   });
 });

@@ -87,10 +87,13 @@ Dopravní data pocházejí z oficiálního feedu
 [Pražské integrované dopravy (PID)](https://pid.cz/opendata/),
 licence **CC BY 4.0** — atribuce je vždy v patičce appky.
 
-Vzdálenosti zobrazené u výsledků jsou **vzdušné** (Haversinova
-formule), ne délka skutečné pěší trasy — appka to u výsledků
-transparentně říká. Skutečnou trasu spočítá až externí navigace
-(Google/Apple Maps), na kterou appka jen odkazuje.
+Vzdálenosti zobrazené u výsledků jsou primárně **vzdušné** (Haversinova
+formule) — okamžitě po získání polohy, a pro uživatele mimo Prahu vždy.
+V Praze appka navíc na pozadí dopočítá skutečnou pěší vzdálenost/čas
+přes Mapy.com Matrix Routing (viz níže) a výsledky podle toho přeřadí;
+appka vždy transparentně označí, o který typ vzdálenosti jde. Přesnou
+trasu (geometrii) i tak spočítá až externí navigace (Google/Apple
+Maps/Mapy.com), na kterou appka odkazuje.
 
 ## Nasazení na Vercel (bez vlastní domény)
 
@@ -360,6 +363,24 @@ Systém má připravené typy pro budoucí měření (`lib/ads/events.ts`,
 — jen volitelný `console.debug` v development režimu. Content API token
 je jen server-side (env proměnná `UCA_API_TOKEN`, scope pouze
 `records:read`) a nikdy neopustí server.
+
+## Pěší vzdálenost přes Mapy.com Matrix Routing
+
+Podrobná implementace, ověřené API parametry a reálné srovnání
+před/po jsou v [docs/ROUTING.md](docs/ROUTING.md). Provozní shrnutí:
+
+- **Měsíční limit spotřeby** se nastavuje v Mapy.com Developer účtu pod
+  `developer.mapy.com/my-account/financial-settings/` (placenou
+  spotřebu tam lze i nechat vypnutou — appka zůstává plně funkční jen s
+  bezplatným limitem, viz níže).
+- Po odmítnutí requestu (vyčerpaný kredit, rate limit, výpadek API)
+  appka automaticky a bezpečně přejde na vzdušnou vzdálenost —
+  výsledky nikdy nezmizí ani nespadnou, jen se přestane volat Mapy.com
+  (circuit breaker/cooldown, viz `lib/routing/matrix-circuit-breaker.ts`).
+- **Není nutné zapínat placenou spotřebu**, pokud má projekt zůstat jen
+  u bezplatného limitu — appka se bez klíče i po jeho vyčerpání chová
+  stejně jako předtím (žádná chyba buildu, žádná viditelná chyba pro
+  uživatele).
 
 ## Známá omezení
 

@@ -31,6 +31,8 @@ export type FinderSectionProps = {
   outsidePragueStatus: OutsidePragueStatus;
   closestOverall: EntranceWithDistance | null;
   routingAttempted: boolean;
+  /** Skutečný neúspěšný pokus o zpřesnění (ne "bez klíče", ne "mimo Prahu") — zobrazí nenápadnou větu pod výsledky, viz zadání bod 8. */
+  routingFailed: boolean;
 };
 
 export default function FinderSection({
@@ -45,6 +47,7 @@ export default function FinderSection({
   outsidePragueStatus,
   closestOverall,
   routingAttempted,
+  routingFailed,
 }: FinderSectionProps) {
   const { locale, vulgar, dict } = useI18n();
   const demoPositions = useMemo(() => buildDemoPositions(entrances), [entrances]);
@@ -96,6 +99,8 @@ export default function FinderSection({
             routingAttempted={routingAttempted}
           />
         ))}
+
+        {routingFailed && <p className="text-center text-xs text-gray-400">{dict.finder.routingFallbackNotice}</p>}
       </div>
 
       {/* Neznámá stanice na téhle pozici (výsledky mohou patřit různým

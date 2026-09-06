@@ -31,6 +31,8 @@ export type Dictionary = {
     privacyNote: string;
     /** Nenápadný stav při dopočítávání pěších tras přes Mapy.com Matrix Routing (viz lib/routing/) — zobrazuje se ve stávajícím aria-live prostoru výsledků, žádný nový spinner/modal. */
     refining: string;
+    /** Nenápadná věta POD výsledky (ne per-card disclaimer) — jen po skutečně neúspěšném pokusu o zpřesnění (viz hooks/useMetroFinderResults.ts `routingFailed`), nikdy když API klíč chybí. */
+    routingFallbackNotice: string;
     status: {
       denied: string;
       unavailable: string;
@@ -158,7 +160,8 @@ const cs: Dictionary = {
     headingVulgar: "Kde je to zkurvený metro?!!",
     ctaLocating: "Zjišťuji polohu…",
     privacyNote: "Polohu neukládáme ani nespojujeme s vaší identitou. Pro výpočet pěší trasy je jednorázově předána službě Mapy.com.",
-    refining: "Zpřesňuji pěší trasy…",
+    refining: "Zpřesňuji pěší vzdálenost…",
+    routingFallbackNotice: "Pěší trasu se nepodařilo zpřesnit. Zobrazujeme vzdálenost vzdušnou čarou.",
     status: {
       denied:
         "Přístup k poloze byl zamítnutý. Povol ho v nastavení prohlížeče (obvykle ikona zámku/lokace vedle adresního řádku) a zkus to znovu.",
@@ -270,7 +273,8 @@ const en: Dictionary = {
     headingVulgar: "Where's the fucking metro?!",
     ctaLocating: "Locating…",
     privacyNote: "We do not store your location or associate it with your identity. It is sent once to Mapy.com to calculate the walking route.",
-    refining: "Calculating walking routes…",
+    refining: "Refining walking distance…",
+    routingFallbackNotice: "The walking route could not be refined. Showing straight-line distance.",
     status: {
       denied: "Location access was denied. Enable it in your browser settings (usually the lock/location icon next to the address bar) and try again.",
       unavailable: "We couldn't determine your location. Check that GPS/location is turned on and try again.",
@@ -381,7 +385,8 @@ const de: Dictionary = {
     headingVulgar: "Wo ist die verdammte Metro?!!",
     ctaLocating: "Standort wird ermittelt…",
     privacyNote: "Wir speichern Ihren Standort nicht und verknüpfen ihn nicht mit Ihrer Identität. Für die Berechnung der Fußwegroute wird er einmalig an Mapy.com übermittelt.",
-    refining: "Fußwege werden berechnet…",
+    refining: "Fußweg wird genauer berechnet…",
+    routingFallbackNotice: "Der Fußweg konnte nicht genauer berechnet werden. Angezeigt wird die Luftlinie.",
     status: {
       denied:
         "Der Zugriff auf den Standort wurde verweigert. Aktivieren Sie ihn in den Browsereinstellungen (meist das Schloss-/Standortsymbol neben der Adressleiste) und versuchen Sie es erneut.",
@@ -493,7 +498,8 @@ const uk: Dictionary = {
     headingVulgar: "Де це довбане метро?!!",
     ctaLocating: "Визначення місцезнаходження…",
     privacyNote: "Ми не зберігаємо ваше місцезнаходження і не пов'язуємо його з вашою особою. Для розрахунку пішохідного маршруту воно одноразово передається сервісу Mapy.com.",
-    refining: "Уточнюємо пішохідні маршрути…",
+    refining: "Уточнюємо пішу відстань…",
+    routingFallbackNotice: "Не вдалося уточнити пішохідний маршрут. Показано відстань по прямій.",
     status: {
       denied:
         "Доступ до місцезнаходження заборонено. Дозвольте його в налаштуваннях браузера (зазвичай іконка замка/локації біля адресного рядка) і спробуйте ще раз.",

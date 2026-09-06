@@ -24,3 +24,12 @@ export const MAPY_ROUTE_TYPE_FOOT_FAST = "foot_fast";
 
 /** `GET`, viz OpenAPI spec `/v1/routing/matrix-m` — jeden origin (`starts`) × max 12 cílů (`ends`) najednou. */
 export const MAPY_MATRIX_ENDPOINT = "https://api.mapy.com/v1/routing/matrix-m";
+
+/** Poslední úspěšný výpočet se znovu použije, pokud je od něj méně (viz lib/routing/matrix-result-cache.ts). */
+export const WALKING_MATRIX_CACHE_MAX_AGE_MS = 5 * 60 * 1000;
+
+/** ...a nová poloha je nejvýš tolik metrů od polohy posledního úspěšného výpočtu. */
+export const WALKING_MATRIX_CACHE_MAX_DISTANCE_METERS = 100;
+
+/** Po HTTP 429/5xx appka Matrix API nevolá aspoň tuhle dobu (viz lib/routing/matrix-circuit-breaker.ts). */
+export const WALKING_MATRIX_COOLDOWN_MS = 5 * 60 * 1000;

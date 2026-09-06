@@ -57,6 +57,7 @@ export default function HomeClient({ entrances, promotionCampaigns }: { entrance
         outsidePragueStatus={finder.outsidePragueStatus}
         closestOverall={finder.closestOverall}
         routingAttempted={finder.routingAttempted}
+        routingFailed={finder.routingFailed}
       />
       <MetroMap
         entrances={entrances}

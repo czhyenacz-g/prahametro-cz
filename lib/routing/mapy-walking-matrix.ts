@@ -30,9 +30,20 @@ export type WalkingRouteResult = {
 };
 
 export class MapyRoutingError extends Error {
-  constructor(message: string) {
+  /**
+   * HTTP status kód, pokud selhání pochází z odpovědi API (`!response.ok`)
+   * — `undefined` pro chyby bez HTTP odpovědi (chybějící klíč, neplatné
+   * souřadnice, timeout/abort, nevalidní JSON tělo). Volající
+   * (hooks/useMetroFinderResults.ts přes lib/routing/matrix-circuit-breaker.ts)
+   * podle něj rozlišuje "credit/auth" chybu od dočasného výpadku, viz
+   * docs/ROUTING.md.
+   */
+  readonly status?: number;
+
+  constructor(message: string, status?: number) {
     super(message);
     this.name = "MapyRoutingError";
+    this.status = status;
   }
 }
 
@@ -133,7 +144,7 @@ export async function fetchWalkingMatrix(
     const response = await fetch(url, { signal: timeoutController.signal });
 
     if (!response.ok) {
-      throw new MapyRoutingError(`Mapy.com Matrix Routing API vrátilo HTTP ${response.status}.`);
+      throw new MapyRoutingError(`Mapy.com Matrix Routing API vrátilo HTTP ${response.status}.`, response.status);
     }
 
     const body: unknown = await response.json();

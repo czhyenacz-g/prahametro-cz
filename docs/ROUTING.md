@@ -88,7 +88,49 @@ Ve všech čtyřech scénářích se buď výrazně liší odhad vzdálenosti/č
 nebo se změní i to, KTERÁ stanice/vstup je ve výsledku — přesně problém
 popsaný v zadání.
 
-## 6. Bezpečnost a soukromí
+## 6. Odolnost — cache, deduplikace, circuit breaker (doplněno 2026-09-06)
+
+Matrix API je čistě VOLITELNÉ zpřesnění — appka musí zůstat plně
+použitelná i při vyčerpaných kreditech, rate limitu nebo výpadku.
+Mapy.com nemá zdokumentovaný jediný status kód pro "došly kredity"
+(ověřeno — jejich dokumentace jen říká, že spotřeba se po vyčerpání
+bezplatných kreditů "zastaví do konce měsíce", bez konkrétního HTTP
+kódu), proto appka rozlišuje TŘÍDY chyb, ne jeden kód:
+
+- **`lib/routing/matrix-result-cache.ts`** (`MatrixResultCache`) — v
+  paměti si pamatuje jen POSLEDNÍ úspěšný výpočet. Nový požadavek se
+  přeskočí a znovu použije uložený výsledek, pokud zároveň platí:
+  méně než 5 minut od výpočtu (`WALKING_MATRIX_CACHE_MAX_AGE_MS`),
+  nová poloha do 100 m od polohy výpočtu
+  (`WALKING_MATRIX_CACHE_MAX_DISTANCE_METERS`), stejná sada kandidátů a
+  stejný `routeType`. Žádná persistence — jen vlastnost instance v
+  paměti, zaniká s reloadem stránky.
+- **`lib/routing/in-flight-request-map.ts`** (`InFlightRequestMap`) —
+  souběžné požadavky se stejným klíčem (origin+kandidáti+režim) sdílejí
+  jeden Promise, ne vlastní fetch (řeší React Strict Mode dvojité
+  spuštění efektu i rychlé dvojité kliknutí).
+- **`lib/routing/matrix-circuit-breaker.ts`** (`MatrixCircuitBreaker` +
+  `classifyMatrixFailure`) — `401`/`402`/`403` (autorizace/kredit)
+  otevře breaker natrvalo do konce načtení stránky, appka pak Matrix
+  API vůbec nezkouší volat. `429` nebo libovolné `5xx` nastaví cooldown
+  na `WALKING_MATRIX_COOLDOWN_MS` (5 minut), po jehož uplynutí to appka
+  zkusí znovu. Timeout/abort/nevalidní odpověď (bez HTTP status kódu)
+  breaker/cooldown NEOVLIVNÍ — jen tenhle jeden request skončí
+  fallbackem.
+- Živě ověřeno (viz historie implementace, skript proti reálnému API):
+  opakované hledání ~30 m od předchozího do 5 minut vyvolá **0** dalších
+  network requestů (cache hit), neplatný klíč (403) korektně otevře
+  breaker, dva souběžné požadavky se stejným klíčem spustí jen **1**
+  skutečný fetch.
+
+### Fallback hláška
+
+`dict.finder.routingFallbackNotice` se zobrazí pod výsledky JEN po
+skutečně neúspěšném pokusu (chyba, prázdná odpověď, aktivní
+breaker/cooldown) — nikdy když API klíč chybí (to je tichý, plánovaný
+stav, ne chyba).
+
+## 7. Bezpečnost a soukromí
 
 - Poloha se posílá Mapy.com jen jednorázově, jen souřadnice potřebné k
   výpočtu (žádná identita, žádné jiné osobní údaje).
