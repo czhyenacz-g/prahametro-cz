@@ -29,6 +29,8 @@ export type Dictionary = {
     headingVulgar: string;
     ctaLocating: string;
     privacyNote: string;
+    /** Nenápadný stav při dopočítávání pěších tras přes Mapy.com Matrix Routing (viz lib/routing/) — zobrazuje se ve stávajícím aria-live prostoru výsledků, žádný nový spinner/modal. */
+    refining: string;
     status: {
       denied: string;
       unavailable: string;
@@ -53,6 +55,14 @@ export type Dictionary = {
     appleMapsAriaLabel: string;
     mapyComAriaLabel: string;
     disclaimer: string;
+    /** "1,8 km pěšky" — hlavní vzdálenost u výsledku routovaného přes Mapy.com Matrix Routing (viz lib/routing/rank-walking-results.ts), na rozdíl od `disclaimer` výše (vzdušná vzdálenost, beze změny). */
+    walkingDistanceLabel: (distance: string) => string;
+    /** "cca 24 min pěšky" — skutečný pěší čas z Mapy.com, ne odhad z formatWalkingTime(). */
+    walkingTimeLabel: (minutes: number) => string;
+    /** Disclaimer + textová atribuce Mapy.com u routovaného výsledku — "Mapy.com" v odkazu použije `mapyComLabel` výše, tenhle text je jen prefix před ním. */
+    disclaimerWalkingRoutePrefix: string;
+    /** Disclaimer pro vstup, který doplňuje neúplný routovaný výsledek vzdušnou vzdáleností (viz zadání bod 8/11) — jiný text než obecný `disclaimer` výše. */
+    disclaimerRouteFallback: string;
   };
   map: {
     /** Stabilní, jazykově odlišné id nadpisu mapy (cs "mapa-metra" / en "metro-map") — cíl z tematického rozcestníku. */
@@ -147,7 +157,8 @@ const cs: Dictionary = {
     heading: "Kde je nejbližší metro?",
     headingVulgar: "Kde je to zkurvený metro?!!",
     ctaLocating: "Zjišťuji polohu…",
-    privacyNote: "Poloha zůstává jen ve vašem zařízení.",
+    privacyNote: "Polohu neukládáme ani nespojujeme s vaší identitou. Pro výpočet pěší trasy je jednorázově předána službě Mapy.com.",
+    refining: "Zpřesňuji pěší trasy…",
     status: {
       denied:
         "Přístup k poloze byl zamítnutý. Povol ho v nastavení prohlížeče (obvykle ikona zámku/lokace vedle adresního řádku) a zkus to znovu.",
@@ -172,6 +183,10 @@ const cs: Dictionary = {
     appleMapsAriaLabel: "Spustit pěší navigaci v Apple Maps",
     mapyComAriaLabel: "Spustit pěší navigaci v Mapy.com",
     disclaimer: "Vzdušná vzdálenost, orientační — skutečnou trasu ukáže navigace.",
+    walkingDistanceLabel: (distance) => `${distance} pěšky`,
+    walkingTimeLabel: (minutes) => `cca ${minutes} min pěšky`,
+    disclaimerWalkingRoutePrefix: "Pěší vzdálenost a čas jsou orientační údaje vypočítané službou ",
+    disclaimerRouteFallback: "Vzdálenost je vzdušnou čarou; skutečná pěší trasa může být delší.",
   },
   map: {
     sectionId: "mapa-metra",
@@ -210,7 +225,7 @@ const cs: Dictionary = {
     noDeparturesForSelection: "Pro tuhle kombinaci linky a směru teď nejsou žádné odjezdy.",
   },
   footer: {
-    privacy: "Polohu zpracovává pouze váš prohlížeč a web ji nikam neodesílá.",
+    privacy: "Polohu neukládáme ani nespojujeme s vaší identitou. Pro výpočet pěší trasy je jednorázově předána službě Mapy.com.",
     dataLabel: "Dopravní data:",
     licenseWord: "licence",
     disclaimer: "Neoficiální projekt, nesouvisí s DPP ani PID.",
@@ -254,7 +269,8 @@ const en: Dictionary = {
     heading: "Where is the nearest metro?",
     headingVulgar: "Where's the fucking metro?!",
     ctaLocating: "Locating…",
-    privacyNote: "Your location stays only on your device.",
+    privacyNote: "We do not store your location or associate it with your identity. It is sent once to Mapy.com to calculate the walking route.",
+    refining: "Calculating walking routes…",
     status: {
       denied: "Location access was denied. Enable it in your browser settings (usually the lock/location icon next to the address bar) and try again.",
       unavailable: "We couldn't determine your location. Check that GPS/location is turned on and try again.",
@@ -278,6 +294,10 @@ const en: Dictionary = {
     appleMapsAriaLabel: "Start walking navigation in Apple Maps",
     mapyComAriaLabel: "Start walking navigation in Mapy.com",
     disclaimer: "Straight-line distance, approximate — actual route shown by navigation.",
+    walkingDistanceLabel: (distance) => `${distance} on foot`,
+    walkingTimeLabel: (minutes) => `approx. ${minutes} min on foot`,
+    disclaimerWalkingRoutePrefix: "Walking distance and time are estimates calculated by ",
+    disclaimerRouteFallback: "This distance is a straight line; the actual walking route may be longer.",
   },
   map: {
     sectionId: "metro-map",
@@ -316,7 +336,7 @@ const en: Dictionary = {
     noDeparturesForSelection: "There are no departures for this line and direction right now.",
   },
   footer: {
-    privacy: "Your location is processed only by your browser and is never sent anywhere.",
+    privacy: "We do not store your location or associate it with your identity. It is sent once to Mapy.com to calculate the walking route.",
     dataLabel: "Transit data:",
     licenseWord: "license",
     disclaimer: "Unofficial project, not affiliated with DPP or PID.",
@@ -360,7 +380,8 @@ const de: Dictionary = {
     heading: "Wo ist die nächste Metro?",
     headingVulgar: "Wo ist die verdammte Metro?!!",
     ctaLocating: "Standort wird ermittelt…",
-    privacyNote: "Ihr Standort bleibt ausschließlich auf Ihrem Gerät.",
+    privacyNote: "Wir speichern Ihren Standort nicht und verknüpfen ihn nicht mit Ihrer Identität. Für die Berechnung der Fußwegroute wird er einmalig an Mapy.com übermittelt.",
+    refining: "Fußwege werden berechnet…",
     status: {
       denied:
         "Der Zugriff auf den Standort wurde verweigert. Aktivieren Sie ihn in den Browsereinstellungen (meist das Schloss-/Standortsymbol neben der Adressleiste) und versuchen Sie es erneut.",
@@ -385,6 +406,10 @@ const de: Dictionary = {
     appleMapsAriaLabel: "Fußgängernavigation in Apple Maps starten",
     mapyComAriaLabel: "Fußgängernavigation in Mapy.com starten",
     disclaimer: "Luftlinie, ungefähr — die tatsächliche Route zeigt die Navigation.",
+    walkingDistanceLabel: (distance) => `${distance} zu Fuß`,
+    walkingTimeLabel: (minutes) => `ca. ${minutes} Min. zu Fuß`,
+    disclaimerWalkingRoutePrefix: "Gehstrecke und -zeit sind Schätzungen, berechnet von ",
+    disclaimerRouteFallback: "Die Entfernung ist eine Luftlinie; die tatsächliche Gehstrecke kann länger sein.",
   },
   map: {
     sectionId: "metroplan",
@@ -423,7 +448,7 @@ const de: Dictionary = {
     noDeparturesForSelection: "Für diese Linie und Richtung gibt es momentan keine Abfahrten.",
   },
   footer: {
-    privacy: "Ihr Standort wird ausschließlich in Ihrem Browser verarbeitet und von dieser Website nicht übertragen.",
+    privacy: "Wir speichern Ihren Standort nicht und verknüpfen ihn nicht mit Ihrer Identität. Für die Berechnung der Fußwegroute wird er einmalig an Mapy.com übermittelt.",
     dataLabel: "Verkehrsdaten:",
     licenseWord: "Lizenz",
     disclaimer: "Inoffizielles Projekt, nicht mit DPP oder PID verbunden.",
@@ -467,7 +492,8 @@ const uk: Dictionary = {
     heading: "Де найближче метро?",
     headingVulgar: "Де це довбане метро?!!",
     ctaLocating: "Визначення місцезнаходження…",
-    privacyNote: "Дані про ваше місцезнаходження залишаються лише на вашому пристрої.",
+    privacyNote: "Ми не зберігаємо ваше місцезнаходження і не пов'язуємо його з вашою особою. Для розрахунку пішохідного маршруту воно одноразово передається сервісу Mapy.com.",
+    refining: "Уточнюємо пішохідні маршрути…",
     status: {
       denied:
         "Доступ до місцезнаходження заборонено. Дозвольте його в налаштуваннях браузера (зазвичай іконка замка/локації біля адресного рядка) і спробуйте ще раз.",
@@ -492,6 +518,10 @@ const uk: Dictionary = {
     appleMapsAriaLabel: "Відкрити пішохідний маршрут в Apple Maps",
     mapyComAriaLabel: "Відкрити пішохідний маршрут у Mapy.com",
     disclaimer: "Відстань по прямій, орієнтовно — фактичний маршрут покаже навігація.",
+    walkingDistanceLabel: (distance) => `${distance} пішки`,
+    walkingTimeLabel: (minutes) => `прибл. ${minutes} хв пішки`,
+    disclaimerWalkingRoutePrefix: "Пішохідна відстань і час — орієнтовні дані, розраховані сервісом ",
+    disclaimerRouteFallback: "Відстань вказана по прямій; фактичний пішохідний маршрут може бути довшим.",
   },
   map: {
     sectionId: "skhema-metro",
@@ -530,7 +560,7 @@ const uk: Dictionary = {
     noDeparturesForSelection: "Для цієї лінії та напрямку зараз немає відправлень.",
   },
   footer: {
-    privacy: "Дані про ваше місцезнаходження обробляються лише у вашому браузері й не передаються цим сайтом.",
+    privacy: "Ми не зберігаємо ваше місцезнаходження і не пов'язуємо його з вашою особою. Для розрахунку пішохідного маршруту воно одноразово передається сервісу Mapy.com.",
     dataLabel: "Транспортні дані:",
     licenseWord: "ліцензія",
     disclaimer: "Неофіційний проєкт, не пов’язаний із DPP або PID.",

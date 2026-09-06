@@ -6,6 +6,7 @@ import { LINE_BADGE_CLASS } from "../lib/metro/line-colors.ts";
 import { buildAppleMapsWalkingUrl, buildGoogleMapsWalkingUrl, buildMapyComWalkingUrl } from "../lib/metro/navigation-links.ts";
 import { parkAndRideDataset } from "../lib/parking/load-park-and-ride.ts";
 import { getStationsWithParkAndRide } from "../lib/parking/stations-with-park-and-ride.ts";
+import type { DistanceSource } from "../lib/routing/rank-walking-results.ts";
 import type { MetroEntrance } from "../lib/metro/types.ts";
 import { useI18n } from "./i18n/I18nContext.ts";
 import DeparturesButton from "./DeparturesButton.tsx";
@@ -24,11 +25,26 @@ export type EntranceResultCardProps = {
   origin: { lat: number; lon: number } | null;
   /** Volitelné — bez něj (např. detail stanice v mapě) se P+R badge nezobrazí, viz HomeClient.tsx. */
   onOpenParkAndRide?: (stationId: string) => void;
+  /** Výchozí "air-distance" (dosavadní jediné chování) — "walking-route" u vstupu zpřesněného přes Mapy.com Matrix Routing (viz hooks/useMetroFinderResults.ts). */
+  distanceSource?: DistanceSource;
+  /** Skutečný pěší čas z Mapy.com v sekundách — má smysl jen s `distanceSource="walking-route"`. */
+  durationSeconds?: number | null;
+  /** True, když pro tohle hledání routing proběhl, ale TENHLE konkrétní vstup je jen fallback výplň (viz zadání bod 8/11) — mění disclaimer text, i když je `distanceSource` pořád "air-distance". */
+  routingAttempted?: boolean;
 };
 
-export default function EntranceResultCard({ entrance, distanceMeters, origin, onOpenParkAndRide }: EntranceResultCardProps) {
+export default function EntranceResultCard({
+  entrance,
+  distanceMeters,
+  origin,
+  onOpenParkAndRide,
+  distanceSource = "air-distance",
+  durationSeconds = null,
+  routingAttempted = false,
+}: EntranceResultCardProps) {
   const { dict } = useI18n();
   const hasParkAndRide = onOpenParkAndRide && STATIONS_WITH_PARK_AND_RIDE.has(entrance.stationId);
+  const isWalkingRoute = distanceSource === "walking-route";
 
   // Navigace vždy na přesné GPS souřadnice KONKRÉTNÍHO vstupu (entrance),
   // nikdy na střed stanice — entrance už tyhle souřadnice nese přímo.
@@ -60,8 +76,12 @@ export default function EntranceResultCard({ entrance, distanceMeters, origin, o
 
         {distanceMeters !== null && (
           <div className="shrink-0 text-right">
-            <p className="text-xl font-bold text-navy-900 sm:text-2xl">{formatDistance(distanceMeters)}</p>
-            <p className="text-xs text-gray-500 sm:text-sm">{formatWalkingTime(distanceMeters)}</p>
+            <p className="text-xl font-bold text-navy-900 sm:text-2xl">
+              {isWalkingRoute ? dict.result.walkingDistanceLabel(formatDistance(distanceMeters)) : formatDistance(distanceMeters)}
+            </p>
+            <p className="text-xs text-gray-500 sm:text-sm">
+              {isWalkingRoute && durationSeconds !== null ? dict.result.walkingTimeLabel(Math.ceil(durationSeconds / 60)) : formatWalkingTime(distanceMeters)}
+            </p>
           </div>
         )}
       </div>
@@ -82,7 +102,21 @@ export default function EntranceResultCard({ entrance, distanceMeters, origin, o
           trojicí navigačních tlačítek, ať s nimi nesoupeří o místo ani
           nezabere čtvrtou pozici v jejich řádku (viz zadání). */}
       <div className="mt-2 flex items-center justify-between gap-2">
-        <p className="min-w-0 flex-1 text-xs text-gray-400">{dict.result.disclaimer}</p>
+        <p className="min-w-0 flex-1 text-xs text-gray-400">
+          {isWalkingRoute ? (
+            <>
+              {dict.result.disclaimerWalkingRoutePrefix}
+              <a href="https://mapy.com" target="_blank" rel="noopener noreferrer" className="underline">
+                {dict.result.mapyComLabel}
+              </a>
+              .
+            </>
+          ) : routingAttempted ? (
+            dict.result.disclaimerRouteFallback
+          ) : (
+            dict.result.disclaimer
+          )}
+        </p>
         <DeparturesButton stationId={entrance.stationId} stationName={entrance.stationName} />
       </div>
     </div>

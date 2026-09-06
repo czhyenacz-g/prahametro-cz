@@ -85,9 +85,15 @@ describe("vizuální redesign — odstranění samostatné ±přesnosti", () => 
     }
   });
 
-  test("text 'poloha zůstává jen ve vašem zařízení' zůstal zachovaný (cs/en)", () => {
-    assert.equal(getDictionary("cs").finder.privacyNote, "Poloha zůstává jen ve vašem zařízení.");
-    assert.equal(getDictionary("en").finder.privacyNote, "Your location stays only on your device.");
+  test("privacyNote aktualizován kvůli Mapy.com Matrix Routing (cs/en) — poloha už není jen 'v zařízení', jednorázově jde na Mapy.com", () => {
+    assert.equal(
+      getDictionary("cs").finder.privacyNote,
+      "Polohu neukládáme ani nespojujeme s vaší identitou. Pro výpočet pěší trasy je jednorázově předána službě Mapy.com."
+    );
+    assert.equal(
+      getDictionary("en").finder.privacyNote,
+      "We do not store your location or associate it with your identity. It is sent once to Mapy.com to calculate the walking route."
+    );
   });
 });
 
@@ -202,7 +208,10 @@ describe("německá jazyková verze (de) — klíčové texty přesně podle zad
     assert.equal(dict.header.subtitle, "Finden Sie den nächsten Eingang und lassen Sie sich zu Fuß dorthin navigieren.");
     assert.equal(dict.finder.heading, "Wo ist die nächste Metro?");
     assert.equal(dict.finder.headingVulgar, "Wo ist die verdammte Metro?!!");
-    assert.equal(dict.finder.privacyNote, "Ihr Standort bleibt ausschließlich auf Ihrem Gerät.");
+    assert.equal(
+      dict.finder.privacyNote,
+      "Wir speichern Ihren Standort nicht und verknüpfen ihn nicht mit Ihrer Identität. Für die Berechnung der Fußwegroute wird er einmalig an Mapy.com übermittelt."
+    );
   });
 
   test("přístupné popisky vulgárního přepínače používají konzistentně vykání (Sie)", () => {
@@ -273,7 +282,10 @@ describe("ukrajinská jazyková verze (uk, URL /ua) — klíčové texty přesn�
     assert.equal(dict.header.subtitle, "Знайдіть найближчий вхід і відкрийте пішохідний маршрут до нього.");
     assert.equal(dict.finder.heading, "Де найближче метро?");
     assert.equal(dict.finder.headingVulgar, "Де це довбане метро?!!");
-    assert.equal(dict.finder.privacyNote, "Дані про ваше місцезнаходження залишаються лише на вашому пристрої.");
+    assert.equal(
+      dict.finder.privacyNote,
+      "Ми не зберігаємо ваше місцезнаходження і не пов'язуємо його з вашою особою. Для розрахунку пішохідного маршруту воно одноразово передається сервісу Mapy.com."
+    );
   });
 
   test("přístupné popisky vulgárního přepínače", () => {

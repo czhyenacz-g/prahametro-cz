@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useGeolocation } from "../hooks/useGeolocation.ts";
+import { useMetroFinderResults } from "../hooks/useMetroFinderResults.ts";
 import type { AdCampaign } from "../lib/ads/types.ts";
 import { computeHighlightedStationIds } from "../lib/metro/highlighted-stations.ts";
 import { emitParkingEvent } from "../lib/parking/events.ts";
@@ -24,13 +25,17 @@ export default function HomeClient({ entrances, promotionCampaigns }: { entrance
   const [parkAndRideOpen, setParkAndRideOpen] = useState(false);
   const [parkAndRideFocusStationId, setParkAndRideFocusStationId] = useState<string | null>(null);
 
-  // Tři nejbližší RŮZNÉ stanice pro jemné podtržení v mapě (viz zadání)
-  // — čistě derivované z `position` při každém renderu (levný výpočet
-  // nad ~60 vstupy, useMemo by tu jen zbytečně komplikoval závislosti
-  // bez reálného přínosu), takže se samo přepočítá/vyprázdní při každé
-  // změně polohy (nové hledání, demo poloha, chyba) beze zvláštní
-  // stavové logiky navíc.
-  const highlightedStationIds = computeHighlightedStationIds(position, entrances);
+  // Jediné volání hooku pro celou appku — FinderSection dostává výsledky
+  // (karty) jako props, MetroMap zvýraznění (viz níže), ať neběží dvě
+  // nezávislé instance efektu/generation-counteru pro stejné hledání.
+  const finder = useMetroFinderResults(entrances, position);
+
+  // Po úspěšném (i částečném) routingu zvýrazni stanice odpovídající
+  // AKTUÁLNĚ zobrazeným třem výsledkům (viz zadání bod 15) — dokud
+  // routing neuspěl (preliminaryResults, mimo Prahu, bez API klíče,
+  // selhání), zachovej přesně původní vzdušný výpočet tří nejbližších
+  // RŮZNÝCH stanic (computeHighlightedStationIds), beze změny.
+  const highlightedStationIds = finder.routedStationIds ?? computeHighlightedStationIds(position, entrances);
 
   function openParkAndRideForStation(stationId: string) {
     emitParkingEvent({ type: "pr_badge_click", stationId });
@@ -47,6 +52,11 @@ export default function HomeClient({ entrances, promotionCampaigns }: { entrance
         onDemoSelect={setDemoPosition}
         onOpenParkAndRide={openParkAndRideForStation}
         promotionCampaigns={promotionCampaigns}
+        results={finder.results}
+        isRefining={finder.isRefining}
+        outsidePragueStatus={finder.outsidePragueStatus}
+        closestOverall={finder.closestOverall}
+        routingAttempted={finder.routingAttempted}
       />
       <MetroMap
         entrances={entrances}
