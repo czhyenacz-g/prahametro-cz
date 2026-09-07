@@ -35,6 +35,9 @@ a jedna nenápadná reklamní pozice (zatím jen placeholder).
 - Nenápadné tlačítko **Odjezdy** na každé výsledkové kartě — otevře
   panel s nejbližšími plánovanými odjezdy dané linky/směru a posledním
   vlakem podle GTFS jízdního řádu, viz [Odjezdy](#odjezdy) níže.
+- Instalace na plochu telefonu (PWA) — vlastní ikona, žádný prohlížečový
+  rámeček po spuštění, viz [PWA / Přidat na plochu](#pwa--přidat-na-plochu)
+  níže.
 
 ## Co MVP záměrně NEumí
 
@@ -382,6 +385,82 @@ před/po jsou v [docs/ROUTING.md](docs/ROUTING.md). Provozní shrnutí:
   stejně jako předtím (žádná chyba buildu, žádná viditelná chyba pro
   uživatele).
 
+## PWA / Přidat na plochu
+
+Appka jde na Androidu i iPhonu přidat na plochu a spustit skoro jako
+samostatná appka (`display: standalone`, vlastní ikona, žádná adresní
+lišta). Cíl je **jen instalovatelná ikonka**, ne offline appka — proto
+žádný service worker (appka pracuje s aktuální polohou/tras/dopravními
+daty a agresivní offline cache by snadno vedla k zastaralým informacím,
+viz zadání). Bez service workeru appka splňuje instalovatelnost jak v
+Chrome/Androidu (`beforeinstallprompt`), tak přes iOS Safari "Přidat na
+plochu" — obojí funguje čistě nad Web App Manifestem a metadaty.
+
+### Kde co je
+
+- **Manifest**: `app/manifest.ts` (Next.js App Router file convention,
+  vystavené na `/manifest.webmanifest`). Branding (název, popis, barvy)
+  je v `lib/pwa/config.ts` — jediné místo, kde se mění.
+- **Ikony**: společná grafika (tři tečky v barvách linek A/B/C na tmavém
+  pozadí, stejný motiv jako favicon `app/icon.tsx`) je v
+  `lib/pwa/icon-graphic.tsx`, vykreslovaná přes `next/og` `ImageResponse`
+  — žádné binární soubory v repu:
+  - `/pwa-icon-192`, `/pwa-icon-512` — běžné ikony (`purpose: "any"`).
+  - `/pwa-icon-512-maskable` — maskable varianta (obsah zmenšený do
+    bezpečné zóny, aby ho Android adaptivní ikona neoříznula).
+  - `app/apple-icon.tsx` — Next.js file-convention Apple touch icon
+    (180×180), automaticky polinkovaný ve všech jazykových layoutech.
+  - Favicon (`app/icon.tsx`) zůstal beze změny.
+- **iOS metadata** (`viewport.themeColor`, `metadata.appleWebApp`):
+  sdílené konstanty v `lib/pwa/config.ts`, znovupoužité ve všech čtyřech
+  jazykových root layoutech (`app/(cs)/layout.tsx`, `app/en/layout.tsx`,
+  `app/de/layout.tsx`, `app/ua/layout.tsx`) — žádný sdílený
+  `app/layout.tsx` neexistuje (viz "multiple root layouts" výše), proto
+  se importují zvlášť do každého z nich, stejně jako `metadataBase`.
+- **Instalační CTA**: `components/pwa/InstallPrompt.tsx` — nenápadná
+  karta pod hlavní funkční částí homepage (`components/HomePage.tsx`, až
+  po `<HomeClient>`), viditelná jen do `sm:` šířky (telefon, ne
+  tablet/desktop). Na Androidu tlačítko spustí nativní install dialog
+  (`hooks/usePwaInstall.ts`), na iOS otevře krátký návod (2 kroky:
+  Sdílet → Přidat na plochu) ve spodním panelu — nikdy ne fake
+  "instalační" tlačítko. Karta se schová v `standalone` režimu a po
+  zavření (X, po odpovědi na Android prompt, nebo po zavření iOS
+  návodu) na 30 dní (`DEFAULT_REMIND_AFTER_MS` v `InstallPrompt.tsx`).
+
+### Jak změnit texty
+
+Texty (a jazykové mutace cs/en/de/uk) jsou v `lib/i18n/dictionary.ts`
+pod klíčem `pwa` — stejný slovník jako zbytek appky, žádný zvláštní i18n
+systém jen pro PWA.
+
+### Jak změnit manifest/barvy
+
+Uprav `lib/pwa/config.ts` (`PWA_NAME`, `PWA_SHORT_NAME`,
+`PWA_DESCRIPTION`, `PWA_THEME_COLOR`, `PWA_BACKGROUND_COLOR`) — hodnoty
+se automaticky promítnou do manifestu i do `<meta name="theme-color">`/
+Apple Web App metadat. Manifest má vědomě jen jeden `start_url`/`scope`
+(`/`, česká homepage) bez ohledu na to, z které jazykové verze appku
+uživatel nainstaluje — kvůli jednoduchosti (jeden manifest pro celý
+web), ne přehlédnutím.
+
+### Přenositelnost do dalších projektů
+
+`hooks/usePwaInstall.ts`, `hooks/usePersistentDismiss.ts` a
+`components/pwa/InstallPrompt.tsx` jsou napsané bez KdeJeMetro brandingu
+— žádná barva, text ani ikona natvrdo zapsaná v logice. Pro nasazení v
+jiném Next.js projektu (KdeJeHospoda.cz, Hlasuju.cz, NechciVolit.cz,
+KdeJeMHD.cz…) stačí:
+
+1. Zkopírovat `hooks/usePwaInstall.ts`, `hooks/usePersistentDismiss.ts`,
+   `lib/pwa/detect-platform.ts`, `lib/storage/dismiss-window.ts`,
+   `lib/storage/safe-storage.ts` (pokud tam ještě není) a
+   `components/pwa/InstallPrompt.tsx` beze změny.
+2. Zavolat `<InstallPrompt texts={...} ctaClassName="..." />` s vlastními
+   texty/barvou daného projektu (typ `InstallPromptTexts`).
+3. Přidat vlastní `app/manifest.ts` + ikony podle vzoru
+   `lib/pwa/config.ts`/`lib/pwa/icon-graphic.tsx` (barvy a motiv jsou
+   samozřejmě jiné pro každý projekt).
+
 ## Známá omezení
 
 - Označení vstupů (`E1`, `E2`, …) je přímo z GTFS feedu — pokud feed
@@ -393,3 +472,11 @@ před/po jsou v [docs/ROUTING.md](docs/ROUTING.md). Provozní shrnutí:
 - Feed PID se mění denně — počty stanic/vstupů se mohou mezi
   jednotlivými `npm run data:refresh` mírně lišit (např. dočasně
   uzavřená stanice kvůli rekonstrukci se v datech krátkodobě neobjeví).
+- Nainstalovaná appka se vždy otevře na české homepage (`start_url: "/"`
+  v manifestu) bez ohledu na to, ze které jazykové verze si ji uživatel
+  nainstaloval — vědomé zjednodušení, viz [PWA / Přidat na
+  plochu](#pwa--přidat-na-plochu).
+- Instalační karta se schová i na velké tabletové/desktopové šířce
+  (`sm:` a výš) — na iPadu v landscape orientaci se tak nemusí zobrazit,
+  i když je zařízení technicky rozpoznané jako iOS (zadání cílí na
+  Android/iPhone, ne konkrétně iPad).

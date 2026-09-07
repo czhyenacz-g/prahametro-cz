@@ -1,11 +1,13 @@
 import { getActivePromotionCampaigns } from "../lib/promotions/get-promotions.ts";
 import { metroEntrances } from "../lib/metro/load-entrances.ts";
 import type { Locale } from "../lib/i18n/types.ts";
+import { getDictionary } from "../lib/i18n/dictionary.ts";
 import I18nProvider from "./i18n/I18nProvider.tsx";
 import AppHeader from "./AppHeader.tsx";
 import AppFooter from "./AppFooter.tsx";
 import HomeClient from "./HomeClient.tsx";
 import SeoContent from "./seo/SeoContent.tsx";
+import InstallPrompt from "./pwa/InstallPrompt.tsx";
 
 /**
  * Sdílená homepage pro obě jazykové routy (app/(cs)/page.tsx = "/",
@@ -39,6 +41,12 @@ export default async function HomePage({ locale }: { locale: Locale }) {
             zůstává výchozí `bg-scroll`. */}
         <main className="bg-[url('/hero-metro.webp')] bg-top bg-no-repeat bg-[length:100%_auto] md:bg-fixed">
           <HomeClient entrances={metroEntrances.entrances} promotionCampaigns={promotionCampaigns} />
+          {/* Pod hlavní funkční částí (vyhledávač + mapa), NE jako
+              fullscreen popup/modal (viz zadání bod 7) — nic tu
+              nepřekrývá výsledky ani tlačítka výš. Barva CTA (navy-900)
+              je jediné místo, kde tenhle konkrétní projekt "obarvuje"
+              jinak brand-neutrální komponentu (viz InstallPrompt.tsx). */}
+          <InstallPrompt texts={getDictionary(locale).pwa} ctaClassName="bg-navy-900 hover:bg-navy-800" />
           <SeoContent locale={locale} />
         </main>
         <AppFooter />

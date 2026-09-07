@@ -145,6 +145,17 @@ export type Dictionary = {
     disclaimerOccupancy: string;
     disclaimerNoReservation: string;
   };
+  /** "Přidat na plochu" (viz components/pwa/InstallPrompt.tsx) — texty putují do jinak brand-neutrální komponenty jako props, ne natvrdo zapsané uvnitř ní (zadání bod 9/13). */
+  pwa: {
+    title: string;
+    subtitle: string;
+    installCta: string;
+    dismissAriaLabel: string;
+    iosTitle: string;
+    /** 2 kroky: klepnout na Sdílet, pak zvolit Přidat na plochu — žádný fake instalační krok. */
+    iosSteps: [string, string];
+    iosCloseLabel: string;
+  };
 };
 
 const cs: Dictionary = {
@@ -258,6 +269,15 @@ const cs: Dictionary = {
     disclaimerOccupancy: "Obsazenost se může změnit během jízdy.",
     disclaimerNoReservation: "Parkovací místo nelze předem rezervovat.",
   },
+  pwa: {
+    title: "Mějte metro vždy po ruce",
+    subtitle: "Přidejte si KdeJeMetro.cz na plochu telefonu.",
+    installCta: "Přidat na plochu",
+    dismissAriaLabel: "Zavřít nabídku instalace",
+    iosTitle: "Přidání na plochu",
+    iosSteps: ["Klepněte na ikonu Sdílet v liště Safari.", "Vyberte „Přidat na plochu“."],
+    iosCloseLabel: "Zavřít návod",
+  },
 };
 
 const en: Dictionary = {
@@ -369,6 +389,15 @@ const en: Dictionary = {
     sourceLinkLabel: "Parking.praha.eu",
     disclaimerOccupancy: "Occupancy may change while you're driving.",
     disclaimerNoReservation: "Parking spaces cannot be reserved in advance.",
+  },
+  pwa: {
+    title: "Keep the metro one tap away",
+    subtitle: "Add KdeJeMetro.cz to your home screen.",
+    installCta: "Add to Home Screen",
+    dismissAriaLabel: "Dismiss install prompt",
+    iosTitle: "Add to Home Screen",
+    iosSteps: ["Tap the Share icon in Safari's toolbar.", 'Choose "Add to Home Screen".'],
+    iosCloseLabel: "Close instructions",
   },
 };
 
@@ -483,6 +512,15 @@ const de: Dictionary = {
     disclaimerOccupancy: "Die Auslastung kann sich während der Fahrt ändern.",
     disclaimerNoReservation: "Parkplätze können nicht im Voraus reserviert werden.",
   },
+  pwa: {
+    title: "Die Metro immer griffbereit",
+    subtitle: "Fügen Sie KdeJeMetro.cz zu Ihrem Startbildschirm hinzu.",
+    installCta: "Zum Startbildschirm hinzufügen",
+    dismissAriaLabel: "Installationshinweis schließen",
+    iosTitle: "Zum Startbildschirm hinzufügen",
+    iosSteps: ["Tippen Sie in Safari auf das Symbol „Teilen“.", "Wählen Sie „Zum Home-Bildschirm“."],
+    iosCloseLabel: "Anleitung schließen",
+  },
 };
 
 const uk: Dictionary = {
@@ -595,6 +633,15 @@ const uk: Dictionary = {
     sourceLinkLabel: "Parking.praha.eu",
     disclaimerOccupancy: "Заповненість може змінитися під час поїздки.",
     disclaimerNoReservation: "Паркомісце не можна забронювати заздалегідь.",
+  },
+  pwa: {
+    title: "Метро завжди під рукою",
+    subtitle: "Додайте KdeJeMetro.cz на головний екран телефону.",
+    installCta: "Додати на головний екран",
+    dismissAriaLabel: "Закрити пропозицію встановлення",
+    iosTitle: "Додати на головний екран",
+    iosSteps: ["Натисніть значок «Поділитися» в Safari.", "Виберіть «Додати на головний екран»."],
+    iosCloseLabel: "Закрити інструкцію",
   },
 };
 
