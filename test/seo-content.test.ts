@@ -122,7 +122,10 @@ describe("německá SEO stránka (/de) — title/description/hlavní nadpis/ogLo
   test("kroky 'jak to funguje' a text o soukromí přesně podle zadání", () => {
     const seo = getSeoContent("de");
     assert.deepEqual(seo.howItWorks.steps, ["Standortzugriff erlauben", "Nächsten Eingang auswählen", "Fußgängernavigation öffnen"]);
-    assert.equal(seo.howItWorks.privacyText, "Ihr Standort bleibt auf Ihrem Gerät und wird nicht für Werbezwecke verwendet.");
+    assert.equal(
+      seo.howItWorks.privacyText,
+      "Wir speichern Ihren Standort nicht und verknüpfen ihn nicht mit Ihrer Identität. Für die Berechnung der Fußwegroute wird er einmalig an Mapy.com übermittelt."
+    );
   });
 
   test("7 FAQ otázek, včetně dotazu na Brno se stejným významem jako český FAQ", () => {
@@ -238,9 +241,15 @@ describe("FAQ obsah (8.)", () => {
   });
 });
 
-describe("soukromí — 6. tvrzení odpovídá reálné implementaci", () => {
-  test("privacyText cs/en", () => {
-    assert.equal(getSeoContent("cs").howItWorks.privacyText, "Vaše poloha zůstává ve vašem zařízení a nepoužíváme ji k reklamnímu cílení.");
-    assert.equal(getSeoContent("en").howItWorks.privacyText, "Your location stays on your device and is not used for advertising targeting.");
+describe("soukromí — 6. tvrzení odpovídá reálné implementaci (aktualizováno kvůli Mapy.com Matrix Routing, viz storytelling redesign zadání)", () => {
+  test("privacyText cs/en — shoduje se s footer.privacy (stejné tvrzení, jen jiné umístění na stránce)", () => {
+    assert.equal(
+      getSeoContent("cs").howItWorks.privacyText,
+      "Polohu neukládáme ani nespojujeme s vaší identitou. Pro výpočet pěší trasy je jednorázově předána službě Mapy.com."
+    );
+    assert.equal(
+      getSeoContent("en").howItWorks.privacyText,
+      "We do not store your location or associate it with your identity. It is sent once to Mapy.com to calculate the walking route."
+    );
   });
 });

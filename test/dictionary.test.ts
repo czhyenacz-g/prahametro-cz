@@ -2,7 +2,7 @@ import { test, describe } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { getDictionary, getMainHeading, dictionaries } from "../lib/i18n/dictionary.ts";
+import { getDictionary, getMainHeading, getStoryQuote, dictionaries } from "../lib/i18n/dictionary.ts";
 import { LOCALES } from "../lib/i18n/types.ts";
 
 describe("getDictionary", () => {
@@ -85,15 +85,52 @@ describe("vizuální redesign — odstranění samostatné ±přesnosti", () => 
     }
   });
 
-  test("privacyNote aktualizován kvůli Mapy.com Matrix Routing (cs/en) — poloha už není jen 'v zařízení', jednorázově jde na Mapy.com", () => {
-    assert.equal(
-      getDictionary("cs").finder.privacyNote,
-      "Polohu neukládáme ani nespojujeme s vaší identitou. Pro výpočet pěší trasy je jednorázově předána službě Mapy.com."
-    );
-    assert.equal(
-      getDictionary("en").finder.privacyNote,
-      "We do not store your location or associate it with your identity. It is sent once to Mapy.com to calculate the walking route."
-    );
+  test("finder.privacyNote byl odstraněn z hlavního finder boxu — informace o poloze/Mapy.com zůstává v patičce a FAQ (viz test/seo-content.test.ts)", () => {
+    assert.equal("privacyNote" in getDictionary("cs").finder, false);
+    assert.equal("privacyNote" in getDictionary("en").finder, false);
+  });
+});
+
+describe("finder.story — krátký storytelling blok pod finder boxem, 18+ mění jen citát (getStoryQuote)", () => {
+  test("cs: přesný text zadání, včetně 18+ varianty citátu", () => {
+    const dict = getDictionary("cs");
+    assert.equal(dict.finder.story.intro, "Vylezeš večer z hospody v Praze a řekneš si:");
+    assert.equal(dict.finder.story.quote, "„KDE JE TO METRO?“");
+    assert.equal(dict.finder.story.quoteVulgar, "„KDE JE TO ZKURVENÝ METRO?!“");
+    assert.equal(dict.finder.story.outro, "Přesně proto vzniklo KdeJeMetro.cz.");
+  });
+
+  test("getStoryQuote přepíná JEN citát podle 18+ (stejný mechanismus jako getMainHeading)", () => {
+    assert.equal(getStoryQuote("cs", false), "„KDE JE TO METRO?“");
+    assert.equal(getStoryQuote("cs", true), "„KDE JE TO ZKURVENÝ METRO?!“");
+    assert.equal(getStoryQuote("en", false), '"WHERE IS THE METRO?"');
+    assert.equal(getStoryQuote("en", true), '"WHERE THE HELL IS THE METRO?!"');
+  });
+
+  test("všechny 4 jazyky mají neprázdný story blok, quote a quoteVulgar se navzájem liší", () => {
+    for (const locale of LOCALES) {
+      const story = getDictionary(locale).finder.story;
+      for (const text of [story.intro, story.quote, story.quoteVulgar, story.outro]) {
+        assert.notEqual(text.trim(), "");
+      }
+      assert.notEqual(story.quote, story.quoteVulgar);
+    }
+  });
+
+  test("outro ve všech jazycích zmiňuje KdeJeMetro.cz", () => {
+    for (const locale of LOCALES) {
+      assert.match(getDictionary(locale).finder.story.outro, /KdeJeMetro\.cz/);
+    }
+  });
+
+  test("ukrajinský blok nepoužívá ruské tvary (ы/ъ/э/ё)", () => {
+    const story = getDictionary("uk").finder.story;
+    assert.doesNotMatch(JSON.stringify(story), /[ыъэё]/);
+  });
+
+  test("německý storytelling text je záměrně tykání ('du'), na rozdíl od zbytku appky (Sie) — jde o vypravěčské oslovení čtenáře, ne appka mluvící k uživateli", () => {
+    const story = getDictionary("de").finder.story;
+    assert.match(story.intro, /\bdu\b/i);
   });
 });
 
@@ -208,17 +245,13 @@ describe("německá jazyková verze (de) — klíčové texty přesně podle zad
     assert.equal(dict.header.subtitle, "Finden Sie den nächsten Eingang und lassen Sie sich zu Fuß dorthin navigieren.");
     assert.equal(dict.finder.heading, "Wo ist die nächste Metro?");
     assert.equal(dict.finder.headingVulgar, "Wo ist die verdammte Metro?!!");
-    assert.equal(
-      dict.finder.privacyNote,
-      "Wir speichern Ihren Standort nicht und verknüpfen ihn nicht mit Ihrer Identität. Für die Berechnung der Fußwegroute wird er einmalig an Mapy.com übermittelt."
-    );
   });
 
   test("přístupné popisky vulgárního přepínače používají konzistentně vykání (Sie)", () => {
     const dict = getDictionary("de");
     assert.match(dict.header.vulgarAriaLabelOn, /\bSie\b|Derben Modus/);
     assert.match(dict.header.vulgarAriaLabelOff, /\bSie\b|Derben Modus/);
-    for (const text of [dict.header.vulgarAriaLabelOn, dict.header.vulgarAriaLabelOff, dict.finder.privacyNote]) {
+    for (const text of [dict.header.vulgarAriaLabelOn, dict.header.vulgarAriaLabelOff]) {
       assert.doesNotMatch(text, /\bdu\b|\bdein\b|\bdeine\b/i);
     }
   });
@@ -282,10 +315,6 @@ describe("ukrajinská jazyková verze (uk, URL /ua) — klíčové texty přesn�
     assert.equal(dict.header.subtitle, "Знайдіть найближчий вхід і відкрийте пішохідний маршрут до нього.");
     assert.equal(dict.finder.heading, "Де найближче метро?");
     assert.equal(dict.finder.headingVulgar, "Де це довбане метро?!!");
-    assert.equal(
-      dict.finder.privacyNote,
-      "Ми не зберігаємо ваше місцезнаходження і не пов'язуємо його з вашою особою. Для розрахунку пішохідного маршруту воно одноразово передається сервісу Mapy.com."
-    );
   });
 
   test("přístupné popisky vulgárního přepínače", () => {

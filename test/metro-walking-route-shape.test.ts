@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { getDictionary, dictionaries } from "../lib/i18n/dictionary.ts";
+import { getSeoContent } from "../lib/seo/content.ts";
 import { LOCALES } from "../lib/i18n/types.ts";
 
 // Stejný vzorec jako test/park-and-ride-ui-shape.test.ts — "use client"
@@ -191,18 +192,22 @@ describe("38.-41. lokalizace cs/en/de/uk pro nová pole (refining, walking label
 
   test("německý blok používá formální vykání (Ihre/Sie), ne du/dein", () => {
     const de = getDictionary("de");
-    for (const text of [de.finder.privacyNote, de.footer.privacy, de.finder.refining]) {
+    for (const text of [de.footer.privacy, de.finder.refining]) {
       assert.doesNotMatch(text, /\bdu\b|\bdein\b|\bdeine\b/i);
     }
   });
 });
 
 describe("42. informace o soukromí zmiňuje jednorázové předání polohy Mapy.com ve všech 4 jazycích", () => {
-  test("finder.privacyNote i footer.privacy obsahují 'Mapy.com' v každém jazyce", () => {
+  test("footer.privacy, howItWorks.privacyText i FAQ odpověď na 'ukládá polohu?' obsahují 'Mapy.com' v každém jazyce (finder.privacyNote byl z hlavního boxu odstraněn, viz zadání)", () => {
     for (const locale of LOCALES) {
       const dict = getDictionary(locale);
-      assert.match(dict.finder.privacyNote, /Mapy\.com/);
+      const seo = getSeoContent(locale);
       assert.match(dict.footer.privacy, /Mapy\.com/);
+      assert.match(seo.howItWorks.privacyText, /Mapy\.com/);
+      const storeLocationFaq = seo.faq.items.find((item) => /polohu\?|location\?|Standort\?|місцезнаходження\?/.test(item.question));
+      assert.ok(storeLocationFaq, `chybí FAQ otázka na ukládání polohy pro ${locale}`);
+      assert.match(storeLocationFaq!.answer, /Mapy\.com/);
     }
   });
 

@@ -63,7 +63,7 @@ const cs: SeoContent = {
     heading: "Jak to funguje",
     steps: ["Povolte přístup k poloze", "Vyberte nejbližší vstup", "Otevřete pěší navigaci"],
     privacyId: "soukromi",
-    privacyText: "Vaše poloha zůstává ve vašem zařízení a nepoužíváme ji k reklamnímu cílení.",
+    privacyText: "Polohu neukládáme ani nespojujeme s vaší identitou. Pro výpočet pěší trasy je jednorázově předána službě Mapy.com.",
   },
   links: {
     heading: "Nejčastěji hledané",
@@ -97,7 +97,8 @@ const cs: SeoContent = {
       },
       {
         question: "Ukládá KdeJeMetro.cz moji polohu?",
-        answer: "Ne. Poloha se zpracovává pouze ve vašem prohlížeči a nikam se neodesílá ani neukládá.",
+        answer:
+          "Ne, polohu neukládáme ani nespojujeme s vaší identitou. Pro výpočet skutečné pěší trasy je jednorázově předána službě Mapy.com.",
       },
       {
         question: "Jak otevřu navigaci ke vstupu?",
@@ -135,7 +136,7 @@ const en: SeoContent = {
     heading: "How it works",
     steps: ["Allow location access", "Choose the nearest entrance", "Open walking directions"],
     privacyId: "privacy",
-    privacyText: "Your location stays on your device and is not used for advertising targeting.",
+    privacyText: "We do not store your location or associate it with your identity. It is sent once to Mapy.com to calculate the walking route.",
   },
   links: {
     heading: "Explore the Prague Metro",
@@ -169,7 +170,8 @@ const en: SeoContent = {
       },
       {
         question: "Does KdeJeMetro.cz store my location?",
-        answer: "No. Your location is processed only in your browser and is never sent anywhere or stored.",
+        answer:
+          "No, we do not store your location or associate it with your identity. It is sent once to Mapy.com to calculate the actual walking route.",
       },
       {
         question: "How can I open walking directions?",
@@ -208,7 +210,7 @@ const de: SeoContent = {
     heading: "So funktioniert es",
     steps: ["Standortzugriff erlauben", "Nächsten Eingang auswählen", "Fußgängernavigation öffnen"],
     privacyId: "datenschutz",
-    privacyText: "Ihr Standort bleibt auf Ihrem Gerät und wird nicht für Werbezwecke verwendet.",
+    privacyText: "Wir speichern Ihren Standort nicht und verknüpfen ihn nicht mit Ihrer Identität. Für die Berechnung der Fußwegroute wird er einmalig an Mapy.com übermittelt.",
   },
   links: {
     heading: "Prager Metro entdecken",
@@ -243,7 +245,8 @@ const de: SeoContent = {
       },
       {
         question: "Speichert KdeJeMetro.cz meinen Standort?",
-        answer: "Nein. Ihr Standort wird nur in Ihrem Browser verarbeitet und nirgendwohin gesendet oder gespeichert.",
+        answer:
+          "Nein, wir speichern Ihren Standort nicht und verknüpfen ihn nicht mit Ihrer Identität. Für die Berechnung der tatsächlichen Fußwegroute wird er einmalig an Mapy.com übermittelt.",
       },
       {
         question: "Wie öffne ich die Navigation zum Eingang?",
@@ -284,7 +287,7 @@ const uk: SeoContent = {
     heading: "Як це працює",
     steps: ["Дозволити доступ до місцезнаходження", "Обрати найближчий вхід", "Відкрити пішохідний маршрут"],
     privacyId: "konfidentsiinist",
-    privacyText: "Ваше місцезнаходження залишається на вашому пристрої і не використовується для рекламного таргетингу.",
+    privacyText: "Ми не зберігаємо ваше місцезнаходження і не пов'язуємо його з вашою особою. Для розрахунку пішохідного маршруту воно одноразово передається сервісу Mapy.com.",
   },
   links: {
     heading: "Дізнайтеся більше про празьке метро",
@@ -319,7 +322,8 @@ const uk: SeoContent = {
       },
       {
         question: "Чи зберігає KdeJeMetro.cz моє місцезнаходження?",
-        answer: "Ні. Ваше місцезнаходження обробляється лише у вашому браузері і нікуди не надсилається та не зберігається.",
+        answer:
+          "Ні, ми не зберігаємо ваше місцезнаходження і не пов'язуємо його з вашою особою. Для розрахунку фактичного пішого маршруту воно одноразово передається сервісу Mapy.com.",
       },
       {
         question: "Як відкрити навігацію до входу?",

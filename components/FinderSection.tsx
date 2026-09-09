@@ -16,6 +16,7 @@ import DemoLocationPicker from "./DemoLocationPicker.tsx";
 import EntranceResultCard from "./EntranceResultCard.tsx";
 import AdSlot from "./ads/AdSlot.tsx";
 import OutsidePragueNotice from "./OutsidePragueNotice.tsx";
+import FinderStory from "./FinderStory.tsx";
 
 export type FinderSectionProps = {
   entrances: MetroEntrance[];
@@ -71,7 +72,6 @@ export default function FinderSection({
           <LocateFixed aria-hidden="true" size={28} strokeWidth={2.25} className="shrink-0" />
           <span>{status.kind === "locating" ? dict.finder.ctaLocating : getMainHeading(locale, vulgar)}</span>
         </button>
-        <p className="mt-3 text-sm text-gray-500">{dict.finder.privacyNote}</p>
 
         {shouldShowDemoControls(process.env.NODE_ENV) && (
           <DemoLocationPicker positions={demoPositions} onSelect={onDemoSelect} locale={locale} />
@@ -102,6 +102,8 @@ export default function FinderSection({
 
         {routingFailed && <p className="text-center text-xs text-gray-400">{dict.finder.routingFallbackNotice}</p>}
       </div>
+
+      <FinderStory />
 
       {/* Neznámá stanice na téhle pozici (výsledky mohou patřit různým
           stanicím) — jen obecné kampaně bez stationIds, viz komentář v

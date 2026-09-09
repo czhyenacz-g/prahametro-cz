@@ -28,7 +28,6 @@ export type Dictionary = {
     heading: string;
     headingVulgar: string;
     ctaLocating: string;
-    privacyNote: string;
     /** Nenápadný stav při dopočítávání pěších tras přes Mapy.com Matrix Routing (viz lib/routing/) — zobrazuje se ve stávajícím aria-live prostoru výsledků, žádný nový spinner/modal. */
     refining: string;
     /** Nenápadná věta POD výsledky (ne per-card disclaimer) — jen po skutečně neúspěšném pokusu o zpřesnění (viz hooks/useMetroFinderResults.ts `routingFailed`), nikdy když API klíč chybí. */
@@ -38,6 +37,13 @@ export type Dictionary = {
       unavailable: string;
       timeout: string;
       unsupported: string;
+    };
+    /** Krátký storytelling callout pod finder boxem (components/FinderStory.tsx) — `quote`/`quoteVulgar` přepínané stejným 18+ mechanismem jako `heading`/`headingVulgar` (viz getStoryQuote níže). */
+    story: {
+      intro: string;
+      quote: string;
+      quoteVulgar: string;
+      outro: string;
     };
   };
   outsidePrague: {
@@ -170,7 +176,6 @@ const cs: Dictionary = {
     heading: "Kde je nejbližší metro?",
     headingVulgar: "Kde je to zkurvený metro?!!",
     ctaLocating: "Zjišťuji polohu…",
-    privacyNote: "Polohu neukládáme ani nespojujeme s vaší identitou. Pro výpočet pěší trasy je jednorázově předána službě Mapy.com.",
     refining: "Zpřesňuji pěší vzdálenost…",
     routingFallbackNotice: "Pěší trasu se nepodařilo zpřesnit. Zobrazujeme vzdálenost vzdušnou čarou.",
     status: {
@@ -179,6 +184,12 @@ const cs: Dictionary = {
       unavailable: "Polohu se nepodařilo zjistit. Zkontroluj, že máš zapnuté GPS/lokaci, a zkus to znovu.",
       timeout: "Zjišťování polohy trvalo příliš dlouho. Zkus to prosím znovu.",
       unsupported: "Tento prohlížeč geolokaci nepodporuje.",
+    },
+    story: {
+      intro: "Vylezeš večer z hospody v Praze a řekneš si:",
+      quote: "„KDE JE TO METRO?“",
+      quoteVulgar: "„KDE JE TO ZKURVENÝ METRO?!“",
+      outro: "Přesně proto vzniklo KdeJeMetro.cz.",
     },
   },
   outsidePrague: {
@@ -292,7 +303,6 @@ const en: Dictionary = {
     heading: "Where is the nearest metro?",
     headingVulgar: "Where's the fucking metro?!",
     ctaLocating: "Locating…",
-    privacyNote: "We do not store your location or associate it with your identity. It is sent once to Mapy.com to calculate the walking route.",
     refining: "Refining walking distance…",
     routingFallbackNotice: "The walking route could not be refined. Showing straight-line distance.",
     status: {
@@ -300,6 +310,12 @@ const en: Dictionary = {
       unavailable: "We couldn't determine your location. Check that GPS/location is turned on and try again.",
       timeout: "Locating took too long. Please try again.",
       unsupported: "This browser doesn't support geolocation.",
+    },
+    story: {
+      intro: "You walk out of a pub in Prague at night and think:",
+      quote: '"WHERE IS THE METRO?"',
+      quoteVulgar: '"WHERE THE HELL IS THE METRO?!"',
+      outro: "That's exactly why KdeJeMetro.cz exists.",
     },
   },
   outsidePrague: {
@@ -413,7 +429,6 @@ const de: Dictionary = {
     heading: "Wo ist die nächste Metro?",
     headingVulgar: "Wo ist die verdammte Metro?!!",
     ctaLocating: "Standort wird ermittelt…",
-    privacyNote: "Wir speichern Ihren Standort nicht und verknüpfen ihn nicht mit Ihrer Identität. Für die Berechnung der Fußwegroute wird er einmalig an Mapy.com übermittelt.",
     refining: "Fußweg wird genauer berechnet…",
     routingFallbackNotice: "Der Fußweg konnte nicht genauer berechnet werden. Angezeigt wird die Luftlinie.",
     status: {
@@ -422,6 +437,12 @@ const de: Dictionary = {
       unavailable: "Ihr Standort konnte nicht ermittelt werden. Prüfen Sie, ob GPS/Standort aktiviert ist, und versuchen Sie es erneut.",
       timeout: "Die Standortermittlung hat zu lange gedauert. Bitte versuchen Sie es erneut.",
       unsupported: "Dieser Browser unterstützt keine Standortbestimmung.",
+    },
+    story: {
+      intro: "Du kommst abends aus einer Kneipe in Prag und denkst:",
+      quote: "„WO IST DIE METRO?“",
+      quoteVulgar: "„WO IST DIE VERDAMMTE METRO?!“",
+      outro: "Genau deshalb gibt es KdeJeMetro.cz.",
     },
   },
   outsidePrague: {
@@ -535,7 +556,6 @@ const uk: Dictionary = {
     heading: "Де найближче метро?",
     headingVulgar: "Де це довбане метро?!!",
     ctaLocating: "Визначення місцезнаходження…",
-    privacyNote: "Ми не зберігаємо ваше місцезнаходження і не пов'язуємо його з вашою особою. Для розрахунку пішохідного маршруту воно одноразово передається сервісу Mapy.com.",
     refining: "Уточнюємо пішу відстань…",
     routingFallbackNotice: "Не вдалося уточнити пішохідний маршрут. Показано відстань по прямій.",
     status: {
@@ -544,6 +564,12 @@ const uk: Dictionary = {
       unavailable: "Не вдалося визначити місцезнаходження. Перевірте, чи увімкнено GPS/локацію, і спробуйте ще раз.",
       timeout: "Визначення місцезнаходження тривало надто довго. Спробуйте, будь ласка, ще раз.",
       unsupported: "Цей браузер не підтримує геолокацію.",
+    },
+    story: {
+      intro: "Виходиш увечері з паба в Празі і кажеш собі:",
+      quote: "«ДЕ ЦЕ МЕТРО?»",
+      quoteVulgar: "«ДЕ ЦЕ ДОВБАНЕ МЕТРО?!»",
+      outro: "Саме тому з'явився KdeJeMetro.cz.",
     },
   },
   outsidePrague: {
@@ -655,4 +681,10 @@ export function getDictionary(locale: Locale): Dictionary {
 export function getMainHeading(locale: Locale, vulgar: boolean): string {
   const dict = getDictionary(locale);
   return vulgar ? dict.finder.headingVulgar : dict.finder.heading;
+}
+
+/** Citát ve storytelling bloku (components/FinderStory.tsx) — stejný vulgar-přepínací mechanismus jako getMainHeading, žádná paralelní 18+ logika. */
+export function getStoryQuote(locale: Locale, vulgar: boolean): string {
+  const dict = getDictionary(locale);
+  return vulgar ? dict.finder.story.quoteVulgar : dict.finder.story.quote;
 }
