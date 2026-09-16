@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-15T07:54:59.710Z",
+  "generatedAt": "2026-09-16T07:48:06.369Z",
   "source": "https://data.pid.cz/PID_GTFS.zip",
   "stationCount": 57,
   "entranceCount": 329,
@@ -209,66 +209,6 @@
       ]
     },
     {
-      "id": "U50S1E3",
-      "stationId": "U50S1",
-      "stationName": "Budějovická",
-      "entranceLabel": "(-)",
-      "lat": 50.04367,
-      "lon": 14.45086,
-      "wheelchair": "yes",
-      "lines": [
-        "C"
-      ]
-    },
-    {
-      "id": "U50S1E7",
-      "stationId": "U50S1",
-      "stationName": "Budějovická",
-      "entranceLabel": "(BUS Brumlovka)",
-      "lat": 50.04449,
-      "lon": 14.44808,
-      "wheelchair": "no",
-      "lines": [
-        "C"
-      ]
-    },
-    {
-      "id": "U50S1E6",
-      "stationId": "U50S1",
-      "stationName": "Budějovická",
-      "entranceLabel": "(BUS Dvorce)",
-      "lat": 50.04476,
-      "lon": 14.44763,
-      "wheelchair": "no",
-      "lines": [
-        "C"
-      ]
-    },
-    {
-      "id": "U50S1E1",
-      "stationId": "U50S1",
-      "stationName": "Budějovická",
-      "entranceLabel": "(BUS Pankrác)",
-      "lat": 50.043388,
-      "lon": 14.449824,
-      "wheelchair": "no",
-      "lines": [
-        "C"
-      ]
-    },
-    {
-      "id": "U50S1E2",
-      "stationId": "U50S1",
-      "stationName": "Budějovická",
-      "entranceLabel": "(IKEM)",
-      "lat": 50.04319,
-      "lon": 14.45014,
-      "wheelchair": "no",
-      "lines": [
-        "C"
-      ]
-    },
-    {
       "id": "U50S1E11",
       "stationId": "U50S1",
       "stationName": "Budějovická",
@@ -281,12 +221,72 @@
       ]
     },
     {
+      "id": "U50S1E1",
+      "stationId": "U50S1",
+      "stationName": "Budějovická",
+      "entranceLabel": "E1",
+      "lat": 50.043388,
+      "lon": 14.449824,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U50S1E2",
+      "stationId": "U50S1",
+      "stationName": "Budějovická",
+      "entranceLabel": "E2",
+      "lat": 50.04319,
+      "lon": 14.45014,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U50S1E3",
+      "stationId": "U50S1",
+      "stationName": "Budějovická",
+      "entranceLabel": "E3",
+      "lat": 50.04367,
+      "lon": 14.45086,
+      "wheelchair": "yes",
+      "lines": [
+        "C"
+      ]
+    },
+    {
       "id": "U50S1E5",
       "stationId": "U50S1",
       "stationName": "Budějovická",
-      "entranceLabel": "(Pacovská ul.)",
+      "entranceLabel": "E4",
       "lat": 50.04505,
       "lon": 14.44777,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U50S1E6",
+      "stationId": "U50S1",
+      "stationName": "Budějovická",
+      "entranceLabel": "E5",
+      "lat": 50.04476,
+      "lon": 14.44763,
+      "wheelchair": "no",
+      "lines": [
+        "C"
+      ]
+    },
+    {
+      "id": "U50S1E7",
+      "stationId": "U50S1",
+      "stationName": "Budějovická",
+      "entranceLabel": "E6",
+      "lat": 50.04449,
+      "lon": 14.44808,
       "wheelchair": "no",
       "lines": [
         "C"
