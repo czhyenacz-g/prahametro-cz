@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T08:47:27.053Z",
+  "generatedAt": "2026-09-30T08:47:20.502Z",
   "source": "https://data.pid.cz/PID_GTFS.zip",
   "stationCount": 57,
   "entranceCount": 331,
@@ -3437,7 +3437,7 @@
       "id": "U458S1E3",
       "stationId": "U458S1",
       "stationName": "Smíchovské nádraží",
-      "entranceLabel": "(Mníšek pod Brby)",
+      "entranceLabel": "(Mníšek pod Brdy)",
       "lat": 50.06153,
       "lon": 14.40886,
       "wheelchair": "no",
