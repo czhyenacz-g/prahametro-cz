@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-10-06T09:09:34.520Z",
+  "generatedAt": "2026-10-07T08:58:47.823Z",
   "source": "https://data.pid.cz/PID_GTFS.zip",
   "stationCount": 57,
-  "entranceCount": 331,
+  "entranceCount": 332,
   "entrances": [
     {
       "id": "U1040S1E1",
@@ -2030,6 +2030,19 @@
       "entranceLabel": "E2 (A)",
       "lat": 50.08388,
       "lon": 14.42284,
+      "wheelchair": "no",
+      "lines": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "U1072S1E202",
+      "stationId": "U1072S1",
+      "stationName": "Můstek",
+      "entranceLabel": "E2 (B)",
+      "lat": 50.083025,
+      "lon": 14.42142,
       "wheelchair": "no",
       "lines": [
         "A",
