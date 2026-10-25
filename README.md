@@ -461,6 +461,51 @@ KdeJeMHD.cz…) stačí:
    `lib/pwa/config.ts`/`lib/pwa/icon-graphic.tsx` (barvy a motiv jsou
    samozřejmě jiné pro každý projekt).
 
+## Průvodci stanicemi (`/stanice`)
+
+Osm ručně psaných, indexovatelných průvodců (`/stanice/mustek`, `muzeum`,
+`florenc`, `cerny-most`, `nadrazi-veleslavin`, `zlicin`, `haje`, `letnany`)
+a přehled `/stanice`. Jen česky, staticky generované (`generateStaticParams`,
+`dynamicParams = false` — jiný slug je 404). Na homepage (jen `/`) na ně
+odkazuje nenápadný blok pod mapou.
+
+- **Obsah a odkazy** — `lib/stations/guides.ts`: texty, „Kam potřebujete?“,
+  FAQ a VŠECHNY externí URL (poskytovatel, typ, přímý odkaz, datum ověření).
+  Faktická tvrzení mají u sekce `sourceIds` (hlavně bezbariérové stránky DPP).
+  Odjezdy, výluky a stav výtahů se nikam neopisují, jen se na ně odkazuje.
+- **Vstupy** — z `data/metro-entrances.json` (stejná data jako homepage).
+- **Povrchová stanoviště** — `data/station-area-stops.json`, generuje
+  `npm run data:refresh` z PID GTFS (stejný uzel `asw_node_id`, kód
+  `platform_code`, linky, které ze stanoviště podle jízdního řádu skutečně
+  odjíždějí). Díky tomu „linka 59 → stanoviště 2“ drží krok s denní
+  aktualizací dat bez ruční údržby.
+- **Mapa** — serverové SVG schéma z GTFS souřadnic (bez dlaždic a bez JS),
+  značky odkazují na řádky s navigací.
+- **Navigace** — `lib/stations/place-links.ts`. Vstupy a stanoviště (přesná
+  GPS z PID) = pěší navigace v Google/Apple Maps bez výchozí polohy (start
+  doplní mapová aplikace), Mapy.com bod ukáže na mapě. Cíle bez ověřených
+  souřadnic (Národní muzeum, autobusové nádraží…) = jen vyhledání místa
+  v mapách podle názvu, žádná předstíraně přesná navigace.
+- **Analytika** — `lib/stations/events.ts` posílá přes `track()` z
+  `@vercel/analytics` (Vercel Web Analytics je na projektu zapnutá, tým má
+  plán Pro) události `station_departures_click`, `station_navigation_click`,
+  `station_destination_click` a `station_source_click`. Plán Pro dovoluje
+  jen **2 vlastnosti na událost**, proto: `station_slug` + `provider` /
+  `destination_id` / `destination_provider` (u navigace spojené
+  „id-cíle:služba“). Nikdy poloha uživatele. Zobrazení stránek měří
+  `<Analytics />` automaticky. Události najdete ve Vercelu: Project →
+  Analytics → Events.
+- **Bezpečnost importu** — stanoviště jsou doplňková data: chyba při jejich
+  zpracování nebo podezřelý výsledek (prázdno, stanice přišla o všechna
+  stanoviště) jen zaloguje varování a ponechá předchozí
+  `data/station-area-stops.json`; import metra a noční dopravy kvůli tomu
+  nespadne (`decideAreaStopsWrite`). Denní workflow soubor commituje spolu
+  s ostatními daty.
+
+Přidání další stanice = nový záznam v `STATION_GUIDES` + `GUIDE_ORDER`;
+test `test/station-guides.test.ts` ohlídá odkazy, kotvy, unikátní SEO a vazbu
+na data PID.
+
 ## Známá omezení
 
 - Označení vstupů (`E1`, `E2`, …) je přímo z GTFS feedu — pokud feed

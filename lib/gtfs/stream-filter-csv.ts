@@ -9,11 +9,16 @@ import { parseCsvLine } from "./parse-csv-line.ts";
  * většina se filtruje pryč (jen metro spoje), takže by bylo zbytečné
  * (a pomalé) parsovat každý řádek na plný objekt nebo držet celý
  * soubor v paměti najednou.
+ *
+ * `optionalColumns` = sloupce, jejichž chybění v hlavičce NENÍ chyba
+ * (vrací se pro ně "") — pro doplňková data, kvůli kterým nesmí spadnout
+ * celý import (viz pickup_type pro stanoviště průvodců stanicemi).
  */
 export async function streamCsvColumns<T extends string>(
   filePath: string,
   columns: readonly T[],
-  onRow: (row: Record<T, string>) => void
+  onRow: (row: Record<T, string>) => void,
+  optionalColumns: readonly T[] = []
 ): Promise<void> {
   const rl = createInterface({ input: createReadStream(filePath, { encoding: "utf-8" }), crlfDelay: Infinity });
 
@@ -27,7 +32,7 @@ export async function streamCsvColumns<T extends string>(
       header = parseCsvLine(line);
       indices = columns.map((col) => {
         const index = header!.indexOf(col);
-        if (index === -1) {
+        if (index === -1 && !optionalColumns.includes(col)) {
           throw new Error(`CSV sloupec "${col}" nebyl nalezen v hlavičce ${filePath}.`);
         }
         return index;
@@ -38,7 +43,7 @@ export async function streamCsvColumns<T extends string>(
     const fields = parseCsvLine(line);
     const row = {} as Record<T, string>;
     for (let i = 0; i < columns.length; i++) {
-      row[columns[i]] = fields[indices[i]] ?? "";
+      row[columns[i]] = indices[i] === -1 ? "" : (fields[indices[i]] ?? "");
     }
     onRow(row);
   }

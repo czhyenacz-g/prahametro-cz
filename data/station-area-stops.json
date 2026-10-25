@@ -1,0 +1,1782 @@
+{
+  "generatedAt": "2026-10-25T14:21:29.904Z",
+  "source": "https://data.pid.cz/PID_GTFS.zip",
+  "stations": {
+    "U689S1": [
+      {
+        "code": "A",
+        "name": "Florenc",
+        "lat": 50.091244,
+        "lon": 14.439114,
+        "routes": [
+          {
+            "name": "2",
+            "mode": "tram"
+          },
+          {
+            "name": "3",
+            "mode": "tram"
+          },
+          {
+            "name": "4",
+            "mode": "tram"
+          },
+          {
+            "name": "5",
+            "mode": "tram"
+          },
+          {
+            "name": "6",
+            "mode": "tram"
+          },
+          {
+            "name": "7",
+            "mode": "tram"
+          },
+          {
+            "name": "8",
+            "mode": "tram"
+          },
+          {
+            "name": "9",
+            "mode": "tram"
+          },
+          {
+            "name": "10",
+            "mode": "tram"
+          },
+          {
+            "name": "11",
+            "mode": "tram"
+          },
+          {
+            "name": "12",
+            "mode": "tram"
+          },
+          {
+            "name": "13",
+            "mode": "tram"
+          },
+          {
+            "name": "15",
+            "mode": "tram"
+          },
+          {
+            "name": "17",
+            "mode": "tram"
+          },
+          {
+            "name": "18",
+            "mode": "tram"
+          },
+          {
+            "name": "21",
+            "mode": "tram"
+          },
+          {
+            "name": "22",
+            "mode": "tram"
+          },
+          {
+            "name": "23",
+            "mode": "tram"
+          },
+          {
+            "name": "24",
+            "mode": "tram"
+          },
+          {
+            "name": "25",
+            "mode": "tram"
+          },
+          {
+            "name": "26",
+            "mode": "tram"
+          },
+          {
+            "name": "92",
+            "mode": "tram"
+          },
+          {
+            "name": "94",
+            "mode": "tram"
+          }
+        ]
+      },
+      {
+        "code": "B",
+        "name": "Florenc",
+        "lat": 50.091427,
+        "lon": 14.439999,
+        "routes": [
+          {
+            "name": "3",
+            "mode": "tram"
+          },
+          {
+            "name": "4",
+            "mode": "tram"
+          },
+          {
+            "name": "5",
+            "mode": "tram"
+          },
+          {
+            "name": "6",
+            "mode": "tram"
+          },
+          {
+            "name": "7",
+            "mode": "tram"
+          },
+          {
+            "name": "8",
+            "mode": "tram"
+          },
+          {
+            "name": "9",
+            "mode": "tram"
+          },
+          {
+            "name": "10",
+            "mode": "tram"
+          },
+          {
+            "name": "12",
+            "mode": "tram"
+          },
+          {
+            "name": "15",
+            "mode": "tram"
+          },
+          {
+            "name": "17",
+            "mode": "tram"
+          },
+          {
+            "name": "21",
+            "mode": "tram"
+          },
+          {
+            "name": "22",
+            "mode": "tram"
+          },
+          {
+            "name": "23",
+            "mode": "tram"
+          },
+          {
+            "name": "24",
+            "mode": "tram"
+          },
+          {
+            "name": "25",
+            "mode": "tram"
+          },
+          {
+            "name": "26",
+            "mode": "tram"
+          },
+          {
+            "name": "31",
+            "mode": "tram"
+          },
+          {
+            "name": "91",
+            "mode": "tram"
+          },
+          {
+            "name": "92",
+            "mode": "tram"
+          },
+          {
+            "name": "93",
+            "mode": "tram"
+          },
+          {
+            "name": "94",
+            "mode": "tram"
+          },
+          {
+            "name": "95",
+            "mode": "tram"
+          },
+          {
+            "name": "97",
+            "mode": "tram"
+          },
+          {
+            "name": "98",
+            "mode": "tram"
+          }
+        ]
+      },
+      {
+        "code": "D",
+        "name": "Florenc",
+        "lat": 50.090519,
+        "lon": 14.438784,
+        "routes": [
+          {
+            "name": "X3",
+            "mode": "bus"
+          },
+          {
+            "name": "133",
+            "mode": "bus"
+          },
+          {
+            "name": "175",
+            "mode": "bus"
+          },
+          {
+            "name": "207",
+            "mode": "bus"
+          },
+          {
+            "name": "908",
+            "mode": "bus"
+          },
+          {
+            "name": "909",
+            "mode": "bus"
+          },
+          {
+            "name": "X92",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "G",
+        "name": "Florenc",
+        "lat": 50.090466,
+        "lon": 14.439067,
+        "routes": [
+          {
+            "name": "X3",
+            "mode": "bus"
+          },
+          {
+            "name": "207",
+            "mode": "bus"
+          },
+          {
+            "name": "908",
+            "mode": "bus"
+          },
+          {
+            "name": "909",
+            "mode": "bus"
+          },
+          {
+            "name": "X92",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "H",
+        "name": "Florenc",
+        "lat": 50.089867,
+        "lon": 14.438801,
+        "routes": [
+          {
+            "name": "194",
+            "mode": "bus"
+          },
+          {
+            "name": "207",
+            "mode": "bus"
+          },
+          {
+            "name": "908",
+            "mode": "bus"
+          },
+          {
+            "name": "909",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "I",
+        "name": "Florenc",
+        "lat": 50.089687,
+        "lon": 14.438635,
+        "routes": [
+          {
+            "name": "133",
+            "mode": "bus"
+          },
+          {
+            "name": "135",
+            "mode": "bus"
+          },
+          {
+            "name": "175",
+            "mode": "bus"
+          },
+          {
+            "name": "207",
+            "mode": "bus"
+          },
+          {
+            "name": "908",
+            "mode": "bus"
+          },
+          {
+            "name": "909",
+            "mode": "bus"
+          }
+        ]
+      }
+    ],
+    "U897S1": [
+      {
+        "code": "3",
+        "name": "Černý Most",
+        "lat": 50.108753,
+        "lon": 14.576671,
+        "routes": [
+          {
+            "name": "345",
+            "mode": "bus"
+          },
+          {
+            "name": "405",
+            "mode": "bus"
+          },
+          {
+            "name": "412",
+            "mode": "bus"
+          },
+          {
+            "name": "700",
+            "mode": "bus"
+          },
+          {
+            "name": "720",
+            "mode": "bus"
+          },
+          {
+            "name": "730",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "5",
+        "name": "Černý Most",
+        "lat": 50.108818,
+        "lon": 14.577314,
+        "routes": [
+          {
+            "name": "315",
+            "mode": "bus"
+          },
+          {
+            "name": "403",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "A",
+        "name": "Černý Most",
+        "lat": 50.1092,
+        "lon": 14.577433,
+        "routes": [
+          {
+            "name": "141",
+            "mode": "bus"
+          },
+          {
+            "name": "171",
+            "mode": "bus"
+          },
+          {
+            "name": "223",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "D",
+        "name": "Černý Most",
+        "lat": 50.109718,
+        "lon": 14.578528,
+        "routes": [
+          {
+            "name": "141",
+            "mode": "bus"
+          },
+          {
+            "name": "171",
+            "mode": "bus"
+          },
+          {
+            "name": "220",
+            "mode": "bus"
+          },
+          {
+            "name": "221",
+            "mode": "bus"
+          },
+          {
+            "name": "222",
+            "mode": "bus"
+          },
+          {
+            "name": "223",
+            "mode": "bus"
+          },
+          {
+            "name": "240",
+            "mode": "bus"
+          },
+          {
+            "name": "250",
+            "mode": "bus"
+          },
+          {
+            "name": "303",
+            "mode": "bus"
+          },
+          {
+            "name": "344",
+            "mode": "bus"
+          },
+          {
+            "name": "346",
+            "mode": "bus"
+          },
+          {
+            "name": "353",
+            "mode": "bus"
+          },
+          {
+            "name": "354",
+            "mode": "bus"
+          },
+          {
+            "name": "367",
+            "mode": "bus"
+          },
+          {
+            "name": "379",
+            "mode": "bus"
+          },
+          {
+            "name": "912",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "F",
+        "name": "Černý Most",
+        "lat": 50.109348,
+        "lon": 14.5779,
+        "routes": [
+          {
+            "name": "224",
+            "mode": "bus"
+          },
+          {
+            "name": "912",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "11",
+        "name": "Černý Most",
+        "lat": 50.108536,
+        "lon": 14.576151,
+        "routes": [
+          {
+            "name": "346",
+            "mode": "bus"
+          },
+          {
+            "name": "367",
+            "mode": "bus"
+          },
+          {
+            "name": "379",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "12",
+        "name": "Černý Most",
+        "lat": 50.108585,
+        "lon": 14.576487,
+        "routes": [
+          {
+            "name": "IKEA",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "13",
+        "name": "Černý Most",
+        "lat": 50.108639,
+        "lon": 14.5769,
+        "routes": [
+          {
+            "name": "141",
+            "mode": "bus"
+          },
+          {
+            "name": "171",
+            "mode": "bus"
+          },
+          {
+            "name": "181",
+            "mode": "bus"
+          },
+          {
+            "name": "186",
+            "mode": "bus"
+          },
+          {
+            "name": "201",
+            "mode": "bus"
+          },
+          {
+            "name": "223",
+            "mode": "bus"
+          },
+          {
+            "name": "224",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "14",
+        "name": "Černý Most",
+        "lat": 50.108692,
+        "lon": 14.577355,
+        "routes": [
+          {
+            "name": "354",
+            "mode": "bus"
+          },
+          {
+            "name": "398",
+            "mode": "bus"
+          },
+          {
+            "name": "425",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "15",
+        "name": "Černý Most",
+        "lat": 50.108768,
+        "lon": 14.577973,
+        "routes": [
+          {
+            "name": "141",
+            "mode": "bus"
+          },
+          {
+            "name": "171",
+            "mode": "bus"
+          },
+          {
+            "name": "303",
+            "mode": "bus"
+          },
+          {
+            "name": "344",
+            "mode": "bus"
+          },
+          {
+            "name": "353",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "16",
+        "name": "Černý Most",
+        "lat": 50.108814,
+        "lon": 14.578338,
+        "routes": [
+          {
+            "name": "220",
+            "mode": "bus"
+          },
+          {
+            "name": "223",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "17",
+        "name": "Černý Most",
+        "lat": 50.108841,
+        "lon": 14.578668,
+        "routes": [
+          {
+            "name": "221",
+            "mode": "bus"
+          },
+          {
+            "name": "222",
+            "mode": "bus"
+          },
+          {
+            "name": "240",
+            "mode": "bus"
+          },
+          {
+            "name": "250",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "V1",
+        "name": "Černý Most",
+        "lat": 50.109116,
+        "lon": 14.577133,
+        "routes": [
+          {
+            "name": "141",
+            "mode": "bus"
+          },
+          {
+            "name": "171",
+            "mode": "bus"
+          },
+          {
+            "name": "223",
+            "mode": "bus"
+          }
+        ]
+      }
+    ],
+    "U1072S1": [
+      {
+        "code": "A",
+        "name": "Václavské náměstí",
+        "lat": 50.081669,
+        "lon": 14.425279,
+        "routes": [
+          {
+            "name": "2",
+            "mode": "tram"
+          },
+          {
+            "name": "3",
+            "mode": "tram"
+          },
+          {
+            "name": "4",
+            "mode": "tram"
+          },
+          {
+            "name": "5",
+            "mode": "tram"
+          },
+          {
+            "name": "6",
+            "mode": "tram"
+          },
+          {
+            "name": "9",
+            "mode": "tram"
+          },
+          {
+            "name": "10",
+            "mode": "tram"
+          },
+          {
+            "name": "18",
+            "mode": "tram"
+          },
+          {
+            "name": "21",
+            "mode": "tram"
+          },
+          {
+            "name": "23",
+            "mode": "tram"
+          },
+          {
+            "name": "24",
+            "mode": "tram"
+          },
+          {
+            "name": "91",
+            "mode": "tram"
+          },
+          {
+            "name": "92",
+            "mode": "tram"
+          },
+          {
+            "name": "94",
+            "mode": "tram"
+          },
+          {
+            "name": "95",
+            "mode": "tram"
+          },
+          {
+            "name": "96",
+            "mode": "tram"
+          },
+          {
+            "name": "98",
+            "mode": "tram"
+          }
+        ]
+      },
+      {
+        "code": "B",
+        "name": "Václavské náměstí",
+        "lat": 50.081963,
+        "lon": 14.425733,
+        "routes": [
+          {
+            "name": "3",
+            "mode": "tram"
+          },
+          {
+            "name": "4",
+            "mode": "tram"
+          },
+          {
+            "name": "5",
+            "mode": "tram"
+          },
+          {
+            "name": "6",
+            "mode": "tram"
+          },
+          {
+            "name": "9",
+            "mode": "tram"
+          },
+          {
+            "name": "10",
+            "mode": "tram"
+          },
+          {
+            "name": "12",
+            "mode": "tram"
+          },
+          {
+            "name": "21",
+            "mode": "tram"
+          },
+          {
+            "name": "23",
+            "mode": "tram"
+          },
+          {
+            "name": "24",
+            "mode": "tram"
+          },
+          {
+            "name": "31",
+            "mode": "tram"
+          },
+          {
+            "name": "91",
+            "mode": "tram"
+          },
+          {
+            "name": "92",
+            "mode": "tram"
+          },
+          {
+            "name": "94",
+            "mode": "tram"
+          },
+          {
+            "name": "95",
+            "mode": "tram"
+          },
+          {
+            "name": "96",
+            "mode": "tram"
+          },
+          {
+            "name": "98",
+            "mode": "tram"
+          }
+        ]
+      }
+    ],
+    "U400S1": [
+      {
+        "code": "A",
+        "name": "Muzeum",
+        "lat": 50.078838,
+        "lon": 14.432457,
+        "routes": [
+          {
+            "name": "11",
+            "mode": "tram"
+          },
+          {
+            "name": "13",
+            "mode": "tram"
+          }
+        ]
+      },
+      {
+        "code": "B",
+        "name": "Muzeum",
+        "lat": 50.078758,
+        "lon": 14.432496,
+        "routes": [
+          {
+            "name": "11",
+            "mode": "tram"
+          },
+          {
+            "name": "13",
+            "mode": "tram"
+          },
+          {
+            "name": "96",
+            "mode": "tram"
+          }
+        ]
+      },
+      {
+        "code": "C",
+        "name": "Muzeum",
+        "lat": 50.080032,
+        "lon": 14.430883,
+        "routes": [
+          {
+            "name": "905",
+            "mode": "bus"
+          },
+          {
+            "name": "907",
+            "mode": "bus"
+          },
+          {
+            "name": "908",
+            "mode": "bus"
+          },
+          {
+            "name": "911",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "D",
+        "name": "Muzeum",
+        "lat": 50.078903,
+        "lon": 14.432548,
+        "routes": [
+          {
+            "name": "905",
+            "mode": "bus"
+          },
+          {
+            "name": "907",
+            "mode": "bus"
+          },
+          {
+            "name": "908",
+            "mode": "bus"
+          },
+          {
+            "name": "911",
+            "mode": "bus"
+          }
+        ]
+      }
+    ],
+    "U462S1": [
+      {
+        "code": "1",
+        "name": "Nádraží Veleslavín",
+        "lat": 50.095428,
+        "lon": 14.347121,
+        "routes": [
+          {
+            "name": "322",
+            "mode": "bus"
+          },
+          {
+            "name": "342",
+            "mode": "bus"
+          },
+          {
+            "name": "414",
+            "mode": "bus"
+          },
+          {
+            "name": "429",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "2",
+        "name": "Nádraží Veleslavín",
+        "lat": 50.095436,
+        "lon": 14.346771,
+        "routes": [
+          {
+            "name": "59",
+            "mode": "trolleybus"
+          }
+        ]
+      },
+      {
+        "code": "3",
+        "name": "Nádraží Veleslavín",
+        "lat": 50.09539,
+        "lon": 14.346395,
+        "routes": [
+          {
+            "name": "300",
+            "mode": "bus"
+          },
+          {
+            "name": "330",
+            "mode": "bus"
+          },
+          {
+            "name": "388",
+            "mode": "bus"
+          },
+          {
+            "name": "389",
+            "mode": "bus"
+          },
+          {
+            "name": "399",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "4",
+        "name": "Nádraží Veleslavín",
+        "lat": 50.096149,
+        "lon": 14.347055,
+        "routes": [
+          {
+            "name": "388",
+            "mode": "bus"
+          },
+          {
+            "name": "389",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "5",
+        "name": "Nádraží Veleslavín",
+        "lat": 50.09663,
+        "lon": 14.34736,
+        "routes": [
+          {
+            "name": "218",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "A",
+        "name": "Nádraží Veleslavín",
+        "lat": 50.095966,
+        "lon": 14.348015,
+        "routes": [
+          {
+            "name": "1",
+            "mode": "tram"
+          },
+          {
+            "name": "2",
+            "mode": "tram"
+          },
+          {
+            "name": "4",
+            "mode": "tram"
+          },
+          {
+            "name": "7",
+            "mode": "tram"
+          },
+          {
+            "name": "8",
+            "mode": "tram"
+          },
+          {
+            "name": "11",
+            "mode": "tram"
+          },
+          {
+            "name": "13",
+            "mode": "tram"
+          },
+          {
+            "name": "18",
+            "mode": "tram"
+          },
+          {
+            "name": "20",
+            "mode": "tram"
+          },
+          {
+            "name": "21",
+            "mode": "tram"
+          },
+          {
+            "name": "22",
+            "mode": "tram"
+          },
+          {
+            "name": "25",
+            "mode": "tram"
+          },
+          {
+            "name": "26",
+            "mode": "tram"
+          },
+          {
+            "name": "30",
+            "mode": "tram"
+          },
+          {
+            "name": "91",
+            "mode": "tram"
+          }
+        ]
+      },
+      {
+        "code": "B",
+        "name": "Nádraží Veleslavín",
+        "lat": 50.095722,
+        "lon": 14.346083,
+        "routes": [
+          {
+            "name": "1",
+            "mode": "tram"
+          },
+          {
+            "name": "2",
+            "mode": "tram"
+          },
+          {
+            "name": "7",
+            "mode": "tram"
+          },
+          {
+            "name": "8",
+            "mode": "tram"
+          },
+          {
+            "name": "18",
+            "mode": "tram"
+          },
+          {
+            "name": "20",
+            "mode": "tram"
+          },
+          {
+            "name": "22",
+            "mode": "tram"
+          },
+          {
+            "name": "25",
+            "mode": "tram"
+          },
+          {
+            "name": "26",
+            "mode": "tram"
+          },
+          {
+            "name": "91",
+            "mode": "tram"
+          },
+          {
+            "name": "94",
+            "mode": "tram"
+          },
+          {
+            "name": "96",
+            "mode": "tram"
+          },
+          {
+            "name": "97",
+            "mode": "tram"
+          }
+        ]
+      },
+      {
+        "code": "C",
+        "name": "Nádraží Veleslavín",
+        "lat": 50.09584,
+        "lon": 14.347911,
+        "routes": [
+          {
+            "name": "218",
+            "mode": "bus"
+          }
+        ]
+      }
+    ],
+    "U1141S1": [
+      {
+        "code": "3",
+        "name": "Zličín",
+        "lat": 50.054981,
+        "lon": 14.290538,
+        "routes": [
+          {
+            "name": "130",
+            "mode": "bus"
+          },
+          {
+            "name": "180",
+            "mode": "bus"
+          },
+          {
+            "name": "246",
+            "mode": "bus"
+          },
+          {
+            "name": "249",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "4",
+        "name": "Zličín",
+        "lat": 50.054775,
+        "lon": 14.290716,
+        "routes": [
+          {
+            "name": "100",
+            "mode": "bus"
+          },
+          {
+            "name": "180",
+            "mode": "bus"
+          },
+          {
+            "name": "304",
+            "mode": "bus"
+          },
+          {
+            "name": "324",
+            "mode": "bus"
+          },
+          {
+            "name": "380",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "5",
+        "name": "Zličín",
+        "lat": 50.054211,
+        "lon": 14.291057,
+        "routes": [
+          {
+            "name": "306",
+            "mode": "bus"
+          },
+          {
+            "name": "336",
+            "mode": "bus"
+          },
+          {
+            "name": "347",
+            "mode": "bus"
+          },
+          {
+            "name": "358",
+            "mode": "bus"
+          },
+          {
+            "name": "386",
+            "mode": "bus"
+          },
+          {
+            "name": "957",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "6",
+        "name": "Zličín",
+        "lat": 50.055336,
+        "lon": 14.289979,
+        "routes": [
+          {
+            "name": "304",
+            "mode": "bus"
+          },
+          {
+            "name": "305",
+            "mode": "bus"
+          },
+          {
+            "name": "404",
+            "mode": "bus"
+          },
+          {
+            "name": "415",
+            "mode": "bus"
+          },
+          {
+            "name": "417",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "7",
+        "name": "Zličín",
+        "lat": 50.055115,
+        "lon": 14.290207,
+        "routes": [
+          {
+            "name": "384",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "8",
+        "name": "Zličín",
+        "lat": 50.054867,
+        "lon": 14.290406,
+        "routes": [
+          {
+            "name": "307",
+            "mode": "bus"
+          },
+          {
+            "name": "308",
+            "mode": "bus"
+          },
+          {
+            "name": "309",
+            "mode": "bus"
+          },
+          {
+            "name": "310",
+            "mode": "bus"
+          },
+          {
+            "name": "311",
+            "mode": "bus"
+          },
+          {
+            "name": "380",
+            "mode": "bus"
+          },
+          {
+            "name": "952",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "9",
+        "name": "Zličín",
+        "lat": 50.055874,
+        "lon": 14.288173,
+        "routes": [
+          {
+            "name": "904",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "V",
+        "name": "Zličín",
+        "lat": 50.054237,
+        "lon": 14.290429,
+        "routes": [
+          {
+            "name": "952",
+            "mode": "bus"
+          },
+          {
+            "name": "957",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "10",
+        "name": "Zličín",
+        "lat": 50.055946,
+        "lon": 14.287701,
+        "routes": [
+          {
+            "name": "904",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "18",
+        "name": "Zličín",
+        "lat": 50.053944,
+        "lon": 14.289805,
+        "routes": [
+          {
+            "name": "130",
+            "mode": "bus"
+          },
+          {
+            "name": "180",
+            "mode": "bus"
+          },
+          {
+            "name": "246",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "19",
+        "name": "Zličín",
+        "lat": 50.05415,
+        "lon": 14.289934,
+        "routes": [
+          {
+            "name": "130",
+            "mode": "bus"
+          },
+          {
+            "name": "180",
+            "mode": "bus"
+          },
+          {
+            "name": "246",
+            "mode": "bus"
+          }
+        ]
+      }
+    ],
+    "U286S1": [
+      {
+        "code": "A",
+        "name": "Háje",
+        "lat": 50.030289,
+        "lon": 14.525262,
+        "routes": [
+          {
+            "name": "381",
+            "mode": "bus"
+          },
+          {
+            "name": "382",
+            "mode": "bus"
+          },
+          {
+            "name": "383",
+            "mode": "bus"
+          },
+          {
+            "name": "387",
+            "mode": "bus"
+          },
+          {
+            "name": "959",
+            "mode": "bus"
+          },
+          {
+            "name": "XS9",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "B",
+        "name": "Háje",
+        "lat": 50.030334,
+        "lon": 14.525611,
+        "routes": [
+          {
+            "name": "125",
+            "mode": "bus"
+          },
+          {
+            "name": "126",
+            "mode": "bus"
+          },
+          {
+            "name": "154",
+            "mode": "bus"
+          },
+          {
+            "name": "170",
+            "mode": "bus"
+          },
+          {
+            "name": "203",
+            "mode": "bus"
+          },
+          {
+            "name": "226",
+            "mode": "bus"
+          },
+          {
+            "name": "227",
+            "mode": "bus"
+          },
+          {
+            "name": "240",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "D",
+        "name": "Háje",
+        "lat": 50.03046,
+        "lon": 14.527443,
+        "routes": [
+          {
+            "name": "136",
+            "mode": "bus"
+          },
+          {
+            "name": "213",
+            "mode": "bus"
+          },
+          {
+            "name": "905",
+            "mode": "bus"
+          },
+          {
+            "name": "911",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "F",
+        "name": "Háje",
+        "lat": 50.030666,
+        "lon": 14.529568,
+        "routes": [
+          {
+            "name": "125",
+            "mode": "bus"
+          },
+          {
+            "name": "126",
+            "mode": "bus"
+          },
+          {
+            "name": "136",
+            "mode": "bus"
+          },
+          {
+            "name": "154",
+            "mode": "bus"
+          },
+          {
+            "name": "170",
+            "mode": "bus"
+          },
+          {
+            "name": "175",
+            "mode": "bus"
+          },
+          {
+            "name": "183",
+            "mode": "bus"
+          },
+          {
+            "name": "213",
+            "mode": "bus"
+          },
+          {
+            "name": "226",
+            "mode": "bus"
+          },
+          {
+            "name": "227",
+            "mode": "bus"
+          },
+          {
+            "name": "240",
+            "mode": "bus"
+          },
+          {
+            "name": "905",
+            "mode": "bus"
+          },
+          {
+            "name": "911",
+            "mode": "bus"
+          },
+          {
+            "name": "959",
+            "mode": "bus"
+          },
+          {
+            "name": "XS9",
+            "mode": "bus"
+          }
+        ]
+      }
+    ],
+    "U1000S1": [
+      {
+        "code": "B",
+        "name": "Letňany",
+        "lat": 50.125614,
+        "lon": 14.516517,
+        "routes": [
+          {
+            "name": "58",
+            "mode": "trolleybus"
+          },
+          {
+            "name": "110",
+            "mode": "bus"
+          },
+          {
+            "name": "136",
+            "mode": "bus"
+          },
+          {
+            "name": "195",
+            "mode": "bus"
+          },
+          {
+            "name": "201",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "C",
+        "name": "Letňany",
+        "lat": 50.125965,
+        "lon": 14.516783,
+        "routes": [
+          {
+            "name": "158",
+            "mode": "bus"
+          },
+          {
+            "name": "195",
+            "mode": "bus"
+          },
+          {
+            "name": "321",
+            "mode": "bus"
+          },
+          {
+            "name": "351",
+            "mode": "bus"
+          },
+          {
+            "name": "377",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "D",
+        "name": "Letňany",
+        "lat": 50.125648,
+        "lon": 14.516767,
+        "routes": [
+          {
+            "name": "58",
+            "mode": "trolleybus"
+          },
+          {
+            "name": "110",
+            "mode": "bus"
+          },
+          {
+            "name": "136",
+            "mode": "bus"
+          },
+          {
+            "name": "201",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "F",
+        "name": "Letňany",
+        "lat": 50.124516,
+        "lon": 14.516399,
+        "routes": [
+          {
+            "name": "110",
+            "mode": "bus"
+          },
+          {
+            "name": "159",
+            "mode": "bus"
+          },
+          {
+            "name": "182",
+            "mode": "bus"
+          },
+          {
+            "name": "185",
+            "mode": "bus"
+          },
+          {
+            "name": "209",
+            "mode": "bus"
+          },
+          {
+            "name": "302",
+            "mode": "bus"
+          },
+          {
+            "name": "375",
+            "mode": "bus"
+          },
+          {
+            "name": "376",
+            "mode": "bus"
+          },
+          {
+            "name": "378",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "G",
+        "name": "Letňany",
+        "lat": 50.125149,
+        "lon": 14.515183,
+        "routes": [
+          {
+            "name": "182",
+            "mode": "bus"
+          },
+          {
+            "name": "375",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "H",
+        "name": "Letňany",
+        "lat": 50.125565,
+        "lon": 14.51575,
+        "routes": [
+          {
+            "name": "159",
+            "mode": "bus"
+          },
+          {
+            "name": "182",
+            "mode": "bus"
+          },
+          {
+            "name": "185",
+            "mode": "bus"
+          },
+          {
+            "name": "201",
+            "mode": "bus"
+          },
+          {
+            "name": "209",
+            "mode": "bus"
+          },
+          {
+            "name": "302",
+            "mode": "bus"
+          },
+          {
+            "name": "376",
+            "mode": "bus"
+          },
+          {
+            "name": "378",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "I",
+        "name": "Letňany",
+        "lat": 50.125851,
+        "lon": 14.515283,
+        "routes": [
+          {
+            "name": "321",
+            "mode": "bus"
+          },
+          {
+            "name": "351",
+            "mode": "bus"
+          },
+          {
+            "name": "377",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "L",
+        "name": "Letňany",
+        "lat": 50.125729,
+        "lon": 14.515668,
+        "routes": [
+          {
+            "name": "413",
+            "mode": "bus"
+          }
+        ]
+      },
+      {
+        "code": "N",
+        "name": "Letňany",
+        "lat": 50.126034,
+        "lon": 14.515216,
+        "routes": [
+          {
+            "name": "400",
+            "mode": "bus"
+          },
+          {
+            "name": "410",
+            "mode": "bus"
+          }
+        ]
+      }
+    ]
+  }
+}

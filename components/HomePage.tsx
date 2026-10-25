@@ -8,6 +8,7 @@ import AppFooter from "./AppFooter.tsx";
 import HomeClient from "./HomeClient.tsx";
 import SeoContent from "./seo/SeoContent.tsx";
 import InstallPrompt from "./pwa/InstallPrompt.tsx";
+import StationGuidesTeaser from "./stations/StationGuidesTeaser.tsx";
 
 /**
  * Sdílená homepage pro obě jazykové routy (app/(cs)/page.tsx = "/",
@@ -47,6 +48,8 @@ export default async function HomePage({ locale }: { locale: Locale }) {
               je jediné místo, kde tenhle konkrétní projekt "obarvuje"
               jinak brand-neutrální komponentu (viz InstallPrompt.tsx). */}
           <InstallPrompt texts={getDictionary(locale).pwa} ctaClassName="bg-navy-900 hover:bg-navy-800" />
+          {/* Průvodci stanicemi (/stanice) jsou jen česky — ostatní jazyky odkaz nedostanou. */}
+          {locale === "cs" && <StationGuidesTeaser />}
           <SeoContent locale={locale} />
         </main>
         <AppFooter />

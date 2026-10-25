@@ -7,7 +7,7 @@
 // jen hotové JSONy (viz zadání "bez backendu za běhu").
 import { execFileSync } from "node:child_process";
 import { gzipSync } from "node:zlib";
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { parseCsv } from "../lib/gtfs/parse-csv.ts";
@@ -22,6 +22,9 @@ import { getNightCandidateTripIds } from "../lib/night-transport/night-routes.ts
 import { buildNightDataset } from "../lib/night-transport/build-night-dataset.ts";
 import { groupIdToFileName } from "../lib/night-transport/stop-groups.ts";
 import { buildAirportRouteReport } from "../lib/night-transport/airport-stops.ts";
+import { decideAreaStopsWrite, extractStationAreaStops, selectAreaStopIds, stationIdToNodeId, type GtfsAreaStopTime } from "../lib/gtfs/extract-station-area-stops.ts";
+import type { StationAreaStopsDataset } from "../lib/stations/area-stops-types.ts";
+import { STATION_GUIDES } from "../lib/stations/guides.ts";
 
 const GTFS_ZIP_URL = "https://data.pid.cz/PID_GTFS.zip";
 const MIN_STATIONS = 50;
@@ -90,6 +93,17 @@ async function main() {
     // (buildNightDataset), stejně jako klasifikace metra.
     const nightCandidateTripIds = getNightCandidateTripIds(routes, trips);
 
+    // Povrchová stanoviště u stanic s průvodcem (/stanice/*) — jen stop_id
+    // se stejným PID uzlem jako stanice metra, viz
+    // lib/gtfs/extract-station-area-stops.ts. Poslední zastávka každého
+    // spoje se sleduje pro VŠECHNY spoje (levná mapa trip -> číslo), aby
+    // šlo poznat stanoviště, kde linka jen končí.
+    const guideStationIds = STATION_GUIDES.map((g) => g.stationId);
+    const guideNodeIds = new Set(guideStationIds.map(stationIdToNodeId).filter((id): id is string => id !== null));
+    const areaStopIds = selectAreaStopIds(stops, guideNodeIds);
+    const areaStopTimes: GtfsAreaStopTime[] = [];
+    const lastSequenceByTrip = new Map<string, number>();
+
     // Jeden průchod stop_times.txt (přes 100 MB) pro VŠECHNY potřeby
     // najednou (pořadí stanic i odjezdy metra, i noční doprava) — další
     // samostatný stream by soubor četl zbytečně znovu (viz zadání bod 6
@@ -101,16 +115,25 @@ async function main() {
 
     await streamCsvColumns(
       join(tmpDir, "stop_times.txt"),
-      ["trip_id", "stop_id", "stop_sequence", "departure_time"] as const,
+      ["trip_id", "stop_id", "stop_sequence", "departure_time", "pickup_type"] as const,
       (row) => {
         totalRows++;
+        const sequence = Number(row.stop_sequence);
+        if (sequence > (lastSequenceByTrip.get(row.trip_id) ?? -1)) {
+          lastSequenceByTrip.set(row.trip_id, sequence);
+        }
+        if (areaStopIds.has(row.stop_id)) {
+          areaStopTimes.push(row);
+        }
         if (metroTripIds.has(row.trip_id)) {
           metroStopTimes.push(row);
         }
         if (nightCandidateTripIds.has(row.trip_id)) {
           nightStopTimes.push(row);
         }
-      }
+      },
+      // Jen pro stanoviště průvodců — když ho feed nemá, metro i noční doprava běží dál beze změny.
+      ["pickup_type"]
     );
 
     console.log(
@@ -207,6 +230,13 @@ async function main() {
         `(celkem ${totalDepartureRows.toLocaleString("cs-CZ")} odjezdů, ${(totalBytes / 1024).toFixed(0)} kB, ` +
         `průměr ${(totalBytes / departuresFiles.size / 1024).toFixed(1)} kB/stanice).`
     );
+
+    // --- Povrchová stanoviště u stanic s průvodcem (/stanice/*) ---
+    // Doplňková data: jakákoli chyba nebo podezřelý výsledek jen zaloguje
+    // varování a ponechá předchozí data/station-area-stops.json — import
+    // metra a noční dopravy kvůli tomu NIKDY nespadne (viz
+    // decideAreaStopsWrite).
+    writeStationAreaStops(dataDir, guideStationIds, () => extractStationAreaStops(guideStationIds, stops, routes, trips, areaStopTimes, lastSequenceByTrip), generatedAt, stationNameById);
 
     // --- Noční doprava (viz zadání "vytvoř samostatnou funkční sekci
     // pro noční veřejnou dopravu") — STEJNÉ syrové GTFS tabulky, žádný
@@ -308,6 +338,48 @@ async function main() {
     );
   } finally {
     rmSync(tmpDir, { recursive: true, force: true });
+  }
+}
+
+/** Předchozí platný výstup, nebo null (neexistuje / nejde přečíst — pak se smí přepsat). */
+function readPreviousAreaStops(filePath: string): StationAreaStopsDataset["stations"] | null {
+  if (!existsSync(filePath)) return null;
+  try {
+    const stations = (JSON.parse(readFileSync(filePath, "utf-8")) as StationAreaStopsDataset).stations;
+    return stations && typeof stations === "object" ? stations : null;
+  } catch {
+    console.warn("⚠ Předchozí data/station-area-stops.json nejde přečíst — bude nahrazen novým výsledkem.");
+    return null;
+  }
+}
+
+function writeStationAreaStops(
+  dataDir: string,
+  stationIds: readonly string[],
+  extract: () => StationAreaStopsDataset["stations"],
+  generatedAt: string,
+  stationNameById: ReadonlyMap<string, string>
+): void {
+  const filePath = join(dataDir, "station-area-stops.json");
+  try {
+    const next = extract();
+    for (const stationId of stationIds) {
+      const platforms = next[stationId] ?? [];
+      console.log(`Stanoviště u ${stationNameById.get(stationId) ?? stationId}: ${platforms.length} (${platforms.map((p) => p.code).join(", ")}).`);
+    }
+
+    const previous = readPreviousAreaStops(filePath);
+    const decision = decideAreaStopsWrite(previous, next);
+    if (!decision.write) {
+      console.warn(`⚠ data/station-area-stops.json se NEPŘEPISUJE (${decision.reason}) — zůstávají předchozí data.`);
+      return;
+    }
+
+    const dataset: StationAreaStopsDataset = { generatedAt, source: GTFS_ZIP_URL, stations: next };
+    writeFileSync(filePath, JSON.stringify(dataset, null, 2) + "\n", "utf-8");
+    console.log("Zapsáno data/station-area-stops.json.");
+  } catch (error) {
+    console.warn(`⚠ Stanoviště průvodců se nepodařilo zpracovat — zůstávají předchozí data. (${(error as Error).stack ?? error})`);
   }
 }
 

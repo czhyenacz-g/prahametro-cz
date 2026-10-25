@@ -70,7 +70,7 @@ jobs:
           # Jen skutečné výstupy scripts/import-pid-gtfs.ts — žádné jiné
           # soubory (zadání bod 4 "commit musí obsahovat pouze soubory,
           # které jsou legitimním výstupem GTFS importu").
-          git add data/metro-entrances.json data/metro-line-order.json public/data/departures public/data/night-transport
+          git add data/metro-entrances.json data/metro-line-order.json data/station-area-stops.json public/data/departures public/data/night-transport
 
           if git diff --cached --quiet; then
             echo "GTFS data se od posledního importu nezměnila, nic se necommituje."
