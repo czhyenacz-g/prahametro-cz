@@ -7,7 +7,7 @@ function isStationUrl(url: string): boolean {
 }
 
 function isTicketsUrl(url: string): boolean {
-  return url.endsWith("/jizdenky-praha");
+  return /\/(jizdenky-praha|en\/prague-tickets|de\/fahrkarten-prag|ua\/kvytky-praha)$/.test(url);
 }
 
 function isNightUrl(url: string): boolean {
@@ -92,8 +92,8 @@ describe("sitemap — 19. noční sekce (4 vlastní URL, samostatný hreflang kl
     }
   });
 
-  test("sitemap má celkem přesně 18 URL (4 homepage + 4 noční + /stanice + 8 průvodců + jízdenky)", () => {
-    assert.equal(sitemap().length, 18);
+  test("sitemap má celkem přesně 21 URL (4 homepage + 4 noční + /stanice + 8 průvodců + 4 jízdenky)", () => {
+    assert.equal(sitemap().length, 21);
   });
 });
 
@@ -120,9 +120,12 @@ describe("sitemap — průvodci stanicemi", () => {
 });
 
 describe("sitemap — jízdenky", () => {
-  test("obsahuje /jizdenky-praha jednou, bez hreflang alternates (jen česky)", () => {
+  test("obsahuje 4 jazykové verze jízdenek, každá s hreflang na všechny", () => {
     const entries = sitemap().filter((e) => isTicketsUrl(e.url));
-    assert.equal(entries.length, 1);
-    assert.equal(entries[0].alternates, undefined);
+    assert.deepEqual(
+      entries.map((e) => e.url.replace(/^https?:\/\/[^/]+/, "")),
+      ["/jizdenky-praha", "/en/prague-tickets", "/de/fahrkarten-prag", "/ua/kvytky-praha"]
+    );
+    for (const entry of entries) assert.deepEqual(Object.keys(entry.alternates?.languages ?? {}), ["cs", "en", "de", "uk"]);
   });
 });

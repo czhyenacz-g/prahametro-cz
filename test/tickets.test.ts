@@ -1,6 +1,10 @@
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
-import { buildSmsHref, detectSmsPlatform, PRAGUE_PRICES, SMS_NUMBER, SMS_OPTIONS, TARIFF_VERIFIED_AT, TARIFF_YEAR, TICKET_SOURCES, TICKETS_SEO } from "../lib/tickets/tariff.ts";
+import { buildSmsHref, detectSmsPlatform, PRAGUE_PRICES, SMS_NUMBER, SMS_OPTIONS, TARIFF_VERIFIED_AT, TARIFF_YEAR, TICKET_SOURCES, TICKETS_HREFLANG, TICKETS_LOCALE_TO_ROUTE } from "../lib/tickets/tariff.ts";
+import { formatPrice, formatTicketDate, TICKETS_TEXT } from "../lib/tickets/content.ts";
+import { DURATION_LABEL, SMS_PICKER_TEXT } from "../lib/tickets/picker-text.ts";
+import { buildTicketsMetadata } from "../lib/tickets/metadata.ts";
+import { LOCALES } from "../lib/i18n/types.ts";
 import { toTicketAnalyticsProperties, type TicketEvent } from "../lib/tickets/events.ts";
 
 describe("tarif PID (ověřeno 2026-10-25 na pid.cz a dpp.cz)", () => {
@@ -31,7 +35,8 @@ describe("tarif PID (ověřeno 2026-10-25 na pid.cz a dpp.cz)", () => {
 
   test("rok v titulku odpovídá roku ověření tarifu (nemění se sám)", () => {
     assert.equal(TARIFF_YEAR, Number(TARIFF_VERIFIED_AT.slice(0, 4)));
-    assert.match(TICKETS_SEO.title, new RegExp(`^Jízdenky MHD Praha ${TARIFF_YEAR} – `));
+    assert.match(TICKETS_TEXT.cs.seo.title, new RegExp(`^Jízdenky MHD Praha ${TARIFF_YEAR} – `));
+    for (const locale of LOCALES) assert.ok(TICKETS_TEXT[locale].seo.title.includes(String(TARIFF_YEAR)), locale);
   });
 
   test("zdroje jsou jen oficiální https odkazy PID/DPP", () => {
@@ -88,5 +93,57 @@ describe("analytika jízdenek", () => {
       assert.ok(Object.keys(props).length <= 2, event.type);
       assert.ok(!Object.values(props).some((v) => String(v).includes("90206")));
     }
+  });
+});
+
+describe("jazykové verze stránky jízdenek", () => {
+  test("přeložené URL, hreflang se všemi jazyky a x-default = angličtina", () => {
+    assert.deepEqual(TICKETS_LOCALE_TO_ROUTE, { cs: "/jizdenky-praha", en: "/en/prague-tickets", de: "/de/fahrkarten-prag", uk: "/ua/kvytky-praha" });
+    assert.equal(TICKETS_HREFLANG["x-default"], "/en/prague-tickets");
+    for (const locale of LOCALES) {
+      const metadata = buildTicketsMetadata(locale);
+      assert.equal(metadata.alternates?.canonical, TICKETS_LOCALE_TO_ROUTE[locale]);
+      assert.deepEqual(metadata.alternates?.languages, TICKETS_HREFLANG);
+    }
+  });
+
+  test("každý jazyk má stejnou strukturu: 10 FAQ, popisek ke každému zdroji, 4 platnosti, unikátní title/description/H1", () => {
+    for (const locale of LOCALES) {
+      const t = TICKETS_TEXT[locale];
+      assert.equal(t.faq.length, 10, locale);
+      assert.equal(t.sources.labels.length, TICKET_SOURCES.length, locale);
+      assert.equal(t.validity.items.length, 4, locale);
+      assert.deepEqual(Object.keys(DURATION_LABEL[locale]), ["30min", "90min", "24h", "72h"]);
+    }
+    for (const field of ["title", "description", "h1"] as const) {
+      assert.equal(new Set(LOCALES.map((l) => TICKETS_TEXT[l].seo[field])).size, LOCALES.length, field);
+    }
+  });
+
+  test("ceny v textech všech jazyků pocházejí z ověřeného tarifu (žádné zapomenuté staré číslo)", () => {
+    const [p30, p90] = PRAGUE_PRICES;
+    for (const locale of LOCALES) {
+      const answer = TICKETS_TEXT[locale].faq[0].answer.map((s) => (typeof s === "string" ? s : s.text)).join("");
+      for (const value of [p30.paper, p30.app, p30.sms, p90.paper, p90.app, p90.sms]) assert.ok(answer.includes(String(value)), `${locale} ${value}`);
+      const all = JSON.stringify(TICKETS_TEXT[locale]);
+      for (const code of ["DPT42", "DPT55", "DPT150", "DPT350"]) assert.ok(all.includes(code), `${locale} ${code}`);
+    }
+  });
+
+  test("SMS komponenta má texty ve všech jazycích včetně upozornění na platnost", () => {
+    for (const locale of LOCALES) {
+      const text = SMS_PICKER_TEXT[locale];
+      assert.ok(text.warning.length > 60, locale);
+      assert.ok(text.prepare(formatPrice(42, locale)).includes("42"), locale);
+      assert.ok(text.explain("90206", "DPT42").includes("90206"), locale);
+    }
+  });
+
+  test("formát ceny a data podle jazyka", () => {
+    assert.equal(formatPrice(42, "cs"), "42\u00a0Kč");
+    assert.equal(formatPrice(42, "en"), "CZK\u00a042");
+    assert.equal(formatTicketDate("2026-10-25", "cs"), "25. 10. 2026");
+    assert.equal(formatTicketDate("2026-10-25", "en"), "25 October 2026");
+    assert.equal(formatTicketDate("2026-10-25", "de"), "25.10.2026");
   });
 });

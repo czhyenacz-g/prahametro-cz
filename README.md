@@ -508,9 +508,17 @@ na data PID.
 
 ## Jízdenky (`/jizdenky-praha`)
 
-Jedna česká stránka o jízdenkách PID (ceny, SMS jízdenka, PID Lítačka,
-automaty a terminály, označování, FAQ). Odkaz z české homepage, ze všech
-průvodců stanicemi a z hlavičky průvodců.
+Stránka o jízdenkách PID (ceny, SMS jízdenka, PID Lítačka, automaty a
+terminály, označování, FAQ) ve 4 jazycích: `/jizdenky-praha`,
+`/en/prague-tickets`, `/de/fahrkarten-prag`, `/ua/kvytky-praha`
+(`TICKETS_LOCALE_TO_ROUTE`, vlastní hreflang klastr, x-default = en).
+Odkaz „Jízdenky“ v hlavičce vede na verzi v aktuálním jazyce; česká
+stránka má navíc odkaz z homepage a ze všech průvodců stanicemi.
+
+- **Texty** — `lib/tickets/content.ts` (stránka, server) a
+  `lib/tickets/picker-text.ts` (SMS komponenta, klient). Fakta berou vždy
+  z `lib/tickets/tariff.ts`; testy hlídají, že ceny a kódy sedí ve všech
+  jazycích.
 
 - **Tarif** — ručně ověřený v `lib/tickets/tariff.ts` (zdroje a datum
   ověření v komentáři i na stránce). Při změně tarifu PID upravte ceny,

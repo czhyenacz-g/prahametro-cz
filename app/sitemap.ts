@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "./config/site.ts";
 import { ORDERED_STATION_GUIDES, STATIONS_PATH, stationGuidePath } from "../lib/stations/guides.ts";
-import { TICKETS_PATH } from "../lib/tickets/tariff.ts";
+import { TICKETS_LOCALE_TO_ROUTE } from "../lib/tickets/tariff.ts";
 
 // Všechny čtyři indexovatelné jazykové varianty homepage (viz zadání) —
 // `SITE_URL` je jediný zdroj pravdy pro doménu, nikdy hostname requestu,
@@ -24,6 +24,15 @@ const NIGHT_DE_URL = `${SITE_URL}/de/nachtverkehr`;
 const NIGHT_UA_URL = `${SITE_URL}/ua/nichnyi-transport`;
 const NIGHT_LANGUAGES = { cs: NIGHT_CS_URL, en: NIGHT_EN_URL, de: NIGHT_DE_URL, uk: NIGHT_UA_URL };
 
+// Jízdenky — vlastní hreflang klastr (stejně jako noční sekce, viz
+// lib/tickets/metadata.ts).
+const TICKETS_LANGUAGES = {
+  cs: `${SITE_URL}${TICKETS_LOCALE_TO_ROUTE.cs}`,
+  en: `${SITE_URL}${TICKETS_LOCALE_TO_ROUTE.en}`,
+  de: `${SITE_URL}${TICKETS_LOCALE_TO_ROUTE.de}`,
+  uk: `${SITE_URL}${TICKETS_LOCALE_TO_ROUTE.uk}`,
+};
+
 // Průvodci stanicemi — jen česky, proto bez hreflang alternates.
 const STATION_URLS = [`${SITE_URL}${STATIONS_PATH}`, ...ORDERED_STATION_GUIDES.map((g) => `${SITE_URL}${stationGuidePath(g.slug)}`)];
 
@@ -37,7 +46,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: NIGHT_EN_URL, changeFrequency: "weekly", priority: 0.7, alternates: { languages: NIGHT_LANGUAGES } },
     { url: NIGHT_DE_URL, changeFrequency: "weekly", priority: 0.7, alternates: { languages: NIGHT_LANGUAGES } },
     { url: NIGHT_UA_URL, changeFrequency: "weekly", priority: 0.7, alternates: { languages: NIGHT_LANGUAGES } },
-    { url: `${SITE_URL}${TICKETS_PATH}`, changeFrequency: "monthly", priority: 0.7 },
+    ...Object.values(TICKETS_LANGUAGES).map((url) => ({ url, changeFrequency: "monthly" as const, priority: 0.7, alternates: { languages: TICKETS_LANGUAGES } })),
     ...STATION_URLS.map((url) => ({ url, changeFrequency: "weekly" as const, priority: 0.6 })),
   ];
 }

@@ -91,12 +91,21 @@ export function formatCzk(value: number): string {
 
 export const TICKETS_PATH = "/jizdenky-praha";
 
-export const TICKETS_SEO = {
-  title: `Jízdenky MHD Praha ${TARIFF_YEAR} – ceny, SMS a kde koupit | KdeJeMetro`,
-  description:
-    "Jak koupit jízdenku na metro, tramvaj nebo autobus v Praze? Ceny jízdenek, SMS jízdenka, PID Lítačka, platba kartou a pravidla označování.",
-  h1: "Jak koupit jízdenku na MHD v Praze?",
-};
+/**
+ * Locale -> cesta stránky jízdenek. Přeložené URL segmenty jako u noční
+ * sekce (lib/i18n/night-routes.ts); používá hlavička (odkaz v aktuálním
+ * jazyce), jazykové menu na stránce jízdenek, hreflang a sitemap.
+ */
+export const TICKETS_LOCALE_TO_ROUTE = {
+  cs: TICKETS_PATH,
+  en: "/en/prague-tickets",
+  de: "/de/fahrkarten-prag",
+  uk: "/ua/kvytky-praha",
+} as const;
+
+/** hreflang klastr stránky jízdenek (klíč `uk`, URL `/ua/…`), x-default = angličtina. */
+export const TICKETS_HREFLANG = { ...TICKETS_LOCALE_TO_ROUTE, "x-default": TICKETS_LOCALE_TO_ROUTE.en };
+
 
 export type TicketSource = { label: string; url: string; provider: "PID" | "DPP" };
 

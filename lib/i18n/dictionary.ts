@@ -23,7 +23,7 @@ export type Dictionary = {
     languageMenuLabel: string;
     /** Viditelný text odkazu na /jizdenky-praha v hlavičce (od šířky sm, na mobilu jen ikona). */
     ticketsLink: string;
-    /** Accessible name/title téhož odkazu — mimo češtinu i s upozorněním, že stránka je česky. */
+    /** Accessible name/title téhož odkazu. */
     ticketsLinkAriaLabel: string;
   };
   finder: {
@@ -302,7 +302,7 @@ const en: Dictionary = {
     subtitle: "Find the nearest entrance and navigate to it.",
     languageMenuLabel: "Choose language",
     ticketsLink: "Tickets",
-    ticketsLinkAriaLabel: "Prague public transport tickets – prices and how to buy (page in Czech)",
+    ticketsLinkAriaLabel: "Prague public transport tickets – prices and how to buy",
     vulgarAriaLabelOn: "Disable crude mode",
     vulgarAriaLabelOff: "Enable crude mode",
   },
@@ -430,7 +430,7 @@ const de: Dictionary = {
     subtitle: "Finden Sie den nächsten Eingang und lassen Sie sich zu Fuß dorthin navigieren.",
     languageMenuLabel: "Sprache auswählen",
     ticketsLink: "Fahrkarten",
-    ticketsLinkAriaLabel: "Fahrkarten für den ÖPNV in Prag – Preise und Kauf (Seite auf Tschechisch)",
+    ticketsLinkAriaLabel: "Fahrkarten für den ÖPNV in Prag – Preise und Kauf",
     vulgarAriaLabelOn: "Derben Modus deaktivieren",
     vulgarAriaLabelOff: "Derben Modus aktivieren",
   },
@@ -559,7 +559,7 @@ const uk: Dictionary = {
     subtitle: "Знайдіть найближчий вхід і відкрийте пішохідний маршрут до нього.",
     languageMenuLabel: "Вибрати мову",
     ticketsLink: "Квитки",
-    ticketsLinkAriaLabel: "Квитки на громадський транспорт у Празі – ціни та як купити (сторінка чеською)",
+    ticketsLinkAriaLabel: "Квитки на громадський транспорт у Празі – ціни та як купити",
     vulgarAriaLabelOn: "Вимкнути грубий режим",
     vulgarAriaLabelOff: "Увімкнути грубий режим",
   },
