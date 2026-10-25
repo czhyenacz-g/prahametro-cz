@@ -15,6 +15,7 @@ import DeparturesButton from "../DeparturesButton.tsx";
 import StationAnalytics from "./StationAnalytics.tsx";
 import StationHeader from "./StationHeader.tsx";
 import StationMap from "./StationMap.tsx";
+import TicketsTeaser from "../tickets/TicketsTeaser.tsx";
 
 const CARD = "rounded-2xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6";
 const H2 = "flex items-center gap-2 text-lg font-bold text-gray-900 sm:text-xl";
@@ -436,6 +437,8 @@ export default function StationGuidePage({ guide }: { guide: StationGuide }) {
               ))}
             </div>
           </section>
+
+          <TicketsTeaser variant="station" />
 
           <nav aria-labelledby="dalsi-stanice-heading" className={CARD}>
             <h2 id="dalsi-stanice-heading" className="text-base font-bold text-gray-900 sm:text-lg">

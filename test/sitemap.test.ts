@@ -6,13 +6,17 @@ function isStationUrl(url: string): boolean {
   return /\/stanice(\/[a-z-]+)?$/.test(url);
 }
 
+function isTicketsUrl(url: string): boolean {
+  return url.endsWith("/jizdenky-praha");
+}
+
 function isNightUrl(url: string): boolean {
   return url.endsWith("/nocni-mhd") || url.endsWith("/night-transport") || url.endsWith("/nachtverkehr") || url.endsWith("/nichnyi-transport");
 }
 
 describe("sitemap — 18. obsahuje /, /en, /de a /ua", () => {
   test("homepage cluster: obsahuje přesně čtyři URL /, /en, /de, /ua", () => {
-    const entries = sitemap().filter((e) => !isNightUrl(e.url) && !isStationUrl(e.url));
+    const entries = sitemap().filter((e) => !isNightUrl(e.url) && !isStationUrl(e.url) && !isTicketsUrl(e.url));
     const urls = entries.map((e) => e.url);
     assert.equal(urls.length, 4);
     assert.ok(urls.some((u) => !u.endsWith("/en") && !u.endsWith("/de") && !u.endsWith("/ua")), "chybí kořenová URL");
@@ -37,7 +41,7 @@ describe("sitemap — 18. obsahuje /, /en, /de a /ua", () => {
   });
 
   test("každá URL homepage clusteru má stejné, obousměrné alternates.languages se všemi čtyřmi jazyky (klíč uk, ne ua)", () => {
-    const entries = sitemap().filter((e) => !isNightUrl(e.url) && !isStationUrl(e.url));
+    const entries = sitemap().filter((e) => !isNightUrl(e.url) && !isStationUrl(e.url) && !isTicketsUrl(e.url));
     for (const entry of entries) {
       const languages = entry.alternates?.languages;
       assert.ok(languages?.cs);
@@ -54,7 +58,7 @@ describe("sitemap — 18. obsahuje /, /en, /de a /ua", () => {
 
   test("česká URL má nejvyšší prioritu (primární trh)", () => {
     const entries = sitemap();
-    const csEntry = entries.find((e) => !e.url.endsWith("/en") && !e.url.endsWith("/de") && !e.url.endsWith("/ua") && !isNightUrl(e.url) && !isStationUrl(e.url))!;
+    const csEntry = entries.find((e) => !e.url.endsWith("/en") && !e.url.endsWith("/de") && !e.url.endsWith("/ua") && !isNightUrl(e.url) && !isStationUrl(e.url) && !isTicketsUrl(e.url))!;
     for (const entry of entries) {
       assert.ok((csEntry.priority ?? 0) >= (entry.priority ?? 0));
     }
@@ -88,8 +92,8 @@ describe("sitemap — 19. noční sekce (4 vlastní URL, samostatný hreflang kl
     }
   });
 
-  test("sitemap má celkem přesně 17 URL (4 homepage + 4 noční + /stanice + 8 průvodců)", () => {
-    assert.equal(sitemap().length, 17);
+  test("sitemap má celkem přesně 18 URL (4 homepage + 4 noční + /stanice + 8 průvodců + jízdenky)", () => {
+    assert.equal(sitemap().length, 18);
   });
 });
 
@@ -112,5 +116,13 @@ describe("sitemap — průvodci stanicemi", () => {
     for (const entry of sitemap().filter((e) => isStationUrl(e.url))) {
       assert.equal(entry.alternates, undefined);
     }
+  });
+});
+
+describe("sitemap — jízdenky", () => {
+  test("obsahuje /jizdenky-praha jednou, bez hreflang alternates (jen česky)", () => {
+    const entries = sitemap().filter((e) => isTicketsUrl(e.url));
+    assert.equal(entries.length, 1);
+    assert.equal(entries[0].alternates, undefined);
   });
 });

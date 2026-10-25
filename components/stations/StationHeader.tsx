@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { LocateFixed } from "lucide-react";
 import { STATIONS_PATH } from "../../lib/stations/guides.ts";
+import { TICKETS_PATH } from "../../lib/tickets/tariff.ts";
 
 /**
  * Hlavička průvodců stanicemi — stejná značka a rozměry jako
@@ -21,6 +22,12 @@ export default function StationHeader() {
             className="hidden min-h-[44px] items-center rounded-xl border border-gray-200 bg-white px-3 text-sm font-semibold text-navy-700 shadow-sm hover:bg-gray-50 sm:inline-flex"
           >
             Stanice
+          </a>
+          <a
+            href={TICKETS_PATH}
+            className="hidden min-h-[44px] items-center rounded-xl border border-gray-200 bg-white px-3 text-sm font-semibold text-navy-700 shadow-sm hover:bg-gray-50 sm:inline-flex"
+          >
+            Jízdenky
           </a>
           <Link
             href="/#najit-metro"

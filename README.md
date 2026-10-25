@@ -506,6 +506,27 @@ Přidání další stanice = nový záznam v `STATION_GUIDES` + `GUIDE_ORDER`;
 test `test/station-guides.test.ts` ohlídá odkazy, kotvy, unikátní SEO a vazbu
 na data PID.
 
+## Jízdenky (`/jizdenky-praha`)
+
+Jedna česká stránka o jízdenkách PID (ceny, SMS jízdenka, PID Lítačka,
+automaty a terminály, označování, FAQ). Odkaz z české homepage, ze všech
+průvodců stanicemi a z hlavičky průvodců.
+
+- **Tarif** — ručně ověřený v `lib/tickets/tariff.ts` (zdroje a datum
+  ověření v komentáři i na stránce). Při změně tarifu PID upravte ceny,
+  `TARIFF_YEAR` a `TARIFF_VERIFIED_AT`; rok v titulku se sám nemění.
+  Varianta SMS s `verified: false` se nenabídne k přípravě.
+- **SMS** — `components/tickets/SmsTicketPicker.tsx` jen otevře SMS
+  aplikaci (`sms:90206?body=…` pro Android, `sms:90206&body=…` pro iOS),
+  nic neodesílá ani neúčtuje. Číslo a text jsou vždy vidět pro ruční odeslání.
+- **Analytika** — `lib/tickets/events.ts` (Vercel `track()`, max. 2
+  vlastnosti): `ticket_sms_option_select`, `ticket_sms_prepare_click`,
+  `ticket_sms_copy_click` (`ticket_duration`, `ticket_price`) a
+  `ticket_pid_app_click` (`ticket_method`, `placement`). Zobrazení stránky
+  měří `<Analytics />` automaticky.
+- **Strukturovaná data** — jen BreadcrumbList, žádné Product/Offer (web
+  jízdenky neprodává).
+
 ## Známá omezení
 
 - Označení vstupů (`E1`, `E2`, …) je přímo z GTFS feedu — pokud feed
