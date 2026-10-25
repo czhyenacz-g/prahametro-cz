@@ -141,3 +141,12 @@ describe("průvodci stanicemi — funkční cíle", () => {
     }
   });
 });
+
+describe("GUIDE_SLUG_BY_STATION_ID (odkazy z výsledků hledání)", () => {
+  test("přesně odpovídá STATION_GUIDES", async () => {
+    const { GUIDE_SLUG_BY_STATION_ID, stationGuideHref } = await import("../lib/stations/guide-slugs.ts");
+    assert.deepEqual(GUIDE_SLUG_BY_STATION_ID, Object.fromEntries(STATION_GUIDES.map((g) => [g.stationId, g.slug])));
+    for (const g of STATION_GUIDES) assert.equal(stationGuideHref(g.stationId), stationGuidePath(g.slug));
+    assert.equal(stationGuideHref("U1S1"), null);
+  });
+});

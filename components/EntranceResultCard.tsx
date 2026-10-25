@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Accessibility } from "lucide-react";
 import { formatDistance, formatWalkingTime } from "../lib/metro/format-distance.ts";
 import { LINE_BADGE_CLASS } from "../lib/metro/line-colors.ts";
@@ -8,6 +9,7 @@ import { parkAndRideDataset } from "../lib/parking/load-park-and-ride.ts";
 import { getStationsWithParkAndRide } from "../lib/parking/stations-with-park-and-ride.ts";
 import type { DistanceSource } from "../lib/routing/rank-walking-results.ts";
 import type { MetroEntrance } from "../lib/metro/types.ts";
+import { stationGuideHref } from "../lib/stations/guide-slugs.ts";
 import { useI18n } from "./i18n/I18nContext.ts";
 import DeparturesButton from "./DeparturesButton.tsx";
 import MapNavigationButtons from "./MapNavigationButtons.tsx";
@@ -42,7 +44,9 @@ export default function EntranceResultCard({
   durationSeconds = null,
   routingAttempted = false,
 }: EntranceResultCardProps) {
-  const { dict } = useI18n();
+  const { dict, locale } = useI18n();
+  // Průvodci stanicemi jsou jen česky — na /en název zůstává textem.
+  const guideHref = locale === "cs" ? stationGuideHref(entrance.stationId) : null;
   const hasParkAndRide = onOpenParkAndRide && STATIONS_WITH_PARK_AND_RIDE.has(entrance.stationId);
   const isWalkingRoute = distanceSource === "walking-route";
 
@@ -57,7 +61,15 @@ export default function EntranceResultCard({
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           {/* Názvy stanic se nepřekládají (viz zadání) */}
-          <p className="truncate text-lg font-bold text-gray-900 sm:text-xl">{entrance.stationName}</p>
+          <p className="truncate text-lg font-bold text-gray-900 sm:text-xl">
+            {guideHref ? (
+              <Link href={guideHref} className="underline decoration-gray-300 decoration-2 underline-offset-4 hover:decoration-navy-700 focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy-700">
+                {entrance.stationName}
+              </Link>
+            ) : (
+              entrance.stationName
+            )}
+          </p>
           <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
             {entrance.lines.map((line) => (
               <span key={line} className={`rounded px-2 py-0.5 text-xs font-bold ${LINE_BADGE_CLASS[line]}`}>
