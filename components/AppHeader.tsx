@@ -6,6 +6,7 @@ import { useI18n } from "./i18n/I18nContext.ts";
 import { getSeoContent } from "../lib/seo/content.ts";
 import { NIGHT_LOCALE_TO_ROUTE } from "../lib/i18n/night-routes.ts";
 import HeaderModeSwitchLink from "./HeaderModeSwitchLink.tsx";
+import HeaderTicketsLink from "./HeaderTicketsLink.tsx";
 
 // Značka "KdeJeMetro.cz" se NEPŘEKLÁDÁ (je to název domény) — jen
 // podtitulek a popisky tlačítek jsou jazykově závislé. Na 320px se
@@ -24,10 +25,14 @@ export default function AppHeader() {
       <div className="mx-auto flex w-full max-w-2xl items-center justify-between gap-2">
         <p className="truncate text-lg font-extrabold tracking-tight text-navy-900 sm:text-3xl">KdeJeMetro.cz</p>
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+          <HeaderTicketsLink placement="inline" />
           <LanguageMenu />
           <VulgarToggle />
           <HeaderModeSwitchLink href={NIGHT_LOCALE_TO_ROUTE[locale]} label={dict.footer.nightTransportLink} direction="to-night" />
         </div>
+      </div>
+      <div className="mx-auto mt-2 flex max-w-2xl justify-center sm:hidden">
+        <HeaderTicketsLink placement="row" />
       </div>
       <h1 className="mx-auto mt-2 max-w-2xl text-center text-sm text-gray-600 sm:text-base">{seo.mainHeading}</h1>
       <p className="mx-auto mt-1 max-w-2xl text-center text-xs text-gray-500 sm:text-sm">{dict.header.subtitle}</p>

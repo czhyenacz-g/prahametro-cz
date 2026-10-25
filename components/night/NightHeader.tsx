@@ -7,6 +7,7 @@ import { getNightDictionary } from "../../lib/i18n/night-dictionary.ts";
 import { localeToRoute } from "../../lib/i18n/types.ts";
 import { NIGHT_LOCALE_TO_ROUTE } from "../../lib/i18n/night-routes.ts";
 import HeaderModeSwitchLink from "../HeaderModeSwitchLink.tsx";
+import HeaderTicketsLink from "../HeaderTicketsLink.tsx";
 
 export type NightHeaderProps = {
   mainHeading: string;
@@ -29,10 +30,14 @@ export default function NightHeader({ mainHeading }: NightHeaderProps) {
       <div className="mx-auto flex w-full max-w-2xl items-center justify-between gap-2">
         <p className="truncate text-lg font-extrabold tracking-tight text-navy-900 dark:text-white sm:text-3xl">KdeJeMetro.cz</p>
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+          <HeaderTicketsLink placement="inline" />
           <LanguageMenu routeMap={NIGHT_LOCALE_TO_ROUTE} />
           <VulgarToggle />
           <HeaderModeSwitchLink href={localeToRoute[locale]} label={nightDict.backToMetroLink} direction="to-day" />
         </div>
+      </div>
+      <div className="mx-auto mt-2 flex max-w-2xl justify-center sm:hidden">
+        <HeaderTicketsLink placement="row" />
       </div>
       <h1 className="mx-auto mt-2 max-w-2xl text-center text-sm text-gray-600 dark:text-slate-300 sm:text-base">{mainHeading}</h1>
       <p className="mx-auto mt-1 max-w-2xl text-center text-xs text-gray-500 dark:text-slate-400 sm:text-sm">{nightDict.subtitle}</p>

@@ -21,6 +21,10 @@ export type Dictionary = {
     vulgarAriaLabelOff: string;
     /** Accessible name tlačítka jazykového menu (components/i18n/LanguageMenu.tsx) — v AKTUÁLNÍM jazyce, na rozdíl od nativních názvů cílových jazyků v samotném menu (ty jsou vždy ve svém vlastním jazyce, viz LanguageMenu.tsx). */
     languageMenuLabel: string;
+    /** Viditelný text odkazu na /jizdenky-praha v hlavičce (od šířky sm, na mobilu jen ikona). */
+    ticketsLink: string;
+    /** Accessible name/title téhož odkazu — mimo češtinu i s upozorněním, že stránka je česky. */
+    ticketsLinkAriaLabel: string;
   };
   finder: {
     /** Stabilní id kořenové <section> pro kotvu z tematického rozcestníku (viz lib/seo/content.ts) — nezávislé na dynamickém (18+) obsahu aria-labelu. */
@@ -168,6 +172,8 @@ const cs: Dictionary = {
   header: {
     subtitle: "Najdi nejbližší vstup a nech se k němu navigovat.",
     languageMenuLabel: "Vybrat jazyk",
+    ticketsLink: "Jízdenky",
+    ticketsLinkAriaLabel: "Jízdenky MHD Praha – ceny a jak koupit",
     vulgarAriaLabelOn: "Vypnout vulgární režim",
     vulgarAriaLabelOff: "Zapnout vulgární režim",
   },
@@ -295,6 +301,8 @@ const en: Dictionary = {
   header: {
     subtitle: "Find the nearest entrance and navigate to it.",
     languageMenuLabel: "Choose language",
+    ticketsLink: "Tickets",
+    ticketsLinkAriaLabel: "Prague public transport tickets – prices and how to buy (page in Czech)",
     vulgarAriaLabelOn: "Disable crude mode",
     vulgarAriaLabelOff: "Enable crude mode",
   },
@@ -421,6 +429,8 @@ const de: Dictionary = {
   header: {
     subtitle: "Finden Sie den nächsten Eingang und lassen Sie sich zu Fuß dorthin navigieren.",
     languageMenuLabel: "Sprache auswählen",
+    ticketsLink: "Fahrkarten",
+    ticketsLinkAriaLabel: "Fahrkarten für den ÖPNV in Prag – Preise und Kauf (Seite auf Tschechisch)",
     vulgarAriaLabelOn: "Derben Modus deaktivieren",
     vulgarAriaLabelOff: "Derben Modus aktivieren",
   },
@@ -548,6 +558,8 @@ const uk: Dictionary = {
   header: {
     subtitle: "Знайдіть найближчий вхід і відкрийте пішохідний маршрут до нього.",
     languageMenuLabel: "Вибрати мову",
+    ticketsLink: "Квитки",
+    ticketsLinkAriaLabel: "Квитки на громадський транспорт у Празі – ціни та як купити (сторінка чеською)",
     vulgarAriaLabelOn: "Вимкнути грубий режим",
     vulgarAriaLabelOff: "Увімкнути грубий режим",
   },
