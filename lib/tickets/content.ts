@@ -749,3 +749,37 @@ export const TICKETS_TEXT: Record<Locale, TicketsText> = { cs, en, de, uk };
 export function getTicketsText(locale: Locale): TicketsText {
   return TICKETS_TEXT[locale];
 }
+
+/** Foto automatů v sekci #bez-aplikace — Wikimedia Commons, CC BY-SA 4.0 (zmenšeno do public/images). */
+export const TICKET_MACHINE_PHOTO = {
+  src: "/images/pid-ticket-machine.webp",
+  width: 600,
+  height: 1234,
+  author: "Silver Dovelet",
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:Prague_public_transit_ticket_machine_02.jpg",
+  license: "CC BY-SA 4.0",
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+} as const;
+
+export const TICKET_MACHINE_PHOTO_TEXT: Record<Locale, { alt: string; caption: string; credit: string }> = {
+  cs: {
+    alt: "Žlutý dotykový automat na jízdenky PID s nápisem Jízdenky/Tickets ve stanici metra a vedle něj menší automat na platbu bezkontaktní kartou",
+    caption: "Vpravo dotykový automat na mince i platební karty, vlevo menší automat jen pro bezkontaktní platbu kartou.",
+    credit: "Foto",
+  },
+  en: {
+    alt: "Yellow PID touch-screen ticket machine labelled Jízdenky/Tickets in a metro station, next to a smaller contactless card machine",
+    caption: "Right: touch-screen machine for coins and payment cards. Left: smaller machine for contactless card payment only.",
+    credit: "Photo",
+  },
+  de: {
+    alt: "Gelber PID-Fahrkartenautomat mit Touchscreen und der Aufschrift Jízdenky/Tickets in einer Metrostation, daneben ein kleinerer Automat für kontaktlose Kartenzahlung",
+    caption: "Rechts: Touchscreen-Automat für Münzen und Zahlungskarten. Links: kleinerer Automat nur für kontaktlose Kartenzahlung.",
+    credit: "Foto",
+  },
+  uk: {
+    alt: "Жовтий сенсорний автомат квитків PID з написом Jízdenky/Tickets на станції метро, поруч менший автомат для безконтактної оплати карткою",
+    caption: "Праворуч — сенсорний автомат для монет і платіжних карток, ліворуч — менший автомат лише для безконтактної оплати карткою.",
+    credit: "Фото",
+  },
+};

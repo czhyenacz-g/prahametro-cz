@@ -1,9 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BadgeInfo, CircleHelp, CreditCard, ExternalLink, LocateFixed, MessageSquareText, Smartphone, Ticket, TriangleAlert } from "lucide-react";
 import type { ReactNode } from "react";
 import type { Locale } from "../../lib/i18n/types.ts";
 import { localeToRoute } from "../../lib/i18n/types.ts";
-import { formatPrice, formatTicketDate, getTicketsText, type Rich } from "../../lib/tickets/content.ts";
+import { formatPrice, formatTicketDate, getTicketsText, TICKET_MACHINE_PHOTO, TICKET_MACHINE_PHOTO_TEXT, type Rich } from "../../lib/tickets/content.ts";
 import { DURATION_LABEL } from "../../lib/tickets/picker-text.ts";
 import { PID_LITACKA_APP_URL, PRAGUE_PRICES, TARIFF_VERIFIED_AT, TICKET_SOURCES } from "../../lib/tickets/tariff.ts";
 import I18nProvider from "../i18n/I18nProvider.tsx";
@@ -20,6 +21,38 @@ const INLINE_LINK = "font-semibold text-navy-700 underline underline-offset-2 ho
 const EXTERNAL = { target: "_blank", rel: "noopener noreferrer" } as const;
 
 const PRICE_30 = PRAGUE_PRICES[0];
+
+/** Foto automatů z Wikimedia Commons s povinným uvedením autora a licence (CC BY-SA 4.0). */
+function TicketMachinePhoto({ locale }: { locale: Locale }) {
+  const photo = TICKET_MACHINE_PHOTO;
+  const text = TICKET_MACHINE_PHOTO_TEXT[locale];
+  return (
+    <figure className="mx-auto mt-4 w-full max-w-[220px] shrink-0 sm:mt-2 sm:w-[200px]">
+      <Image
+        src={photo.src}
+        width={photo.width}
+        height={photo.height}
+        alt={text.alt}
+        sizes="220px"
+        unoptimized
+        loading="lazy"
+        className="h-auto w-full rounded-xl border border-gray-200"
+      />
+      <figcaption className="mt-1.5 text-xs leading-snug text-gray-600">
+        {text.caption}{" "}
+        {text.credit}:{" "}
+        <a href={photo.sourceUrl} className="underline underline-offset-2 hover:text-gray-900" {...EXTERNAL}>
+          {photo.author}
+        </a>
+        ,{" "}
+        <a href={photo.licenseUrl} className="underline underline-offset-2 hover:text-gray-900" {...EXTERNAL}>
+          {photo.license}
+        </a>
+        , Wikimedia Commons
+      </figcaption>
+    </figure>
+  );
+}
 
 /** Text s odkazy (lib/tickets/content.ts `Rich`). Interní odkazy mimo kotvy na stránce = jiná stránka webu. */
 function RichText({ value }: { value: Rich }) {
@@ -183,13 +216,16 @@ export default function TicketsPage({ locale }: { locale: Locale }) {
               <CreditCard aria-hidden="true" size={22} className="text-navy-700" />
               {t.noApp.heading}
             </h2>
-            <ul className={LIST}>
-              {t.noApp.items.map((item, index) => (
-                <li key={index}>
-                  <RichText value={item} />
-                </li>
-              ))}
-            </ul>
+            <div className="sm:flex sm:items-start sm:gap-5">
+              <ul className={`${LIST} sm:flex-1`}>
+                {t.noApp.items.map((item, index) => (
+                  <li key={index}>
+                    <RichText value={item} />
+                  </li>
+                ))}
+              </ul>
+              <TicketMachinePhoto locale={locale} />
+            </div>
             <p className="mt-4 flex max-w-prose items-start gap-2 rounded-xl border border-gray-200 bg-gray-50 p-3 text-sm text-gray-800 sm:text-base">
               <BadgeInfo aria-hidden="true" size={20} className="mt-0.5 shrink-0 text-navy-700" />
               <span>

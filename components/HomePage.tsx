@@ -51,7 +51,7 @@ export default async function HomePage({ locale }: { locale: Locale }) {
           <InstallPrompt texts={getDictionary(locale).pwa} ctaClassName="bg-navy-900 hover:bg-navy-800" />
           {/* Průvodci stanicemi (/stanice) i jízdenky jsou jen česky — ostatní jazyky odkaz nedostanou. */}
           {locale === "cs" && <StationGuidesTeaser />}
-          {locale === "cs" && <TicketsTeaser variant="home" />}
+          <TicketsTeaser variant="home" locale={locale} />
           <SeoContent locale={locale} />
         </main>
         <AppFooter />

@@ -147,3 +147,15 @@ describe("jazykové verze stránky jízdenek", () => {
     assert.equal(formatTicketDate("2026-10-25", "de"), "25.10.2026");
   });
 });
+
+test("tickets: foto automatu má soubor, licenci a texty ve všech jazycích", async () => {
+  const { existsSync } = await import("node:fs");
+  const { TICKET_MACHINE_PHOTO, TICKET_MACHINE_PHOTO_TEXT } = await import("../lib/tickets/content.ts");
+  assert.ok(existsSync(`public${TICKET_MACHINE_PHOTO.src}`));
+  assert.match(TICKET_MACHINE_PHOTO.sourceUrl, /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
+  assert.equal(TICKET_MACHINE_PHOTO.license, "CC BY-SA 4.0");
+  for (const locale of ["cs", "en", "de", "uk"] as const) {
+    const text = TICKET_MACHINE_PHOTO_TEXT[locale];
+    assert.ok(text.alt.length > 20 && text.caption.length > 20 && text.credit.length > 0, locale);
+  }
+});
