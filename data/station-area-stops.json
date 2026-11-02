@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T09:27:50.562Z",
+  "generatedAt": "2026-11-02T09:43:52.649Z",
   "source": "https://data.pid.cz/PID_GTFS.zip",
   "stations": {
     "U689S1": [
@@ -46,10 +46,6 @@
             "mode": "tram"
           },
           {
-            "name": "11",
-            "mode": "tram"
-          },
-          {
             "name": "12",
             "mode": "tram"
           },
@@ -91,6 +87,14 @@
           },
           {
             "name": "26",
+            "mode": "tram"
+          },
+          {
+            "name": "40",
+            "mode": "tram"
+          },
+          {
+            "name": "44",
             "mode": "tram"
           },
           {
@@ -179,6 +183,10 @@
           },
           {
             "name": "31",
+            "mode": "tram"
+          },
+          {
+            "name": "40",
             "mode": "tram"
           },
           {
@@ -718,6 +726,10 @@
             "mode": "tram"
           },
           {
+            "name": "40",
+            "mode": "tram"
+          },
+          {
             "name": "91",
             "mode": "tram"
           },
@@ -791,6 +803,10 @@
           },
           {
             "name": "31",
+            "mode": "tram"
+          },
+          {
+            "name": "40",
             "mode": "tram"
           },
           {
@@ -1026,10 +1042,6 @@
             "mode": "tram"
           },
           {
-            "name": "11",
-            "mode": "tram"
-          },
-          {
             "name": "13",
             "mode": "tram"
           },
@@ -1059,6 +1071,14 @@
           },
           {
             "name": "30",
+            "mode": "tram"
+          },
+          {
+            "name": "40",
+            "mode": "tram"
+          },
+          {
+            "name": "44",
             "mode": "tram"
           },
           {
@@ -1107,6 +1127,10 @@
           },
           {
             "name": "26",
+            "mode": "tram"
+          },
+          {
+            "name": "40",
             "mode": "tram"
           },
           {
