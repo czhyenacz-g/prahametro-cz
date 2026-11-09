@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-08T09:16:54.819Z",
+  "generatedAt": "2026-11-09T09:59:19.399Z",
   "source": "https://data.pid.cz/PID_GTFS.zip",
   "stations": {
     "U689S1": [
@@ -234,10 +234,6 @@
         "lon": 14.438784,
         "routes": [
           {
-            "name": "X3",
-            "mode": "bus"
-          },
-          {
             "name": "133",
             "mode": "bus"
           },
@@ -256,10 +252,6 @@
           {
             "name": "909",
             "mode": "bus"
-          },
-          {
-            "name": "X92",
-            "mode": "bus"
           }
         ]
       },
@@ -270,10 +262,6 @@
         "lon": 14.439067,
         "routes": [
           {
-            "name": "X3",
-            "mode": "bus"
-          },
-          {
             "name": "207",
             "mode": "bus"
           },
@@ -283,10 +271,6 @@
           },
           {
             "name": "909",
-            "mode": "bus"
-          },
-          {
-            "name": "X92",
             "mode": "bus"
           }
         ]
@@ -322,27 +306,7 @@
         "lon": 14.438635,
         "routes": [
           {
-            "name": "133",
-            "mode": "bus"
-          },
-          {
             "name": "135",
-            "mode": "bus"
-          },
-          {
-            "name": "175",
-            "mode": "bus"
-          },
-          {
-            "name": "207",
-            "mode": "bus"
-          },
-          {
-            "name": "908",
-            "mode": "bus"
-          },
-          {
-            "name": "909",
             "mode": "bus"
           }
         ]
@@ -1050,10 +1014,6 @@
             "mode": "tram"
           },
           {
-            "name": "7",
-            "mode": "tram"
-          },
-          {
             "name": "8",
             "mode": "tram"
           },
@@ -1090,10 +1050,6 @@
             "mode": "tram"
           },
           {
-            "name": "30",
-            "mode": "tram"
-          },
-          {
             "name": "40",
             "mode": "tram"
           },
@@ -1119,10 +1075,6 @@
           },
           {
             "name": "2",
-            "mode": "tram"
-          },
-          {
-            "name": "7",
             "mode": "tram"
           },
           {
@@ -1159,10 +1111,6 @@
           },
           {
             "name": "91",
-            "mode": "tram"
-          },
-          {
-            "name": "94",
             "mode": "tram"
           },
           {
