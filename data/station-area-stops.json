@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-12T10:00:16.209Z",
+  "generatedAt": "2026-11-13T09:48:39.857Z",
   "source": "https://data.pid.cz/PID_GTFS.zip",
   "stations": {
     "U689S1": [
@@ -283,18 +283,6 @@
         "routes": [
           {
             "name": "194",
-            "mode": "bus"
-          },
-          {
-            "name": "207",
-            "mode": "bus"
-          },
-          {
-            "name": "908",
-            "mode": "bus"
-          },
-          {
-            "name": "909",
             "mode": "bus"
           }
         ]
@@ -946,14 +934,6 @@
             "mode": "bus"
           },
           {
-            "name": "388",
-            "mode": "bus"
-          },
-          {
-            "name": "389",
-            "mode": "bus"
-          },
-          {
             "name": "399",
             "mode": "bus"
           },
@@ -1119,10 +1099,6 @@
           },
           {
             "name": "97",
-            "mode": "tram"
-          },
-          {
-            "name": "99",
             "mode": "tram"
           }
         ]
