@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-17T10:54:51.164Z",
+  "generatedAt": "2026-11-18T10:25:44.195Z",
   "source": "https://data.pid.cz/PID_GTFS.zip",
   "stations": {
     "U689S1": [
@@ -90,10 +90,6 @@
             "mode": "tram"
           },
           {
-            "name": "27",
-            "mode": "tram"
-          },
-          {
             "name": "92",
             "mode": "tram"
           },
@@ -175,10 +171,6 @@
           },
           {
             "name": "26",
-            "mode": "tram"
-          },
-          {
-            "name": "27",
             "mode": "tram"
           },
           {
@@ -1014,10 +1006,6 @@
             "mode": "tram"
           },
           {
-            "name": "27",
-            "mode": "tram"
-          },
-          {
             "name": "91",
             "mode": "tram"
           }
@@ -1063,10 +1051,6 @@
           },
           {
             "name": "26",
-            "mode": "tram"
-          },
-          {
-            "name": "27",
             "mode": "tram"
           },
           {
