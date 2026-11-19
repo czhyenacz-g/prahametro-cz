@@ -31,6 +31,10 @@ export type Dictionary = {
     sectionId: string;
     heading: string;
     headingVulgar: string;
+    /** Text hlavního tlačítka (akce) — `heading` zůstává jako hláška nad ním. */
+    cta: string;
+    /** Sekundární odkaz pod tlačítkem na stránku jízdenek (viditelný i bez povolení polohy). */
+    buyTicketLink: string;
     ctaLocating: string;
     /** Nenápadný stav při dopočítávání pěších tras přes Mapy.com Matrix Routing (viz lib/routing/) — zobrazuje se ve stávajícím aria-live prostoru výsledků, žádný nový spinner/modal. */
     refining: string;
@@ -181,6 +185,8 @@ const cs: Dictionary = {
     sectionId: "najit-metro",
     heading: "Kde je nejbližší metro?",
     headingVulgar: "Kde je to zkurvený metro?!!",
+    cta: "Najít nejbližší vstup do metra",
+    buyTicketLink: "Koupit jízdenku na metro",
     ctaLocating: "Zjišťuji polohu…",
     refining: "Zpřesňuji pěší vzdálenost…",
     routingFallbackNotice: "Pěší trasu se nepodařilo zpřesnit. Zobrazujeme vzdálenost vzdušnou čarou.",
@@ -310,6 +316,8 @@ const en: Dictionary = {
     sectionId: "find-entrance",
     heading: "Where is the nearest metro?",
     headingVulgar: "Where's the fucking metro?!",
+    cta: "Find the nearest metro entrance",
+    buyTicketLink: "Buy a metro ticket",
     ctaLocating: "Locating…",
     refining: "Refining walking distance…",
     routingFallbackNotice: "The walking route could not be refined. Showing straight-line distance.",
@@ -438,6 +446,8 @@ const de: Dictionary = {
     sectionId: "naechste-metro",
     heading: "Wo ist die nächste Metro?",
     headingVulgar: "Wo ist die verdammte Metro?!!",
+    cta: "Nächsten Metro-Eingang finden",
+    buyTicketLink: "Metro-Fahrkarte kaufen",
     ctaLocating: "Standort wird ermittelt…",
     refining: "Fußweg wird genauer berechnet…",
     routingFallbackNotice: "Der Fußweg konnte nicht genauer berechnet werden. Angezeigt wird die Luftlinie.",
@@ -567,6 +577,8 @@ const uk: Dictionary = {
     sectionId: "znaity-metro",
     heading: "Де найближче метро?",
     headingVulgar: "Де це довбане метро?!!",
+    cta: "Знайти найближчий вхід у метро",
+    buyTicketLink: "Купити квиток на метро",
     ctaLocating: "Визначення місцезнаходження…",
     refining: "Уточнюємо пішу відстань…",
     routingFallbackNotice: "Не вдалося уточнити пішохідний маршрут. Показано відстань по прямій.",

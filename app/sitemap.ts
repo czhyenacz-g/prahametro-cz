@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "./config/site.ts";
 import { ORDERED_STATION_GUIDES, STATIONS_PATH, stationGuidePath } from "../lib/stations/guides.ts";
 import { TICKETS_LOCALE_TO_ROUTE } from "../lib/tickets/tariff.ts";
+import { SMS_90206_PATH } from "../lib/sms90206/services.ts";
 
 // Všechny čtyři indexovatelné jazykové varianty homepage (viz zadání) —
 // `SITE_URL` je jediný zdroj pravdy pro doménu, nikdy hostname requestu,
@@ -47,6 +48,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: NIGHT_DE_URL, changeFrequency: "weekly", priority: 0.7, alternates: { languages: NIGHT_LANGUAGES } },
     { url: NIGHT_UA_URL, changeFrequency: "weekly", priority: 0.7, alternates: { languages: NIGHT_LANGUAGES } },
     ...Object.values(TICKETS_LANGUAGES).map((url) => ({ url, changeFrequency: "monthly" as const, priority: 0.7, alternates: { languages: TICKETS_LANGUAGES } })),
+    // /90206 — jen česky, bez hreflang.
+    { url: `${SITE_URL}${SMS_90206_PATH}`, changeFrequency: "monthly", priority: 0.7 },
     ...STATION_URLS.map((url) => ({ url, changeFrequency: "weekly" as const, priority: 0.6 })),
   ];
 }

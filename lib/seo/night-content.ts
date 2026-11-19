@@ -71,6 +71,7 @@ const cs: NightSeoContent = {
       {
         question: "Platí v nočních spojích běžná jízdenka PID?",
         answer: "Tarifní podmínky nočních linek se řídí aktuálním sazebníkem PID — ověřte si je prosím v oficiálních zdrojích PID nebo v aplikaci PID Lítačka.",
+        link: { label: "Připravit SMS jízdenku", href: "/jizdenky-praha#sms" },
       },
       {
         question: "Jsou zobrazené odjezdy aktuální?",

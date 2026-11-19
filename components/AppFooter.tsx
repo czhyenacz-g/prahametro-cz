@@ -1,9 +1,12 @@
 "use client";
 
-import { Moon } from "lucide-react";
+import { MessageSquareText, Moon } from "lucide-react";
 import type { ReactNode } from "react";
 import { useI18n } from "./i18n/I18nContext.ts";
 import { NIGHT_LOCALE_TO_ROUTE } from "../lib/i18n/night-routes.ts";
+
+/** Sdílený odkaz české patičky na přehled čísla 90206 (stránka je jen česky). */
+export const FOOTER_SMS_90206_LINK = { href: "/90206", label: "90206 – SMS jízdenky a parkovné" } as const;
 
 export type AppFooterProps = {
   /**
@@ -41,11 +44,17 @@ export default function AppFooter({ bottomLink }: AppFooterProps) {
         </a>
         .
       </p>
-      <p className="mt-3">
+      <p className="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
         <a href={link.href} className="inline-flex items-center gap-1 text-gray-500 underline hover:text-gray-900">
           {link.icon}
           {link.label}
         </a>
+        {locale === "cs" && link.href !== FOOTER_SMS_90206_LINK.href && (
+          <a href={FOOTER_SMS_90206_LINK.href} className="inline-flex items-center gap-1 text-gray-500 underline hover:text-gray-900">
+            <MessageSquareText aria-hidden="true" size={14} strokeWidth={2.25} />
+            {FOOTER_SMS_90206_LINK.label}
+          </a>
+        )}
       </p>
       <p className="mt-2 text-[11px] text-gray-400">{dict.footer.disclaimer}</p>
     </footer>

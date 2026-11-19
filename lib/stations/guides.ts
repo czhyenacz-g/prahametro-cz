@@ -698,6 +698,7 @@ export const STATION_GUIDES: readonly StationGuide[] = [
       heading: "Autobusová stanoviště",
       intro: "Ze kterého stanoviště odjíždí která linka — podle aktuálního jízdního řádu PID. Klepnutím otevřete navigaci přímo ke stanovišti.",
     },
+    routeSearch: { label: "Zadejte číslo autobusu" },
     faq: [
       {
         question: "Kde najdu autobusová stanoviště?",

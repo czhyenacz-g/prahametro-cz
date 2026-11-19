@@ -74,6 +74,8 @@ export type StationGuide = {
   sections: readonly GuideTextSection[];
   /** Nadpis/úvod sekce povrchových stanovišť — null = sekci nezobrazovat. */
   platforms: { heading: string; intro: string } | null;
+  /** Vyhledání stanoviště podle čísla linky nad mapou (popisek pole) — chybí = nezobrazovat. */
+  routeSearch?: { label: string };
   faq: readonly GuideFaqItem[];
   links: readonly GuideLink[];
 };

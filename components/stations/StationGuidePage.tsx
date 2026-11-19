@@ -15,6 +15,7 @@ import DeparturesButton from "../DeparturesButton.tsx";
 import StationAnalytics from "./StationAnalytics.tsx";
 import StationHeader from "./StationHeader.tsx";
 import StationMap from "./StationMap.tsx";
+import RoutePlatformSearch from "./RoutePlatformSearch.tsx";
 import TicketsTeaser from "../tickets/TicketsTeaser.tsx";
 
 const CARD = "rounded-2xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6";
@@ -285,6 +286,7 @@ export default function StationGuidePage({ guide }: { guide: StationGuide }) {
               PID u stanice {guide.name} eviduje {entranceGroups.length} {entranceGroups.length === 1 ? "vstup" : entranceGroups.length < 5 ? "vstupy" : "vstupů"}
               {accessibleCount > 0 ? `, z toho ${accessibleCount} označen${accessibleCount === 1 ? "ý" : "é"} jako bezbariérov${accessibleCount === 1 ? "ý" : "é"}` : ""}.
             </p>
+            {showPlatforms && guide.routeSearch && <RoutePlatformSearch platforms={platforms} slug={guide.slug} label={guide.routeSearch.label} />}
             <StationMap name={guide.name} entrances={entranceGroups} platforms={showPlatforms ? platforms : []} />
 
             <h3 className="mt-5 text-base font-bold text-gray-900">Vstupy do metra</h3>

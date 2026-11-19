@@ -12,7 +12,8 @@ export type StationAreaPlatform = {
   lat: number;
   lon: number;
   /** Linky, které ze stanoviště podle jízdního řádu odjíždějí (ne jen končí). */
-  routes: { name: string; mode: AreaStopMode }[];
+  /** `headsigns` = nejčastější cílové zastávky linky z tohoto stanoviště (GTFS trip_headsign), nejvýš 3 — chybí u dat ze starších importů. */
+  routes: { name: string; mode: AreaStopMode; headsigns?: string[] }[];
 };
 
 export type StationAreaStopsByStation = Record<string, StationAreaPlatform[]>;

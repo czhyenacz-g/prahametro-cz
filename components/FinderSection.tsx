@@ -1,7 +1,8 @@
 "use client";
 
 import { useMemo } from "react";
-import { LocateFixed } from "lucide-react";
+import { LocateFixed, Ticket } from "lucide-react";
+import { TICKETS_LOCALE_TO_ROUTE } from "../lib/tickets/tariff.ts";
 import { buildDemoPositions } from "../lib/metro/demo-positions.ts";
 import { getMainHeading } from "../lib/i18n/dictionary.ts";
 import { shouldShowDemoControls } from "../lib/env/should-show-demo-controls.ts";
@@ -63,6 +64,7 @@ export default function FinderSection({
         {/* Jediné velké tlačítko — heading a CTA byly duplicitní texty
             ("Kde je nejbližší metro?" + "Najít nejbližší metro"), teď je
             hlaška (i vulgární varianta) přímo labelem tlačítka. */}
+        <p className="mb-3 text-lg font-bold text-gray-900 sm:text-xl">{getMainHeading(locale, vulgar)}</p>
         <button
           type="button"
           onClick={onLocate}
@@ -70,8 +72,16 @@ export default function FinderSection({
           className="flex min-h-[64px] w-full items-center justify-center gap-3 rounded-2xl bg-navy-900 px-5 py-4 text-xl font-extrabold leading-tight text-white transition hover:bg-navy-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-900 focus-visible:ring-offset-2 disabled:opacity-60 sm:text-2xl"
         >
           <LocateFixed aria-hidden="true" size={28} strokeWidth={2.25} className="shrink-0" />
-          <span>{status.kind === "locating" ? dict.finder.ctaLocating : getMainHeading(locale, vulgar)}</span>
+          <span>{status.kind === "locating" ? dict.finder.ctaLocating : dict.finder.cta}</span>
         </button>
+        {/* Sekundární akce — obyčejný odkaz, funguje i bez povolení polohy (zadání: "dostupný i před povolením polohy"). */}
+        <a
+          href={TICKETS_LOCALE_TO_ROUTE[locale]}
+          className="mt-3 inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl border border-gray-300 bg-white px-4 text-base font-semibold text-navy-900 hover:border-navy-700 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-900 focus-visible:ring-offset-2"
+        >
+          <Ticket aria-hidden="true" size={18} strokeWidth={2.25} />
+          {dict.finder.buyTicketLink}
+        </a>
 
         {shouldShowDemoControls(process.env.NODE_ENV) && (
           <DemoLocationPicker positions={demoPositions} onSelect={onDemoSelect} locale={locale} />

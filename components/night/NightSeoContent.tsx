@@ -92,6 +92,15 @@ export default function NightSeoContent({ locale }: { locale: Locale }) {
             <details key={item.question} className="group py-3 first:pt-0 last:pb-0">
               <summary className="cursor-pointer list-none text-sm font-semibold text-gray-900 marker:content-none dark:text-white sm:text-base">{item.question}</summary>
               <p className="mt-2 text-sm leading-relaxed text-gray-700 dark:text-slate-300 sm:text-base">{item.answer}</p>
+              {/* Volitelný interní odkaz pod odpovědí (např. SMS jízdenka) — do FAQPage JSON-LD nejde, to staví jen z question/answer. */}
+              {item.link && (
+                <a
+                  href={item.link.href}
+                  className="mt-2 inline-flex min-h-[36px] items-center text-sm font-semibold text-navy-700 underline underline-offset-2 hover:text-navy-900 dark:text-slate-200 dark:hover:text-white"
+                >
+                  {item.link.label}
+                </a>
+              )}
             </details>
           ))}
         </div>

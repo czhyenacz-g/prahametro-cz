@@ -57,6 +57,22 @@ export function findPlatformsForRoute(platforms: readonly StationAreaPlatform[],
   return platforms.filter((p) => p.routes.some((r) => r.name === routeName));
 }
 
+/** "  413 " -> "413", "x 413" -> "X413"; prázdný vstup = null. */
+export function normalizeRouteQuery(value: string): string | null {
+  const normalized = value.replace(/\s+/g, "").toUpperCase();
+  return normalized === "" ? null : normalized;
+}
+
+export type RoutePlatformMatch = { platform: StationAreaPlatform; headsigns: readonly string[] };
+
+/** Stanoviště, ze kterých linka podle aktuálních dat PID odjíždí, i se směry (trip_headsign). */
+export function findRoutePlatformMatches(platforms: readonly StationAreaPlatform[], routeName: string): RoutePlatformMatch[] {
+  return findPlatformsForRoute(platforms, routeName).map((platform) => ({
+    platform,
+    headsigns: platform.routes.find((r) => r.name === routeName)?.headsigns ?? [],
+  }));
+}
+
 export type MapPoint = { x: number; y: number };
 
 export type LocalProjection = {

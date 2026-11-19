@@ -1,6 +1,6 @@
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
-import { decideAreaStopsWrite, extractStationAreaStops, selectAreaStopIds, stationIdToNodeId } from "../lib/gtfs/extract-station-area-stops.ts";
+import { decideAreaStopsWrite, extractStationAreaStops, selectAreaStopIds, stationIdToNodeId, topHeadsigns } from "../lib/gtfs/extract-station-area-stops.ts";
 import type { GtfsRoute, GtfsStop, GtfsTrip } from "../lib/gtfs/types.ts";
 import { mkdtempSync, writeFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -71,8 +71,8 @@ describe("extractStationAreaStops", () => {
         lat: 50.05,
         lon: 14.29,
         routes: [
-          { name: "100", mode: "bus" },
-          { name: "304", mode: "bus" },
+          { name: "100", mode: "bus", headsigns: ["Letiště"] },
+          { name: "304", mode: "bus", headsigns: ["x"] },
         ],
       },
     ]);
@@ -105,7 +105,46 @@ describe("extractStationAreaStops — neúplná data a duplicity", () => {
     );
     assert.equal(result.U1141S1.length, 1);
     assert.equal(result.U1141S1[0].lat, 50.0548);
-    assert.deepEqual(result.U1141S1[0].routes, [{ name: "100", mode: "bus" }]);
+    // Oba směry linky 100 sloučené na jednom stanovišti — směry podle počtu odjezdů, při shodě abecedně.
+    assert.deepEqual(result.U1141S1[0].routes, [{ name: "100", mode: "bus", headsigns: ["Letiště", "Zličín"] }]);
+  });
+
+  test("směry: stanoviště nese vlastní trip_headsign linky, spoj bez headsignu pole vynechá", () => {
+    const stops = [stop("U1141Z5P", "4"), stop("U1141Z1P", "V", { stop_lat: "50.054" })];
+    const tripsNoHeadsign: GtfsTrip[] = [...trips, { trip_id: "t304blank", route_id: "L304", service_id: "s", trip_headsign: " ", direction_id: "0" }];
+    const result = extractStationAreaStops(
+      ["U1141S1"],
+      stops,
+      routes,
+      tripsNoHeadsign,
+      [
+        { trip_id: "t100", stop_id: "U1141Z5P", stop_sequence: "1", pickup_type: "0" },
+        { trip_id: "t100back", stop_id: "U1141Z1P", stop_sequence: "2", pickup_type: "0" },
+        { trip_id: "t304blank", stop_id: "U1141Z1P", stop_sequence: "2", pickup_type: "0" },
+      ],
+      new Map([
+        ["t100", 10],
+        ["t100back", 10],
+        ["t304blank", 10],
+      ])
+    );
+    assert.deepEqual(
+      result.U1141S1.map((p) => [p.code, p.routes]),
+      [
+        ["4", [{ name: "100", mode: "bus", headsigns: ["Letiště"] }]],
+        [
+          "V",
+          [
+            { name: "100", mode: "bus", headsigns: ["Zličín"] },
+            { name: "304", mode: "bus" },
+          ],
+        ],
+      ]
+    );
+  });
+
+  test("topHeadsigns: nejvýš 3 podle počtu, při shodě abecedně", () => {
+    assert.deepEqual(topHeadsigns(new Map([["B", 2], ["A", 2], ["C", 5], ["D", 1]])), ["C", "A", "B"]);
   });
 
   test("jedna linka smí odjíždět z více stanovišť (různé směry)", () => {

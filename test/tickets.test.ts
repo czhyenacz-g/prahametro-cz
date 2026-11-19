@@ -33,10 +33,19 @@ describe("tarif PID (ověřeno 2026-10-25 na pid.cz a dpp.cz)", () => {
     );
   });
 
-  test("rok v titulku odpovídá roku ověření tarifu (nemění se sám)", () => {
+  test("rok v titulku odpovídá roku ověření tarifu (nemění se sám); český titulek je bez roku a s číslem 90206", () => {
     assert.equal(TARIFF_YEAR, Number(TARIFF_VERIFIED_AT.slice(0, 4)));
-    assert.match(TICKETS_TEXT.cs.seo.title, new RegExp(`^Jízdenky MHD Praha ${TARIFF_YEAR} – `));
-    for (const locale of LOCALES) assert.ok(TICKETS_TEXT[locale].seo.title.includes(String(TARIFF_YEAR)), locale);
+    assert.equal(TICKETS_TEXT.cs.seo.title, "Jízdenky MHD Praha – ceny a SMS na 90206");
+    assert.equal(
+      TICKETS_TEXT.cs.seo.description,
+      "Přehled cen jízdenek na metro, tramvaj a autobus v Praze. Připravte SMS na 90206 nebo zjistěte, jak koupit jízdenku v Lítačce, automatu či kartou."
+    );
+    for (const locale of LOCALES.filter((l) => l !== "cs")) assert.ok(TICKETS_TEXT[locale].seo.title.includes(String(TARIFF_YEAR)), locale);
+  });
+
+  test("rychlá odpověď pod H1 a odkaz na /90206 (česky) berou kód z tarifu", () => {
+    assert.equal(TICKETS_TEXT.cs.quickAnswer?.text, "Na 30 minut pošlete DPT42 na 90206.");
+    assert.deepEqual(TICKETS_TEXT.cs.sms.moreLink, { text: "Co se dá koupit přes 90206?", href: "/90206" });
   });
 
   test("zdroje jsou jen oficiální https odkazy PID/DPP", () => {

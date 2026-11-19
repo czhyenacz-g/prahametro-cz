@@ -109,7 +109,19 @@ export default function TicketsPage({ locale }: { locale: Locale }) {
 
           <section className={CARD}>
             <h1 className="text-2xl font-extrabold tracking-tight text-navy-900 sm:text-3xl">{t.seo.h1}</h1>
-            <p className="mt-2 text-base text-gray-800">{t.intro}</p>
+            {t.quickAnswer && (
+              <div className="mt-3 flex flex-col gap-2 rounded-xl border-2 border-navy-900 bg-navy-50 p-3 sm:flex-row sm:items-center sm:justify-between sm:p-4">
+                <p className="text-base font-bold text-navy-900 sm:text-lg">{t.quickAnswer.text}</p>
+                <a
+                  href="#sms"
+                  className="inline-flex min-h-[48px] shrink-0 items-center justify-center gap-2 rounded-xl bg-navy-900 px-4 py-2 text-base font-bold text-white shadow-sm hover:bg-navy-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-900 focus-visible:ring-offset-2"
+                >
+                  <MessageSquareText aria-hidden="true" size={20} />
+                  {t.quickAnswer.cta}
+                </a>
+              </div>
+            )}
+            <p className="mt-3 text-base text-gray-800">{t.intro}</p>
             <div className="mt-4 flex flex-col gap-2">
               <QuickChoice href="#litacka" icon={<Smartphone aria-hidden="true" size={20} />} title={t.quick.app.title} price={t.quick.from(price(PRICE_30.app))} text={t.quick.app.text} />
               <QuickChoice href="#sms" icon={<MessageSquareText aria-hidden="true" size={20} />} title={t.quick.sms.title} price={t.quick.from(price(PRICE_30.sms))} text={t.quick.sms.text} />
@@ -133,6 +145,13 @@ export default function TicketsPage({ locale }: { locale: Locale }) {
             <div className="mt-4">
               <SmsTicketPicker locale={locale} />
             </div>
+            {t.sms.moreLink && (
+              <p className="mt-3 text-sm sm:text-base">
+                <a href={t.sms.moreLink.href} className={INLINE_LINK}>
+                  {t.sms.moreLink.text}
+                </a>
+              </p>
+            )}
             <h3 className="mt-5 text-base font-bold text-gray-900">{t.sms.knowHeading}</h3>
             <ul className={LIST}>
               {t.sms.know.map((item) => (

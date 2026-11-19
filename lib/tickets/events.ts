@@ -10,7 +10,7 @@ import type { TicketDurationId } from "./tariff.ts";
  * zbytečně by spotřebovával kvótu událostí).
  */
 export type TicketEvent =
-  | { type: "ticket_sms_option_select" | "ticket_sms_prepare_click" | "ticket_sms_copy_click"; ticket_duration: TicketDurationId; ticket_price: number }
+  | { type: "ticket_sms_option_select" | "ticket_sms_prepare_click" | "ticket_sms_copy_click" | "ticket_sms_number_copy_click"; ticket_duration: TicketDurationId; ticket_price: number }
   | { type: "ticket_pid_app_click"; ticket_method: "pid_litacka"; placement: string };
 
 export function toTicketAnalyticsProperties(event: TicketEvent): Record<string, string | number> {

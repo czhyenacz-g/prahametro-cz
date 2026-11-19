@@ -1,5 +1,5 @@
 import type { Locale } from "../i18n/types.ts";
-import { PRAGUE_PRICES, SMS_NUMBER_DISPLAY, TARIFF_YEAR } from "./tariff.ts";
+import { PRAGUE_PRICES, SMS_NUMBER, SMS_NUMBER_DISPLAY, SMS_OPTIONS, TARIFF_YEAR } from "./tariff.ts";
 
 export { DURATION_LABEL, formatPrice } from "./picker-text.ts";
 
@@ -17,6 +17,8 @@ export type Rich = readonly RichSegment[];
 export type TicketsText = {
   seo: { title: string; description: string; h1: string; ogLocale: "cs_CZ" | "en_US" | "de_DE" | "uk_UA" };
   breadcrumb: string;
+  /** Rychlá odpověď hned pod H1 (nejběžnější SMS varianta) + tlačítko na #sms — zatím jen česky. */
+  quickAnswer?: { text: string; cta: string };
   intro: string;
   quick: {
     app: { title: string; text: string };
@@ -25,7 +27,7 @@ export type TicketsText = {
     from: (price: string) => string;
   };
   verifiedNote: (date: string) => string;
-  sms: { heading: string; intro: string; knowHeading: string; know: readonly string[] };
+  sms: { heading: string; intro: string; knowHeading: string; know: readonly string[]; /** Odkaz pod výběrem jízdenky (jen česky, na /90206). */ moreLink?: { text: string; href: string } };
   prices: {
     heading: string;
     caption: string;
@@ -46,6 +48,7 @@ export type TicketsText = {
 
 const P30 = PRAGUE_PRICES[0];
 const P90 = PRAGUE_PRICES[1];
+const SMS_30 = SMS_OPTIONS[0];
 const PID_TARIFF_URL = "https://pid.cz/jizdne-a-tarif/";
 
 export function formatTicketDate(iso: string, locale: Locale): string {
@@ -57,13 +60,14 @@ export function formatTicketDate(iso: string, locale: Locale): string {
 
 const cs: TicketsText = {
   seo: {
-    title: `Jízdenky MHD Praha ${TARIFF_YEAR} – ceny, SMS a kde koupit | KdeJeMetro`,
+    title: `Jízdenky MHD Praha – ceny a SMS na ${SMS_NUMBER}`,
     description:
-      "Jak koupit jízdenku na metro, tramvaj nebo autobus v Praze? Ceny jízdenek, SMS jízdenka, PID Lítačka, platba kartou a pravidla označování.",
+      `Přehled cen jízdenek na metro, tramvaj a autobus v Praze. Připravte SMS na ${SMS_NUMBER} nebo zjistěte, jak koupit jízdenku v Lítačce, automatu či kartou.`,
     h1: "Jak koupit jízdenku na MHD v Praze?",
     ogLocale: "cs_CZ",
   },
   breadcrumb: "Jízdenky",
+  quickAnswer: { text: `Na 30 minut pošlete ${SMS_30.code} na ${SMS_NUMBER}.`, cta: "Připravit SMS" },
   intro: "Metrem, tramvají i autobusem jezdíte v Praze na společné jízdenky PID. Koupíte je v aplikaci PID Lítačka, pomocí SMS nebo v automatu. Vyberte si:",
   quick: {
     app: { title: "Aplikace PID Lítačka", text: "Nejlevnější. Platí 1 minutu po nákupu." },
@@ -75,6 +79,7 @@ const cs: TicketsText = {
   sms: {
     heading: "Připravit SMS jízdenku",
     intro: "Vyberte platnost a otevřete si předvyplněnou SMS. Odeslání i platba probíhají u vašeho operátora, ne na tomto webu.",
+    moreLink: { text: `Co se dá koupit přes ${SMS_NUMBER}?`, href: "/90206" },
     knowHeading: "Co je dobré vědět o SMS jízdence",
     know: [
       "Koupíte ji jen z čísla českého operátora; se zahraniční SIM nefunguje.",

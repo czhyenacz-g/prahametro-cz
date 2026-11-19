@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Check, Copy, MessageSquareText, Monitor, TriangleAlert } from "lucide-react";
 import { emitTicketEvent } from "../../lib/tickets/events.ts";
-import { buildSmsHref, detectSmsPlatform, SMS_NUMBER, SMS_NUMBER_DISPLAY, SMS_OPTIONS, type SmsPlatform, type TicketDurationId } from "../../lib/tickets/tariff.ts";
+import { buildSmsHref, detectSmsPlatform, SMS_NUMBER, SMS_OPTIONS, type SmsPlatform, type TicketDurationId } from "../../lib/tickets/tariff.ts";
 import { DURATION_LABEL, formatPrice, SMS_PICKER_TEXT } from "../../lib/tickets/picker-text.ts";
 import type { Locale } from "../../lib/i18n/types.ts";
 
@@ -43,7 +43,7 @@ export default function SmsTicketPicker({ locale }: { locale: Locale }) {
   const [selectedId, setSelectedId] = useState<TicketDurationId>("30min");
   const [platform, setPlatform] = useState<SmsPlatform>("other");
   const [isDesktop, setIsDesktop] = useState(false);
-  const [copied, setCopied] = useState<"ok" | "error" | null>(null);
+  const [copied, setCopied] = useState<"ok" | "number" | "error" | null>(null);
 
   useEffect(() => {
     const detected = detectSmsPlatform(navigator.userAgent, navigator.maxTouchPoints);
@@ -66,6 +66,12 @@ export default function SmsTicketPicker({ locale }: { locale: Locale }) {
     const ok = await copyText(selected.code);
     setCopied(ok ? "ok" : "error");
     emitTicketEvent({ type: "ticket_sms_copy_click", ticket_duration: selected.id, ticket_price: selected.price });
+  }
+
+  async function onCopyNumber() {
+    const ok = await copyText(SMS_NUMBER);
+    setCopied(ok ? "number" : "error");
+    emitTicketEvent({ type: "ticket_sms_number_copy_click", ticket_duration: selected.id, ticket_price: selected.price });
   }
 
   return (
@@ -102,12 +108,12 @@ export default function SmsTicketPicker({ locale }: { locale: Locale }) {
           {text.sendAs[0]}
           <strong className="font-mono text-base text-gray-900">{selected.code}</strong>
           {text.sendAs[1]}
-          <strong className="whitespace-nowrap font-mono text-base text-gray-900">{SMS_NUMBER_DISPLAY}</strong>
+          <strong className="whitespace-nowrap font-mono text-base text-gray-900">{SMS_NUMBER}</strong>
           {text.sendAs[2]}
         </p>
         {selected.needsConfirmation && (
           <p className="mt-1 text-sm text-gray-700">
-            {text.confirmation(durations[selected.id], SMS_NUMBER_DISPLAY)}
+            {text.confirmation(durations[selected.id], SMS_NUMBER)}
           </p>
         )}
 
@@ -134,6 +140,14 @@ export default function SmsTicketPicker({ locale }: { locale: Locale }) {
             {copied === "ok" ? <Check aria-hidden="true" size={18} /> : <Copy aria-hidden="true" size={18} />}
             {copied === "ok" ? text.copied : text.copy(selected.code)}
           </button>
+          <button
+            type="button"
+            onClick={onCopyNumber}
+            className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-navy-900 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-900 focus-visible:ring-offset-2"
+          >
+            {copied === "number" ? <Check aria-hidden="true" size={18} /> : <Copy aria-hidden="true" size={18} />}
+            {copied === "number" ? text.copied : text.copy(SMS_NUMBER)}
+          </button>
         </div>
         <p aria-live="polite" className="mt-1 min-h-[1.25rem] text-xs text-gray-600">
           {copied === "error" ? text.copyFailed(selected.code) : ""}
@@ -149,7 +163,7 @@ export default function SmsTicketPicker({ locale }: { locale: Locale }) {
               {text.desktop[0]}
               <strong className="font-mono">{selected.code}</strong>
               {text.desktop[1]}
-              <strong className="font-mono">{SMS_NUMBER_DISPLAY}</strong>
+              <strong className="font-mono">{SMS_NUMBER}</strong>
               {text.desktop[2]}
             </span>
           </p>

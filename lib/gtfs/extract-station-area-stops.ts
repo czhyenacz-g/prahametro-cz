@@ -41,6 +41,14 @@ function compareRouteNames(a: string, b: string): number {
   return a.length - b.length || a.localeCompare(b, "cs");
 }
 
+/** Nejčastější cílové zastávky (směry) linky na stanovišti — nejvýš `limit`, podle počtu odjezdů, při shodě abecedně. */
+export function topHeadsigns(counts: ReadonlyMap<string, number>, limit = 3): string[] {
+  return [...counts.entries()]
+    .sort(([a, ca], [b, cb]) => cb - ca || a.localeCompare(b, "cs"))
+    .slice(0, limit)
+    .map(([headsign]) => headsign);
+}
+
 /**
  * Pro každou stanici metra sestaví seznam povrchových stanovišť (kód
  * stanoviště z `platform_code`, GPS z GTFS) a linek, které z nich podle
@@ -54,7 +62,8 @@ function compareRouteNames(a: string, b: string): number {
  * kotva), souřadnice a název se berou z prvního záznamu v pořadí
  * stops.txt. Stanoviště bez jediného odjezdu se vynechávají. Jedna linka
  * smí odjíždět z více stanovišť (různé směry) — nic tu nepředpokládá
- * opak.
+ * opak. U každé linky se ukládá i nejvýš 3 nejčastější `trip_headsign`
+ * (směr), aby šlo rozlišit stanoviště podle směru.
  */
 export function extractStationAreaStops(
   stationIds: readonly string[],
@@ -65,24 +74,28 @@ export function extractStationAreaStops(
   lastSequenceByTrip: ReadonlyMap<string, number>
 ): StationAreaStopsByStation {
   const routeById = new Map(routes.map((r) => [r.route_id, r] as const));
-  const routeIdByTrip = new Map(trips.map((t) => [t.trip_id, t.route_id] as const));
-  const routeIdsByStop = new Map<string, Set<string>>();
+  const tripById = new Map(trips.map((t) => [t.trip_id, t] as const));
+  // stop_id -> route_id -> cílová zastávka (trip_headsign) -> počet odjezdů
+  const headsignCountsByStop = new Map<string, Map<string, Map<string, number>>>();
   for (const row of areaStopTimes) {
     if (row.pickup_type === "1") continue;
     const last = lastSequenceByTrip.get(row.trip_id);
     if (last !== undefined && Number(row.stop_sequence) >= last) continue;
-    const routeId = routeIdByTrip.get(row.trip_id);
-    if (!routeId) continue;
-    let set = routeIdsByStop.get(row.stop_id);
-    if (!set) routeIdsByStop.set(row.stop_id, (set = new Set()));
-    set.add(routeId);
+    const trip = tripById.get(row.trip_id);
+    if (!trip) continue;
+    let byRoute = headsignCountsByStop.get(row.stop_id);
+    if (!byRoute) headsignCountsByStop.set(row.stop_id, (byRoute = new Map()));
+    let counts = byRoute.get(trip.route_id);
+    if (!counts) byRoute.set(trip.route_id, (counts = new Map()));
+    const headsign = (trip.trip_headsign ?? "").trim();
+    if (headsign) counts.set(headsign, (counts.get(headsign) ?? 0) + 1);
   }
 
   const result: StationAreaStopsByStation = {};
 
   for (const stationId of stationIds) {
     const nodeId = stationIdToNodeId(stationId);
-    const platforms = new Map<string, { code: string; name: string; lat: number; lon: number; routes: Map<string, AreaStopMode> }>();
+    const platforms = new Map<string, { code: string; name: string; lat: number; lon: number; routes: Map<string, { mode: AreaStopMode; headsigns: Map<string, number> }> }>();
 
     for (const stop of stops) {
       if (stop.location_type !== "0" || stop.parent_station || stop.asw_node_id !== nodeId) continue;
@@ -94,10 +107,12 @@ export function extractStationAreaStops(
       let platform = platforms.get(code);
       if (!platform) platforms.set(code, (platform = { code, name: stop.stop_name, lat, lon, routes: new Map() }));
 
-      for (const routeId of routeIdsByStop.get(stop.stop_id) ?? []) {
+      for (const [routeId, counts] of headsignCountsByStop.get(stop.stop_id) ?? []) {
         const route = routeById.get(routeId);
         if (!route || route.route_type === "1") continue;
-        platform.routes.set(route.route_short_name, routeTypeToMode(route.route_type));
+        let entry = platform.routes.get(route.route_short_name);
+        if (!entry) platform.routes.set(route.route_short_name, (entry = { mode: routeTypeToMode(route.route_type), headsigns: new Map() }));
+        for (const [headsign, count] of counts) entry.headsigns.set(headsign, (entry.headsigns.get(headsign) ?? 0) + count);
       }
     }
 
@@ -108,7 +123,12 @@ export function extractStationAreaStops(
         name: p.name,
         lat: p.lat,
         lon: p.lon,
-        routes: [...p.routes.entries()].sort(([a], [b]) => compareRouteNames(a, b)).map(([name, mode]) => ({ name, mode })),
+        routes: [...p.routes.entries()]
+          .sort(([a], [b]) => compareRouteNames(a, b))
+          .map(([name, { mode, headsigns }]) => {
+            const top = topHeadsigns(headsigns);
+            return top.length > 0 ? { name, mode, headsigns: top } : { name, mode };
+          }),
       }))
       .sort((a, b) => compareRouteNames(a.code, b.code));
 

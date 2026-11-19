@@ -41,6 +41,8 @@ export type SeoContent = {
     id: string;
     heading: string;
     items: readonly FaqItem[];
+    /** Běžný textový odkaz na úplném konci sekce, za posledním dotazem — NENÍ součástí FAQPage JSON-LD (to se staví jen z `items`). */
+    closingLink?: SeoLink;
   };
 };
 
@@ -115,6 +117,7 @@ const cs: SeoContent = {
         link: { label: "KdeJeHospoda.cz", href: "https://kdejehospoda.cz" },
       },
     ],
+    closingLink: { label: "Končí demokracie volbami?", href: "https://nechcivolit.cz/" },
   },
 };
 

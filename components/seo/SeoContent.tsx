@@ -91,6 +91,13 @@ export default function SeoContent({ locale }: { locale: Locale }) {
             </details>
           ))}
         </div>
+        {seo.faq.closingLink && (
+          <p className="mt-4 border-t border-gray-100 pt-3 text-sm sm:text-base">
+            <a href={seo.faq.closingLink.href} className="text-navy-700 underline underline-offset-2 hover:text-navy-900">
+              {seo.faq.closingLink.label}
+            </a>
+          </p>
+        )}
       </section>
 
       {/* FAQPage JSON-LD sestavené přímo z pole výše — nikdy neujede od viditelného FAQ (viz lib/seo/structured-data.ts). */}

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-19T10:33:37.125Z",
+  "generatedAt": "2026-11-19T15:05:31.278Z",
   "source": "https://data.pid.cz/PID_GTFS.zip",
   "stations": {
     "U689S1": [
@@ -11,91 +11,171 @@
         "routes": [
           {
             "name": "2",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Náměstí Bratří Synků",
+              "Sídliště Petřiny"
+            ]
           },
           {
             "name": "3",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Nádraží Braník",
+              "Sídliště Modřany",
+              "Kublov"
+            ]
           },
           {
             "name": "4",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Čechovo náměstí",
+              "Radlická"
+            ]
           },
           {
             "name": "5",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Slivenec"
+            ]
           },
           {
             "name": "6",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Kubánské náměstí"
+            ]
           },
           {
             "name": "7",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Kotlářka"
+            ]
           },
           {
             "name": "8",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Nádraží Podbaba"
+            ]
           },
           {
             "name": "9",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Sídliště Řepy",
+              "Nákladové nádraží Žižkov"
+            ]
           },
           {
             "name": "10",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Sídliště Řepy"
+            ]
           },
           {
             "name": "12",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Sídliště Barrandov",
+              "Slivenec",
+              "Vozovna Motol"
+            ]
           },
           {
             "name": "13",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Náměstí Bratří Synků"
+            ]
           },
           {
             "name": "15",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Olšanské hřbitovy",
+              "Sídliště Barrandov"
+            ]
           },
           {
             "name": "17",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Libuš",
+              "Sídliště Modřany"
+            ]
           },
           {
             "name": "18",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Nádraží Podbaba",
+              "Vozovna Pankrác"
+            ]
           },
           {
             "name": "21",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Slivenec",
+              "Kubánské náměstí"
+            ]
           },
           {
             "name": "22",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Zahradní Město",
+              "Nádraží Hostivař"
+            ]
           },
           {
             "name": "23",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Královka"
+            ]
           },
           {
             "name": "24",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Spořilov"
+            ]
           },
           {
             "name": "25",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Bílá Hora"
+            ]
           },
           {
             "name": "26",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Nádraží Hostivař",
+              "Dědina"
+            ]
           },
           {
             "name": "92",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Sídliště Modřany",
+              "Krematorium Strašnice"
+            ]
           },
           {
             "name": "94",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Slivenec"
+            ]
           }
         ]
       },
@@ -107,103 +187,190 @@
         "routes": [
           {
             "name": "3",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Kobylisy",
+              "Vozovna Kobylisy"
+            ]
           },
           {
             "name": "4",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Žižkov",
+              "Vozovna Hloubětín"
+            ]
           },
           {
             "name": "5",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Žižkov"
+            ]
           },
           {
             "name": "6",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Žižkov",
+              "Vozovna Hloubětín"
+            ]
           },
           {
             "name": "7",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Žižkov",
+              "Vozovna Hloubětín"
+            ]
           },
           {
             "name": "8",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Starý Hloubětín"
+            ]
           },
           {
             "name": "9",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Žižkov",
+              "Vozovna Hloubětín"
+            ]
           },
           {
             "name": "10",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Žižkov",
+              "Vozovna Hloubětín"
+            ]
           },
           {
             "name": "12",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Lehovec",
+              "Vozovna Hloubětín"
+            ]
           },
           {
             "name": "15",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Žižkov",
+              "Vozovna Hloubětín"
+            ]
           },
           {
             "name": "17",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Hloubětín"
+            ]
           },
           {
             "name": "21",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Žižkov",
+              "Vozovna Hloubětín"
+            ]
           },
           {
             "name": "22",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Žižkov"
+            ]
           },
           {
             "name": "23",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Hloubětín",
+              "Vozovna Žižkov"
+            ]
           },
           {
             "name": "24",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Kobylisy"
+            ]
           },
           {
             "name": "25",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Žižkov"
+            ]
           },
           {
             "name": "26",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Žižkov"
+            ]
           },
           {
             "name": "31",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vysočanská",
+              "Spojovací"
+            ]
           },
           {
             "name": "91",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Žižkov",
+              "Vozovna Kobylisy"
+            ]
           },
           {
             "name": "92",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Lehovec"
+            ]
           },
           {
             "name": "93",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Hloubětín"
+            ]
           },
           {
             "name": "94",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Lehovec"
+            ]
           },
           {
             "name": "95",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Žižkov"
+            ]
           },
           {
             "name": "97",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Žižkov"
+            ]
           },
           {
             "name": "98",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Hloubětín"
+            ]
           }
         ]
       },
@@ -215,23 +382,41 @@
         "routes": [
           {
             "name": "133",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Sídliště Malešice"
+            ]
           },
           {
             "name": "175",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Háje",
+              "Skalka"
+            ]
           },
           {
             "name": "207",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Ohrada"
+            ]
           },
           {
             "name": "908",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Klánovice",
+              "Michelangelova"
+            ]
           },
           {
             "name": "909",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Sídliště Rohožník",
+              "Depo Hostivař"
+            ]
           }
         ]
       },
@@ -243,15 +428,25 @@
         "routes": [
           {
             "name": "207",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Staroměstská"
+            ]
           },
           {
             "name": "908",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Šmukýřka",
+              "Waltrovka"
+            ]
           },
           {
             "name": "909",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Suchdol"
+            ]
           }
         ]
       },
@@ -263,7 +458,11 @@
         "routes": [
           {
             "name": "194",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Nemocnice pod Petřínem",
+              "Malostranská"
+            ]
           }
         ]
       },
@@ -275,7 +474,10 @@
         "routes": [
           {
             "name": "135",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Chodov"
+            ]
           }
         ]
       }
@@ -289,27 +491,53 @@
         "routes": [
           {
             "name": "345",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Liberec,aut.nádr.",
+              "Mnichovo Hradiště,nám.",
+              "Mladá Boleslav,aut.st."
+            ]
           },
           {
             "name": "405",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Špindlerův Mlýn,aut.st.",
+              "Vrchlabí,aut.st."
+            ]
           },
           {
             "name": "412",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Jičín,aut.st.",
+              "Mladá Boleslav,aut.st."
+            ]
           },
           {
             "name": "700",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Harrachov,aut.nádr.",
+              "Tanvald,Terminál u žel.st."
+            ]
           },
           {
             "name": "720",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Semily,Terminál",
+              "Turnov,Na Lukách",
+              "Rokytnice n.Jiz.,Horní Rokytnice"
+            ]
           },
           {
             "name": "730",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Vítkovice,Horní Mísečky",
+              "Semily,Terminál"
+            ]
           }
         ]
       },
@@ -321,11 +549,21 @@
         "routes": [
           {
             "name": "315",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Mnichovo Hradiště,dopravní terminál",
+              "Mladá Boleslav,aut.st.",
+              "Benátky n.Jiz.,aut.st."
+            ]
           },
           {
             "name": "403",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Dobrovice,aut.st.",
+              "Dolní Bousov,nám.",
+              "Žerčice"
+            ]
           }
         ]
       },
@@ -337,15 +575,25 @@
         "routes": [
           {
             "name": "141",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Bazén Hloubětín"
+            ]
           },
           {
             "name": "171",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Depo Hostivař",
+              "Za Horou"
+            ]
           },
           {
             "name": "223",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Sídliště Černý Most"
+            ]
           }
         ]
       },
@@ -357,67 +605,117 @@
         "routes": [
           {
             "name": "141",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Bazén Hloubětín"
+            ]
           },
           {
             "name": "171",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Depo Hostivař",
+              "Za Horou"
+            ]
           },
           {
             "name": "220",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Černý Most"
+            ]
           },
           {
             "name": "221",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Černý Most"
+            ]
           },
           {
             "name": "222",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Černý Most"
+            ]
           },
           {
             "name": "223",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Sídliště Černý Most",
+              "Černý Most"
+            ]
           },
           {
             "name": "240",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Černý Most"
+            ]
           },
           {
             "name": "250",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Černý Most"
+            ]
           },
           {
             "name": "303",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Praha,Černý Most"
+            ]
           },
           {
             "name": "344",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Praha,Černý Most"
+            ]
           },
           {
             "name": "346",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Praha,Černý Most"
+            ]
           },
           {
             "name": "353",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Praha,Černý Most"
+            ]
           },
           {
             "name": "354",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Praha,Černý Most"
+            ]
           },
           {
             "name": "367",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Praha,Černý Most"
+            ]
           },
           {
             "name": "379",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Praha,Černý Most"
+            ]
           },
           {
             "name": "912",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Lehovec"
+            ]
           }
         ]
       },
@@ -429,11 +727,17 @@
         "routes": [
           {
             "name": "224",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Ve Žlíbku"
+            ]
           },
           {
             "name": "912",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Ve Žlíbku"
+            ]
           }
         ]
       },
@@ -445,15 +749,25 @@
         "routes": [
           {
             "name": "346",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Praha,Černý Most",
+              "Brandýs n.L.-St.Bol.,nem."
+            ]
           },
           {
             "name": "367",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Brandýs n.L.-St.Bol.,aut.st."
+            ]
           },
           {
             "name": "379",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Brandýs n.L.-St.Bol.,aut.st."
+            ]
           }
         ]
       },
@@ -465,7 +779,10 @@
         "routes": [
           {
             "name": "IKEA",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Černý Most"
+            ]
           }
         ]
       },
@@ -477,31 +794,56 @@
         "routes": [
           {
             "name": "141",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Bazén Hloubětín"
+            ]
           },
           {
             "name": "171",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Depo Hostivař",
+              "Za Horou"
+            ]
           },
           {
             "name": "181",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Opatov"
+            ]
           },
           {
             "name": "186",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Nádraží Satalice",
+              "Vinoř"
+            ]
           },
           {
             "name": "201",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Nádraží Holešovice",
+              "Letňany",
+              "Střížkov"
+            ]
           },
           {
             "name": "223",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Sídliště Černý Most"
+            ]
           },
           {
             "name": "224",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Vinice Dolní Počernice"
+            ]
           }
         ]
       },
@@ -513,15 +855,29 @@
         "routes": [
           {
             "name": "354",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Nehvizdy,Mochovská",
+              "Mochov",
+              "Jirny,LE&CO"
+            ]
           },
           {
             "name": "398",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Poděbrady,žel.st.",
+              "Sadská"
+            ]
           },
           {
             "name": "425",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Trutnov,aut.st.",
+              "Hořice,aut.st.",
+              "Městec Králové,nám."
+            ]
           }
         ]
       },
@@ -533,23 +889,43 @@
         "routes": [
           {
             "name": "141",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Ve Žlíbku"
+            ]
           },
           {
             "name": "171",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Ve Žlíbku"
+            ]
           },
           {
             "name": "303",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Křenice",
+              "Praha,Koloděje",
+              "Praha,Nádraží Klánovice"
+            ]
           },
           {
             "name": "344",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Horoušany,u rybníka",
+              "Horoušany,Horoušánky,U Tří svatých"
+            ]
           },
           {
             "name": "353",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Svémyslice",
+              "Praha,Čertousy",
+              "Brandýs n.L.-St.Bol.,nádr."
+            ]
           }
         ]
       },
@@ -561,11 +937,17 @@
         "routes": [
           {
             "name": "220",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Černý Most"
+            ]
           },
           {
             "name": "223",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Sídliště Horní Počernice"
+            ]
           }
         ]
       },
@@ -577,19 +959,32 @@
         "routes": [
           {
             "name": "221",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Klánovice"
+            ]
           },
           {
             "name": "222",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "VÚ Běchovice"
+            ]
           },
           {
             "name": "240",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Háje",
+              "Boloňská"
+            ]
           },
           {
             "name": "250",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Sídliště Rohožník"
+            ]
           }
         ]
       },
@@ -601,15 +996,24 @@
         "routes": [
           {
             "name": "141",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Ve Žlíbku"
+            ]
           },
           {
             "name": "171",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Ve Žlíbku"
+            ]
           },
           {
             "name": "223",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Sídliště Horní Počernice"
+            ]
           }
         ]
       }
@@ -623,71 +1027,131 @@
         "routes": [
           {
             "name": "2",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Náměstí Bratří Synků"
+            ]
           },
           {
             "name": "3",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Nádraží Braník",
+              "Sídliště Modřany",
+              "Kublov"
+            ]
           },
           {
             "name": "4",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Čechovo náměstí",
+              "Radlická"
+            ]
           },
           {
             "name": "5",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Slivenec"
+            ]
           },
           {
             "name": "6",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Kubánské náměstí",
+              "Vozovna Strašnice",
+              "Ústřední dílny DP"
+            ]
           },
           {
             "name": "9",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Sídliště Řepy",
+              "Vozovna Motol"
+            ]
           },
           {
             "name": "10",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Sídliště Řepy"
+            ]
           },
           {
             "name": "18",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Pankrác"
+            ]
           },
           {
             "name": "21",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Slivenec",
+              "Kubánské náměstí"
+            ]
           },
           {
             "name": "23",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Královka",
+              "Brusnice"
+            ]
           },
           {
             "name": "24",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Spořilov"
+            ]
           },
           {
             "name": "91",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Staré Strašnice"
+            ]
           },
           {
             "name": "92",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Sídliště Modřany"
+            ]
           },
           {
             "name": "94",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Slivenec"
+            ]
           },
           {
             "name": "95",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Ústřední dílny DP"
+            ]
           },
           {
             "name": "96",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Spořilov"
+            ]
           },
           {
             "name": "98",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Sídliště Řepy",
+              "Vozovna Motol"
+            ]
           }
         ]
       },
@@ -699,71 +1163,138 @@
         "routes": [
           {
             "name": "3",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Kobylisy",
+              "Vozovna Kobylisy"
+            ]
           },
           {
             "name": "4",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Žižkov",
+              "Vozovna Hloubětín"
+            ]
           },
           {
             "name": "5",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Nádraží Holešovice",
+              "Vozovna Žižkov",
+              "Vozovna Kobylisy"
+            ]
           },
           {
             "name": "6",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Nádraží Holešovice",
+              "Vozovna Kobylisy",
+              "Vozovna Žižkov"
+            ]
           },
           {
             "name": "9",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Nákladové nádraží Žižkov",
+              "Vozovna Žižkov",
+              "Krematorium Strašnice"
+            ]
           },
           {
             "name": "10",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Žižkov",
+              "Vozovna Hloubětín"
+            ]
           },
           {
             "name": "12",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Lehovec"
+            ]
           },
           {
             "name": "21",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Žižkov",
+              "Vozovna Hloubětín"
+            ]
           },
           {
             "name": "23",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Bílá labuť",
+              "Vozovna Hloubětín",
+              "Vozovna Žižkov"
+            ]
           },
           {
             "name": "24",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Kobylisy"
+            ]
           },
           {
             "name": "31",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vysočanská",
+              "Spojovací"
+            ]
           },
           {
             "name": "91",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Divoká Šárka"
+            ]
           },
           {
             "name": "92",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Lehovec"
+            ]
           },
           {
             "name": "94",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Lehovec"
+            ]
           },
           {
             "name": "95",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Olšanské hřbitovy",
+              "Vozovna Žižkov"
+            ]
           },
           {
             "name": "96",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Sídliště Petřiny",
+              "Malovanka"
+            ]
           },
           {
             "name": "98",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Olšanské hřbitovy",
+              "Vozovna Hloubětín"
+            ]
           }
         ]
       }
@@ -777,11 +1308,19 @@
         "routes": [
           {
             "name": "11",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Spořilov"
+            ]
           },
           {
             "name": "13",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Náměstí Bratří Synků",
+              "Spořilov",
+              "Vozovna Strašnice"
+            ]
           }
         ]
       },
@@ -793,19 +1332,33 @@
         "routes": [
           {
             "name": "11",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Ústřední dílny DP"
+            ]
           },
           {
             "name": "13",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Olšanské hřbitovy",
+              "Krematorium Strašnice",
+              "Staré Strašnice"
+            ]
           },
           {
             "name": "15",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Olšanské hřbitovy"
+            ]
           },
           {
             "name": "96",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Krematorium Strašnice"
+            ]
           }
         ]
       },
@@ -817,19 +1370,33 @@
         "routes": [
           {
             "name": "905",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Jižní Město"
+            ]
           },
           {
             "name": "907",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Baně",
+              "Karlovo náměstí"
+            ]
           },
           {
             "name": "908",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Šmukýřka",
+              "Waltrovka"
+            ]
           },
           {
             "name": "911",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Nádraží Hostivař"
+            ]
           }
         ]
       },
@@ -841,19 +1408,34 @@
         "routes": [
           {
             "name": "905",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Sídliště Čimice",
+              "Kobylisy"
+            ]
           },
           {
             "name": "907",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Letiště / Airport ✈"
+            ]
           },
           {
             "name": "908",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Klánovice",
+              "Michelangelova"
+            ]
           },
           {
             "name": "911",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Cukrovar Čakovice",
+              "Sídliště Čakovice"
+            ]
           }
         ]
       }
@@ -867,19 +1449,37 @@
         "routes": [
           {
             "name": "322",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Kladno,autobusové nádraží",
+              "Kladno,gymnasium",
+              "Kladno,Sítná"
+            ]
           },
           {
             "name": "342",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Slaný,žel.st.",
+              "Knovíz"
+            ]
           },
           {
             "name": "414",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Středokluky,u školy",
+              "Koleč,zámek",
+              "Želenice"
+            ]
           },
           {
             "name": "429",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Unhošť,nám.",
+              "Hostouň,Posvícenská náves"
+            ]
           }
         ]
       },
@@ -891,7 +1491,10 @@
         "routes": [
           {
             "name": "59",
-            "mode": "trolleybus"
+            "mode": "trolleybus",
+            "headsigns": [
+              "Letiště / Airport ✈"
+            ]
           }
         ]
       },
@@ -903,19 +1506,36 @@
         "routes": [
           {
             "name": "300",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Smečno",
+              "Kladno,Energie",
+              "Libušín,náměstí"
+            ]
           },
           {
             "name": "330",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Kladno,Havlíčkovo náměstí",
+              "Kladno,autobusové nádraží",
+              "Libušín,náměstí"
+            ]
           },
           {
             "name": "399",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Kladno,Sítná",
+              "Kladno,autobusové nádraží"
+            ]
           },
           {
             "name": "X399",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Kladno,autobusové nádraží"
+            ]
           }
         ]
       },
@@ -927,11 +1547,19 @@
         "routes": [
           {
             "name": "388",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Slaný,Arbesova"
+            ]
           },
           {
             "name": "389",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Hořešovice",
+              "Chomutov,žel.st.",
+              "Slaný,aut.nádr."
+            ]
           }
         ]
       },
@@ -943,7 +1571,10 @@
         "routes": [
           {
             "name": "218",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Nové Vokovice"
+            ]
           }
         ]
       },
@@ -955,59 +1586,111 @@
         "routes": [
           {
             "name": "1",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Sídliště Petřiny",
+              "Výstaviště"
+            ]
           },
           {
             "name": "2",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Sídliště Petřiny"
+            ]
           },
           {
             "name": "3",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Kublov"
+            ]
           },
           {
             "name": "4",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Radlická"
+            ]
           },
           {
             "name": "7",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Bílá labuť"
+            ]
           },
           {
             "name": "8",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Nádraží Podbaba",
+              "Starý Hloubětín"
+            ]
           },
           {
             "name": "13",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Náměstí Bratří Synků",
+              "Spořilov"
+            ]
           },
           {
             "name": "18",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Nádraží Podbaba"
+            ]
           },
           {
             "name": "20",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Sídliště Modřany",
+              "Kublov",
+              "Dvorce"
+            ]
           },
           {
             "name": "21",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Kubánské náměstí",
+              "Slivenec"
+            ]
           },
           {
             "name": "22",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vypich",
+              "Bílá Hora",
+              "Nádraží Hostivař"
+            ]
           },
           {
             "name": "25",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Bílá Hora",
+              "Výstaviště"
+            ]
           },
           {
             "name": "26",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Nádraží Hostivař"
+            ]
           },
           {
             "name": "91",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Staré Strašnice",
+              "Vozovna Kobylisy"
+            ]
           }
         ]
       },
@@ -1019,51 +1702,87 @@
         "routes": [
           {
             "name": "1",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Vokovice"
+            ]
           },
           {
             "name": "2",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Vokovice"
+            ]
           },
           {
             "name": "7",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Vokovice"
+            ]
           },
           {
             "name": "8",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Vokovice"
+            ]
           },
           {
             "name": "18",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Vokovice"
+            ]
           },
           {
             "name": "20",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Dědina"
+            ]
           },
           {
             "name": "22",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Vokovice"
+            ]
           },
           {
             "name": "25",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Vokovice"
+            ]
           },
           {
             "name": "26",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Dědina"
+            ]
           },
           {
             "name": "91",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Divoká Šárka"
+            ]
           },
           {
             "name": "96",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Vokovice"
+            ]
           },
           {
             "name": "97",
-            "mode": "tram"
+            "mode": "tram",
+            "headsigns": [
+              "Vozovna Vokovice"
+            ]
           }
         ]
       },
@@ -1075,7 +1794,10 @@
         "routes": [
           {
             "name": "218",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Na Pískách"
+            ]
           }
         ]
       }
@@ -1089,19 +1811,36 @@
         "routes": [
           {
             "name": "130",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Řeporyjské náměstí",
+              "Hlávkova",
+              "Filmové ateliéry Barrandov"
+            ]
           },
           {
             "name": "180",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Obchodní centrum Zličín"
+            ]
           },
           {
             "name": "246",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Poliklinika Modřany",
+              "Čechova čtvrť",
+              "Obchodní centrum Sárská"
+            ]
           },
           {
             "name": "249",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Zličín",
+              "Nový Zličín"
+            ]
           }
         ]
       },
@@ -1113,23 +1852,41 @@
         "routes": [
           {
             "name": "100",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Letiště / Airport ✈"
+            ]
           },
           {
             "name": "180",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Dejvická",
+              "Blatiny"
+            ]
           },
           {
             "name": "304",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Praha,Vypich"
+            ]
           },
           {
             "name": "324",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Slaný,Rabasova",
+              "Kladno,u kostela",
+              "Smečno"
+            ]
           },
           {
             "name": "380",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Praha,Vypich"
+            ]
           }
         ]
       },
@@ -1141,27 +1898,52 @@
         "routes": [
           {
             "name": "306",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Hostivice,Ve Vilkách",
+              "Jeneč,Lidická",
+              "Kladno,autobusové nádraží"
+            ]
           },
           {
             "name": "336",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Jeneč,Lidická",
+              "Hostivice,Ve Vilkách"
+            ]
           },
           {
             "name": "347",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Hostivice,nádraží",
+              "Chýně,nádraží",
+              "Hostivice,Břve,sportovní hala"
+            ]
           },
           {
             "name": "358",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Rudná,Hořelice"
+            ]
           },
           {
             "name": "386",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Kladno,autobusové nádraží",
+              "Unhošť,nám.",
+              "Bratronice,obecní úřad"
+            ]
           },
           {
             "name": "957",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Hostivice,Ve Vilkách"
+            ]
           }
         ]
       },
@@ -1173,23 +1955,45 @@
         "routes": [
           {
             "name": "304",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Rakovník,aut.st.",
+              "Stochov,Slovanka II"
+            ]
           },
           {
             "name": "305",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Karlovy Vary,terminál"
+            ]
           },
           {
             "name": "404",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Rakovník,aut.st.",
+              "Kralovice",
+              "Rakovník,Plzeňská"
+            ]
           },
           {
             "name": "415",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Kadaň,aut.nádr.",
+              "Žatec,aut.nádr.",
+              "Žatec,žel.st."
+            ]
           },
           {
             "name": "417",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Mšec",
+              "Nové Strašecí,Palackého",
+              "Stochov,nám."
+            ]
           }
         ]
       },
@@ -1201,7 +2005,12 @@
         "routes": [
           {
             "name": "384",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Hořovice,nám.B.Němcové",
+              "Zdice,nám.",
+              "Králův Dvůr,Počaply"
+            ]
           }
         ]
       },
@@ -1213,31 +2022,59 @@
         "routes": [
           {
             "name": "307",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Unhošť,nám.",
+              "Kladno,autobusové nádraží",
+              "Červený Újezd"
+            ]
           },
           {
             "name": "308",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Nučice,Prokopská náves"
+            ]
           },
           {
             "name": "309",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Praha,Nádraží Radotín"
+            ]
           },
           {
             "name": "310",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Nučice,Prokopská náves",
+              "Rudná,Zdrav.stř."
+            ]
           },
           {
             "name": "311",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Řevnice,nádraží",
+              "Mořina",
+              "Mořinka"
+            ]
           },
           {
             "name": "380",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Králův Dvůr,Počaply,Obchodní centrum",
+              "Králův Dvůr,Počaply",
+              "Králův Dvůr,Počaply,Plzeňská"
+            ]
           },
           {
             "name": "952",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Beroun,sídliště"
+            ]
           }
         ]
       },
@@ -1249,7 +2086,10 @@
         "routes": [
           {
             "name": "904",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Sídliště Řepy"
+            ]
           }
         ]
       },
@@ -1261,11 +2101,17 @@
         "routes": [
           {
             "name": "952",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Praha,Sídliště Řepy"
+            ]
           },
           {
             "name": "957",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Praha,Sídliště Řepy"
+            ]
           }
         ]
       },
@@ -1277,7 +2123,11 @@
         "routes": [
           {
             "name": "904",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Sídliště Písnice",
+              "I. P. Pavlova"
+            ]
           }
         ]
       },
@@ -1289,15 +2139,28 @@
         "routes": [
           {
             "name": "130",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Řeporyjské náměstí",
+              "Hlávkova",
+              "Filmové ateliéry Barrandov"
+            ]
           },
           {
             "name": "180",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Obchodní centrum Zličín"
+            ]
           },
           {
             "name": "246",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Poliklinika Modřany",
+              "Čechova čtvrť",
+              "Obchodní centrum Sárská"
+            ]
           }
         ]
       },
@@ -1309,15 +2172,24 @@
         "routes": [
           {
             "name": "130",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Zličín"
+            ]
           },
           {
             "name": "180",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Dejvická"
+            ]
           },
           {
             "name": "246",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Zličín"
+            ]
           }
         ]
       }
@@ -1331,23 +2203,44 @@
         "routes": [
           {
             "name": "381",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Kutná Hora,hlavní nádraží",
+              "Čáslav,obchodní centrum",
+              "Zásmuky,nám."
+            ]
           },
           {
             "name": "382",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Sázava,aut.st."
+            ]
           },
           {
             "name": "383",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Chocerady",
+              "Zvánovice"
+            ]
           },
           {
             "name": "387",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Uhlířské Janovice,nám.",
+              "Kostelec n.Č.l.,nám.",
+              "Výžerky"
+            ]
           },
           {
             "name": "959",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Kostelec n.Č.l.,nám.",
+              "Říčany,Olivovna"
+            ]
           }
         ]
       },
@@ -1359,35 +2252,62 @@
         "routes": [
           {
             "name": "125",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Smíchovské nádraží"
+            ]
           },
           {
             "name": "126",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Koleje Jižní Město",
+              "Chodov",
+              "Na Jelenách"
+            ]
           },
           {
             "name": "154",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Sídliště Libuš"
+            ]
           },
           {
             "name": "170",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Pražská čtvrť"
+            ]
           },
           {
             "name": "203",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Poliklinika Budějovická"
+            ]
           },
           {
             "name": "226",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Lipany",
+              "Benice"
+            ]
           },
           {
             "name": "227",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Nedvězí"
+            ]
           },
           {
             "name": "240",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Černý Most"
+            ]
           }
         ]
       },
@@ -1399,19 +2319,34 @@
         "routes": [
           {
             "name": "136",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Sídliště Čakovice"
+            ]
           },
           {
             "name": "213",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Želivského"
+            ]
           },
           {
             "name": "905",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Sídliště Čimice",
+              "Budějovická",
+              "Kobylisy"
+            ]
           },
           {
             "name": "911",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Cukrovar Čakovice",
+              "Sídliště Čakovice"
+            ]
           }
         ]
       },
@@ -1423,59 +2358,107 @@
         "routes": [
           {
             "name": "125",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Skalka",
+              "Nádraží Hostivař"
+            ]
           },
           {
             "name": "126",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Nádraží Uhříněves",
+              "Dolnokřeslická"
+            ]
           },
           {
             "name": "136",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Jižní Město"
+            ]
           },
           {
             "name": "154",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Strašnická",
+              "Nádraží Hostivař"
+            ]
           },
           {
             "name": "170",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Jižní Město"
+            ]
           },
           {
             "name": "175",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Florenc"
+            ]
           },
           {
             "name": "183",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Vozovna Kobylisy",
+              "Nádraží Hostivař"
+            ]
           },
           {
             "name": "213",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Jižní Město"
+            ]
           },
           {
             "name": "226",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Lipany",
+              "Benice"
+            ]
           },
           {
             "name": "227",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Nedvězí"
+            ]
           },
           {
             "name": "240",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Černý Most"
+            ]
           },
           {
             "name": "905",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Jižní Město"
+            ]
           },
           {
             "name": "911",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Nádraží Hostivař"
+            ]
           },
           {
             "name": "959",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Kostelec n.Č.l.,nám.",
+              "Říčany,Olivovna"
+            ]
           }
         ]
       }
@@ -1489,23 +2472,40 @@
         "routes": [
           {
             "name": "58",
-            "mode": "trolleybus"
+            "mode": "trolleybus",
+            "headsigns": [
+              "Palmovka"
+            ]
           },
           {
             "name": "110",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Hloubětín"
+            ]
           },
           {
             "name": "136",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Jižní Město"
+            ]
           },
           {
             "name": "195",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Jesenická",
+              "Poliklinika Zahradní Město"
+            ]
           },
           {
             "name": "201",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Nádraží Holešovice",
+              "Střížkov"
+            ]
           }
         ]
       },
@@ -1517,23 +2517,39 @@
         "routes": [
           {
             "name": "158",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Sídliště Letňany"
+            ]
           },
           {
             "name": "195",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Sídliště Letňany"
+            ]
           },
           {
             "name": "321",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Brandýs n.L.-St.Bol.,nádr."
+            ]
           },
           {
             "name": "351",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Neratovice,žel.st.",
+              "Čakovičky"
+            ]
           },
           {
             "name": "377",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Kostelec n.L.,Martinská"
+            ]
           }
         ]
       },
@@ -1545,19 +2561,35 @@
         "routes": [
           {
             "name": "58",
-            "mode": "trolleybus"
+            "mode": "trolleybus",
+            "headsigns": [
+              "Miškovice",
+              "Čakovice"
+            ]
           },
           {
             "name": "110",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Obchodní centrum Čakovice",
+              "Třeboradický hřbitov",
+              "Za Tratí"
+            ]
           },
           {
             "name": "136",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Sídliště Čakovice"
+            ]
           },
           {
             "name": "201",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Černý Most",
+              "Kbely"
+            ]
           }
         ]
       },
@@ -1569,39 +2601,68 @@
         "routes": [
           {
             "name": "110",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Hloubětín"
+            ]
           },
           {
             "name": "159",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Vinoř"
+            ]
           },
           {
             "name": "182",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Kbelský hřbitov"
+            ]
           },
           {
             "name": "185",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Třeboradice"
+            ]
           },
           {
             "name": "209",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Nádraží Uhříněves",
+              "Běchovice"
+            ]
           },
           {
             "name": "302",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Přezletice,Vinořská",
+              "Veleň,u pomníku"
+            ]
           },
           {
             "name": "375",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Brandýs n.L.-St.Bol.,žel.st."
+            ]
           },
           {
             "name": "376",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Brandýs n.L.-St.Bol.,nádr."
+            ]
           },
           {
             "name": "378",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Radonice,Spojovací"
+            ]
           }
         ]
       },
@@ -1613,11 +2674,18 @@
         "routes": [
           {
             "name": "182",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Opatov",
+              "Vysočanská"
+            ]
           },
           {
             "name": "375",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Praha,Českomoravská"
+            ]
           }
         ]
       },
@@ -1629,35 +2697,62 @@
         "routes": [
           {
             "name": "159",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Vinoř"
+            ]
           },
           {
             "name": "182",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Kbelský hřbitov"
+            ]
           },
           {
             "name": "185",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Třeboradice"
+            ]
           },
           {
             "name": "201",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Černý Most",
+              "Kbely"
+            ]
           },
           {
             "name": "209",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Nádraží Uhříněves",
+              "Běchovice"
+            ]
           },
           {
             "name": "302",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Přezletice,Vinořská",
+              "Veleň,u pomníku"
+            ]
           },
           {
             "name": "376",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Brandýs n.L.-St.Bol.,nádr."
+            ]
           },
           {
             "name": "378",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Radonice,Spojovací"
+            ]
           }
         ]
       },
@@ -1669,15 +2764,25 @@
         "routes": [
           {
             "name": "321",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Brandýs n.L.-St.Bol.,nádr."
+            ]
           },
           {
             "name": "351",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Neratovice,žel.st.",
+              "Čakovičky"
+            ]
           },
           {
             "name": "377",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Kostelec n.L.,Martinská"
+            ]
           }
         ]
       },
@@ -1689,7 +2794,10 @@
         "routes": [
           {
             "name": "413",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Litoměřice,aut.nádr."
+            ]
           }
         ]
       },
@@ -1701,11 +2809,21 @@
         "routes": [
           {
             "name": "400",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Nový Bor,aut.nádr.",
+              "Varnsdorf,aut.nádr.",
+              "Rumburk,žel.st."
+            ]
           },
           {
             "name": "410",
-            "mode": "bus"
+            "mode": "bus",
+            "headsigns": [
+              "Doksy,žel.st.",
+              "Mimoň,aut.st.",
+              "Mimoň,Žitavská"
+            ]
           }
         ]
       }
