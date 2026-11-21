@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T10:14:32.793Z",
+  "generatedAt": "2026-11-21T10:00:25.137Z",
   "source": "https://data.pid.cz/PID_GTFS.zip",
   "stations": {
     "U689S1": [
@@ -502,8 +502,8 @@
             "name": "405",
             "mode": "bus",
             "headsigns": [
-              "Špindlerův Mlýn,aut.st.",
-              "Vrchlabí,aut.st."
+              "Vrchlabí,aut.st.",
+              "Špindlerův Mlýn,aut.st."
             ]
           },
           {
@@ -562,7 +562,7 @@
             "headsigns": [
               "Dobrovice,aut.st.",
               "Dolní Bousov,nám.",
-              "Žerčice"
+              "Prodašice"
             ]
           }
         ]
@@ -737,6 +737,13 @@
             "mode": "bus",
             "headsigns": [
               "Ve Žlíbku"
+            ]
+          },
+          {
+            "name": "XS2",
+            "mode": "bus",
+            "headsigns": [
+              "Lysá n.L.,žel.st."
             ]
           }
         ]
@@ -1452,8 +1459,8 @@
             "mode": "bus",
             "headsigns": [
               "Kladno,autobusové nádraží",
-              "Kladno,gymnasium",
-              "Kladno,Sítná"
+              "Kladno,Sítná",
+              "Kladno,gymnasium"
             ]
           },
           {
@@ -1468,9 +1475,9 @@
             "name": "414",
             "mode": "bus",
             "headsigns": [
-              "Středokluky,u školy",
               "Koleč,zámek",
-              "Želenice"
+              "Želenice",
+              "Středokluky,u školy"
             ]
           },
           {
@@ -1830,8 +1837,8 @@
             "mode": "bus",
             "headsigns": [
               "Poliklinika Modřany",
-              "Čechova čtvrť",
-              "Obchodní centrum Sárská"
+              "Obchodní centrum Sárská",
+              "Čechova čtvrť"
             ]
           },
           {
@@ -2158,8 +2165,8 @@
             "mode": "bus",
             "headsigns": [
               "Poliklinika Modřany",
-              "Čechova čtvrť",
-              "Obchodní centrum Sárská"
+              "Obchodní centrum Sárská",
+              "Čechova čtvrť"
             ]
           }
         ]
