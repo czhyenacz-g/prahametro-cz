@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-21T10:00:25.137Z",
+  "generatedAt": "2026-11-22T09:59:43.009Z",
   "source": "https://data.pid.cz/PID_GTFS.zip",
   "stations": {
     "U689S1": [
@@ -22,8 +22,7 @@
             "mode": "tram",
             "headsigns": [
               "Nádraží Braník",
-              "Sídliště Modřany",
-              "Kublov"
+              "Sídliště Modřany"
             ]
           },
           {
@@ -121,8 +120,8 @@
             "name": "21",
             "mode": "tram",
             "headsigns": [
-              "Slivenec",
-              "Kubánské náměstí"
+              "Kubánské náměstí",
+              "Slivenec"
             ]
           },
           {
@@ -502,8 +501,8 @@
             "name": "405",
             "mode": "bus",
             "headsigns": [
-              "Vrchlabí,aut.st.",
-              "Špindlerův Mlýn,aut.st."
+              "Špindlerův Mlýn,aut.st.",
+              "Vrchlabí,aut.st."
             ]
           },
           {
@@ -1044,8 +1043,7 @@
             "mode": "tram",
             "headsigns": [
               "Nádraží Braník",
-              "Sídliště Modřany",
-              "Kublov"
+              "Sídliště Modřany"
             ]
           },
           {
@@ -1098,8 +1096,8 @@
             "name": "21",
             "mode": "tram",
             "headsigns": [
-              "Slivenec",
-              "Kubánské náměstí"
+              "Kubánské náměstí",
+              "Slivenec"
             ]
           },
           {
@@ -1607,13 +1605,6 @@
             ]
           },
           {
-            "name": "3",
-            "mode": "tram",
-            "headsigns": [
-              "Kublov"
-            ]
-          },
-          {
             "name": "4",
             "mode": "tram",
             "headsigns": [
@@ -1654,9 +1645,7 @@
             "name": "20",
             "mode": "tram",
             "headsigns": [
-              "Sídliště Modřany",
-              "Kublov",
-              "Dvorce"
+              "Sídliště Modřany"
             ]
           },
           {
@@ -1804,6 +1793,28 @@
             "mode": "bus",
             "headsigns": [
               "Na Pískách"
+            ]
+          },
+          {
+            "name": "X26",
+            "mode": "bus",
+            "headsigns": [
+              "Na Pískách"
+            ]
+          }
+        ]
+      },
+      {
+        "code": "Z2",
+        "name": "Nádraží Veleslavín",
+        "lat": 50.095577,
+        "lon": 14.345038,
+        "routes": [
+          {
+            "name": "X26",
+            "mode": "bus",
+            "headsigns": [
+              "Dědina"
             ]
           }
         ]
