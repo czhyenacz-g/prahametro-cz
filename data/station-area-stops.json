@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-22T09:59:43.009Z",
+  "generatedAt": "2026-11-23T10:58:44.279Z",
   "source": "https://data.pid.cz/PID_GTFS.zip",
   "stations": {
     "U689S1": [
@@ -258,8 +258,8 @@
             "name": "15",
             "mode": "tram",
             "headsigns": [
-              "Vozovna Žižkov",
-              "Vozovna Hloubětín"
+              "Vozovna Hloubětín",
+              "Vozovna Žižkov"
             ]
           },
           {
@@ -288,8 +288,8 @@
             "name": "23",
             "mode": "tram",
             "headsigns": [
-              "Vozovna Hloubětín",
-              "Vozovna Žižkov"
+              "Vozovna Žižkov",
+              "Vozovna Hloubětín"
             ]
           },
           {
@@ -501,8 +501,8 @@
             "name": "405",
             "mode": "bus",
             "headsigns": [
-              "Špindlerův Mlýn,aut.st.",
-              "Vrchlabí,aut.st."
+              "Vrchlabí,aut.st.",
+              "Špindlerův Mlýn,aut.st."
             ]
           },
           {
@@ -1237,8 +1237,8 @@
             "mode": "tram",
             "headsigns": [
               "Bílá labuť",
-              "Vozovna Hloubětín",
-              "Vozovna Žižkov"
+              "Vozovna Žižkov",
+              "Vozovna Hloubětín"
             ]
           },
           {
@@ -1848,8 +1848,7 @@
             "mode": "bus",
             "headsigns": [
               "Poliklinika Modřany",
-              "Obchodní centrum Sárská",
-              "Čechova čtvrť"
+              "Obchodní centrum Sárská"
             ]
           },
           {
@@ -2176,8 +2175,7 @@
             "mode": "bus",
             "headsigns": [
               "Poliklinika Modřany",
-              "Obchodní centrum Sárská",
-              "Čechova čtvrť"
+              "Obchodní centrum Sárská"
             ]
           }
         ]
