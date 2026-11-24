@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T10:58:44.279Z",
+  "generatedAt": "2026-11-24T12:45:11.115Z",
   "source": "https://data.pid.cz/PID_GTFS.zip",
   "stations": {
     "U689S1": [
@@ -81,8 +81,8 @@
             "mode": "tram",
             "headsigns": [
               "Sídliště Barrandov",
-              "Slivenec",
-              "Vozovna Motol"
+              "Na Knížecí",
+              "Slivenec"
             ]
           },
           {
@@ -1187,8 +1187,8 @@
             "mode": "tram",
             "headsigns": [
               "Nádraží Holešovice",
-              "Vozovna Žižkov",
-              "Vozovna Kobylisy"
+              "Vozovna Kobylisy",
+              "Vozovna Žižkov"
             ]
           },
           {
@@ -1645,7 +1645,9 @@
             "name": "20",
             "mode": "tram",
             "headsigns": [
-              "Sídliště Modřany"
+              "Sídliště Modřany",
+              "Na Knížecí",
+              "Vozovna Pankrác"
             ]
           },
           {
@@ -2564,7 +2566,8 @@
             "name": "377",
             "mode": "bus",
             "headsigns": [
-              "Kostelec n.L.,Martinská"
+              "Kostelec n.L.,Martinská",
+              "Kostelec n.L.,nám."
             ]
           }
         ]
@@ -2797,7 +2800,8 @@
             "name": "377",
             "mode": "bus",
             "headsigns": [
-              "Kostelec n.L.,Martinská"
+              "Kostelec n.L.,Martinská",
+              "Kostelec n.L.,nám."
             ]
           }
         ]
