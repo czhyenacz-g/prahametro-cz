@@ -10,6 +10,7 @@ import SeoContent from "./seo/SeoContent.tsx";
 import InstallPrompt from "./pwa/InstallPrompt.tsx";
 import StationGuidesTeaser from "./stations/StationGuidesTeaser.tsx";
 import TicketsTeaser from "./tickets/TicketsTeaser.tsx";
+import GiftAffiliateBanner from "./ads/GiftAffiliateBanner.tsx";
 
 /**
  * Sdílená homepage pro obě jazykové routy (app/(cs)/page.tsx = "/",
@@ -52,6 +53,8 @@ export default async function HomePage({ locale }: { locale: Locale }) {
           {/* Průvodci stanicemi (/stanice) i jízdenky jsou jen česky — ostatní jazyky odkaz nedostanou. */}
           {locale === "cs" && <StationGuidesTeaser />}
           <TicketsTeaser variant="home" locale={locale} />
+          {/* Affiliate banner (LEGO Botanicals) jen česky, přímo nad sekcí „Pražské metro na jednom místě“ (první sekce SeoContent). */}
+          {locale === "cs" && <GiftAffiliateBanner />}
           <SeoContent locale={locale} />
         </main>
         <AppFooter />
