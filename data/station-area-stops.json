@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-26T11:13:11.585Z",
+  "generatedAt": "2026-11-27T11:04:46.990Z",
   "source": "https://data.pid.cz/PID_GTFS.zip",
   "stations": {
     "U689S1": [
@@ -833,8 +833,8 @@
             "mode": "bus",
             "headsigns": [
               "Nádraží Holešovice",
-              "Letňany",
-              "Střížkov"
+              "Střížkov",
+              "Bakovská"
             ]
           },
           {
