@@ -11,6 +11,8 @@ import InstallPrompt from "./pwa/InstallPrompt.tsx";
 import StationGuidesTeaser from "./stations/StationGuidesTeaser.tsx";
 import TicketsTeaser from "./tickets/TicketsTeaser.tsx";
 import GiftAffiliateBanner from "./ads/GiftAffiliateBanner.tsx";
+import RonsoftBanner from "./ads/RonsoftBanner.tsx";
+import { isRonsoftCampaignActive } from "../lib/ads/ronsoft-campaign.ts";
 
 /**
  * Sdílená homepage pro obě jazykové routy (app/(cs)/page.tsx = "/",
@@ -54,7 +56,15 @@ export default async function HomePage({ locale }: { locale: Locale }) {
           {locale === "cs" && <StationGuidesTeaser />}
           <TicketsTeaser variant="home" locale={locale} />
           {/* Affiliate banner (LEGO Botanicals) jen česky, přímo nad sekcí „Pražské metro na jednom místě“ (první sekce SeoContent). */}
-          {locale === "cs" && <GiftAffiliateBanner />}
+          {/* V tomhle místě vždy jediná reklama: po dobu kampaně Ronsoft Black Friday místo LEGO, pak zpět LEGO. */}
+          {locale === "cs" &&
+            (isRonsoftCampaignActive() ? (
+              <div className="mx-auto w-full max-w-2xl px-4 pt-3">
+                <RonsoftBanner tone="light" />
+              </div>
+            ) : (
+              <GiftAffiliateBanner />
+            ))}
           <SeoContent locale={locale} />
         </main>
         <AppFooter />
